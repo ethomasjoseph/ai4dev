@@ -1,0 +1,12798 @@
+# RAG Basics + LanceDB + LlamaIndex
+02:32
+Hello. Hello. Hello, folks.
+
+02:36
+Good morning.
+
+02:39
+How are we doing today?
+
+02:49
+All good?
+
+03:01
+Good morning. Good morning.
+
+03:04
+Good.
+
+03:06
+Okay.
+
+03:07
+Great.
+
+03:13
+I hope
+
+03:14
+everybody's
+
+03:17
+well rested.
+
+03:21
+Yeah.
+
+03:22
+Sleep sleep has become a mood actually.
+
+03:25
+But, yeah,
+
+03:26
+anyways, trying to get some.
+
+03:29
+But
+
+03:30
+yes.
+
+03:31
+So
+
+03:42
+yeah. Folks.
+
+03:45
+Okay.
+
+03:47
+We said,
+
+03:49
+so good night good night and not in that way.
+
+03:51
+Right? So I'm hoping that you just don't go to
+
+03:55
+sleep directly now.
+
+04:05
+Yes.
+
+04:06
+I wish I wish I was doing that job, but,
+
+04:09
+yeah, not yet.
+
+04:12
+So okay.
+
+04:14
+Great.
+
+04:15
+So are we good to go?
+
+04:18
+Yes. Yes, folks. Can I get a good guess in
+
+04:20
+the chat? Are we good to go?
+
+04:25
+Okay.
+
+04:29
+Yes. We'll take the pace slow. Right?
+
+04:33
+Okay, folks. So without any further ado,
+
+04:36
+right, let me introduce you
+
+04:39
+to your
+
+04:40
+mentor for today.
+
+04:42
+And,
+
+04:43
+he's someone, you know, who's been a great great great
+
+04:49
+mentor for me as well, right, since I've joined Outscale.
+
+04:54
+And
+
+04:56
+he's head of
+
+04:58
+education
+
+04:59
+and initiatives at Outscale.
+
+05:01
+So can we
+
+05:03
+quickly welcome
+
+05:05
+Dilip
+
+05:07
+in the chat.
+
+05:09
+Folks, can we get
+
+05:12
+welcome, Delete, in the chat.
+
+05:17
+Yeah.
+
+05:21
+Okay.
+
+05:23
+Great.
+
+05:24
+Great.
+
+05:25
+Good to see. Hey, Dileep. How are you? Hello. I'm
+
+05:28
+good. I'm good.
+
+05:30
+Yes. So
+
+05:32
+let's get started,
+
+05:33
+without any further delay.
+
+05:35
+Yes. Alright.
+
+05:37
+So,
+
+05:38
+hey, everyone. Dileepo here.
+
+05:41
+Just
+
+05:42
+curious to understand how many of you don't know me.
+
+05:44
+I know some people know me, but how many of
+
+05:46
+you don't know me? If you can give me me,
+
+05:49
+I'll kind of do a quick intro about myself, and
+
+05:51
+then we can go ahead
+
+05:53
+at that. Alright. I think quite a few don't know
+
+05:55
+me. Alright. So,
+
+05:58
+my name is Dilip. I'm the head of generative
+
+06:00
+AI education at Outskill.
+
+06:02
+My background,
+
+06:04
+I have done BSC, MSC in mathematics.
+
+06:06
+Then I had done MTech in computer science.
+
+06:09
+Then I was doing my,
+
+06:11
+research in AI from IIT Madras in the computer science,
+
+06:16
+department, and, I was
+
+06:18
+working,
+
+06:19
+there.
+
+06:20
+Due to some reasons, I dropped out of, PhD. And,
+
+06:24
+from then on, I was working in multiple education companies.
+
+06:27
+And now I am at, Outskill,
+
+06:30
+where,
+
+06:31
+I teach,
+
+06:33
+both engineers and non engineers how to use generative
+
+06:37
+AI. So 1 thing that you should all understand about
+
+06:39
+me is I am not a typical engineer. Okay? I'm
+
+06:42
+not the engineer engineer persona that you have been seeing
+
+06:45
+a lot in the past few days. I am not
+
+06:48
+an engineer. I am a researcher.
+
+06:50
+So what that means is the way I teach, the
+
+06:53
+way I show, the things I know would be, quite
+
+06:56
+different from what you have seen so far.
+
+06:59
+Alright? So, therefore,
+
+07:01
+keep that expectations in mind. Tempur your expectations a little
+
+07:05
+bit.
+
+07:06
+If you ask me too many questions around production pipelines,
+
+07:10
+I might give you the directional answer because I keep
+
+07:12
+talking to a lot of engineers. But,
+
+07:15
+the other hands on part or any other things, that
+
+07:18
+is something you'll have to ask your other instructors.
+
+07:21
+But the advantage that I will give you is I
+
+07:24
+will teach you as if you don't have any understanding.
+
+07:28
+So I teach from first principles.
+
+07:30
+I will try to show you the up and coming
+
+07:33
+things also, not just what is working. So that way,
+
+07:36
+you have the understanding
+
+07:38
+of the latest trends and not just what is,
+
+07:41
+you know,
+
+07:42
+generally being taught right now.
+
+07:45
+Okay. So,
+
+07:47
+today's session,
+
+07:48
+right, I will try to keep it as,
+
+07:50
+analogical
+
+07:51
+as,
+
+07:52
+this thing, overall.
+
+07:54
+I will try to go at a slower pace. Okay?
+
+07:57
+But please
+
+07:59
+rewire yourself mentally
+
+08:01
+that
+
+08:02
+it's going to be a heavy session.
+
+08:04
+Okay? While I'll explain everything, so the way to absorb
+
+08:08
+this session is index more on the analogies, not on
+
+08:12
+the details. Because if I go into all the details
+
+08:14
+and try to do this, you will never be able
+
+08:16
+to finish this session.
+
+08:18
+Okay? So,
+
+08:19
+index more on the analogies,
+
+08:22
+not on anything else.
+
+08:24
+Okay? Clear? Expectations clear? And any questions that are coming,
+
+08:28
+I will take it towards the end. In between, I
+
+08:31
+might scan and take a few questions here and there,
+
+08:34
+but don't expect me to answer every question that is
+
+08:37
+coming on the chat.
+
+08:39
+Okay? Because I have prepared something. I have prepared a
+
+08:42
+flow. And most of the times, the questions would be
+
+08:45
+answered
+
+08:47
+directly without me even,
+
+08:49
+without you even asking. So I want to,
+
+08:52
+focus on that, and that's how I would take this
+
+08:55
+session forward.
+
+08:56
+Alright. I am turning the chat to host and panelists
+
+08:59
+so that,
+
+09:01
+the people who don't want to be distracted by chat,
+
+09:04
+they are not getting distracted.
+
+09:06
+And I will keep an eye on the chat, but,
+
+09:09
+it is only just an eye. I'm not going to
+
+09:11
+pause for each and every question that is coming in.
+
+09:15
+Alright? So quick expectation check. Not an engineer,
+
+09:20
+so expect more first principles teaching,
+
+09:23
+but you will see some engineering terms plus code. Of
+
+09:26
+course, I know how to code. Right? So I have,
+
+09:29
+written code, and I'm going to show you. Second thing,
+
+09:32
+what I'm doing to do is because today is a
+
+09:34
+heavy session, you will require a lot more time to
+
+09:37
+absorb.
+
+09:38
+Okay? So that's why I'm not going to do, any
+
+09:41
+kind of breakout room from this session.
+
+09:44
+Okay?
+
+09:45
+So that,
+
+09:46
+you know, we will,
+
+09:48
+you will understand it, later on. Okay?
+
+09:51
+There is a reason I will share the slide with
+
+09:54
+you, okay, so that you can have the slides look
+
+09:56
+on your side also.
+
+09:58
+Code, I will just share after the session because to
+
+10:02
+be very fair, right, I have been building this code
+
+10:04
+over the last 5, 6 days because I kept reiterating
+
+10:07
+and,
+
+10:08
+kept improving the code. That's why I didn't say it
+
+10:10
+before because it is a complete revamp. This session not
+
+10:13
+been done before. It's a complete revamp I have done,
+
+10:16
+because I wanted to incorporate the latest concepts. That's what
+
+10:19
+I said. Right?
+
+10:21
+That is the advantage of having a researcher teach you
+
+10:24
+because you will get the latest stuff.
+
+10:27
+The disadvantage of that is, you will find it a
+
+10:31
+little tough to follow in the beginning. But when you
+
+10:34
+recap, when you see things later, you will actually see
+
+10:37
+that it is going to make sense later on. Okay?
+
+10:40
+So don't expect that hundred percent I'm going to understand
+
+10:44
+everything.
+
+10:45
+Okay? I will try to take you along, and the
+
+10:47
+rule I typically follow is 90 percent, 10 percent. That
+
+10:51
+is if 90 percent of the people are following my
+
+10:54
+session,
+
+10:55
+I will move ahead, and I do typically recaps 2
+
+10:59
+times.
+
+11:01
+Alright? Clear everybody.
+
+11:03
+Right? Your expectation is clear that there is no breakout
+
+11:06
+room today because the session is going to be heavy.
+
+11:08
+I will share the code. It is a individual exercise.
+
+11:11
+I'll leave it to you to kind of run the
+
+11:12
+code, see what is happening,
+
+11:14
+understand, revive the concepts, etcetera.
+
+11:17
+Okay. So before I proceed, let me share the slides
+
+11:20
+on the chat.
+
+11:41
+There you go. This is the slides I'm going to,
+
+11:44
+go through today. You can take a look.
+
+11:46
+Usually, I don't do this, but because I had not
+
+11:49
+given any prereads beforehand, I'm just giving you this so
+
+11:52
+that you can keep it side by side.
+
+11:54
+Alright.
+
+11:55
+So now on to the mid of the session.
+
+12:01
+Just give me a second. Arranging my screens.
+
+12:19
+Alright.
+
+12:20
+So,
+
+12:22
+just a quick check.
+
+12:24
+Everybody's,
+
+12:28
+able to see the screen. Right? Just give me a
+
+12:30
+reaction if you're able to see the screen so that
+
+12:32
+I know that you are able to, see the screens.
+
+12:43
+Sham, just keep the reactions open so that I can
+
+12:45
+see those reactions.
+
+12:47
+Yeah. I guess the reactions are open anyways.
+
+12:50
+Yeah. Folks, I will communicate a lot via reactions and,
+
+12:54
+via their chat, so keep it coming. So able to
+
+12:58
+see the screen, everyone?
+
+13:02
+Oops. Can we
+
+13:05
+Oh, got it. I got a few yeses. Oh, fine.
+
+13:08
+Okay.
+
+13:09
+So
+
+13:11
+the way, I'm go the session is going to flow
+
+13:14
+is like this. I will talk about the naive rag
+
+13:18
+system. Okay? So I'll talk about the,
+
+13:21
+naive rag system, talk about what are the problems with
+
+13:24
+the system, and then, we will go ahead. Okay? While
+
+13:27
+I said build along, it is not exactly a build
+
+13:30
+along. It is a build later for you. The idea
+
+13:33
+being that I will show you all the components and
+
+13:36
+explain a lot of stuff.
+
+13:38
+Okay? So 1 thing for you to understand is,
+
+13:41
+a lot of the types. Right?
+
+13:45
+A lot of the times, what happens is
+
+13:47
+most of the rag tutorials that you see, that you
+
+13:51
+understand, etcetera, and all that,
+
+13:54
+they follow the happy path where you are loading the
+
+13:56
+talks,
+
+13:58
+and, then you have a process and then tell you
+
+14:01
+the, bits of things. That is useful. Okay? Understanding the
+
+14:05
+concept of rag is useful, and we are going to
+
+14:07
+understand the concept. But then, real rag systems, they have
+
+14:11
+a few gaps.
+
+14:13
+Okay? For example,
+
+14:15
+some other things that they miss out are on they
+
+14:18
+missed the exact values.
+
+14:20
+They, retrieved the right broad topic, but nor the round
+
+14:25
+wrong paragraph.
+
+14:26
+The answer may be only a part of the question,
+
+14:30
+so they don't answer every,
+
+14:33
+part of the question,
+
+14:35
+in a way. And, you know, they sound confident. By
+
+14:38
+the way, they sound confident even if the, retrieved evidence
+
+14:42
+is kind of weak, and,
+
+14:44
+teams often cannot,
+
+14:46
+you know, tell, whether the changes have improved the quality
+
+14:50
+or not.
+
+14:51
+Right? So if I have to kind of build a
+
+14:55
+rack system and if I need to work,
+
+14:58
+the 1 missing piece always people struggle with this, is
+
+15:01
+my rack working good or not? So we are going
+
+15:03
+to focus on that also.
+
+15:05
+And the way typically people do this session is they
+
+15:09
+talk about rack, They talk about all the concepts of
+
+15:12
+drag, and then they say, okay. This is how you
+
+15:15
+eval and close it. I will do it differently.
+
+15:18
+I will first talk about evaluation. I will talk about
+
+15:21
+the NIA pipeline and then the evaluation,
+
+15:24
+And then I'll show you how I will improve it
+
+15:27
+by adding a few elements and keep,
+
+15:30
+changing that evaluation
+
+15:31
+overall.
+
+15:32
+Alright? So that's how I would,
+
+15:35
+take this, session forward.
+
+15:38
+K.
+
+15:42
+Cool. So now that I have set this context, we
+
+15:44
+can, go about with this.
+
+15:48
+By the way, is my voice clear, my pace clear,
+
+15:52
+all that? Right? So just checking on the chat.
+
+15:55
+Everything is clear. Right? My voice is clear. Everything clear
+
+15:59
+proper?
+
+16:00
+Cool.
+
+16:02
+Awesome.
+
+16:04
+Right. So now we will get into the, thing where
+
+16:07
+we try to go from a live demo towards
+
+16:10
+a full level production system, what are the things required,
+
+16:14
+etcetera.
+
+16:16
+So this is the typical happy path, and I'll first
+
+16:21
+explain
+
+16:23
+what this means. Okay? That happy path is
+
+16:26
+I have documents.
+
+16:28
+I break my documents.
+
+16:30
+I index my documents. I store it in a vector
+
+16:33
+database.
+
+16:34
+I get the top k things, and then I pass
+
+16:37
+it on to the large language model.
+
+16:46
+Okay. So this is typically the happy part when we
+
+16:48
+are working with drag. And let me now give you
+
+16:51
+an analogical understanding of what I'm trying to say.
+
+16:55
+What do I mean by this?
+
+16:59
+So, some analogy time.
+
+17:04
+Okay. I'll keep the chat open.
+
+17:11
+So a quick,
+
+17:12
+analogy time.
+
+17:14
+What we are going to understand,
+
+17:17
+is this.
+
+17:19
+Let us assume that you have a super smart friend.
+
+17:29
+Okay. Let us assume that you have a super smart
+
+17:32
+friend,
+
+17:32
+and this, super smart,
+
+17:35
+friend is,
+
+17:36
+you know, going to
+
+17:38
+be your adviser.
+
+17:42
+Alright.
+
+17:44
+How many of you have the super smart friends with
+
+17:46
+you? Somebody whom you lean on for the advice for
+
+17:49
+anything that you want, typically.
+
+17:52
+Anybody on the chat? Okay.
+
+17:54
+Good. So I want the engagement happening so that I
+
+17:57
+have a clear understanding of where you are following.
+
+18:01
+Right? So when you are the smart super smart friend
+
+18:04
+and you are the adviser,
+
+18:05
+typically
+
+18:07
+and you are trying to
+
+18:10
+ask this, friend the advice on things like,
+
+18:14
+say,
+
+18:16
+deployment
+
+18:19
+or Kubernetes.
+
+18:23
+So I am kind of asking this thing on deployment
+
+18:26
+and Kubernetes. This is exactly
+
+18:29
+the
+
+18:30
+super smart friend adviser.
+
+18:32
+The problem with this adviser is this adviser has a
+
+18:35
+bit of ego.
+
+18:36
+And, if they don't know the answer to the question,
+
+18:39
+they will
+
+18:41
+make up an answer and say and what do you
+
+18:43
+call this making up answers by the advisers
+
+18:46
+in a technical term when they tell,
+
+18:49
+this that, you know, I am trying to make up
+
+18:52
+the answers. That is exactly what is called hallucination.
+
+18:58
+Okay? So that is hallucination.
+
+19:01
+So RAD is a way
+
+19:04
+to reduce my hallucination overall. And how do I reduce
+
+19:08
+the hallucination? Very simple. To my adviser,
+
+19:11
+I will give them the Kubernetes
+
+19:13
+documentation.
+
+19:21
+I will give the Kubernetes
+
+19:22
+documentation to my adviser,
+
+19:24
+and I will say, don't just give me the answer.
+
+19:27
+Tell me the exact page and the exact paragraph from
+
+19:31
+where you have taken the answer.
+
+19:34
+Okay. Now your super smart friend is forced to ground
+
+19:38
+the facts and tell you the exact answers.
+
+19:42
+Okay?
+
+19:43
+On a conceptual level, this is what RAG is. The
+
+19:46
+RAG system tries to
+
+19:48
+kind of ground the answers in actual information and then
+
+19:52
+provide those answers back to people.
+
+19:55
+Concept of rack clear at a very conceptual level,
+
+20:00
+right, where you are
+
+20:02
+trying to ground your things and trying to understand things
+
+20:05
+carefully.
+
+20:07
+Okay? Now let us
+
+20:09
+build this analogy and try to go deeper as to
+
+20:13
+how we can work.
+
+20:15
+Now let us take the point of view of your
+
+20:17
+friends.
+
+20:19
+For your friend, the Kubernetes documentation,
+
+20:21
+let us assume, is thousand pages long.
+
+20:26
+Okay? Because it is thousand pages long, every time my
+
+20:29
+friend
+
+20:30
+has to, check the Kubernetes,
+
+20:33
+he has to open the book, search all the thousand
+
+20:36
+pages, and then,
+
+20:37
+tell me the exact answer along with the exact page
+
+20:41
+number
+
+20:42
+and, you know, the paragraph,
+
+20:44
+etcetera.
+
+20:47
+Now do you now can you imagine that every query
+
+20:51
+will
+
+20:53
+take a lot of time?
+
+20:58
+Every time you ask your friend, your friend will say,
+
+21:01
+hey,
+
+21:02
+you know, give me the answer. He said, you only
+
+21:04
+asked me give me grounded answers. I have to go
+
+21:06
+through the complete documentation
+
+21:09
+and then tell you the answer. So you'll have to
+
+21:11
+be patient while I refer to all the thousand pages
+
+21:14
+every single time.
+
+21:17
+Okay? Then I tell, okay. You know what?
+
+21:21
+You are a smart person.
+
+21:23
+Figure out the system or here is a system
+
+21:26
+that needs to be done. Questions, as I have already
+
+21:29
+mentioned,
+
+21:30
+wait till towards the end, a lot of times the
+
+21:32
+questions will already be answered. For example, let clear your
+
+21:35
+question will come towards,
+
+21:37
+later on. I have I I'm addressing this later on.
+
+21:41
+K? So questions, keep it overall. We will take it
+
+21:45
+towards the end.
+
+21:47
+Alright.
+
+21:48
+So,
+
+21:49
+we have the Kubernetes documentation, and this is what I
+
+21:52
+propose as a new system for my friend.
+
+21:55
+Those thousand pages,
+
+21:59
+I will ask my friend to make it,
+
+22:02
+like,
+
+22:04
+2 pages overall.
+
+22:09
+Okay? I'll make it a collection of 2 2 pages.
+
+22:12
+So 2 pages,
+
+22:14
+I
+
+22:16
+will have,
+
+22:18
+1
+
+22:19
+thing. I'll have the next 2 pages, next 2 pages,
+
+22:22
+next 2 pages, next 2 pages, next 2 pages. So
+
+22:25
+I am taking these thousand pages
+
+22:28
+and then breaking that up into collection of 2 2
+
+22:31
+pages each.
+
+22:33
+This part clear, everybody?
+
+22:37
+Is it clear?
+
+22:41
+Okay.
+
+22:43
+Right.
+
+22:45
+So now how will my friend
+
+22:48
+recognize
+
+22:49
+which 2 pages to refer
+
+22:52
+when I ask the friend a question?
+
+22:54
+Okay. That is the next problem to solve. First problem
+
+22:57
+is, I will say don't refer to
+
+23:00
+thousand pages at once.
+
+23:02
+Try to key refer to only 2 2 pages at
+
+23:05
+once. So I will create
+
+23:07
+a 505
+
+23:11
+hundred,
+
+23:12
+you know, content collection
+
+23:14
+or
+
+23:16
+overall.
+
+23:17
+500 content collection where I am doing only 2 2
+
+23:21
+pages
+
+23:21
+at once.
+
+23:23
+Now can you tell me ideas of how do I
+
+23:26
+know which 2 pages should I refer
+
+23:28
+when somebody asks me a question?
+
+23:32
+How do I know which 2 pages to refer?
+
+23:37
+Okay? High level search indexing.
+
+23:40
+Very good.
+
+23:41
+High level search indexing, how I'll do? Very simple.
+
+23:45
+In each of these 2 pages, I find some of
+
+23:48
+the dominant
+
+23:49
+terms.
+
+23:51
+Okay. I'll find some very dominant terms,
+
+23:54
+and I will prepare an index
+
+23:56
+of those dominant terms.
+
+23:58
+So when I ask a question,
+
+24:01
+my friend will retrieve only the relevant 2 pages
+
+24:08
+that are present,
+
+24:09
+the relevant 2 pages based on the terms.
+
+24:13
+So suppose that term is present in, say, collection 3,
+
+24:17
+collection
+
+24:18
+57,
+
+24:19
+and collection
+
+24:20
+1 97.
+
+24:23
+Okay? So I will this friend is going to read
+
+24:26
+collection 3, collection 57, collection 1 97.
+
+24:30
+And do you think the friend should directly tell me
+
+24:33
+the answer, read out the answer,
+
+24:35
+or should they reframe the answer so that it is
+
+24:38
+understandable to me?
+
+24:40
+Should the friend read the answer or reframe?
+
+24:45
+Okay? Now how will my friend reframe?
+
+24:50
+What do you think my friend should do to reframe?
+
+24:53
+Not LLM will come later. For right now, it is
+
+24:55
+my friend.
+
+24:57
+What is LLM for my friend?
+
+25:00
+Some things that we have stopped using once LLMs just
+
+25:02
+start coming.
+
+25:06
+Think brain.
+
+25:09
+Right? Excellent.
+
+25:10
+So they will use their brain
+
+25:13
+and give me the answer.
+
+25:18
+Right now, I am not go doing any technical stuff.
+
+25:22
+First, conceptual,
+
+25:23
+analogical
+
+25:24
+understanding,
+
+25:25
+then I will go into technical stuff. And whatever terms
+
+25:27
+I'm going to use, I'm going to explain. So don't
+
+25:30
+worry about it.
+
+25:31
+Alright?
+
+25:32
+But do you understand where I'm going to? Through a
+
+25:35
+simple analogy, I just explained to you the complete red
+
+25:39
+pipeline.
+
+25:40
+Okay. So first, let us map the pipeline from a
+
+25:43
+human point of view, then we will map the pipeline
+
+25:46
+from a system point of view, then we will go
+
+25:48
+into the technical stuff. Okay? First, you need to understand
+
+25:51
+what is exactly happening, then technical stuff, etcetera, etcetera, we
+
+25:55
+can get it to.
+
+25:57
+Okay? So human,
+
+25:59
+POV, what is happening? On a human POV,
+
+26:03
+what the human has done is thousand page document
+
+26:08
+is broken into collections of 2 pages each.
+
+26:12
+Up
+
+26:18
+to 500
+
+26:19
+collections.
+
+26:22
+Now here is a question that could pop up at
+
+26:25
+the top of your mind.
+
+26:27
+I am choosing 2 pages. Can I make it 1
+
+26:30
+page? Can I make it half page? Can I make
+
+26:32
+it quarter page? Can I make it,
+
+26:34
+5 pages? Can I make it 10 pages? And so
+
+26:37
+on.
+
+26:39
+Yes? No?
+
+26:40
+There is a decision here. Right? How many pages should
+
+26:43
+I make? So let us mark that decision.
+
+26:49
+How many
+
+26:52
+pages?
+
+26:55
+Okay? So this is a decision.
+
+26:57
+How many pages?
+
+26:59
+So I have got 500 collections
+
+27:02
+that I have maintained.
+
+27:03
+Now the question is for each of those pages,
+
+27:07
+I look at the terms and I create an index.
+
+27:11
+Okay? So that when my
+
+27:14
+user, that is me, asks a question,
+
+27:20
+the question
+
+27:23
+goes to the index.
+
+27:25
+The index will tell me which pages to
+
+27:28
+kind of use, so I will,
+
+27:30
+use I will retrieve
+
+27:35
+the collections.
+
+27:39
+For example, I will retrieve collection 3 57
+
+27:43
+1 90.
+
+27:45
+Then
+
+27:47
+I will use the brain,
+
+27:51
+okay, to,
+
+27:53
+summarize
+
+27:54
+and to paraphrase to kind of make it more palatable,
+
+27:58
+and then
+
+27:59
+I give the
+
+28:02
+answer
+
+28:04
+back
+
+28:05
+to the
+
+28:07
+friend. Okay?
+
+28:08
+Did you understand this part clearly? Because if you are
+
+28:11
+understanding this,
+
+28:13
+when we go into the rack pipeline, it is just
+
+28:15
+analogical understanding of what is up.
+
+28:19
+Okay?
+
+28:21
+Clear so far, everybody? Are we all good? Pace is
+
+28:24
+good? Are we understanding everyone?
+
+28:29
+Okay. Awesome.
+
+28:31
+Now let me explain it everything. What is the basis
+
+28:34
+of the decision? Everything, I'm going to come to it
+
+28:37
+later on. Okay? So I am not I am, not
+
+28:42
+going to go deep here. I'm just doing the analogical
+
+28:44
+understanding. When I do some recaps, you will all be
+
+28:47
+able to get that.
+
+28:48
+Okay?
+
+28:50
+As I said, 90 10 is my rule.
+
+28:54
+So now
+
+28:58
+the question
+
+28:59
+to kind of, think about. Okay?
+
+29:02
+So I am doing retrieving the collection.
+
+29:05
+Okay? Now
+
+29:07
+how do I
+
+29:10
+retrieve?
+
+29:14
+How do I do the retrieval?
+
+29:16
+How do I,
+
+29:18
+you know, compare the terms to do the retrieval? That
+
+29:20
+is another decision I need to take.
+
+29:23
+So 1 decision is how do I,
+
+29:26
+you know, how many pages?
+
+29:29
+Other decision is
+
+29:31
+how do I index?
+
+29:32
+Should I index directly on the word? Should I index
+
+29:36
+on the synonyms?
+
+29:37
+How should I index?
+
+29:39
+And how do I retrieve?
+
+29:42
+Then when I use the brain to summarize
+
+29:45
+okay. When I'm using the brain to summarize,
+
+29:48
+it is all about
+
+29:50
+how am I, you know,
+
+29:53
+how am I doing and, you know, kind of summarizing
+
+29:57
+my info.
+
+30:03
+This part, your brain summarizing is all with respect to
+
+30:06
+the LLM, but the rest of the part is straightforward.
+
+30:09
+Okay? You have 1000 page document. You are breaking it
+
+30:12
+up into,
+
+30:14
+collections of 2 pages each, and then you are taking,
+
+30:18
+making an index. From the index, you are retrieving the
+
+30:21
+collection.
+
+30:22
+Then you are thinking about how I frame the answer
+
+30:26
+based on the question asked, and then I am telling
+
+30:28
+the answer.
+
+30:30
+Okay? Now let us go into understanding
+
+30:34
+the same thing for a system,
+
+30:35
+what is happening.
+
+30:37
+Okay. Let us assume there is 1000 page document similar
+
+30:41
+way.
+
+30:42
+The first part, breaking the document into smaller pieces,
+
+30:47
+that is called chunking.
+
+30:51
+Okay? Breaking the document into smaller pieces, that is called,
+
+30:55
+chunking.
+
+30:58
+Right? Then the indexing
+
+31:01
+is called embedding.
+
+31:06
+The indexing is embedding.
+
+31:09
+Then we have retrieval,
+
+31:17
+and then we get the
+
+31:19
+answer.
+
+31:24
+Okay?
+
+31:28
+I'm not going into the details yet. I am giving
+
+31:30
+you an overview.
+
+31:32
+From the overview part, did you understand the process? Yes
+
+31:35
+or no?
+
+31:44
+Okay.
+
+31:46
+So
+
+31:47
+what I've done is I have the,
+
+31:49
+taken the documents. I have not explained embedding at all.
+
+31:52
+Okay?
+
+31:53
+Hold on.
+
+31:54
+Right?
+
+31:55
+First, let us understand the process,
+
+31:58
+then we will go into the details. We are just
+
+32:00
+in the session. Right?
+
+32:02
+Patience.
+
+32:03
+So
+
+32:04
+in the first place,
+
+32:06
+right, on the thousand pages, I am, trying to break
+
+32:09
+it up into chunks.
+
+32:11
+Those chunks, I'll have to do the embedding that is
+
+32:14
+creating the index.
+
+32:15
+What is creating the index mean? That means
+
+32:18
+I am,
+
+32:20
+I am kind of flipping how I am storing the
+
+32:23
+information.
+
+32:24
+Okay? Now think about how the index is built. How
+
+32:27
+many of you have seen index in books previously?
+
+32:31
+How do you know how have you seen index in
+
+32:34
+books?
+
+32:35
+Right? So how is the index present? You have the
+
+32:38
+word
+
+32:40
+and you have the pages
+
+32:43
+in which
+
+32:45
+the word
+
+32:47
+appears.
+
+32:50
+Correct? That is 1 way of indexing.
+
+32:53
+Okay. The topic and the page in which it appears.
+
+32:57
+That is number 1.
+
+32:58
+Now when I'm saying embedding,
+
+33:00
+what I'm doing embedding is very, very simple. I just
+
+33:04
+want to ensure that
+
+33:06
+words
+
+33:09
+with same meaning
+
+33:14
+come
+
+33:15
+together.
+
+33:19
+Okay?
+
+33:20
+For example,
+
+33:21
+let me ask you a question.
+
+33:23
+When I say bank
+
+33:26
+and money,
+
+33:28
+right,
+
+33:29
+this bank refers to,
+
+33:32
+money bank
+
+33:36
+or will it refer to the river bank?
+
+33:43
+What do you guys think? Money bank or river bank?
+
+33:47
+Okay? Then suppose I say stream,
+
+33:52
+I say river.
+
+33:54
+Now this bank is referring to what? Money bank or
+
+33:57
+river bank?
+
+33:59
+River. Right? So my embeddings are built in such a
+
+34:03
+way so that the words with the same meaning
+
+34:06
+come
+
+34:07
+together.
+
+34:09
+Right? Then I need to
+
+34:12
+kind of
+
+34:13
+get retrieve.
+
+34:16
+That means
+
+34:17
+what is retrieve based on? Your question or the query.
+
+34:21
+You give the
+
+34:23
+query. Based on the query, you retrieve the
+
+34:26
+2 pages collections,
+
+34:29
+which
+
+34:30
+carry the answer.
+
+34:32
+So you say,
+
+34:33
+in collection number 3, in collection number 57, collection number
+
+34:37
+1 90,
+
+34:38
+it is present.
+
+34:40
+These 3 57 1 90 are what I pass on
+
+34:45
+to my large language model, which gives me the answer.
+
+34:50
+Okay? Did you understand this? The large language model doesn't
+
+34:54
+get your entire database top.
+
+34:57
+Okay? If it that that happened, imagine the number of
+
+35:01
+tokens your database is getting.
+
+35:03
+You will,
+
+35:04
+kind of hit your token usage even before you ask
+
+35:07
+the question.
+
+35:09
+So, therefore,
+
+35:10
+this system has to be built
+
+35:12
+so that your LLM costs are in control while you
+
+35:16
+have a grounded answer.
+
+35:20
+Alright? Is this concept clear on a board a broader
+
+35:23
+level?
+
+35:24
+Is it clear?
+
+35:28
+Okay. So when I come back
+
+35:30
+to the respective concepts,
+
+35:33
+I will revise it, try to keep up because I'm
+
+35:36
+trying to go as slow as possible. This is a
+
+35:38
+little technical. So as I said, you will require to
+
+35:41
+revise this later on.
+
+35:46
+Alright.
+
+35:47
+So a quick recap of what we have done so
+
+35:49
+far. And,
+
+35:51
+these are the 3 questions that I'm going to use
+
+35:55
+as my running example
+
+35:57
+to check the performance of the different drag.
+
+36:01
+So, the documentation
+
+36:03
+that I'm going to use as my rack example,
+
+36:06
+I am actually using the Kubernetes
+
+36:08
+documentation itself.
+
+36:09
+Okay? The reason I'm using a Kubernetes documentation
+
+36:12
+is because,
+
+36:13
+it is a technical documentation,
+
+36:16
+and I can actually show you how the scores change
+
+36:20
+when I am using different drag systems.
+
+36:23
+To be able to demonstrate that, I need to work
+
+36:26
+on a little difficult dataset. So the answers might not
+
+36:29
+feel a little intuitive when they come. Okay? I'm acknowledging
+
+36:33
+it before the time, but you'll be able to see
+
+36:35
+the difference in the models very clearly.
+
+36:38
+Okay? So I am going to ask 3 questions. 1
+
+36:42
+is a question on max spots. You don't have to
+
+36:44
+understand what the question is, even I don't know. These
+
+36:47
+are the 3 questions I ask, and I've set up
+
+36:49
+a system. And I'll teach you that how you can
+
+36:52
+measure the performance
+
+36:53
+of the rack system.
+
+36:55
+So I have max ports.
+
+36:56
+I have ingress routing, and I have got the stateful
+
+36:59
+set to roll out. I'm not going to explain the
+
+37:02
+terms. Don't worry about this. This is just to tell
+
+37:04
+you that these are the questions
+
+37:05
+I'll keep asking, and I'm going to measure the performance
+
+37:08
+of the rack systems
+
+37:10
+that will keep building over the course of this session.
+
+37:15
+Okay?
+
+37:16
+So the way you should understand this is you have
+
+37:19
+to think of the large language model as a brilliant
+
+37:22
+but risky,
+
+37:23
+you know, expert.
+
+37:25
+Read a lot, explains beautifully, connects ideas fast, sounds confident,
+
+37:30
+but still make things up when it does not know.
+
+37:33
+Okay? So fluency does not mean the truth.
+
+37:37
+And that is why
+
+37:39
+we have built the
+
+37:41
+system
+
+37:42
+or the expert where without track, you are asking the
+
+37:45
+smart person to answer from memory.
+
+37:48
+So risk of hallucinations
+
+37:50
+is very high in this case.
+
+37:53
+Okay? With track, what happens is you are going to
+
+37:56
+retrieve the relevant source material first,
+
+37:59
+then you ask the smart person to answer from it.
+
+38:04
+Okay. Is this concept of rack clear that
+
+38:07
+without rack memory, you are using the,
+
+38:10
+training x you know, present in LLM memory?
+
+38:14
+With drag, you are asking the relevant source material.
+
+38:18
+Okay? So how many of you have used web search
+
+38:22
+while using the large language model?
+
+38:24
+How many of you use the web search when using
+
+38:26
+the large language model?
+
+38:28
+Okay.
+
+38:29
+So if you have used the web search,
+
+38:32
+you are using the rag system only.
+
+38:35
+Just that the rag system is your entire web.
+
+38:40
+Okay. It is searching on the Internet,
+
+38:42
+getting the relevant information,
+
+38:45
+and then
+
+38:46
+using that information to tell you the answer. So if
+
+38:50
+you have used web search in any of your LLM
+
+38:52
+work,
+
+38:53
+right, you have used the rack. You are using rack
+
+38:56
+without you doing it.
+
+38:58
+Okay? How many of you have used perplexity?
+
+39:05
+Okay. Perplexity
+
+39:07
+is a rag system. Can you relate it now?
+
+39:10
+Every time you ask a question,
+
+39:12
+it is getting the answers,
+
+39:14
+then it is passing through the model those answers,
+
+39:17
+and then it is getting back the information.
+
+39:20
+Deep research is also a RAD system.
+
+39:23
+Those are extensive,
+
+39:25
+scalable,
+
+39:25
+big production rags.
+
+39:28
+Okay. What we are going to do is a very
+
+39:30
+small rag system that we are going to see in
+
+39:33
+the system in the session.
+
+39:36
+Okay? So in 1 line,
+
+39:38
+retrieve the right audience,
+
+39:40
+then generate the answer.
+
+39:42
+So RAG reduces hallucination
+
+39:44
+by grounding the model in source material, and that's exactly
+
+39:48
+what perplexity
+
+39:50
+has been doing.
+
+39:52
+Okay? What perplexity has been doing is exactly that system
+
+39:56
+where it is getting the answers, grounding the answers, etcetera.
+
+40:00
+NotebookLM is also a rack system. So Gemini is non
+
+40:04
+rack. If you don't use the web search, it is
+
+40:06
+a non rack system. Notebook column is a drag system.
+
+40:10
+Okay? So I want you to tie it back to
+
+40:12
+the tools that you're using on a day to day
+
+40:14
+basis so that you are able to understand.
+
+40:18
+Alright?
+
+40:18
+So
+
+40:21
+the shape the tools can
+
+40:23
+typically change,
+
+40:25
+but
+
+40:26
+the shape of the setup of your rack will remain
+
+40:30
+the same.
+
+40:32
+Okay? 1, you are going to ingest the information.
+
+40:37
+Okay. Ingesting means that chunking and embedding, etcetera. That is
+
+40:41
+what ingesting means. That is I am absorbing that information.
+
+40:46
+Then I will retrieve the right information that is required.
+
+40:51
+Then I will, do the re ranking,
+
+40:55
+and, then I will generate the information.
+
+40:59
+I will
+
+41:00
+evaluate, and then I will do the stuff. For for
+
+41:02
+now, just understand this at the back of your head.
+
+41:05
+As we build, as I show you the code, etcetera,
+
+41:07
+you will understand this a little bit more. But
+
+41:11
+as I showed you on the whiteboard,
+
+41:13
+that is exactly the same thing.
+
+41:16
+So as I work on the whiteboard,
+
+41:18
+this is exactly what you'll see.
+
+41:21
+So first,
+
+41:22
+okay, we will now build the simplest
+
+41:26
+rack system possible.
+
+41:28
+Okay? So now we will go into a little bit
+
+41:30
+of code. I will explain the code. I will tell
+
+41:33
+you what we are going to build. The first thing
+
+41:35
+what we are going to do is we are going
+
+41:37
+to build a baseline drag system, which is the simplest
+
+41:41
+drag system possible. That is the
+
+41:44
+naive thing.
+
+41:45
+We will build the baseline,
+
+41:47
+and then we will keep optimizing
+
+41:49
+by adding different layers.
+
+41:52
+Okay?
+
+41:53
+Following me so far? Good to go to the next
+
+41:55
+step. We will start going into the technicalities,
+
+41:57
+and we will build a basic knife rack system.
+
+42:02
+Okay? So here, the idea being, I will build a
+
+42:06
+simple system first, which is a simplest
+
+42:09
+no brainer system
+
+42:10
+so that
+
+42:11
+it will fail just enough for us to understand what
+
+42:15
+are the further changes we need to do and what
+
+42:17
+is the optimization
+
+42:19
+that we need to work on.
+
+42:22
+Okay? So that is exactly what we are going to
+
+42:25
+do where we are going to first understand
+
+42:28
+the typical,
+
+42:30
+system overall.
+
+42:33
+Okay?
+
+42:37
+Right. So before I get into that,
+
+42:40
+right, before I,
+
+42:42
+get into that, let me talk about some of the
+
+42:45
+things that I need to understand before I go into
+
+42:49
+the rag,
+
+42:50
+building.
+
+42:52
+Okay? And,
+
+42:53
+here, let me ask an example.
+
+42:57
+Suppose I am asking,
+
+42:59
+like, suppose you have purchased a product,
+
+43:01
+from a,
+
+43:03
+you know, suppose you have purchased shoes from Nike.
+
+43:06
+Right? And Nike has got this customer support rack
+
+43:12
+system. Okay. Nike has got this also customer support rack
+
+43:15
+system.
+
+43:17
+Now,
+
+43:18
+so
+
+43:19
+what are the problems that could happen? Let me rewrite
+
+43:22
+that for you so that you understand the process.
+
+43:25
+Number 1, what is suppose you say,
+
+43:29
+I want to return the shoes.
+
+43:31
+Okay? And the LLM
+
+43:33
+hallucinates
+
+43:34
+that it is 7 days
+
+43:36
+while it is actually 30 days.
+
+43:39
+Is there a business risk? Can you tell me is
+
+43:41
+there a business risk with this?
+
+43:46
+Okay. Because
+
+43:48
+I am miscommunicating
+
+43:50
+the information.
+
+43:51
+Right?
+
+43:53
+Later on, the either the customers will not buy. That
+
+43:55
+was what can happen.
+
+43:57
+Or,
+
+43:58
+because they have misunderstood
+
+44:00
+LLM misunderstands it is 7 days, while our policy says
+
+44:04
+30 days, because we are not able to do that,
+
+44:06
+they will lose the trust before that.
+
+44:09
+Okay? So, therefore,
+
+44:11
+while it feels okay we are technically
+
+44:13
+understanding the rag system,
+
+44:15
+any error that we make in our design is going
+
+44:18
+to cause business loss.
+
+44:20
+Okay? So you have to keep that at the back
+
+44:22
+of your mind.
+
+44:24
+Alright?
+
+44:25
+Another point to remember is rack does not make the
+
+44:28
+system smarter. Okay? It is not hundred percent reliable.
+
+44:33
+And why it is not hundred percent reliable? I think
+
+44:36
+Rajendra has already mentioned before. What if you retrieved a
+
+44:40
+wrong set of 2 pages?
+
+44:43
+Okay? Because your system was flawed,
+
+44:45
+and then you gave a wrong answer.
+
+44:49
+Correct?
+
+44:50
+So you'll have to think through what are those changes
+
+44:52
+also to make. And as we build different layers on
+
+44:56
+top of a rack that we are going to build,
+
+44:58
+we will see all those layers completely.
+
+45:02
+Alright?
+
+45:05
+Cool. So,
+
+45:07
+before I get into
+
+45:09
+the naive rag system, I want to explain about some
+
+45:12
+of the tech stack that I'm going to use.
+
+45:15
+Okay? I'll explain the tech stack that I'm going to
+
+45:17
+use. You can, again, check it, later,
+
+45:21
+on. I'm not going to go too much into the
+
+45:24
+algorithmic details. I will stay at the implementation level. I'll
+
+45:27
+stay at the intuition level.
+
+45:39
+Okay? So,
+
+45:40
+this is the first thing that we have to do.
+
+45:43
+We have to load the documents.
+
+45:46
+We have to split it into chunks.
+
+45:48
+You have to convert the chunks into embeddings.
+
+45:52
+I have to store those embeddings in a vector database.
+
+45:55
+I have to embed the user query.
+
+45:58
+I have to retrieve the closest chunks
+
+46:00
+and send the chunks back to the element. I will
+
+46:03
+explain this pipeline process in detail so that may later
+
+46:07
+on, when I add more, complexities, you'll understand
+
+46:11
+on which level I'm applying that optimization.
+
+46:18
+Okay? So let us go and understand this part very
+
+46:21
+clearly.
+
+46:23
+So,
+
+46:23
+what I'm going to do is, first, I'm going to
+
+46:26
+load the documents.
+
+46:31
+Okay? Then I have to do chunking
+
+46:37
+or break the document into smaller pieces.
+
+46:45
+And these small pieces could be those 2 page,
+
+46:48
+you know, things that I'm trying to do.
+
+46:51
+Okay? After chunking itself, I will do some level of
+
+46:55
+indexing.
+
+47:00
+I will do some level of indexing after I do
+
+47:03
+the chunking,
+
+47:05
+then
+
+47:06
+I will do the embedding.
+
+47:11
+So embedding is what I want to do is I
+
+47:13
+want to bring
+
+47:17
+all similar
+
+47:21
+topics
+
+47:25
+together,
+
+47:27
+and I try to convert it into a mathematical
+
+47:31
+representation.
+
+47:32
+So I try to convert
+
+47:37
+into mathematical.
+
+47:38
+Okay? Again, simple intuition.
+
+47:41
+What is your does your computer understand words, or does
+
+47:44
+it understand zeros and ones? What do you think?
+
+47:48
+Does it understand words, or does it understand zeros and
+
+47:51
+ones?
+
+47:52
+Okay? So your computer understands
+
+47:55
+math while you understand English.
+
+47:58
+Okay? So that's why your embedding is the process of
+
+48:02
+converting it into mathematics so that your system can understand.
+
+48:07
+So this is translation for your system.
+
+48:14
+So for those of you who have asked about embedding,
+
+48:16
+do you understand at least on an, you know, outer
+
+48:19
+level what embedding is? I'm trying to bring similar topics
+
+48:22
+together
+
+48:23
+and convert it into a form so that system can
+
+48:26
+understand.
+
+48:28
+Okay? After embedding,
+
+48:31
+I will store this embedding into
+
+48:34
+a vector database.
+
+48:38
+Okay?
+
+48:39
+So examples
+
+48:40
+of vector database, again, the text stack I'll come to
+
+48:43
+later on. So I will store it in a vector
+
+48:45
+database because I need quick retrieval of my embeddings. I
+
+48:50
+have to be able to store it in a place
+
+48:53
+where I can retrieve it fast, so I will store
+
+48:55
+it in the vector database.
+
+48:58
+Okay? Once I store it in the vector database
+
+49:01
+okay. This is the
+
+49:05
+rag setup phase.
+
+49:08
+So anytime I am trying to set up my rag,
+
+49:11
+I need to set this up.
+
+49:15
+Okay? Interesting question has come up, which is why don't
+
+49:18
+we use normal,
+
+49:20
+database? Why do we use a separate vector database?
+
+49:23
+Okay? What do you store in normal databases? That is
+
+49:26
+a question I'll ask you back. What do you store
+
+49:28
+in normal databases?
+
+49:33
+Tables.
+
+49:34
+Okay? But is it in English or,
+
+49:36
+do you store,
+
+49:38
+you know, binary vectors or some other kinds of information?
+
+49:45
+You show typical strings. Right? English, typically, or German or
+
+49:49
+any other thing. Right? So don't you think when you
+
+49:53
+are trying to store mathematical vectors,
+
+49:56
+you require a different kind of database that can handle
+
+49:59
+it than the other databases.
+
+50:03
+Yes or no?
+
+50:06
+Right? You require a different kind of database
+
+50:09
+and everything.
+
+50:10
+Okay?
+
+50:11
+See,
+
+50:12
+you should understand
+
+50:13
+that
+
+50:14
+beyond
+
+50:15
+when I build an embedding okay. This is me, the
+
+50:18
+researcher speaking.
+
+50:19
+If you try to build an embedding, the mathematical operations
+
+50:22
+and the kind of
+
+50:24
+comparisons that happen,
+
+50:26
+it has to be done in a very different manner
+
+50:29
+than your strings matchings which happen.
+
+50:32
+And when that happens, the
+
+50:34
+thing that works behind this very, very diff different.
+
+50:38
+So if people could do it, they would have done
+
+50:40
+it. There is a particular
+
+50:41
+logic as to why they have done this. And that
+
+50:44
+logic for me to explain, I have to go into
+
+50:46
+the internals of how embeddings would work.
+
+50:49
+And because of that, I will not be able to
+
+50:51
+get there. Okay? So all I can tell you is
+
+50:54
+because I am using embeddings, I will require a vector
+
+50:57
+database, and we'll have to work in that. If you
+
+50:59
+are interested, you can go into Publix to do deeper
+
+51:02
+research on what it is.
+
+51:06
+Okay? So little more complex questions coming. I will take
+
+51:09
+it towards the end. I will not confuse others.
+
+51:12
+Okay? So now this is the setup.
+
+51:14
+Now what happens when the user
+
+51:17
+tries to do a query?
+
+51:19
+When the user quiz the query,
+
+51:21
+I have to convert it into the similar type of
+
+51:25
+embedding.
+
+51:27
+Right? I have to convert it into the same mathematical
+
+51:30
+language that my information
+
+51:32
+is stored.
+
+51:34
+I have to convert it into the same mathematical language
+
+51:37
+that my information is stored.
+
+51:39
+That embedding, I will match against my vector database,
+
+51:45
+and I retrieve
+
+51:53
+relevant chunks.
+
+51:56
+Okay? When I retrieve the relevant chunks,
+
+52:00
+I'll need to de index
+
+52:04
+so that I get that text back.
+
+52:06
+So I need to do the de indexing.
+
+52:09
+This text,
+
+52:10
+I will send it into the LLM,
+
+52:13
+and then
+
+52:14
+I get the
+
+52:16
+answer.
+
+52:20
+Okay?
+
+52:21
+Did you all understand the process? When you load the
+
+52:24
+document, you do the chunking, the indexing, breaking into smaller
+
+52:27
+pieces,
+
+52:28
+then you do the embedding where you're bringing all similar
+
+52:31
+topics together. You store it into the vector database.
+
+52:35
+Then this is the setup phase where you have set
+
+52:38
+up your rack.
+
+52:39
+Now you have to use the rack properly. For that,
+
+52:42
+whatever user question I have,
+
+52:45
+that question, again, I will have to convert it into
+
+52:48
+the embedding on the same language.
+
+52:50
+Okay? So I'm if I'm if my knowledge is stored
+
+52:54
+into Spanish,
+
+52:55
+I cannot use an English sentence to retrieve my information.
+
+52:59
+I have to convert my English sentence to Spanish,
+
+53:02
+get the Spanish things,
+
+53:04
+convert it back to English, and then my LLM can
+
+53:07
+tell the explanation.
+
+53:08
+Do you understand why the query also has to be
+
+53:10
+turned into embedding? Because there's a little confusing part.
+
+53:13
+Why I have to do the embedding? Because I am
+
+53:15
+checking against my vector database,
+
+53:17
+English to
+
+53:18
+Spanish,
+
+53:19
+get the Spanish,
+
+53:21
+information,
+
+53:22
+then convert it back to English, and then get back
+
+53:25
+the answer.
+
+53:27
+Okay? So this is the complete
+
+53:29
+process of rack. Okay? Everybody understood rack right now? Even
+
+53:33
+from the previous things, if you have not understood.
+
+53:36
+Right?
+
+53:37
+Did you understand rack?
+
+53:41
+Okay. Some technical questions, let us keep it towards the
+
+53:44
+end. For now, my question, did you understand drag?
+
+53:48
+Did you understand the process? Because now we are going
+
+53:50
+to start building, and I'm going to walk you through
+
+53:53
+the code for building your rag system.
+
+53:56
+Alright? So now I'm going to explain to you the
+
+53:59
+text stack.
+
+54:02
+So the indexing, I will not explain because it's a
+
+54:05
+little complex.
+
+54:07
+Right?
+
+54:08
+So that is why I will not be able to
+
+54:10
+do the the indexing.
+
+54:12
+Why LLM in between? Okay. Let me tell you. I
+
+54:15
+am looking at disjoint pages
+
+54:18
+which are I have taken from different parts of my
+
+54:21
+book. Don't you think I need to use my brain
+
+54:23
+to kind of make a proper sentence out of the
+
+54:25
+disjoint chunks?
+
+54:30
+Okay. When I'm taking,
+
+54:32
+maybe page 5, page 6, page 14, page 17, then
+
+54:36
+I'm taking page 222
+
+54:38
+and page 2 29,
+
+54:40
+and I'm then collecting this, do you think if I
+
+54:42
+just give the pages to the user, they will understand
+
+54:45
+the answer? Yes or no?
+
+54:50
+Okay. Don't you think I need an intelligence layer to
+
+54:53
+kind of put the answer in the right format?
+
+54:58
+Okay? That is why LLM is required. Everybody clear right
+
+55:02
+now on the questions there?
+
+55:04
+Tangential questions. I saw people asking questions on Lucene, etcetera.
+
+55:08
+We will take it towards the end. Okay? But
+
+55:10
+overall, you're understanding. Right?
+
+55:12
+Great.
+
+55:13
+So now we will go into the tech stack
+
+55:18
+of how we will do.
+
+55:20
+So we are going to use multiple things.
+
+55:24
+Alright? So don't,
+
+55:25
+get scared about the text tag that I'm going to
+
+55:28
+show.
+
+55:29
+Alright? In the code, how do you get the thing?
+
+55:32
+How what are the libraries used? All of that is
+
+55:34
+very well documented,
+
+55:36
+so don't get scared.
+
+55:37
+So first, what I'm going to use is LAMA
+
+55:40
+index.
+
+55:42
+I'm going to use LAMA index for the
+
+55:46
+document,
+
+55:48
+load,
+
+55:50
+chunking,
+
+55:54
+and indexing.
+
+55:57
+I'm going to use LAMA index for the document loading,
+
+56:00
+chunking, and indexing. There are multiple tools which are available.
+
+56:04
+There are a plethora plethora of options.
+
+56:07
+Okay? I'm not going into all of those options because,
+
+56:10
+it will going to get even more heavier. For now,
+
+56:13
+follow the recommended stack. So I always
+
+56:16
+do this analogy in the nontechnical,
+
+56:19
+ones. Maybe I'll give it here. So when you are
+
+56:21
+trying to learn the same thing, okay, when you're trying
+
+56:24
+to learn something,
+
+56:27
+right,
+
+56:28
+first, follow the cook methodology.
+
+56:31
+What it means is follow what the instructor is telling
+
+56:35
+you without going too much into why why why why
+
+56:38
+why.
+
+56:39
+Okay? Once you follow it, you will yourself get some
+
+56:43
+understanding of, okay, I could change some few things here.
+
+56:46
+I could change some few things here and so on.
+
+56:49
+Then slowly start becoming a chef
+
+56:52
+where you are doing improvisations.
+
+56:55
+Okay? Don't become a chef at a single try.
+
+56:58
+Okay? So that means, first, follow the process. Use the
+
+57:02
+code that I would teach you so that you understand
+
+57:05
+the process clearly.
+
+57:06
+Then later on,
+
+57:08
+okay, you can decide on what is the best possible
+
+57:12
+things that you can change and what are the things
+
+57:15
+you could do. Right? Because based on the use case,
+
+57:18
+sometimes a different
+
+57:20
+you know, different text stack might work.
+
+57:24
+Right? So that is what it is.
+
+57:27
+Alright? So I'll use LAMA index for the document loading,
+
+57:30
+chunking,
+
+57:31
+and indexing overall.
+
+57:33
+Then I will use
+
+57:35
+Lance d b
+
+57:38
+for my vector database.
+
+57:41
+And, the other options for vector database you can use
+
+57:45
+are,
+
+57:45
+pine cone,
+
+57:47
+QDRANT,
+
+57:48
+extra etcetera.
+
+57:49
+So the reason I am using this tech stack right
+
+57:52
+now is because
+
+57:54
+I want to,
+
+57:57
+this text tag I'm using because I want to keep
+
+57:59
+it light so that my laptop can run it locally
+
+58:02
+without too much of stress.
+
+58:04
+If I go for complex, it might be a little
+
+58:07
+difficult. So that's why I'm using a lightweight text tag
+
+58:10
+that is enough for the instructional point of view. You
+
+58:12
+can change it or swap it for any of the
+
+58:14
+options mentioned.
+
+58:16
+So what I've seen when I spoke to people is
+
+58:18
+for most of the applications,
+
+58:20
+what tech stack you're using doesn't really matter because more
+
+58:24
+or less all of them have become,
+
+58:26
+pretty good. It is just about,
+
+58:28
+you know, which 1 do you like. It's like a
+
+58:31
+personal taste.
+
+58:32
+Right? If I ask you which pizza do you like,
+
+58:34
+you will all have different taste.
+
+58:36
+Exactly, it is the same like if I'm asking which
+
+58:39
+vector database to use,
+
+58:41
+very similar answer. So I want to go for a
+
+58:43
+lightweight local vector database, so that's why I'm using,
+
+58:47
+you know, LanceDB.
+
+58:50
+Okay? Even by the way, if you are going to
+
+58:52
+interviews, when you use these answers, people are not going
+
+58:55
+to penalize you because this is also used at a
+
+58:57
+lot of places.
+
+58:58
+The only difference is it will be hosted on external
+
+59:01
+AWS servers, etcetera.
+
+59:04
+Then
+
+59:06
+we will use
+
+59:08
+b g e small
+
+59:10
+for embedding.
+
+59:14
+Okay. After I do the indexing
+
+59:17
+to convert this back to embedding, I will use b
+
+59:20
+g e small for embedding.
+
+59:25
+Okay. I will use b m 25
+
+59:28
+for
+
+59:30
+something called keyword retrieval.
+
+59:36
+Okay?
+
+59:37
+I will I am kind of putting a box. That
+
+59:40
+means we will come to it later, not right now.
+
+59:42
+Okay? We'll come to it later on.
+
+59:45
+Okay?
+
+59:46
+Then I'm going to use something called
+
+59:49
+PG re ranker.
+
+59:53
+Okay? Again, I will complete later on. This is something
+
+59:56
+used for some a process called re ranking.
+
+01:00:02
+Okay. We will come to this later. These are the
+
+01:00:04
+advanced things.
+
+01:00:05
+Then I'm going to use open router.
+
+01:00:09
+Can anybody tell me what is an open router?
+
+01:00:16
+LLM? Right? Open router is my LLM. Can you tell
+
+01:00:19
+me what is my advantage of open router? Why I
+
+01:00:23
+should choose open router or anything else?
+
+01:00:26
+Any advantages that you know?
+
+01:00:32
+I can pick and choose any LLM that I want.
+
+01:00:35
+I have 1 API key. I can use multiple
+
+01:00:38
+language model. So that is the advantage I have with
+
+01:00:42
+open router.
+
+01:00:44
+Okay?
+
+01:00:46
+Then I use something called Ragas.
+
+01:00:48
+Okay?
+
+01:00:49
+Ragas is for
+
+01:00:51
+evaluation.
+
+01:00:54
+What does it evaluate? It evaluates if your rag system
+
+01:00:58
+is good or not.
+
+01:00:59
+So Ragas is your evaluation.
+
+01:01:02
+The technical term is called harness,
+
+01:01:05
+which tests whether
+
+01:01:07
+as we go and build different rag models,
+
+01:01:10
+it Ragas will tell us exactly.
+
+01:01:14
+Right? So that,
+
+01:01:15
+it will tell me what is the,
+
+01:01:18
+you know, the model,
+
+01:01:20
+how is this rag model doing compared to the other
+
+01:01:23
+models.
+
+01:01:25
+Okay?
+
+01:01:26
+Then
+
+01:01:27
+this last part, I'm only going to give you a
+
+01:01:30
+glimpse. You will learn it later on in the coming
+
+01:01:33
+week. I wanted to give you an quick understanding of
+
+01:01:36
+a agentic rag.
+
+01:01:41
+Okay? A rag, which is agentic in nature, and I'll
+
+01:01:44
+talk to you. When I come to that, I'll talk
+
+01:01:46
+to you about it. So for this, I'm going to
+
+01:01:48
+use Landgraaff.
+
+01:01:52
+In the coming week, you have a full fledged session
+
+01:01:55
+on Landgraaff.
+
+01:01:56
+So, therefore, I'll just demonstrate this. I will not going
+
+01:01:59
+to get into the details of agentic reg.
+
+01:02:01
+But the thing is once you,
+
+01:02:04
+go through the land graph session,
+
+01:02:06
+you can then come back and revisit this. The agentic
+
+01:02:09
+rag will sit in very well. I actually thought to
+
+01:02:13
+postpone it, but I thought I wanted to show you
+
+01:02:15
+the complete cycle of rag systems that we're going to
+
+01:02:18
+build. So I want to show agentic rack also, but
+
+01:02:21
+I will show you only a glimpse. I will not
+
+01:02:24
+have time to go into the details of it.
+
+01:02:27
+Okay. So this is the tech stack that we are
+
+01:02:29
+going to see. Lama index,
+
+01:02:32
+Lance DB, BGE small, BM 25,
+
+01:02:35
+BGE re ranker, OpenRouter,
+
+01:02:38
+RAGAS, and Agenticrack.
+
+01:02:41
+And full disclosure. Okay? I want to disclose this upfront.
+
+01:02:45
+Okay?
+
+01:02:47
+We are
+
+01:02:49
+again, full form, I have not really thought through. Okay?
+
+01:02:52
+You can Google it and public state. I have not
+
+01:02:55
+really gone into the full forms over there. Okay? Apologies
+
+01:02:58
+for that. Because I I was looking at more on
+
+01:03:01
+the concepts of rack than what exactly each 1 does.
+
+01:03:06
+1 full disclosure I want to make is every code
+
+01:03:09
+that I have written, I have written it with the
+
+01:03:11
+help of AI.
+
+01:03:13
+Okay?
+
+01:03:14
+So
+
+01:03:15
+I have taken the use of extensive
+
+01:03:18
+AI to write the code, but I acted like an
+
+01:03:21
+orchestrator where I pointed what things to change, what things
+
+01:03:24
+to improve,
+
+01:03:25
+what things to kind of change it.
+
+01:03:28
+Right? So that I could structure this session in this
+
+01:03:32
+manner where in a escalating level, we go from name
+
+01:03:36
+rack to agentic rack by the end of this session.
+
+01:03:40
+Okay? Clear. I will again revisit that stack. I will
+
+01:03:44
+again tell you exactly what it is. But
+
+01:03:47
+full disclosure, I may I wrote the code with AI.
+
+01:03:50
+Okay. I used AI to write the code.
+
+01:03:52
+Okay. And, it should not be something like, oh my
+
+01:03:55
+god. You didn't write oh, no. I I used to
+
+01:03:57
+get this before.
+
+01:03:58
+Right? No prompting.
+
+01:04:00
+Absolutely no prompting. Only context engineering.
+
+01:04:03
+I'll talk about the process towards the end if you
+
+01:04:05
+want as to how I orchestrated all of this so
+
+01:04:08
+that when you trying to write your code, you will
+
+01:04:10
+have that understanding. In fact,
+
+01:04:12
+I am going to come back for another session where
+
+01:04:15
+I'll talk through this process. As to how I wrote
+
+01:04:17
+the code is a separate session.
+
+01:04:26
+Okay? So this is the text stack.
+
+01:04:30
+Okay? Now,
+
+01:04:33
+the how I wrote the code, I will have a
+
+01:04:36
+separate session because it's not straightforward.
+
+01:04:38
+There is a lot of setup I had done. I
+
+01:04:41
+will do the detail when I talk about the session
+
+01:04:44
+on,
+
+01:04:45
+MCP. A session on MCP is there, where I'm going
+
+01:04:48
+to come, where I'll explain everything clearly.
+
+01:04:52
+Okay. In open router LLM, these are the models that
+
+01:04:55
+I'm using.
+
+01:04:56
+I am using Haiku,
+
+01:05:00
+for normal answers.
+
+01:05:07
+Okay. I'll use Haiku for normal answers.
+
+01:05:11
+I use Sonnet, which is,
+
+01:05:13
+the,
+
+01:05:14
+you know,
+
+01:05:16
+which is for query planning.
+
+01:05:22
+So, again, I am using Haiku. Why? Because it's just
+
+01:05:25
+a cheaper model. Okay? Anthropic models are good, but HEICO
+
+01:05:29
+is a cheaper model. So for the basic answering,
+
+01:05:32
+I am using the HEICO model. There is a planning
+
+01:05:35
+that I have to do in between in the 1
+
+01:05:37
+of the rack models. For that, I'm using Sonic.
+
+01:05:42
+And for the evaluation
+
+01:05:43
+harness,
+
+01:05:46
+I am using Gemini.
+
+01:05:49
+Okay?
+
+01:05:50
+Why am I using Gemini? Because
+
+01:05:52
+I cannot
+
+01:05:54
+ask,
+
+01:05:55
+the person
+
+01:05:57
+who said the,
+
+01:05:59
+who said the exam paper to evaluate it. You understand
+
+01:06:02
+what I mean?
+
+01:06:04
+If somebody
+
+01:06:05
+has said the exam paper,
+
+01:06:07
+right, and,
+
+01:06:09
+there will be a lot of bias
+
+01:06:11
+overall. So I want to remove the bias, and I
+
+01:06:14
+want to get a neutral party to judge whether my
+
+01:06:16
+rag is doing well or not. And, therefore, I'm using
+
+01:06:19
+Gemini Flash.
+
+01:06:23
+Okay? So that is exactly what we are doing, which
+
+01:06:25
+is LLM as a judge.
+
+01:06:27
+I will explain these concepts also,
+
+01:06:30
+what is my rationale, everything.
+
+01:06:32
+But I wanted to kind of show you the stack
+
+01:06:35
+so that when I go into the code and etcetera,
+
+01:06:37
+you will understand that this is a stack that is
+
+01:06:39
+coming together.
+
+01:06:41
+So this stack is big.
+
+01:06:44
+Okay?
+
+01:06:44
+I can use any LLM as a judge, but there
+
+01:06:47
+was a reason I used Flash. I will come to
+
+01:06:49
+it when I come to the,
+
+01:06:51
+Ragus portion where I talk about the harness, I hope
+
+01:06:54
+it.
+
+01:06:56
+Okay. Everybody with me so far? Are we excited? We
+
+01:06:58
+just laid the foundation
+
+01:07:00
+for everything with respect to what we are trying to
+
+01:07:04
+do.
+
+01:07:06
+Alright?
+
+01:07:08
+Session going well, folks. Just wanna take a quick feedback.
+
+01:07:12
+Right? Because, as I said, not an engineer. Trying to
+
+01:07:15
+do my best. So just,
+
+01:07:17
+going to do that.
+
+01:07:20
+Alright.
+
+01:07:23
+So now our,
+
+01:07:25
+basic environment is ready.
+
+01:07:28
+Alright? And now, what,
+
+01:07:31
+I am, going to do is I will first build
+
+01:07:34
+the basic rack system. I'll explain what the basic rack
+
+01:07:37
+system is. I will show you the code, and then
+
+01:07:41
+I will talk to you about the evaluation. Because to
+
+01:07:43
+evaluate something, I need to build something.
+
+01:07:46
+So I will build the basic rack system.
+
+01:07:50
+Alright?
+
+01:07:51
+Let's go.
+
+01:07:52
+So
+
+01:07:59
+yes, we are going to use BG,
+
+01:08:02
+all the times. Whenever some embedding
+
+01:08:04
+anything is happening, BG small is getting used.
+
+01:08:11
+Okay? So let's go. So the first thing, I will
+
+01:08:15
+explain about the knife rack system on the whiteboard.
+
+01:08:20
+So in the knife rack system, these are the 5
+
+01:08:23
+things we are going to do.
+
+01:08:25
+First, I'm going to load the documents.
+
+01:08:29
+Okay? And for this, what I'm going to do is
+
+01:08:32
+I'm going to use the Kubernetes
+
+01:08:34
+documentation.
+
+01:08:40
+So they have given us the 4
+
+01:08:43
+license, CC 4 license. That means I can use,
+
+01:08:48
+e freely, however I want.
+
+01:08:50
+It's a commercial license.
+
+01:08:52
+Right?
+
+01:08:53
+So I'm using this Kubernetes
+
+01:08:55
+documentation, which is available,
+
+01:08:57
+freely, and I will share it with you on GitHub
+
+01:09:00
+also so that you can test it with the same
+
+01:09:02
+documentation
+
+01:09:03
+overall.
+
+01:09:04
+Once I load the documents,
+
+01:09:06
+I'll break
+
+01:09:08
+it into
+
+01:09:10
+chunks.
+
+01:09:12
+Okay? And, how do I break it into chunks? I
+
+01:09:15
+use lama index for loading the document and breaking into
+
+01:09:17
+chunks.
+
+01:09:19
+So here, I will use LAMA index.
+
+01:09:25
+Then I convert chunks
+
+01:09:32
+into embeddings,
+
+01:09:36
+for which I will use b g e small.
+
+01:09:40
+Okay? By the way, the every,
+
+01:09:43
+LLM model has their own embeddings. So there is a
+
+01:09:46
+OpenAI embedding.
+
+01:09:48
+There are,
+
+01:09:50
+you know, there is also Gemini embeddings,
+
+01:09:53
+which are available. You can use any embedding you want.
+
+01:09:56
+I use this BGE embedding because it is lightweight,
+
+01:10:00
+and, it is easier for me to use. That's all.
+
+01:10:03
+If you want more commercial,
+
+01:10:05
+and if you are going for more org based, you
+
+01:10:07
+should go for OpenAI embedding or Gemini embedding. And where
+
+01:10:10
+are you get these embeddings? The best place is
+
+01:10:14
+go to open router dot a I.
+
+01:10:19
+Okay. You go to models,
+
+01:10:21
+and here you just search for
+
+01:10:27
+embedding.
+
+01:10:29
+Okay? So you have the Gemini embedding, but you can
+
+01:10:32
+go and look at multiple embedding models. So you see
+
+01:10:36
+here the Google Gemini embedding, OpenAI text embedding,
+
+01:10:40
+23 embedding, Perplexity embedding, NVIDIA Lama embedding, Mistral embedding. There
+
+01:10:45
+are multiple embeddings which are available.
+
+01:10:48
+So you can use these embeddings also, but I'm using
+
+01:10:51
+BGE
+
+01:10:52
+embedding because it is lightweight. It is easier to use
+
+01:10:55
+open source, all through.
+
+01:11:03
+K? Right.
+
+01:11:04
+So different embeddings should be chosen for a simple reason.
+
+01:11:09
+Okay? Because I want the context to be brought together
+
+01:11:13
+easily.
+
+01:11:14
+Right? For example,
+
+01:11:15
+if my embedding metal, model is very strong, then I
+
+01:11:19
+know that the words which are having the same context
+
+01:11:22
+will come together closer.
+
+01:11:24
+So whatever retrieval I am doing, it will become better.
+
+01:11:29
+Okay? There is no correlation with the embedding model to
+
+01:11:33
+your LLM. Your LLM can be OpenAI. Your embedding model
+
+01:11:36
+can be Gemini. There is absolutely no correlation all through.
+
+01:11:40
+In fact, if you want this trivia, I'll take a
+
+01:11:42
+slight 1 minute deviation and explain why these embeddings come.
+
+01:11:46
+Even when your LLM was trained, the training of the
+
+01:11:49
+LLM happens via chunking and embeddings only. They take the
+
+01:11:53
+complete information available over the world, break it into chunks,
+
+01:11:57
+put into embeddings. On the embeddings is where the training
+
+01:12:00
+of the LLM happens.
+
+01:12:03
+Okay? So, therefore, each LLM has their own embedding model.
+
+01:12:09
+But their embedding models are closed source. They are not
+
+01:12:11
+going to tell you the code.
+
+01:12:14
+Okay? Then store embeddings
+
+01:12:21
+into vector database.
+
+01:12:25
+And for this, I'm going to use LanceDB.
+
+01:12:29
+Other options are QDRANT. It's very popular option I have
+
+01:12:33
+seen. QDRANT and Pinepool.
+
+01:12:39
+Okay? And then
+
+01:12:41
+the final thing is
+
+01:12:43
+embed
+
+01:12:45
+user question,
+
+01:12:49
+then
+
+01:12:50
+and then find the
+
+01:12:56
+answer.
+
+01:12:57
+Okay. So this is the most naive embedding form
+
+01:13:01
+wherein I am, kind of setting up this,
+
+01:13:04
+embedding,
+
+01:13:05
+wherein, you know, I am loading the documents,
+
+01:13:08
+I'm breaking into chunks, converting the chunks into embedding, storing
+
+01:13:12
+the embeddings into vector database,
+
+01:13:15
+and embedding the user question to find the answer.
+
+01:13:20
+Alright?
+
+01:13:21
+Now you should understand this. Okay? Embedding tokenizer are very
+
+01:13:24
+different. Tokenizer is used during chunking.
+
+01:13:27
+It is not using, during embedding. Before embedding, sometimes tokenizers
+
+01:13:32
+could be used. Okay?
+
+01:13:34
+Even if you don't understand this part, ignore. If do
+
+01:13:36
+you understand the process of what the NIVRAG is for
+
+01:13:39
+everybody?
+
+01:13:44
+Right?
+
+01:13:45
+So there is another question I want to address.
+
+01:13:48
+I'll then I'll move ahead. So if you use different
+
+01:13:51
+embedding model,
+
+01:13:52
+what happens?
+
+01:13:53
+Think of every embedding model as a different kind of
+
+01:13:56
+language.
+
+01:13:57
+Say OpenAI embedding is German.
+
+01:14:00
+Right? Gemini embedding is Russian,
+
+01:14:03
+and some other embedding forms are different languages.
+
+01:14:07
+So do you think it is possible for me to
+
+01:14:10
+use
+
+01:14:11
+a 1 model for converting it into a different language
+
+01:14:15
+but another model later on? Does it make sense?
+
+01:14:21
+Do you think,
+
+01:14:23
+suppose,
+
+01:14:24
+I am using for 1 embedding model here, which is
+
+01:14:27
+German, but then I for my user query, I use
+
+01:14:31
+Russia. Do you think it matches?
+
+01:14:36
+No. Right? So that is why you should use the
+
+01:14:39
+same embedding model. By language, what I meant is the
+
+01:14:42
+mathematical language underneath. I'm not talking about the actual language.
+
+01:14:46
+It's a analogy.
+
+01:14:48
+So same library for indexing and the indexing, you have
+
+01:14:51
+to use. Exactly.
+
+01:14:59
+Okay? So now
+
+01:15:01
+what we will do is now that we have the
+
+01:15:03
+knife rack system, I will walk you through the code
+
+01:15:06
+and run the knife rack system and show you the,
+
+01:15:09
+you know, the current, things overall.
+
+01:15:13
+Okay? So before I get into this, I will explain
+
+01:15:16
+the evaluation
+
+01:15:17
+also.
+
+01:15:23
+Because
+
+01:15:25
+when I run my, basic knife rack, I will also
+
+01:15:28
+do the evaluation
+
+01:15:30
+on top of it. Because once I do the evaluation,
+
+01:15:34
+right, I will check,
+
+01:15:36
+how my base performance is. Based on that, I will
+
+01:15:39
+improve the other performance overall.
+
+01:15:44
+Okay? So let us get into the evaluation part of
+
+01:15:46
+it.
+
+01:15:47
+So
+
+01:15:48
+first thing,
+
+01:15:52
+I hope we agree that rag
+
+01:15:54
+needs to be evaluated.
+
+01:15:58
+Yes. No. Rag needs to be evaluated.
+
+01:16:04
+Okay. Rag needs to be evaluated. But how do you
+
+01:16:07
+write evaluations?
+
+01:16:09
+K? For example, when you are in software,
+
+01:16:14
+you write tests.
+
+01:16:19
+Okay?
+
+01:16:20
+But in case of AI, you write what are called
+
+01:16:23
+EVAS,
+
+01:16:24
+not the exact tests.
+
+01:16:26
+Can anybody,
+
+01:16:27
+you know, kind of guess the reason why? Why evaluations
+
+01:16:32
+me or why normal testing would not work?
+
+01:16:38
+Why normal testing would not work?
+
+01:16:42
+Exactly. The output is not the same.
+
+01:16:45
+When you run your models, your output does not remain
+
+01:16:48
+the same, so your basic testing
+
+01:16:51
+would fail. It is nondeterministic.
+
+01:16:54
+Okay? For a nondeterministic
+
+01:16:56
+probabilistic
+
+01:16:57
+output,
+
+01:16:58
+you cannot use test. You need something called EVAPs.
+
+01:17:04
+Okay?
+
+01:17:04
+So,
+
+01:17:06
+basically,
+
+01:17:07
+what happens is,
+
+01:17:10
+you know, we try to do what you do in
+
+01:17:13
+a eval step is,
+
+01:17:15
+especially for rag is, we try to create
+
+01:17:21
+a set of
+
+01:17:22
+representative questions.
+
+01:17:29
+Okay. That means,
+
+01:17:30
+on my Kubernetes documents,
+
+01:17:32
+I want to create a set of questions which I
+
+01:17:35
+called the gold set questions. Okay? This is my terminology,
+
+01:17:38
+not a standard terminology.
+
+01:17:40
+Okay? I call this the goal set questions,
+
+01:17:44
+right, where
+
+01:17:46
+I ask it 3 types of questions. 1 is exact
+
+01:17:50
+match.
+
+01:17:53
+That means the question that I ask,
+
+01:17:56
+the exact phrases are present in my documentation
+
+01:18:00
+and the,
+
+01:18:01
+way to answer should be pretty straightforward.
+
+01:18:05
+Okay? There's a exact match,
+
+01:18:07
+the questions
+
+01:18:08
+which I have created where
+
+01:18:10
+the question has the exact term. So suppose I use
+
+01:18:13
+the term embedding, in my documentation also, embedding is there
+
+01:18:17
+so it can exactly pick it up.
+
+01:18:21
+Okay? That is the exact match.
+
+01:18:24
+Second, what I do is cross section questions.
+
+01:18:29
+That means these set of questions require,
+
+01:18:33
+me to refer to 2 different sections to
+
+01:18:37
+make the answer.
+
+01:18:38
+So I have to not, refer to 1 document. I
+
+01:18:42
+might have to refer to,
+
+01:18:44
+you know, multiple sections, different places
+
+01:18:47
+to get those things. So it might be in the
+
+01:18:48
+same document,
+
+01:18:50
+but multiple sections.
+
+01:18:51
+So cross section questions.
+
+01:18:54
+Then I have multi hop questions.
+
+01:19:01
+Okay? Where in multi hop,
+
+01:19:04
+I will go from document to document, get context, and
+
+01:19:07
+answer those questions. So multi hop questions are going to
+
+01:19:10
+be very, very different.
+
+01:19:12
+So the in my goal set, I have 3 types
+
+01:19:15
+of questions, exact match
+
+01:19:17
+where the question is already present in a way in
+
+01:19:20
+the document itself. So it is like a direct,
+
+01:19:23
+retrieving the answer.
+
+01:19:25
+Cross section, where the answer is present in multiple sections,
+
+01:19:28
+so I have to synthesize it together.
+
+01:19:31
+Multi hop where my answer is present across multiple documents,
+
+01:19:35
+multiple sections,
+
+01:19:36
+across documents, so it has to kind of build it
+
+01:19:40
+all together.
+
+01:19:42
+Right? So I have created these types of questions.
+
+01:19:49
+Clear so far? How do I set up my evaluation?
+
+01:19:52
+I create a goal set
+
+01:19:55
+and create these set of questions. And for purpose of
+
+01:19:58
+today's session,
+
+01:19:59
+I created 30 questions.
+
+01:20:02
+10 exact match, 10 cross section,
+
+01:20:05
+and 10 multi hop.
+
+01:20:07
+So for every log rag model, I check onto the
+
+01:20:11
+output of how these 30 questions are performed and give
+
+01:20:14
+it a score.
+
+01:20:17
+Right? Now how do I do the scoring? Multi hop
+
+01:20:20
+is multi document.
+
+01:20:21
+I have some part of an answer in 1 document,
+
+01:20:24
+then I have to go to another folder, another document
+
+01:20:27
+where another part of the answer is present. That is
+
+01:20:30
+what multi hop is.
+
+01:20:33
+Everybody clear so far?
+
+01:20:35
+Good to go?
+
+01:20:36
+I will now explain
+
+01:20:38
+everything else.
+
+01:20:41
+Okay?
+
+01:20:44
+Now what I'm going to do is I'm going to
+
+01:20:47
+explain
+
+01:20:48
+for Ragas,
+
+01:20:49
+the evaluation framework,
+
+01:20:51
+the model, the evaluation framework that we are using for
+
+01:20:55
+evaluating a rag, what are the dimensions that we are
+
+01:20:59
+using.
+
+01:21:00
+The dimensions that we use are context
+
+01:21:04
+relevance,
+
+01:21:05
+the harness. Right? Context relevance
+
+01:21:09
+where I'm asking the question,
+
+01:21:11
+did we
+
+01:21:13
+retrieve
+
+01:21:17
+useful chunks?
+
+01:21:23
+Okay?
+
+01:21:24
+The data retrieval of the chunks that we have done,
+
+01:21:28
+are they useful
+
+01:21:30
+or not?
+
+01:21:31
+That is the first evaluation criteria.
+
+01:21:34
+Second
+
+01:21:35
+evaluation criteria
+
+01:21:37
+is faithfulness.
+
+01:21:40
+Is answer
+
+01:21:44
+supported
+
+01:21:47
+by the
+
+01:21:48
+chunks.
+
+01:21:50
+So I have gotten some chunks from the their, system.
+
+01:21:53
+Is the answer supported by the chunks?
+
+01:21:56
+That is the faithfulness.
+
+01:21:59
+And the third 1
+
+01:22:02
+is called
+
+01:22:04
+answer
+
+01:22:06
+relevance.
+
+01:22:08
+That is,
+
+01:22:10
+does the
+
+01:22:13
+answer
+
+01:22:16
+address
+
+01:22:22
+the question.
+
+01:22:24
+Okay? So what I'm doing I'm checking on I am
+
+01:22:27
+actually checking on context relevance. Did we retrieve the useful
+
+01:22:31
+chunks?
+
+01:22:32
+The faithfulness
+
+01:22:34
+is the answer supported by the chunk.
+
+01:22:37
+Answer relevance, does the answer,
+
+01:22:40
+you know, address the question overall?
+
+01:22:45
+Okay? So that is the 3 steps that I'm,
+
+01:22:48
+to do using for evaluation.
+
+01:22:51
+Is the steps clear?
+
+01:22:54
+Right? Context relevance,
+
+01:22:56
+faithfulness,
+
+01:22:57
+and the answer relevance.
+
+01:23:00
+These are the 3 things that we do.
+
+01:23:02
+Now how does the evaluation
+
+01:23:04
+occur?
+
+01:23:06
+Okay? The evaluation
+
+01:23:07
+occurs as follows.
+
+01:23:12
+Atushar, hold on. I will address your question. In fact,
+
+01:23:15
+we are not going to upload multiple a single doc.
+
+01:23:18
+We are going to use multiple documents. It's not a
+
+01:23:20
+single document we are going to use for our rack
+
+01:23:23
+system.
+
+01:23:26
+Okay? So these are the 3 dimensions that we are
+
+01:23:29
+going to,
+
+01:23:30
+you know, use. And let me come back to the
+
+01:23:33
+refund policy example, okay, just to explain what it is.
+
+01:23:37
+Now suppose the user asks,
+
+01:23:40
+what is the refund,
+
+01:23:42
+policy?
+
+01:23:44
+Okay. Let us assume that the system retrieved the cancellation
+
+01:23:48
+policy.
+
+01:23:51
+Okay? Does your system got, you know, took a wrong
+
+01:23:55
+document or a wrong chunk itself?
+
+01:23:58
+So your answer is already wrong because you are kind
+
+01:24:02
+of looking at
+
+01:24:04
+folks. I'd pay attention to what I'm saying right now
+
+01:24:06
+because lot of questions I'm seeing, you'll get addressed when
+
+01:24:09
+you listen to this part.
+
+01:24:11
+Okay?
+
+01:24:12
+So in the first case of context relevance,
+
+01:24:16
+what is going to happen is,
+
+01:24:23
+yeah. So in the case of context,
+
+01:24:26
+relevance,
+
+01:24:27
+if the system
+
+01:24:29
+for understand for answering a question on refund policy,
+
+01:24:33
+it got a cancellation
+
+01:24:35
+policy insert instead. Okay?
+
+01:24:37
+So instead of
+
+01:24:39
+refund,
+
+01:24:41
+it got cancellation
+
+01:24:43
+policy.
+
+01:24:47
+Here, my,
+
+01:24:49
+context relevance is poor.
+
+01:24:54
+Okay? Then
+
+01:24:56
+let us assume it got the refund policy.
+
+01:25:01
+It got the refund policy correctly.
+
+01:25:04
+Right? But LLM said 30 days refund is,
+
+01:25:09
+available when the document said 7 days.
+
+01:25:13
+Your documentation
+
+01:25:15
+said 7 days,
+
+01:25:16
+but your LLM is saying 30 days.
+
+01:25:19
+So faithfulness
+
+01:25:21
+is off.
+
+01:25:24
+Okay?
+
+01:25:25
+Then
+
+01:25:26
+the other case of answer relevance is
+
+01:25:29
+it got the right,
+
+01:25:32
+context.
+
+01:25:36
+It got the right
+
+01:25:40
+info,
+
+01:25:41
+but the answer is super generic.
+
+01:25:46
+It is very generic,
+
+01:25:48
+and it is not addressing the question.
+
+01:25:52
+Right? So that is how context relevance, faithfulness,
+
+01:25:57
+and answer relevance are different.
+
+01:26:01
+Now do you understand? Faithfulness is about how LLM is.
+
+01:26:07
+Answer relevance means, suppose my LLM says,
+
+01:26:11
+I have purchased these shoes and, you know, give me
+
+01:26:14
+the refund. It says, yes.
+
+01:26:16
+Refunds are available,
+
+01:26:18
+for 30 you know, 7 days and just left left
+
+01:26:21
+it there. The question is, I have shoes. Yes. Refunds
+
+01:26:25
+are available for 7 days. You can return your shoes.
+
+01:26:29
+Don't worry about it. So that is more answer relevant
+
+01:26:32
+by just telling generically, yes. Refund is available.
+
+01:26:36
+Okay. Did you understand this? That the context relevance, faithfulness,
+
+01:26:40
+answer relevance
+
+01:26:41
+all need to be aligned
+
+01:26:43
+for me to set this up.
+
+01:26:47
+Right?
+
+01:26:49
+So now
+
+01:26:50
+to kind of
+
+01:26:53
+why it gave, I don't know. Some reason it gave.
+
+01:26:56
+You just have to do that.
+
+01:26:58
+Okay? So I have explained this very clearly. Right? I
+
+01:27:01
+have gone through this. I will not be able to
+
+01:27:03
+explain again and again. Please bear with me. You can
+
+01:27:06
+check the recording later if you didn't understand.
+
+01:27:08
+But on a level on a broad level, did you
+
+01:27:11
+understand what evaluation means? I'm trying to check whether the
+
+01:27:15
+answer is correct, whether the relevance is correct, and whether
+
+01:27:19
+you are get trying to get the right context. Okay?
+
+01:27:21
+I'm just doing the basic evaluation.
+
+01:27:24
+Right? Now I'm going to use LLM as judge.
+
+01:27:31
+Okay? In what does it mean? First, you need to
+
+01:27:34
+understand that when I use LLM as judge, my evaluation
+
+01:27:37
+is not perfect.
+
+01:27:41
+First, have that understanding. Your evaluation will never be perfect
+
+01:27:45
+if you use LMM as judge,
+
+01:27:47
+but it is scalable.
+
+01:27:51
+And, directionally, it tells you what to look for. Directionally,
+
+01:27:54
+it is good. It gives you directional
+
+01:27:56
+things,
+
+01:27:58
+but it is scalable.
+
+01:28:00
+Because
+
+01:28:01
+in production,
+
+01:28:02
+when you are looking at your production logs,
+
+01:28:05
+you will have to pick up those queries which you
+
+01:28:08
+think are critical
+
+01:28:09
+and take from real production logs and add it back
+
+01:28:12
+to your goals to answer set. You have to kind
+
+01:28:16
+of mine your production logs and get back into the
+
+01:28:19
+main set exactly how you do, you know, in production.
+
+01:28:23
+And for that, you need a scalable system. You cannot
+
+01:28:25
+have human ground truth answers always.
+
+01:28:29
+Okay? It is not perfect,
+
+01:28:30
+but directionally, it is good
+
+01:28:33
+overall.
+
+01:28:38
+Alright.
+
+01:28:47
+Okay. So
+
+01:28:54
+What happened? Sorry. Oh, okay. Got it.
+
+01:28:57
+So did you understand evaluation? I am going to use
+
+01:29:00
+LLM
+
+01:29:01
+to evaluate
+
+01:29:02
+my answers for my gold standard set
+
+01:29:06
+based on context relevance, faithfulness, and answer relevance.
+
+01:29:10
+In my code, I'm focusing more on faithfulness and answer
+
+01:29:13
+relevance because I saw that context relevance, every model is
+
+01:29:17
+getting it right. It is on faithfulness and answer relevance
+
+01:29:20
+where it is struggling. So I'm going to measure on
+
+01:29:23
+faithfulness
+
+01:29:24
+and whether the answer is supported by the claim and
+
+01:29:27
+the answer relevance through and through.
+
+01:29:31
+Okay?
+
+01:29:34
+Cool. So now we will switch gears,
+
+01:29:38
+and we will check the code.
+
+01:29:40
+I will run the system once,
+
+01:29:43
+for m 0, and then we'll take a quick 5
+
+01:29:45
+minute break before we come back and look at other
+
+01:29:47
+systems.
+
+01:29:48
+There are there could be lot of evaluations overall. I
+
+01:29:52
+have taken the most simple evaluations I could think of.
+
+01:29:55
+There are multi you you can say evaluations, you can
+
+01:29:58
+change based on your needs. For my needs, for the
+
+01:30:01
+basic teaching purpose, I have used these 3 evaluations.
+
+01:30:07
+Okay? So now let us get into the code part
+
+01:30:09
+of it.
+
+01:30:14
+Alright.
+
+01:30:33
+So someone is asking why LLM has judged. Can somebody
+
+01:30:35
+answer? Because I have already answered it.
+
+01:30:45
+Alright. So this is the code.
+
+01:30:47
+Okay? And,
+
+01:30:50
+the way I have organized this is pretty simple. Inside
+
+01:30:53
+code
+
+01:30:54
+is what the folder you will get, and you have,
+
+01:30:57
+the complete,
+
+01:30:59
+you know, the virtual environment, the requirements dot t x
+
+01:31:02
+t, etcetera.
+
+01:31:03
+All of that is present.
+
+01:31:05
+And let me show you what are all the things
+
+01:31:08
+over here so that you can understand it clearly.
+
+01:31:16
+Alright.
+
+01:31:18
+So let us understand the this thing. Okay? So first,
+
+01:31:21
+the data.
+
+01:31:23
+The data here is the Kubernetes docs
+
+01:31:27
+where I have got concepts.
+
+01:31:29
+I have got reference.
+
+01:31:31
+I have got the tasks completely. So I have got
+
+01:31:34
+the complete Kubernetes documents.
+
+01:31:37
+It is this Kubernetes
+
+01:31:38
+documents that I'm going to feed to my rack system.
+
+01:31:42
+Okay. You can see it is a very elaborate documentation
+
+01:31:45
+overall. I wanted to show you an elaborate documentation so
+
+01:31:48
+that you can see how multi documents are ingested
+
+01:31:52
+and how the system keeps improving from 1 model towards
+
+01:31:57
+another.
+
+01:32:01
+Okay?
+
+01:32:04
+So did you understand what is my documentation? Where the
+
+01:32:08
+documentation is present in your code? Because I'll put it
+
+01:32:10
+into GitHub and share. You will see all your data
+
+01:32:13
+documentation,
+
+01:32:15
+overall,
+
+01:32:16
+that you have.
+
+01:32:17
+Folks, I it is very difficult for me to go
+
+01:32:19
+back to the whiteboard, etcetera, and all that,
+
+01:32:22
+because I have to keep shifting the screens.
+
+01:32:25
+I have explained everything on the whiteboard.
+
+01:32:28
+Maybe when you revise it, you will understand. Okay? I'll
+
+01:32:30
+try to keep it simple as possible.
+
+01:32:34
+Then I have my scripts,
+
+01:32:38
+okay, wherein I have written the complete documentation and I
+
+01:32:42
+have put a readme dot file.
+
+01:32:45
+Okay? Where I have explained how do you set it
+
+01:32:47
+up,
+
+01:32:48
+what is the order in which you run it completely,
+
+01:32:52
+What are the files that are present?
+
+01:32:55
+Okay. I have even explained a little bit of the
+
+01:32:58
+caching behavior over here so that your systems will run
+
+01:33:01
+faster. So your code will run only if you run
+
+01:33:04
+from m 0 to m 5. Don't try to run
+
+01:33:07
+m 4, m 5 directly because,
+
+01:33:10
+the there are some things which are happening between so
+
+01:33:13
+that we are able to do that.
+
+01:33:17
+I am not able to share the code right now.
+
+01:33:19
+Apologies for that because as I told, I just finished
+
+01:33:22
+the code in the morning. I have been writing this
+
+01:33:24
+code for over 5 days.
+
+01:33:26
+Right? So this is for later reference. Apologies for this,
+
+01:33:29
+but as I told you, I tried to give you
+
+01:33:31
+the best things. Because of that, I had to do
+
+01:33:33
+more research on this.
+
+01:33:41
+Okay?
+
+01:33:42
+So
+
+01:33:44
+this is your,
+
+01:33:45
+Readme file with all your scripts, the code that we
+
+01:33:49
+are going to run.
+
+01:33:50
+The read me file is to give you an understanding
+
+01:33:53
+of what is this code, what is written, what is
+
+01:33:55
+the understanding, all of that through and through.
+
+01:33:58
+Okay. Here is a dot e n v file where,
+
+01:34:01
+we will, you will be able to check,
+
+01:34:05
+your open router or the environment variables. You folks know
+
+01:34:08
+the environment variables. Right? Places where you put your API
+
+01:34:12
+key. So the dot e n v file is to
+
+01:34:15
+put your open router API key.
+
+01:34:18
+Right? I will also, commit an e n v example
+
+01:34:22
+over here so that you can put this code directly.
+
+01:34:26
+Alright? So that is your scripts which are available.
+
+01:34:30
+Alright? And, I I have kept all the requirements dot
+
+01:34:33
+t h t so that you can set up the
+
+01:34:35
+virtual environment,
+
+01:34:36
+which I have already done on my system.
+
+01:34:40
+Okay?
+
+01:34:42
+Now let us go into the first piece of code,
+
+01:34:45
+which is the m 0 naive dot pipe.
+
+01:34:49
+Okay. So what I'll do is I will run the
+
+01:34:51
+code for now below
+
+01:34:53
+so that the code will run while I explain what
+
+01:34:56
+the code does.
+
+01:34:58
+So the way I do it is simple. Python
+
+01:35:05
+scripts
+
+01:35:07
+m 0 naive dot py, and I
+
+01:35:10
+run it.
+
+01:35:11
+So my system is now running. Okay. Let it run.
+
+01:35:15
+There will be some warnings. It is okay. First, I
+
+01:35:17
+will explain the code, and then I will explain to
+
+01:35:19
+the rest.
+
+01:35:20
+Alright? So this is the so what it does is
+
+01:35:24
+it is going to load the,
+
+01:35:26
+Kubernetes
+
+01:35:27
+documents
+
+01:35:28
+where it is going
+
+01:35:30
+to use the documents, chunking, etcetera, with, you know,
+
+01:35:35
+Llama index,
+
+01:35:37
+embedding with BGA small, and then store it in LANDB,
+
+01:35:40
+which is my vector database.
+
+01:35:42
+Then I run 3 canonical test queries and print the
+
+01:35:46
+answers.
+
+01:35:48
+Then it will run the RAGAS evaluation
+
+01:35:51
+on the sample
+
+01:35:52
+and save the baseline scores.
+
+01:35:54
+It will run the evaluation and save the baseline scores
+
+01:35:58
+also. So for this, I have the imports, which is
+
+01:36:01
+async IO OS census because I'll going to run a
+
+01:36:05
+lot of system commands for this.
+
+01:36:07
+Right? And,
+
+01:36:09
+this is, again, you don't have to understand the complete
+
+01:36:13
+code over here.
+
+01:36:14
+Right? Anytime you are not understanding a complete code, if
+
+01:36:18
+you are working if you are,
+
+01:36:20
+trying to do something,
+
+01:36:21
+right, you should be able to run it locally itself.
+
+01:36:24
+I will share this code. As I told multiple times,
+
+01:36:27
+I will share it after the session. For now, see
+
+01:36:30
+it because I'm going to explain some key parts. I
+
+01:36:33
+don't want you to miss out when I do that.
+
+01:36:35
+So, therefore, I will share the code towards the end.
+
+01:36:39
+Okay? So now you have what you are doing is
+
+01:36:42
+you are first setting up the engine.
+
+01:36:45
+And what is the engine you are setting up? You
+
+01:36:47
+are setting up the engine for your embedding and for
+
+01:36:50
+your
+
+01:36:51
+indexing and for your chunking. So all of that the
+
+01:36:54
+settings. Right? It is talking about what should be the
+
+01:36:57
+size of your context window.
+
+01:36:59
+It is talking about how many tokens should be used
+
+01:37:03
+maximum.
+
+01:37:04
+Where is your API key for using multiple models, all
+
+01:37:08
+of that.
+
+01:37:09
+Here, my documents are getting loaded from my directory. So
+
+01:37:13
+at this point, it is reading my data directory and
+
+01:37:17
+purely loading the documents, and that is happening from my
+
+01:37:21
+LAMA index. So LAMA index has the simple directory reader
+
+01:37:24
+and all of that, which can directly read the docu
+
+01:37:27
+the directory
+
+01:37:29
+and, do this.
+
+01:37:30
+Then I have
+
+01:37:32
+the vector store index for which I am using LANDS
+
+01:37:36
+DB.
+
+01:37:37
+LANDS DB, it is initializing the vector store index, and
+
+01:37:40
+then it is going to return the index overall.
+
+01:37:45
+Okay? So now what it's doing?
+
+01:37:48
+The,
+
+01:37:49
+first part, it is building my entire engine, which is
+
+01:37:53
+my entire rack system with chunking, with embedding,
+
+01:37:57
+with everything. It is going to build the complete rack
+
+01:38:01
+system.
+
+01:38:02
+Okay? And then it is going to do the evaluation
+
+01:38:06
+also.
+
+01:38:09
+Okay. Now let me show you what the output has
+
+01:38:12
+been so that you understand the output.
+
+01:38:16
+Alright? So let me show you the
+
+01:38:19
+output.
+
+01:38:21
+So first,
+
+01:38:23
+it is asking it is saying that I'm going to
+
+01:38:26
+build the naive rag system.
+
+01:38:29
+Okay? So this is telling about that it has loaded
+
+01:38:32
+the markdown files and the vector DB, etcetera, has been
+
+01:38:37
+built, and it is ready for usage.
+
+01:38:40
+So in the first step, what I have done is
+
+01:38:43
+I have asked 3 questions.
+
+01:38:45
+The first question is, what is the default value
+
+01:38:49
+of the max pods flag on the cubelet?
+
+01:38:52
+Okay? So it is a question I'm asking. It has
+
+01:38:54
+said that the default value is so and so, and
+
+01:38:57
+the sources are cubelet dot m d, cubelet dot m
+
+01:39:00
+d, cubelet dot m d. Okay? It is using the
+
+01:39:03
+same file as my source.
+
+01:39:05
+Then I asked it the question,
+
+01:39:10
+how does an ingress controller
+
+01:39:12
+decide which back end part to forward a request to?
+
+01:39:15
+It has retrieved an answer.
+
+01:39:17
+Then the other thing is if I want 0 run
+
+01:39:19
+time rolling updates for a stat stateful set of position
+
+01:39:22
+storage,
+
+01:39:23
+What feature should I use? It has given this. It
+
+01:39:26
+has given the questions answers. So these are my test
+
+01:39:29
+queries,
+
+01:39:30
+and here is where my
+
+01:39:32
+eval is running. Okay? So there are 10 questions
+
+01:39:36
+which it has used for my eval, and it is
+
+01:39:38
+checking on 10 questions.
+
+01:39:41
+What is my faithfulness,
+
+01:39:44
+and,
+
+01:39:45
+what is my,
+
+01:39:46
+answer relevance? So you can see for 1 question, 1
+
+01:39:50
+1 means it is very good.
+
+01:39:52
+0 is bad, 1 is good overall.
+
+01:39:55
+And on the m 0 naive level, the faithfulness is
+
+01:39:59
+0.897,
+
+01:40:01
+and the answer relevancy is 0.646.
+
+01:40:05
+Okay? For the basic naive rag model
+
+01:40:08
+where we have done, it has done that. And how
+
+01:40:11
+is it calculated?
+
+01:40:12
+Very simple. I'm using LLM as a judge. I have
+
+01:40:15
+given it an inside criterion that,
+
+01:40:18
+check on answer relevancy and faithfulness on a scale of
+
+01:40:21
+0 to 1, and based this that it is able
+
+01:40:24
+to do that.
+
+01:40:26
+Okay. I have given it,
+
+01:40:27
+underneath some structure, some prompt, and Ragas will take care
+
+01:40:31
+of it internally. For Ragas, I just had to tell
+
+01:40:34
+what is the LLM as a judge it should use.
+
+01:40:36
+Everything else, it will take care of internally. I don't
+
+01:40:39
+have to worry about that.
+
+01:40:42
+Okay? So your this is your first basic rag, system.
+
+01:40:49
+See, it is hard for you to understand. Okay? It
+
+01:40:52
+is hard for you to understand, but the an the
+
+01:40:55
+thing is on a directional level, how is my system
+
+01:40:59
+doing? Is it improving? Is it declining?
+
+01:41:02
+I want relativeness. I don't want absolute numbers.
+
+01:41:06
+I mentioned this before. We are not going to check
+
+01:41:08
+context relevancy because,
+
+01:41:11
+context relevancy, I found it to be same across, so
+
+01:41:14
+I have dropped context relevancy.
+
+01:41:16
+On faithfulness and answer relevancy is where I saw a
+
+01:41:19
+lot of deviation.
+
+01:41:20
+That is what I am checking it through and through.
+
+01:41:25
+Okay?
+
+01:41:26
+At least on a conceptual level, did you understand the
+
+01:41:29
+new rag that we have built?
+
+01:41:35
+Yes. Right? And our baseline is
+
+01:41:39
+faithfulness is 0.89.
+
+01:41:41
+Answer relevancy
+
+01:41:43
+is 0.646.
+
+01:41:45
+Okay? If you see the code, the code, the number
+
+01:41:47
+of lines is very small.
+
+01:41:50
+Okay? Because I am using that's, multiple libraries, multiple things,
+
+01:41:55
+and, therefore, the amount of code is less, but the
+
+01:41:59
+orchestration I'm doing behind the scenes is
+
+01:42:02
+a lot.
+
+01:42:04
+Okay. For some people had asked some questions. Let me,
+
+01:42:08
+try to, address that.
+
+01:42:11
+So if you are looking at what your data would
+
+01:42:13
+look like, this is typically how your data would look
+
+01:42:15
+like. It is all marked down and XML data.
+
+01:42:22
+Okay? That is this thing. So, again, individual functions, I
+
+01:42:26
+would advise you to explore it yourself. The way to
+
+01:42:29
+do it is upload the code on cloud or OpenAI.
+
+01:42:32
+Ask it what is that. It should be able to
+
+01:42:34
+do that. But just to tell you, sentence splitter is
+
+01:42:36
+a way of indexing
+
+01:42:38
+where I am breaking my sent my,
+
+01:42:41
+document into chunks.
+
+01:42:43
+You can use PDF files also instead of markdown,
+
+01:42:46
+but then, you will have to use a library to
+
+01:42:49
+process your PDF files like by PDF and then do
+
+01:42:52
+the indexing later on.
+
+01:42:56
+Alright. Folks, are we clear? So far so good.
+
+01:43:05
+Right?
+
+01:43:06
+Let us take a quick 5 minute break. I know
+
+01:43:08
+it's a heavy session. Let us take a quick 5
+
+01:43:10
+minute break. We will come back and look at more
+
+01:43:13
+other things.
+
+01:43:17
+Okay.
+
+01:43:19
+Folks,
+
+01:43:19
+we'll be back at, 11 50. Right?
+
+01:43:23
+So I'll just put up a timer here.
+
+01:48:42
+Folks, are we back?
+
+01:48:45
+Everybody?
+
+01:48:49
+Can you get a quick back in the chat?
+
+01:48:54
+Yes.
+
+01:48:56
+Alright. So let us move ahead.
+
+01:48:59
+Now what we're going to do is I'm going to
+
+01:49:01
+go back
+
+01:49:03
+to,
+
+01:49:04
+you know, our board, drawing board, and then I'm going
+
+01:49:08
+to talk about what are the,
+
+01:49:10
+problems that we could face when we are working with
+
+01:49:13
+this. Okay? So
+
+01:49:16
+some problem
+
+01:49:17
+with our current drag system and how we'll fix it.
+
+01:49:20
+Okay? We will do the fix, and, again, we'll talk
+
+01:49:22
+about another problem.
+
+01:49:24
+We will fix it, and we'll come to the, place
+
+01:49:27
+overall. See, 1 thing you should understand is when I'm
+
+01:49:30
+doing the evaluations,
+
+01:49:32
+I
+
+01:49:34
+am looking at not like
+
+01:49:37
+I'm looking at,
+
+01:49:39
+you know, kind of,
+
+01:49:43
+comparative analysis,
+
+01:49:45
+comparative
+
+01:49:46
+to each how it is doing, I am not looking
+
+01:49:49
+at absolute numbers.
+
+01:49:52
+So if my eval says 0.86
+
+01:49:55
+for 1 model and 0.92 for another model, I know
+
+01:49:59
+that this model is better than this model,
+
+01:50:01
+so I can use this model.
+
+01:50:04
+That's it. It is not telling me that the exact
+
+01:50:07
+score is 8 6 and 9 2. It is saying
+
+01:50:10
+this is better than this. This is what I want
+
+01:50:12
+my eval to tell me. Me. Like, this model is
+
+01:50:15
+better than this or it is improving or it is
+
+01:50:18
+declining.
+
+01:50:19
+Okay? By the way, as I keep adding improvements, you
+
+01:50:22
+can see the performance also decline on some metrics, and
+
+01:50:25
+it is completely okay. I wanted to understand. Later on,
+
+01:50:28
+you should be able to do that. This is not
+
+01:50:31
+the precision and recall. That is machine learning. This is
+
+01:50:34
+completely
+
+01:50:35
+on,
+
+01:50:36
+it is calculated in the same manner, but it is
+
+01:50:39
+based on faithfulness
+
+01:50:44
+and answer relevance.
+
+01:50:49
+Did the LLM tell the right answer?
+
+01:50:51
+Plus, was it, addressing the question properly or not? That
+
+01:50:55
+is what we are trying to understand.
+
+01:50:58
+Okay? So now I'll tell you the problem with our
+
+01:51:01
+current track.
+
+01:51:04
+Our current track is completely
+
+01:51:06
+what is called embedding driven.
+
+01:51:13
+That means,
+
+01:51:16
+by,
+
+01:51:18
+you know, what I mean by embedding driven is it
+
+01:51:21
+works very well
+
+01:51:22
+when I have a lot of terms
+
+01:51:29
+similar to each other,
+
+01:51:34
+which is good, but it will fail on exact
+
+01:51:39
+term
+
+01:51:40
+match.
+
+01:51:43
+That means if I use something like, in Kubernetes documents,
+
+01:51:47
+I want to know the value of how should I
+
+01:51:50
+set up this parameter called max pods. Here, I need
+
+01:51:54
+a exact keyword search on my documentation.
+
+01:51:57
+Okay? I need an exact keyword search for this minus
+
+01:52:00
+minus max ports because this is exactly present as the
+
+01:52:04
+parameter in my documentation.
+
+01:52:07
+This 1, I do not need to kinda, you know,
+
+01:52:09
+do an embedding, etcetera.
+
+01:52:13
+Because this is an exact text match.
+
+01:52:21
+So in this case, exact text match will work better
+
+01:52:24
+than embedding based matching.
+
+01:52:27
+Did you understand the problem with our initial rack model?
+
+01:52:31
+Initial rack model was pure embedding driven, so it is
+
+01:52:35
+going more based on meaning of the terms.
+
+01:52:38
+So if you ask questions
+
+01:52:40
+based on the meaning of the words, it is able
+
+01:52:42
+to get you the answers.
+
+01:52:44
+But if I want to do an exact word match,
+
+01:52:47
+which is typically what you want in documentation.
+
+01:52:50
+In documentation, you want parameters. You want exact
+
+01:52:54
+API endpoint matching
+
+01:52:56
+for which you will need to retrieve the exact text
+
+01:52:59
+match, which is currently not incorporated
+
+01:53:01
+in our rack model.
+
+01:53:03
+Okay. The first fix we need to do is we
+
+01:53:05
+have to incorporate text match to our rack model.
+
+01:53:10
+Clear what is the problem and what we are trying
+
+01:53:12
+to fix right now, everybody?
+
+01:53:22
+Okay? So this you will understand if you're looking at
+
+01:53:25
+documentation. In documentation.
+
+01:53:27
+Right? Let me open, say, 1 of the documentation.
+
+01:53:31
+Let's say
+
+01:53:33
+parallel API
+
+01:53:35
+documentation.
+
+01:53:39
+Okay? So suppose I am kind of looking at the
+
+01:53:43
+overview of this parallel,
+
+01:53:45
+API documentation,
+
+01:53:47
+I want to kind of search for the term parallel
+
+01:53:50
+web.
+
+01:53:52
+Okay? Here, I don't want a semantic matching. I don't
+
+01:53:56
+want a meaning based matching. I want,
+
+01:54:00
+to see exactly how these words would match.
+
+01:54:05
+Did you understand now?
+
+01:54:09
+Folks?
+
+01:54:10
+Yes? No?
+
+01:54:13
+I need an exact text match.
+
+01:54:17
+Okay? So for that, the first improvement I'm going to
+
+01:54:21
+make,
+
+01:54:22
+I will make it
+
+01:54:24
+a hybrid retrieval.
+
+01:54:27
+What I'm going to do is hybrid retrieval
+
+01:54:35
+where
+
+01:54:36
+I am going to
+
+01:54:37
+match based on text
+
+01:54:41
+plus match based on meaning or embeddings.
+
+01:54:49
+Okay? So
+
+01:54:51
+why I do this? Because I have particular tech, searches
+
+01:54:55
+like API endpoint.
+
+01:55:00
+Okay?
+
+01:55:01
+And,
+
+01:55:02
+you have particular searches
+
+01:55:04
+like the exact technical terms, which is parameters of API.
+
+01:55:12
+Okay.
+
+01:55:14
+Parameters of API. For this, the documentation
+
+01:55:17
+has the right answer directly.
+
+01:55:19
+I don't require to use embeddings for that. In fact,
+
+01:55:23
+embeddings will give me a wrong answer.
+
+01:55:25
+Do you understand this part?
+
+01:55:27
+Or if you don't understand,
+
+01:55:29
+assume that embeddings will give you a wrong answer for
+
+01:55:32
+direct text matches.
+
+01:55:35
+Clear, everybody?
+
+01:55:41
+A little more responses quick.
+
+01:55:46
+Okay. Last time, I'll explain it. Okay? And I'll make
+
+01:55:50
+you only tell me the answer.
+
+01:55:53
+Let me, let me suppose
+
+01:55:55
+that
+
+01:55:56
+I am going through
+
+01:55:58
+a API endpoint.
+
+01:56:01
+Okay? An API endpoint. I mean, as your question is
+
+01:56:04
+slightly tangential, so I'll not address it right now. Maybe
+
+01:56:07
+take it towards the end.
+
+01:56:08
+Okay?
+
+01:56:09
+I am trying to take, try to,
+
+01:56:12
+look at an endpoint or a parameter.
+
+01:56:16
+Okay. Suppose my parameter name let me say, 1 of
+
+01:56:19
+the parameters could be,
+
+01:56:22
+say, you know, model equal to.
+
+01:56:25
+For open router,
+
+01:56:27
+we have model equal to parameter. Yes. No.
+
+01:56:34
+Okay. So when I use embedding
+
+01:56:37
+as such, what happens to model equal to is model
+
+01:56:42
+will be placed in the same,
+
+01:56:44
+thing as LLM.
+
+01:56:46
+It'll be placed in the same thing as AI,
+
+01:56:50
+model
+
+01:56:52
+or etcetera.
+
+01:56:53
+So it will be put in the same language as
+
+01:56:56
+this.
+
+01:56:57
+Okay? But exact text match will put exactly model equal
+
+01:57:02
+to and search for where model equal to comes.
+
+01:57:09
+Now did you get it?
+
+01:57:11
+Everybody, did you understand this?
+
+01:57:16
+Okay. That is the problem with my current retrieval. So,
+
+01:57:19
+therefore, I will build a, yeah, hybrid retrieval
+
+01:57:23
+so that I can use the meaning
+
+01:57:26
+as well as the text
+
+01:57:27
+and try to,
+
+01:57:29
+do both. Because I don't know what type of query
+
+01:57:32
+I'll get. I might get an exact query or I
+
+01:57:34
+might get a query which relies more on meaning. So
+
+01:57:37
+I will do both the retrieval,
+
+01:57:40
+and then I will do what is called
+
+01:57:43
+a re ranking.
+
+01:57:48
+Okay? Now let me give you an analogy to explain
+
+01:57:50
+this clearly.
+
+01:57:53
+Right?
+
+01:57:55
+So for example, I am filtering resumes
+
+01:58:00
+for a job description.
+
+01:58:03
+I will filter or rank based on keywords
+
+01:58:09
+and also based on how well it matches to the
+
+01:58:12
+JD.
+
+01:58:18
+So I will have both the rankings. I have keyword
+
+01:58:21
+based ranking.
+
+01:58:23
+I have match based ranking,
+
+01:58:26
+and then I will take both of these rankings,
+
+01:58:31
+and I will do my reranking.
+
+01:58:36
+Based on my reranking, I will choose the resume to
+
+01:58:39
+shortlist.
+
+01:58:44
+Understood what re ranking means or
+
+01:58:47
+understood what is the process we are going to do
+
+01:58:49
+in the hybrid retrieval.
+
+01:58:51
+I'm going to do keyword based matching.
+
+01:58:54
+I'm going to do JD based semantic matching,
+
+01:58:57
+and then I'm going to take both the ranks and
+
+01:59:00
+do the re ranking.
+
+01:59:02
+Okay? And my re ranking algorithm
+
+01:59:05
+has a simple rule.
+
+01:59:15
+Okay. My re ranking has a simple rule.
+
+01:59:18
+If the same resume is appearing here and here also,
+
+01:59:23
+give it a slightly higher rank.
+
+01:59:25
+Because it is matching both keywords as well as JD,
+
+01:59:28
+so it should be a good,
+
+01:59:30
+resume. So if the rank is on the top, give
+
+01:59:33
+it a slightly higher rank. That is how I would
+
+01:59:36
+do my re ranking. Okay? I will not go into
+
+01:59:38
+the exact algorithms of re ranking because it's very complex.
+
+01:59:42
+If you want, you can go through it later. But
+
+01:59:44
+the intuitive level understanding is I will do keyword based
+
+01:59:48
+ranking.
+
+01:59:49
+I will do j d based ranking.
+
+01:59:51
+And based on keyword based ranking and JD based ranking,
+
+01:59:55
+I will get the ranks of my,
+
+01:59:58
+documents.
+
+01:59:59
+And then after I get the ranks, I will do
+
+02:00:01
+the reranking to decide which are the chunks I need
+
+02:00:05
+to use.
+
+02:00:06
+Clear about the system of hybrid retrieval and reranking?
+
+02:00:13
+Yes?
+
+02:00:15
+Okay. So for doing the high you know, the keyword
+
+02:00:19
+based matching,
+
+02:00:21
+I will use something called b m 25.
+
+02:00:26
+Okay? Which is a keyword based retrieval rank, match algorithm.
+
+02:00:31
+Alright? Now how it exactly works? I will keep it,
+
+02:00:35
+aside because the algorithm is a little complex complicated.
+
+02:00:40
+But for those of you who are into retrieval, somebody
+
+02:00:44
+said leucine.
+
+02:00:45
+So, by the way, leucine kind of uses b m
+
+02:00:47
+25 underneath,
+
+02:00:49
+for those of you who you who work with Lucene,
+
+02:00:52
+b m 25 is 1 of the very good algorithms
+
+02:00:54
+out there for keyword match, and that's why we are
+
+02:00:57
+using it. In a way, it tries to rank based
+
+02:01:00
+on,
+
+02:01:01
+you know,
+
+02:01:02
+how many times that keyword appears in the documents
+
+02:01:06
+versus
+
+02:01:07
+how many documents that the keyword appears in.
+
+02:01:12
+Yes. That is what hybrid retrieval is. In hybrid retrieval,
+
+02:01:16
+what I will do in the hybrid matches,
+
+02:01:19
+I will do
+
+02:01:20
+embedding based
+
+02:01:25
+retrieval
+
+02:01:28
+as well as keyword based retrieval also.
+
+02:01:34
+Okay? And do the re rank.
+
+02:01:37
+Yes. B m 25 is based on TF IDF. Now
+
+02:01:39
+don't ask me what TF IDF is for it's for
+
+02:01:42
+others to do, but it is somewhat based on TF
+
+02:01:44
+IDF. The,
+
+02:01:46
+the concept is same, but it goes beyond that.
+
+02:01:51
+Alright. Clear, everybody?
+
+02:01:55
+Right?
+
+02:01:56
+So
+
+02:01:58
+what b m 25 does
+
+02:02:01
+is, like, pressing
+
+02:02:04
+command
+
+02:02:06
+plus f or control
+
+02:02:08
+plus f for Windows. Do you so do you do
+
+02:02:10
+this control plus f for finding on an Excel sheet
+
+02:02:13
+or a document?
+
+02:02:14
+Do you use this command control f?
+
+02:02:18
+Right? For a word, b m 25 is somewhat similar.
+
+02:02:21
+You are doing control f, and then you are doing
+
+02:02:24
+meaning based, and then you are doing the reranking. That
+
+02:02:27
+is what this entire
+
+02:02:29
+thing is. So that is what hybrid retrieval
+
+02:02:32
+kind of does for us. And after you do the
+
+02:02:35
+hybrid retrieval, you do the reranking
+
+02:02:38
+also for the c.
+
+02:02:41
+Okay? So now let us go back to our code
+
+02:02:44
+and look at the hybrid retrieval in action.
+
+02:02:54
+Okay. So
+
+02:02:56
+I have all of this.
+
+02:02:59
+Yeah. Yeah.
+
+02:03:02
+Okay. So now,
+
+02:03:03
+let me run the code just to so that, you
+
+02:03:06
+know, save the time of,
+
+02:03:08
+later on.
+
+02:03:09
+So I have the hybrid code. I'll
+
+02:03:12
+run the code. And now let us go to the,
+
+02:03:15
+you know, the
+
+02:03:16
+this thing. So by the way, it is I'm calling
+
+02:03:19
+it m 2 because m 0 is my NIVRAD.
+
+02:03:22
+M 1 is my evaluation harness.
+
+02:03:24
+M 2 is the hybrid retrieval.
+
+02:03:29
+Okay? So what it does is it is going to
+
+02:03:32
+do the
+
+02:03:33
+side by side dense embedding. The normal embedding process we
+
+02:03:37
+have
+
+02:03:38
+done, that is what is called the dense embedding versus
+
+02:03:41
+b m 25,
+
+02:03:43
+which can find the top 5 for matches. And, exactly,
+
+02:03:47
+it is able to catch the
+
+02:03:49
+minus minus max pods instantly.
+
+02:03:52
+Okay? So we have the hybrid
+
+02:03:55
+process with the reranking which is occurring, which I am
+
+02:03:59
+using for all of the processes.
+
+02:04:03
+Okay? And then I'm going to use the RAGAS eval
+
+02:04:06
+to check how it has performed on hybrid.
+
+02:04:09
+RAGAS is,
+
+02:04:11
+you know, kind of used for every RAG model. I'm
+
+02:04:14
+kind of comparing with every RAG model.
+
+02:04:17
+Max part is on documentation
+
+02:04:19
+query thing. Don't have to understand. I'm saying that that
+
+02:04:21
+is a parameter I want to search in my Kubernetes
+
+02:04:24
+documentation,
+
+02:04:25
+and I'm able to retrieve it very quickly.
+
+02:04:28
+So the way to set it up, again, similar setup
+
+02:04:30
+as before.
+
+02:04:31
+I am building my basic naive index, which is the
+
+02:04:34
+same as in the previous ones. I'm doing exactly the
+
+02:04:38
+same.
+
+02:04:39
+The only difference I'm doing is over here,
+
+02:04:44
+okay, where I am, you know, kind of setting up
+
+02:04:49
+a RRF use.
+
+02:04:52
+Okay? Don't worry about what it is, but what you
+
+02:04:54
+can think about is understanding that I'm using the PM
+
+02:04:57
+25 algorithm underneath, and then I am doing the,
+
+02:05:02
+reranking of my,
+
+02:05:04
+results. There is a reranking portion.
+
+02:05:06
+Now I am making
+
+02:05:08
+my hybrid engine where I am initializing my b m
+
+02:05:12
+25
+
+02:05:13
+model as well as my dense model as well as
+
+02:05:16
+my re ranker. I am setting it all up. So
+
+02:05:19
+I will retrieve based on my dense model. I will
+
+02:05:22
+retrieve based on my PM 25 model. Then I will
+
+02:05:26
+take both of this and do the re ranking with
+
+02:05:29
+my re rank algorithm,
+
+02:05:31
+and then I am able to get my results overall.
+
+02:05:36
+Okay?
+
+02:05:38
+Dense model is nothing. That is the original NIVRAQ model.
+
+02:05:41
+The original NIVRAQ model is a dense model, and b
+
+02:05:44
+m 25 is my keyword retrieval model. That's it.
+
+02:05:49
+Okay. So what this code is doing is it is,
+
+02:05:52
+going with the thing.
+
+02:05:55
+Okay?
+
+02:05:56
+Let me walk through once again. See, the reason I'm
+
+02:05:58
+going little faster with the code is if you understand
+
+02:06:01
+what is it that you are doing underneath later on,
+
+02:06:05
+you can go back and look at the code. You'll
+
+02:06:07
+understand better. How much ever slow I go with the
+
+02:06:10
+code, unless you see it later on, you will not
+
+02:06:12
+understand.
+
+02:06:13
+My idea is to show you that this is the
+
+02:06:15
+code. This is what is happening at each play place.
+
+02:06:18
+How is the orchestration happening? I am running the code
+
+02:06:21
+below to show you the results so that you can
+
+02:06:24
+compare and contrast.
+
+02:06:26
+Okay? Let me again, I will do I will go
+
+02:06:29
+slow down on the code, but please understand that however
+
+02:06:31
+slow I go on the code, it will always feel
+
+02:06:34
+a little off because unless you run the code yourself,
+
+02:06:37
+you will not get the final concept.
+
+02:06:40
+Clear everyone? Align with my approach?
+
+02:06:43
+That's why I'm spending more time,
+
+02:06:46
+on explaining
+
+02:06:48
+so that we can go with this. Again, prompts and
+
+02:06:51
+everything, I will told you, I will show tell you
+
+02:06:54
+the process later on. Okay? I will talk to you
+
+02:06:56
+the process in a separate session. I won't have time
+
+02:06:59
+to go through this.
+
+02:07:02
+Alright? So let me go with the code once again.
+
+02:07:06
+Right? So what I am doing in this code on
+
+02:07:09
+a higher level is I am building my b m
+
+02:07:13
+25 system. I am building my original system, and I'm
+
+02:07:16
+building a re ranking system, which will take the results
+
+02:07:19
+from the original and the b m 25 system and
+
+02:07:22
+give me the complete
+
+02:07:24
+set of results.
+
+02:07:26
+Okay?
+
+02:07:27
+Mhmm. So my code is done. First, I will go
+
+02:07:30
+through the answers below.
+
+02:07:33
+Okay? And then I will show you how it is
+
+02:07:35
+different overall.
+
+02:07:44
+Alright. So in the hybrid,
+
+02:07:46
+in this place,
+
+02:07:48
+my basic setup is done wherein my entire pipeline
+
+02:07:52
+is now set up in the
+
+02:07:54
+hybrid place.
+
+02:07:56
+So first, what I'm showing over here is
+
+02:07:58
+what is the difference between the dense top 5 versus
+
+02:08:02
+the b m 25 top 5 for the first question.
+
+02:08:07
+Okay? So in the first question, I'm using the minus
+
+02:08:10
+minus max pods flag, which is the parameter I am
+
+02:08:14
+searching in the Kubernetes documentation.
+
+02:08:17
+So in the 10 stop 5, it is getting me
+
+02:08:20
+only the kuber kubelet kubelet kubelet along with the cube
+
+02:08:24
+scheduler.
+
+02:08:25
+Right?
+
+02:08:26
+On the b m 25,
+
+02:08:29
+right, it is searching the directly those documentation and is
+
+02:08:33
+telling me where the documentation is present because minus minus
+
+02:08:37
+max port is present directly inside Cubelet.
+
+02:08:41
+My Cubelet document should get a higher ranking.
+
+02:08:45
+Okay. So now this is the,
+
+02:08:48
+you know, hybrid plus VNAC. So what is the default
+
+02:08:51
+value? It put the default value as 1 10. Previously,
+
+02:08:55
+also, it got the information, but now it directly got
+
+02:08:59
+the information much quicker much quickly.
+
+02:09:03
+Okay? This 1 is the dense matching,
+
+02:09:07
+and then you have got the basic,
+
+02:09:10
+understanding of the questions.
+
+02:09:12
+Higher the number, better is the retrieval.
+
+02:09:15
+So this is the rag eval on
+
+02:09:18
+the hybrid re rank. Okay. So I have done the
+
+02:09:20
+hybrid re rank on the rag eval
+
+02:09:23
+where you can see the numbers improving.
+
+02:09:26
+Overall,
+
+02:09:27
+I am 0.975
+
+02:09:30
+on my faithfulness
+
+02:09:32
+and 0.839
+
+02:09:34
+on my answer relevancy.
+
+02:09:36
+So if you remember,
+
+02:09:38
+I am I have done quite better compared to this.
+
+02:09:41
+So if you look at this, in my name ranking,
+
+02:09:43
+I was 0.897
+
+02:09:45
+on faithfulness, 0.646
+
+02:09:47
+on the
+
+02:09:48
+answer relevancy.
+
+02:09:50
+But with the simple change
+
+02:09:53
+right? With the simple change, I have improved my faithfulness
+
+02:09:57
+to 0.975
+
+02:09:59
+and 0.839
+
+02:10:00
+on answer relevancy.
+
+02:10:03
+Right? With the simple change of doing hybrid retrieval on
+
+02:10:06
+rag, I have improved my rag system.
+
+02:10:09
+Ragas is same over all my systems.
+
+02:10:13
+Okay? Every rag system I'm building, I'm using Ragas for
+
+02:10:16
+evaluation,
+
+02:10:17
+and it is showing me whether it is improving or
+
+02:10:20
+declining based on the changes.
+
+02:10:24
+Clear as to how with their, you know, hybrid retrieval
+
+02:10:27
+system, we have been able to improve it overall.
+
+02:10:34
+Okay. Why did the score improve?
+
+02:10:40
+Okay. Why did the score improve? Because
+
+02:10:43
+I have done my retrieval better. My exact matching, it
+
+02:10:46
+will work better with the keyword based retrieval.
+
+02:10:51
+So
+
+02:10:51
+I will come to that question, what happens if the
+
+02:10:54
+score does not improve? We will check it later on.
+
+02:10:56
+But first, look at this code. We have 2, 3
+
+02:10:58
+more methods to go through. So I want to kind
+
+02:11:01
+of cover that base overall.
+
+02:11:04
+Alright? So here in hybrid retrieval,
+
+02:11:08
+what we have done is we have done side by
+
+02:11:10
+side dense versus b m 25.
+
+02:11:12
+So this part is the basic setup. This will remain
+
+02:11:15
+similar across.
+
+02:11:17
+Then I am building the knife index where I'm giving
+
+02:11:20
+the open router key, and I'm doing the,
+
+02:11:23
+you know, complete indexing, chunking, etcetera.
+
+02:11:27
+Then says nothing but the previous knife embedding itself.
+
+02:11:31
+The
+
+02:11:32
+embedding that I have done, that is exactly what dense
+
+02:11:35
+is.
+
+02:11:37
+Okay. So this is the original,
+
+02:11:39
+rack system that I'm trying to build in this piece
+
+02:11:42
+of code. It is the original rack system, which is
+
+02:11:44
+loading, chunking of the docs,
+
+02:11:47
+and storing it in the vector index.
+
+02:11:50
+Okay? I am setting up an algorithm for reranking in
+
+02:11:53
+this function
+
+02:11:55
+where I am doing the reranking. Based on whatever results
+
+02:11:58
+are coming, it will do the reranking. And the way
+
+02:12:01
+reranking works is
+
+02:12:02
+if my same document appears at a higher rank at
+
+02:12:06
+both places,
+
+02:12:07
+it will consider it to be a higher ranking document.
+
+02:12:11
+Then I am building the hybrid engine, wherein I am
+
+02:12:14
+saying that I have the dense, thing which is retrieving
+
+02:12:18
+for my vector,
+
+02:12:20
+database
+
+02:12:21
+that it is retrieving from my b m 25,
+
+02:12:26
+and I am now building my hybrid ranking bit retriever.
+
+02:12:30
+Okay?
+
+02:12:31
+So in
+
+02:12:33
+here, b m 25
+
+02:12:34
+based ranking is also done in parallel with embedding based,
+
+02:12:39
+ranking
+
+02:12:40
+and then try to do that. Rajat, I'm not going
+
+02:12:43
+to address on elastic search, etcetera, and all that. That
+
+02:12:46
+is tangential. We will take it up towards the end.
+
+02:12:48
+I will not connect with this because people will get
+
+02:12:51
+confused.
+
+02:12:53
+Alright.
+
+02:12:54
+Feedback taken. I will try to add more documentation when
+
+02:12:57
+I share the code.
+
+02:13:02
+Okay? So then I have see, as I told you.
+
+02:13:05
+Right?
+
+02:13:06
+See, there are reason why my code is this is
+
+02:13:08
+I've I have been writing this code for the last
+
+02:13:10
+5 days, and,
+
+02:13:12
+that is why I have been doing this. Again, how
+
+02:13:15
+much ever I will go deep into the code, as
+
+02:13:17
+I told, I will not be able to explain it
+
+02:13:20
+in the way unless until you will be able to
+
+02:13:23
+do that. Right?
+
+02:13:28
+Alright.
+
+02:13:29
+So this is what we are doing wherein on the
+
+02:13:32
+code level, I am doing the setup
+
+02:13:35
+in terms of,
+
+02:13:36
+you know, setting up my system, my main rack system.
+
+02:13:40
+Here is where I am setting up my reranking algorithm.
+
+02:13:44
+I am setting up my hybrid engine where I'm getting
+
+02:13:47
+the information both from b m 25
+
+02:13:51
+as well as my other and then I am trying
+
+02:13:55
+to show dense versus b m 25, the demo that
+
+02:13:58
+I have shown. I am showing the top 5 documents
+
+02:14:01
+so that you can understand how different they all are.
+
+02:14:09
+Okay? Clear as to what we have done in hybrid.
+
+02:14:12
+We have improved our rag model, and we have improved
+
+02:14:16
+the hybrid reranking also.
+
+02:14:20
+Okay? So now after hybrid re ranking, what should we
+
+02:14:24
+improve next?
+
+02:14:25
+What is the next improvement that you can do
+
+02:14:29
+so that you can take it a notch higher?
+
+02:14:34
+Right, Goldip? Thanks for,
+
+02:14:36
+putting that thing. I was about to tell that later
+
+02:14:38
+on. But if you want to understand line by line,
+
+02:14:41
+you can use a coding agent or anything to understand
+
+02:14:44
+line by line, etcetera.
+
+02:14:46
+I am here to provide you the base and the
+
+02:14:48
+orchestration, the line by line understanding. I will leave it
+
+02:14:52
+up to you. Alright. So we'll go back to the
+
+02:14:55
+whiteboard,
+
+02:14:59
+and then we will understand the next part
+
+02:15:02
+of how we will,
+
+02:15:04
+you know, kind of go into the stuff.
+
+02:15:08
+So far, we have done hybrid retrieval where we can
+
+02:15:12
+do the exact match and, you know,
+
+02:15:16
+try to check everything else
+
+02:15:18
+overall. But the problem
+
+02:15:20
+that could happen
+
+02:15:24
+is I need to make my rag model
+
+02:15:28
+very good in terms of the chunk
+
+02:15:34
+quality or the context from my chunk.
+
+02:15:43
+Alright. I need to improve this
+
+02:15:46
+Because sometimes,
+
+02:15:49
+the chunks
+
+02:15:52
+are not good enough.
+
+02:15:59
+So
+
+02:16:00
+let me, you know, try to explain this via an
+
+02:16:03
+example.
+
+02:16:04
+Okay?
+
+02:16:05
+Let me,
+
+02:16:07
+explain this via an example because in the previous 1,
+
+02:16:09
+I learned my lesson. So first, I'll explain the example,
+
+02:16:11
+and then I'll explain the concept.
+
+02:16:13
+Okay?
+
+02:16:17
+In your WhatsApp group,
+
+02:16:19
+right,
+
+02:16:20
+in your, typical,
+
+02:16:22
+WhatsApp groups,
+
+02:16:23
+let us assume that you are in your company WhatsApp
+
+02:16:26
+group or Slack group,
+
+02:16:28
+and you are looking at a bunch of messages.
+
+02:16:33
+Okay? Yeah. We are looking at a bunch of messages.
+
+02:16:36
+And let us assume that you forgot the previous 9
+
+02:16:40
+messages were cut off, and you see only the last
+
+02:16:43
+message which says, okay.
+
+02:16:46
+I have understood and the approval was done.
+
+02:16:50
+Do you feel that the context is lost and you
+
+02:16:52
+kind of are a little bit puzzled when you get
+
+02:16:55
+it get an answer because the previous context is lost?
+
+02:17:01
+Okay.
+
+02:17:02
+Another example.
+
+02:17:04
+Suppose I am doing my chunking,
+
+02:17:07
+do you assume that there could be chances where I
+
+02:17:10
+am cutting my chunk in such a way that the
+
+02:17:13
+second part of an answer,
+
+02:17:15
+which does not have the exact terms as the first
+
+02:17:19
+part, but it's important
+
+02:17:21
+to improve my answer. If that gets cut off, my
+
+02:17:24
+answer quality will degrade. Yes or no?
+
+02:17:29
+Okay. So now I want to build a contextual
+
+02:17:33
+retrieval
+
+02:17:35
+into my rack system.
+
+02:17:39
+Okay? I need to build a contextual retrieval in my
+
+02:17:42
+rack system. That means I need I don't need to
+
+02:17:45
+build just give just the WhatsApp message. I need to
+
+02:17:49
+prepend the context also to the chunk.
+
+02:17:53
+Now this is not a thing I will improve
+
+02:17:57
+when I am doing my LLM. This is something I
+
+02:18:00
+have to improve at the chunking level.
+
+02:18:05
+Right? This is
+
+02:18:07
+something I'm going to improve at the chunk
+
+02:18:11
+level. Jasmine give a better example.
+
+02:18:13
+Okay? Very good.
+
+02:18:16
+So what I have to do is I in the
+
+02:18:18
+ingestion stage,
+
+02:18:21
+I
+
+02:18:22
+want to give
+
+02:18:25
+better chunks
+
+02:18:29
+so that
+
+02:18:32
+my answers
+
+02:18:33
+are better.
+
+02:18:39
+That means when I am building when I'm cutting the
+
+02:18:42
+document, when I
+
+02:18:44
+am, building the chunks,
+
+02:18:46
+right, how well will I be able to build the
+
+02:18:49
+chunks so that I should be able to, you know,
+
+02:18:53
+try to get the context right away
+
+02:18:56
+and give it exact give it the context. For example,
+
+02:19:00
+in the WhatsApp example,
+
+02:19:02
+suppose I'm adding somebody,
+
+02:19:04
+later,
+
+02:19:05
+I will give them the context of the previous conversation,
+
+02:19:08
+and I'll say now take it over from here.
+
+02:19:11
+So how can I
+
+02:19:12
+do that in the ingestion itself?
+
+02:19:16
+Okay. That is the thing that we want to do.
+
+02:19:20
+Right? And,
+
+02:19:22
+the way we do it
+
+02:19:24
+is we try to contextualize the chunks, and we try
+
+02:19:28
+to use an LLM itself
+
+02:19:30
+to tell me, hey. These are the chunks I have
+
+02:19:33
+used.
+
+02:19:35
+Can you go back to the document
+
+02:19:37
+and tell me what are the other relevant chunks you
+
+02:19:40
+think I should use?
+
+02:19:43
+Understand this process?
+
+02:19:45
+I built my chunks.
+
+02:19:47
+Okay? I will ask my LLM to do a 1
+
+02:19:50
+time sweep
+
+02:19:51
+to just tell me if there are some contextual chunks
+
+02:19:54
+I can build.
+
+02:19:57
+It will take a lot of tokens,
+
+02:19:59
+but it will build richness in the context overall.
+
+02:20:04
+Okay. Sometimes it might work in some use cases. It
+
+02:20:07
+might not work in use cases. But I want to
+
+02:20:10
+tell you that,
+
+02:20:11
+this is, the way
+
+02:20:13
+I would,
+
+02:20:14
+you know, set this up.
+
+02:20:18
+Okay? Why don't we do contextual chunk? Because I am
+
+02:20:21
+trying to build a story. I want to show it
+
+02:20:23
+may rank first, then I do hybrid retrieval, and then
+
+02:20:26
+I'm saying, okay. Now you you know what? We'll let
+
+02:20:28
+us solve this also. So I'm going by process by
+
+02:20:31
+process. So first, now that we will go into the
+
+02:20:34
+contextual
+
+02:20:35
+chunk.
+
+02:20:37
+Did you understand the concept of contextual chunking?
+
+02:20:40
+In a way, in a
+
+02:20:42
+broad manner, I am asking my LLM itself to go
+
+02:20:46
+through the chunks
+
+02:20:47
+and try to build,
+
+02:20:50
+everything. Basically, I will feed the documentation once to my
+
+02:20:53
+LLMs. It's a 1 time thing,
+
+02:20:56
+Okay? Which,
+
+02:20:58
+might cost a lot of tokens, but it's a 1
+
+02:21:01
+time thing that is there.
+
+02:21:04
+Right? 1 thing to understand is it is not the,
+
+02:21:07
+generation time improvement I'm doing. It is not the embedding
+
+02:21:11
+time improvement I'm doing. I am making this improvement during
+
+02:21:15
+the ingestion.
+
+02:21:17
+During the times I am loading my documents, that is
+
+02:21:20
+where I am making this improvement.
+
+02:21:23
+Okay? 1 way to do this in a better manner
+
+02:21:27
+is for this task, I can use a free model
+
+02:21:31
+because I just want contextual chunks. I don't require
+
+02:21:34
+exact chunks overall. I don't require sonnet or opus, which
+
+02:21:37
+is very costly.
+
+02:21:39
+I can use a QAN model
+
+02:21:41
+to do my contextual chunking for me, and I can
+
+02:21:44
+pass it on later to anybody else.
+
+02:21:49
+Yes. It is done at the first step itself during
+
+02:21:51
+the ingestion.
+
+02:21:54
+Right? So,
+
+02:21:55
+it is like 1 time you do, and later on
+
+02:21:58
+when you make any changes, right, think of it like
+
+02:22:01
+Google Drive. Okay?
+
+02:22:03
+So suppose I change a file on the Google Drive,
+
+02:22:07
+does Google refresh everything,
+
+02:22:09
+or it refreshes only
+
+02:22:11
+that 1 file you have changed?
+
+02:22:19
+The changed part. But once you dump hundred files to
+
+02:22:23
+Google Drive to the begin with,
+
+02:22:25
+it will read the all the files once. Right?
+
+02:22:28
+Once you dump all those hundred files, it will read
+
+02:22:30
+all the files once.
+
+02:22:32
+Right? That is exactly what I'm doing.
+
+02:22:36
+So, folks, 1 more thing, I wanted to mention.
+
+02:22:39
+From here on, I will go a little bit advanced.
+
+02:22:42
+I will I'm trying to go slow, but there is
+
+02:22:44
+as much slow that I can go. Right?
+
+02:22:47
+So if you are not able to understand a few
+
+02:22:50
+parts, you might need to revise
+
+02:22:52
+a little bit.
+
+02:22:54
+Okay?
+
+02:22:55
+So just giving a disclaimer.
+
+02:22:57
+So this is done in the ingestion part, and it
+
+02:23:00
+is done before embeddings itself. I think I repeated this
+
+02:23:03
+multiple times. This is something you'll
+
+02:23:06
+try to do this later on.
+
+02:23:09
+Okay? Everybody clear what I'm doing? I'm trying to do
+
+02:23:11
+contextual chunking in the second part.
+
+02:23:17
+Okay? Clear, everybody, what we are doing? The improvement, we
+
+02:23:21
+are we have done hybrid retrieval.
+
+02:23:23
+On top of hybrid retrieval, I will do now next
+
+02:23:27
+contextual
+
+02:23:28
+chunking.
+
+02:23:29
+For that, I will show you what we will do.
+
+02:23:36
+So go back to the code,
+
+02:23:40
+and we will go to the contextual
+
+02:23:43
+chunking over here. So here, what I'm doing is this.
+
+02:23:47
+For each chunk,
+
+02:23:49
+I will ask Haiku for a 1 to 2, 2
+
+02:23:52
+sentence context blurb
+
+02:23:54
+that situates the chunk in its parent doc. That is
+
+02:23:58
+I will prepend a blurb to the context,
+
+02:24:01
+text.
+
+02:24:03
+Okay? So in 1 time, I will do a lot
+
+02:24:06
+of LLM calls, but later on, they should reduce.
+
+02:24:10
+Okay? Then I will build a fresh LANDS DB index
+
+02:24:14
+over the contextualized
+
+02:24:16
+chunks
+
+02:24:16
+and run the same hybrid and re rank stack on
+
+02:24:20
+top.
+
+02:24:21
+Then I will run that, 3 test queries, and I'll
+
+02:24:24
+run the Ragas eval also.
+
+02:24:27
+K. So first, let me
+
+02:24:29
+run that
+
+02:24:30
+completely.
+
+02:24:34
+Sorry. Sorry. Sorry.
+
+02:24:50
+Alright.
+
+02:24:51
+So what I'm doing?
+
+02:24:52
+I'm doing contextual ingestion wherein I'm using the Haiku model,
+
+02:24:56
+which is a simple model to create a 1 to
+
+02:25:00
+2 sentence context blurb for my chunk,
+
+02:25:02
+and then I will build a fresh lines DB index
+
+02:25:05
+over the contextualized
+
+02:25:06
+chunks.
+
+02:25:07
+Then I will run my test queries, and I'll run
+
+02:25:10
+my eval.
+
+02:25:12
+Okay. So I am actually also what I'm doing here
+
+02:25:15
+this is a little complex.
+
+02:25:17
+Bear with me. What I'm doing is I am saving
+
+02:25:20
+this contextualized
+
+02:25:21
+chunks
+
+02:25:23
+to my c p x underscore nodes dot json, which
+
+02:25:26
+is my cache, a form of a local cache.
+
+02:25:31
+So that this will be loaded,
+
+02:25:34
+on these cache chunks are loaded,
+
+02:25:36
+and it will help me rebuild things much faster. So
+
+02:25:40
+this is, 1 kind of,
+
+02:25:43
+thing I have done so that your rag models run
+
+02:25:46
+times would improve.
+
+02:25:52
+Okay?
+
+02:25:55
+Clear so far what I have done. I'm for each
+
+02:25:58
+chunk, I'm using my LLM to write some context.
+
+02:26:02
+That context, I am building,
+
+02:26:04
+redoing my indexing,
+
+02:26:06
+and some part of it, I'm storing in a cache
+
+02:26:09
+so that in the next run, it will be much
+
+02:26:11
+faster. In fact, it is quite fast right now because
+
+02:26:14
+of the caching that I have done.
+
+02:26:17
+If I were to show this live from scratch, this
+
+02:26:20
+would have taken at least 15 minutes.
+
+02:26:25
+Lama index is here. All you are,
+
+02:26:27
+you know, your basic document loading and chunking is done
+
+02:26:31
+by Lama index only. I am building on top of
+
+02:26:34
+what we have already seen.
+
+02:26:42
+Yes. So
+
+02:26:43
+this additional chunks, we can store in the vector DB
+
+02:26:46
+also.
+
+02:26:48
+But the problem is when I store it in vector
+
+02:26:50
+DB, my retrieval time will increase.
+
+02:26:53
+So to keep the,
+
+02:26:55
+code faster,
+
+02:26:57
+I will keep it over here. But, yes, you will
+
+02:26:59
+have to think of a system of how you'll manage
+
+02:27:01
+your cache
+
+02:27:03
+as well as a vector t d so that your
+
+02:27:04
+retrieval is faster. That's where engineering will kind of come
+
+02:27:07
+into this.
+
+02:27:09
+So, currently, I cannot show you that it is happening
+
+02:27:12
+underneath. There is no way to see that. If you
+
+02:27:15
+are interested, you will have to play with the code
+
+02:27:18
+a little bit and ask it to output the chunks,
+
+02:27:21
+but in you know, overall on your command line to
+
+02:27:23
+check that. So when I give you the code, you
+
+02:27:25
+can check it out yourself.
+
+02:27:33
+Okay. So let us now go to the code a
+
+02:27:35
+little bit.
+
+02:27:43
+Okay.
+
+02:27:44
+Number 1, I am, using the
+
+02:27:51
+annotations. Again,
+
+02:27:52
+I'll come to the question on crash. Let me explain
+
+02:27:55
+the thing first.
+
+02:27:56
+So here, the new thing I'm adding is the CTX
+
+02:28:00
+notes cache,
+
+02:28:01
+which is the cache I am setting it up. And
+
+02:28:04
+the prompt is, here is the chunk from the document.
+
+02:28:10
+Yes. It is between the chunking and the embedding stage.
+
+02:28:13
+Exactly.
+
+02:28:14
+So here is a chunk from the document.
+
+02:28:17
+Give a short 1 to 2 sentence context
+
+02:28:20
+describing where this chunk exactly sits in, the document, and
+
+02:28:24
+the topic it relates to.
+
+02:28:26
+This context will be prepended to the chunk to improve
+
+02:28:29
+the search retrieval. Answer only with the context.
+
+02:28:34
+No preamble.
+
+02:28:36
+So with my chunk, I will actually,
+
+02:28:39
+send this back, and it will try to do that.
+
+02:28:43
+So then I am, actually doing the generation model wherein
+
+02:28:47
+I am passing my chunks in here and getting my
+
+02:28:51
+context from the prompt.
+
+02:28:54
+Okay? So I'm using the Haiku model over here.
+
+02:28:59
+Right? And then, for those of you who are asking,
+
+02:29:02
+am I still using LAMA index?
+
+02:29:04
+I can definitely
+
+02:29:06
+use LAMA index. I am using LAMA index. I'm using
+
+02:29:09
+everything that I have been using,
+
+02:29:12
+overall, so on and so forth.
+
+02:29:14
+I am loading the directory.
+
+02:29:16
+Okay? I am chunking the records. So if you want
+
+02:29:19
+to look at the chunks, you can put a print
+
+02:29:21
+statement after this to actually kind of, you know, look
+
+02:29:25
+at the output of how the chunks would look like.
+
+02:29:29
+Okay? For those of you who are interested.
+
+02:29:32
+Then I'm going to,
+
+02:29:34
+contextualize
+
+02:29:35
+everything.
+
+02:29:36
+It is building it out.
+
+02:29:39
+Then I have the,
+
+02:29:41
+vector store index
+
+02:29:43
+through and through, then I'm setting up my hybrid
+
+02:29:47
+retrieval overall, so on and so forth. Before that, I'm
+
+02:29:50
+setting up my cache and all that.
+
+02:29:54
+Okay? A little more complex code, You you will require
+
+02:29:57
+to spend time. I will try to improve the documentation
+
+02:30:00
+so that,
+
+02:30:01
+anybody can see it. I'll improve the documentation.
+
+02:30:04
+So give me, like, a test time to share share
+
+02:30:06
+this code on GitHub. By tomorrow, you will have this
+
+02:30:09
+code on GitHub to play around later on.
+
+02:30:11
+Fair? Cool, everyone?
+
+02:30:15
+Mhmm.
+
+02:30:17
+Okay. Got it.
+
+02:30:19
+So then
+
+02:30:20
+I do my hybrid and my re ranking.
+
+02:30:23
+Okay? So here, the steps that are happening are, I
+
+02:30:26
+am I cannot show show it, unfortunately, because I'll have
+
+02:30:30
+to, do the output. My system will go crazy. It
+
+02:30:33
+will be very difficult.
+
+02:30:35
+Please do it at your own end.
+
+02:30:37
+Okay?
+
+02:30:38
+So,
+
+02:30:40
+here, what I'm doing is
+
+02:30:42
+I am building the chunk, the contextual chunk,
+
+02:30:46
+then I am,
+
+02:30:48
+you know,
+
+02:30:49
+building a fresh lands DB index,
+
+02:30:51
+then I will build the 3 test queries, etcetera. So
+
+02:30:54
+the output is ready. We can check on the output.
+
+02:31:01
+So m 3 contextual chunks. So here are the,
+
+02:31:04
+3 text query,
+
+02:31:06
+the data's given.
+
+02:31:08
+Okay? And on the contextual questions, on the 10 questions,
+
+02:31:12
+what it has done is the faithfulness
+
+02:31:14
+is 0.927,
+
+02:31:16
+and the answer relevancy
+
+02:31:18
+is 0.742.
+
+02:31:20
+Okay?
+
+02:31:21
+So, then, if you see
+
+02:31:25
+the score,
+
+02:31:27
+I reduced on faithfulness,
+
+02:31:29
+and I reduced on answer relevancy also.
+
+02:31:36
+Okay. I I do the,
+
+02:31:39
+you know, I reduce on relevance. I reduce on faithfulness.
+
+02:31:42
+Can you guys guess why this has happened? Somebody actually
+
+02:31:45
+asked this question.
+
+02:31:46
+So I want to ask you,
+
+02:31:50
+how do you think this could have happened?
+
+02:32:03
+Hallucination is good, but
+
+02:32:08
+so it is actually hallucination. Yes.
+
+02:32:11
+The 1 thing is the context it has built was
+
+02:32:15
+insufficient. So you'll have to kind of work on a
+
+02:32:18
+little bit more to make that context even better. Right
+
+02:32:22
+now, what has happened is the context which has come,
+
+02:32:26
+instead of highlighting, it kind of reduced the performance.
+
+02:32:30
+Okay? I have seen that it has happened, but I
+
+02:32:33
+wanted to still retain it and show you that
+
+02:32:36
+sometimes while you think I might have improved my rack
+
+02:32:39
+model, you could have even done a deterioration in quality
+
+02:32:43
+also.
+
+02:32:45
+You might have think, you might have thought you have
+
+02:32:47
+improved your rag model, but there is a deterioration in
+
+02:32:49
+quality. So you have to check on your eval and
+
+02:32:52
+then decide what is the final rag model that you
+
+02:32:55
+want to run.
+
+02:32:57
+Okay? So there could be a deterioration that could happen.
+
+02:33:01
+Is this point clear that deterioration could happen even if
+
+02:33:04
+you are trying to improve the rag models?
+
+02:33:07
+Right? I want you to understand that very clearly.
+
+02:33:12
+So the use case is when you have a lot
+
+02:33:16
+of documentation,
+
+02:33:18
+which is more process led
+
+02:33:21
+okay. When you are going for a very process led
+
+02:33:24
+documentation,
+
+02:33:25
+this would work very well.
+
+02:33:29
+Right? So that is the,
+
+02:33:31
+part.
+
+02:33:38
+I can't give an example, but process led documentation
+
+02:33:41
+where you are explaining
+
+02:33:43
+how you set up a pipeline. You are giving tutorials,
+
+02:33:46
+tutorial type documentation.
+
+02:33:47
+If you're working with tutorial type documentation, then context would,
+
+02:33:51
+really work.
+
+02:33:55
+We are not working on land chain here. We are
+
+02:33:57
+working on LAMA index, and to some extent, we will
+
+02:34:00
+show you land graph later on.
+
+02:34:02
+Clear?
+
+02:34:04
+Clear on this part?
+
+02:34:11
+Okay. So record manager is maintaining your cache. So, basically,
+
+02:34:15
+the,
+
+02:34:16
+new records that you have created, it is kind of
+
+02:34:18
+handling the cache. That's what my, record manager is doing.
+
+02:34:22
+So it is doing the re ingest part.
+
+02:34:29
+Exactly, Ajay. You're absolutely right. Sometimes,
+
+02:34:33
+what could happen is,
+
+02:34:35
+your your,
+
+02:34:36
+context could pollute because you're looking at internal documentation. That's
+
+02:34:40
+what exactly
+
+02:34:41
+has happened over here.
+
+02:34:48
+Okay? Clear?
+
+02:34:53
+Alright.
+
+02:34:54
+Can we go to the next improvement that we will
+
+02:34:56
+try to make to our rack system?
+
+02:35:04
+Alright. So let's go.
+
+02:35:10
+So there was no improvement. There was actually a decline
+
+02:35:13
+in performance if you saw about it.
+
+02:35:28
+Okay. The now what we are going to do is
+
+02:35:31
+still now, we have done
+
+02:35:33
+hybrid
+
+02:35:34
+plus
+
+02:35:35
+contextual,
+
+02:35:38
+but we saw that the contextual did not help us
+
+02:35:41
+that well.
+
+02:35:43
+The next thing I will do is
+
+02:35:45
+I will work on the user intent.
+
+02:35:51
+Okay?
+
+02:35:52
+Did you see this, behavior where in Google, you type
+
+02:35:56
+a query, then you it'll ask you, did you mean?
+
+02:36:00
+And it'll give you a reformed version of your query.
+
+02:36:05
+Okay? In Google, you say, did you mean?
+
+02:36:08
+And then it will give you a reformed,
+
+02:36:11
+version,
+
+02:36:13
+of your query.
+
+02:36:23
+Okay? So it will Google,
+
+02:36:26
+will try to rewrite your query to surface what you
+
+02:36:30
+actually mean.
+
+02:36:42
+Or the other thing is
+
+02:36:44
+write your query in such a way so that your
+
+02:36:47
+documentation
+
+02:36:48
+can better understand your query. I'll give you an example.
+
+02:36:51
+My system
+
+02:36:55
+is going down frequently.
+
+02:37:03
+Okay. My system is going down frequently. That is exactly
+
+02:37:06
+how my, thing is, I'm asking.
+
+02:37:10
+But
+
+02:37:11
+in my technical
+
+02:37:12
+documentation, it is the documentation is written in all technical
+
+02:37:16
+terms.
+
+02:37:17
+Okay? So the terms don't match, really.
+
+02:37:21
+So instead of this,
+
+02:37:22
+if my query is
+
+02:37:24
+on, you know,
+
+02:37:26
+I have
+
+02:37:29
+frequent
+
+02:37:31
+system downtimes.
+
+02:37:36
+And because downtimes is present in my documentation,
+
+02:37:40
+this rewritten
+
+02:37:41
+query
+
+02:37:42
+would help me write my query better, and I can
+
+02:37:46
+get the answers better.
+
+02:37:49
+This is because
+
+02:37:50
+you ask in human language.
+
+02:37:53
+Documentation is written in documentation language.
+
+02:37:56
+So I want to convert my human language query into
+
+02:37:59
+a documentation language query, and maybe
+
+02:38:03
+my rag
+
+02:38:04
+performance would improve.
+
+02:38:07
+Understood this?
+
+02:38:09
+Now I am working even,
+
+02:38:11
+on the level of the user query. How can I
+
+02:38:14
+improve my user query overall?
+
+02:38:19
+Is it clear now that my my human question is
+
+02:38:22
+going down frequently,
+
+02:38:24
+but my documentation
+
+02:38:25
+technical term is downtime?
+
+02:38:27
+So I rewrite my query so that I have I'll
+
+02:38:30
+say I have frequent system down times, and then I'm
+
+02:38:33
+getting the answer.
+
+02:38:35
+Is it clear what is it that we're doing next?
+
+02:38:37
+We are going to work on the user intent, and
+
+02:38:40
+I'm going to reform the query in a slightly different
+
+02:38:44
+fashion.
+
+02:38:46
+Okay? Now are you guys understanding that I am taking
+
+02:38:50
+the Nairag
+
+02:38:51
+and keeping adding layer and layer and layer and layer
+
+02:38:55
+on top of it?
+
+02:38:58
+Okay? Like an interpreter.
+
+02:39:01
+Okay? For that, how does it know there are some
+
+02:39:03
+algorithms, etcetera,
+
+02:39:06
+that can work? Okay?
+
+02:39:08
+So,
+
+02:39:10
+again, I here is a little complex thing.
+
+02:39:14
+Right?
+
+02:39:15
+It is using something called
+
+02:39:18
+h y d e.
+
+02:39:22
+It is called hide or hypothetical
+
+02:39:24
+document embeddings.
+
+02:39:27
+Okay? So what it does is, in a way,
+
+02:39:30
+instead of asking the users question,
+
+02:39:34
+we ask the LLM to write a hypothetical
+
+02:39:37
+answer to that question,
+
+02:39:40
+and we embed the answer back to the question.
+
+02:39:44
+Before you do the retrieval, I will ask the LLM
+
+02:39:47
+to do a hypothetical answer
+
+02:39:49
+and embed it back to the user query. Because, see,
+
+02:39:52
+I don't know how to understand user intent. How will
+
+02:39:55
+I understand user intent?
+
+02:39:57
+All I can do is I will set up a
+
+02:39:58
+system which will increase my chances of understanding user intent.
+
+02:40:04
+For that, I use this system called hypothetical document embeddings.
+
+02:40:08
+Again, it's a little complex thing.
+
+02:40:10
+Right?
+
+02:40:11
+And, that is how it is. And as Tusha rightly
+
+02:40:14
+mentioned,
+
+02:40:15
+the techniques are layers of improvement or rag will depend
+
+02:40:19
+on the target use case. So for your use case,
+
+02:40:21
+you have to test each level and see on your
+
+02:40:25
+evaluations which rag model is doing well, and then you
+
+02:40:28
+had to take that rag to production.
+
+02:40:30
+Okay? Are you, you know, the best analogy I can
+
+02:40:34
+do, tell you is
+
+02:40:36
+if you have a nail to hit onto your wall,
+
+02:40:40
+you can go with different size of hammers.
+
+02:40:44
+Okay? Based on the nail, you have to pick the
+
+02:40:47
+right hammer.
+
+02:40:48
+Something small
+
+02:40:50
+won't really drive the nail.
+
+02:40:53
+Something big could damage your wall itself,
+
+02:40:56
+so you have to take the right hammer for the
+
+02:40:59
+right knee.
+
+02:41:01
+Okay. Similarly, you have to look at the right system
+
+02:41:03
+to do your retrieval.
+
+02:41:06
+Do you guys get it? I am showing you the
+
+02:41:08
+possibilities with the rag. It is up to you to
+
+02:41:11
+check on which rag system would really help.
+
+02:41:16
+So if you check on a lot of tutorials, they
+
+02:41:18
+kind of stop it knife rag itself. You could have
+
+02:41:21
+gotten very deep into knife rag, and I would have
+
+02:41:23
+done it, like, you know, 3 hour sessions
+
+02:41:25
+purely on knife rag.
+
+02:41:28
+But we have got close lot of, things we have
+
+02:41:31
+changed, and all these improvements have started coming in. So
+
+02:41:35
+I thought I will give you a broader picture with
+
+02:41:38
+all the,
+
+02:41:39
+improvements that are available so that then you can choose
+
+02:41:43
+which type of rag you want to build with everything.
+
+02:41:47
+Right? Incremental attrition can improve with harness also.
+
+02:41:51
+But in our case, in current use case, it is
+
+02:41:55
+not improving, but I kept it like that just to
+
+02:41:57
+show you this overall.
+
+02:42:02
+Okay? Clear, everyone?
+
+02:42:04
+The next level is hypothetical document embeddings,
+
+02:42:08
+wherein
+
+02:42:09
+for my question,
+
+02:42:10
+I build a hypothetical answer. I will attach the answer
+
+02:42:14
+by to the question and then do the embedding.
+
+02:42:18
+This way, I have a richer user query overall.
+
+02:42:25
+Okay?
+
+02:42:26
+So that is,
+
+02:42:28
+the,
+
+02:42:30
+entire thing. So in a way, right, if I have
+
+02:42:33
+to give even more, analogy,
+
+02:42:36
+right, if I'm giving it
+
+02:42:38
+a research work to an entire team, so I'm giving
+
+02:42:41
+this as a research work to a complete team.
+
+02:42:44
+Right? If I ask 1 person,
+
+02:42:47
+to answer a broad question,
+
+02:42:50
+they may miss the pieces.
+
+02:42:54
+Right? So, therefore, what I do is I combine
+
+02:42:58
+their notes into 1 final answer.
+
+02:43:02
+That is what I'm doing. In hypothetical document embedding, I
+
+02:43:06
+am trying to take some hypothetical
+
+02:43:08
+answer and attach it so that I can,
+
+02:43:12
+look at more documents and try to do that.
+
+02:43:24
+Okay. Clear so far? I'm just checking,
+
+02:43:26
+what all have I missed something? I'm just checking that.
+
+02:43:36
+Okay. Yeah.
+
+02:43:39
+These layers, it can be mixed. It's up to you.
+
+02:43:42
+I am building this layer from least complex to most
+
+02:43:45
+complex. That is how I am building these layers.
+
+02:43:48
+Post this, you can start with the last layer itself,
+
+02:43:50
+and you can cut down things, etcetera,
+
+02:43:52
+and you can, keep doing the stuff.
+
+02:43:56
+Now
+
+02:43:58
+as you saw before, even hide can hallucinate
+
+02:44:01
+possible, but
+
+02:44:03
+all you are doing is,
+
+02:44:05
+it will do try to do better results.
+
+02:44:08
+Again, how does it,
+
+02:44:10
+you know, hypothetical answer will help better results? I think
+
+02:44:13
+I've explained to you. Right?
+
+02:44:15
+When I ask the system, my system is going down
+
+02:44:18
+frequently.
+
+02:44:19
+The hypothetical answer can be, you know, the system downtime
+
+02:44:23
+could be due to these reasons. It will tell me.
+
+02:44:25
+When I attach the answer back, the word downtime gets
+
+02:44:29
+embedded, which helps me to retrieve better.
+
+02:44:32
+That is how my,
+
+02:44:34
+system could help me better in doing that.
+
+02:44:37
+There is a lot of possibility of hallucination.
+
+02:44:40
+Right? It is highly possible, so you'll have to test
+
+02:44:44
+and try on whether it is working or not working.
+
+02:44:48
+Alright? So now I will,
+
+02:44:50
+you know, kind of,
+
+02:44:52
+you know, show you on hide what is happening.
+
+02:45:04
+Go back to cursor.
+
+02:45:07
+Go to this.
+
+02:45:10
+I'll start my
+
+02:45:21
+board. Let it run, and then we will see this.
+
+02:45:24
+So
+
+02:45:25
+in my,
+
+02:45:26
+this version, what I'm doing is I'm doing query rewriting
+
+02:45:30
+where I am what I'm trying to do is I'm
+
+02:45:33
+trying to generate a hypothetical answer,
+
+02:45:35
+embed that, retrieve,
+
+02:45:38
+show the retrieved chunks, and demonstrate
+
+02:45:40
+that,
+
+02:45:41
+even a hypothetical
+
+02:45:43
+wrong answer can give retrieve
+
+02:45:46
+better aligned documentation. Now, again, here it might fail, but
+
+02:45:49
+it could work better.
+
+02:45:51
+Here,
+
+02:45:52
+I will use Sonnet
+
+02:45:54
+to split my question
+
+02:45:57
+into 2 2 4 sub questions. So this is how
+
+02:45:59
+hide works. Okay? This is 1 interesting way it does
+
+02:46:02
+it. So the way it works it, works is
+
+02:46:06
+it will take the main question and,
+
+02:46:08
+try to
+
+02:46:10
+split it into,
+
+02:46:11
+sub questions.
+
+02:46:13
+And each sub question, my LLM will answer, and that
+
+02:46:16
+context gets added.
+
+02:46:18
+So with that, I am adding a richer context.
+
+02:46:22
+Did you understand this part?
+
+02:46:25
+Did you understand this part?
+
+02:46:28
+I am asking my LLM
+
+02:46:30
+to make
+
+02:46:31
+more questions.
+
+02:46:34
+Okay? I have asked 1 complex question.
+
+02:46:37
+I have asked it to,
+
+02:46:39
+you know, kind of ask some separate questions.
+
+02:46:42
+For example,
+
+02:46:44
+let me give an example
+
+02:46:46
+for this.
+
+02:46:48
+Say,
+
+02:46:50
+1 question,
+
+02:46:52
+is, like,
+
+02:46:53
+I have 0 downtime rolling updates.
+
+02:46:56
+I what features must I configure together?
+
+02:47:00
+Okay? Then I will split up into saying my first
+
+02:47:03
+question on 0 downtime.
+
+02:47:06
+The next question, I will do it on how will
+
+02:47:08
+I do persistent storage. Next question, I will do it
+
+02:47:11
+on how will I configure.
+
+02:47:13
+And all of this, I will collapse, and I will
+
+02:47:15
+try to use the additional context.
+
+02:47:19
+Right? Again, it's a choice. Even for simple questions, it
+
+02:47:22
+could happen,
+
+02:47:24
+but that is where agent crack will come in. Okay?
+
+02:47:26
+We'll talk about agent crack also.
+
+02:47:29
+But, folks, did you understand this? Little trickier.
+
+02:47:32
+But what I'm doing is I am using the hypothetical
+
+02:47:36
+answer. I will embed
+
+02:47:38
+that and try to retrieve better.
+
+02:47:40
+Again, here,
+
+02:47:42
+same thing. I'm just adding on top.
+
+02:47:44
+I have a decomposed prompt
+
+02:47:47
+where
+
+02:47:48
+I am
+
+02:47:49
+breaking this question into 2 to 4 independent simpler subquestions
+
+02:47:54
+that together cover the original return
+
+02:47:57
+adjacent list of strings, etcetera.
+
+02:48:00
+Right? Now for people asking, is it not going to
+
+02:48:04
+add a lot? Is it going to do a lot
+
+02:48:06
+of process? Yes.
+
+02:48:08
+When I'm improving my system, it is going to be
+
+02:48:11
+a lot more complex.
+
+02:48:13
+But it, again, depends on the kind of documentation. For
+
+02:48:16
+your documentation is complex,
+
+02:48:18
+sometimes adding the steps is going to improve it overall.
+
+02:48:24
+Understood?
+
+02:48:25
+You are when you are adding complexity,
+
+02:48:27
+of course, it is going to add a lot of
+
+02:48:29
+things.
+
+02:48:30
+Right? But
+
+02:48:31
+that is the cost you are bearing for getting a
+
+02:48:34
+better output overall.
+
+02:48:37
+Then I am, building my hide retrieval process as to
+
+02:48:41
+how I can get the short hypothetical
+
+02:48:44
+answer to the question.
+
+02:48:46
+Then decomposition
+
+02:48:48
+on how I decompose my main question into sub questions,
+
+02:48:52
+and then I will use hide to, answer the hypothetical
+
+02:48:56
+answer to the sub questions.
+
+02:48:58
+And then I will make all of the queries and
+
+02:49:02
+do the,
+
+02:49:03
+re ranking overall. Okay? Then I load the contextual chunks.
+
+02:49:08
+I will do my hybrid plus re ranking. Rest of
+
+02:49:11
+the process remains the same.
+
+02:49:15
+Okay? How will it impact performance? We will see on
+
+02:49:17
+eval how it will impact the performance, but this 1
+
+02:49:21
+will get slower.
+
+02:49:23
+You are understanding. Right? Every layer I'm adding, I'm trying
+
+02:49:25
+to make it better, but at the same time, it
+
+02:49:28
+could become slower.
+
+02:49:30
+So then as an engineer, you will have to think
+
+02:49:32
+about, okay, this step is becoming slower. How can I
+
+02:49:35
+optimize it further?
+
+02:49:37
+Can I, do some caching to make it better, etcetera,
+
+02:49:40
+etcetera? You'll have to think through in that manner.
+
+02:49:44
+Okay?
+
+02:49:46
+Understood so far?
+
+02:49:48
+Right? I am just piggy banking. So each code is
+
+02:49:52
+writing
+
+02:49:54
+on top of other code snippets. That's all.
+
+02:49:57
+So, yes, question, sharp question, hide answers, then further into
+
+02:50:01
+the process. Exactly.
+
+02:50:13
+Okay.
+
+02:50:16
+I think, Amrit, your question, I didn't understand it completely.
+
+02:50:21
+Sorry for that. Maybe,
+
+02:50:23
+later you can ask, when Ishan, comes back, you can
+
+02:50:26
+ask him this question. I think this is better suited
+
+02:50:29
+for Ishan
+
+02:50:30
+to answer.
+
+02:50:33
+Mhmm.
+
+02:50:35
+Okay. There you go.
+
+02:50:38
+Our output is ready.
+
+02:50:42
+Okay. See how it has done. So on m 4,
+
+02:50:46
+the question,
+
+02:50:48
+it has,
+
+02:50:49
+you know, kind of, deciding which part to forward a
+
+02:50:52
+request to, etcetera. This is the question,
+
+02:50:55
+and it is showing me the top retrieved chunks via
+
+02:50:58
+hide.
+
+02:50:59
+So for this question,
+
+02:51:01
+the hide hypothetical
+
+02:51:03
+answer is this 1. This is the hypothetical answer given
+
+02:51:06
+by hide, and this hypothetical
+
+02:51:08
+answer was added back to the question, and these are
+
+02:51:11
+the retrieved chunks for those question for me.
+
+02:51:15
+Okay? Then on question 3, these are the subquestions that
+
+02:51:19
+Sonnet has generated based on the main question.
+
+02:51:23
+On each of these questions, hide was run, and it
+
+02:51:26
+was attached again.
+
+02:51:29
+Okay. So you get a more richer answer overall.
+
+02:51:32
+So here, if you see, compared to previously,
+
+02:51:36
+your answer has become richer. And when you get the,
+
+02:51:40
+complete,
+
+02:51:42
+code for you to play with, you can actually
+
+02:51:44
+check the answer and see how it has gotten richer
+
+02:51:47
+because of this process.
+
+02:51:50
+Okay? And now let us compare.
+
+02:51:54
+Look at this. Your faithfulness
+
+02:51:57
+has
+
+02:51:58
+increased by 0.98.
+
+02:52:00
+So you have got the best faithfulness.
+
+02:52:04
+Right? Can anybody remember what is faithfulness? That is getting
+
+02:52:07
+your LLM
+
+02:52:08
+retrieving the right con answer based on the chunks.
+
+02:52:13
+Your LLM is now getting richer information.
+
+02:52:16
+So you are able to,
+
+02:52:18
+provide LLM with richer information, so which is able to
+
+02:52:22
+interpret it properly. So contact you know, faithfulness is,
+
+02:52:26
+if you remember,
+
+02:52:28
+you know, I am able to say 30 days instead
+
+02:52:31
+of 7 days because I have understood the document clearly.
+
+02:52:35
+With this user intent running properly,
+
+02:52:38
+better chunks got ingested.
+
+02:52:40
+And because of that, my faithfulness has improved to 0.98.
+
+02:52:45
+But the casualty is answer relevancy. The answers, it feels,
+
+02:52:49
+has become generic.
+
+02:52:51
+Okay? But you will have to text it out.
+
+02:52:54
+So m 4 is an extension of m 1 and
+
+02:52:57
+m 2. Exactly.
+
+02:52:59
+It is an extension of m 1 and m 2.
+
+02:53:03
+Okay? Now if you say that I will you then
+
+02:53:07
+your work is to further improve on how you can
+
+02:53:09
+improve answer relevance. You want more faithfulness or answer relevance.
+
+02:53:13
+You find a metric, and then you improve on top
+
+02:53:16
+of that.
+
+02:53:19
+Okay? In fact, you can see there are 2 answers
+
+02:53:23
+where it is failing, 3 answers where the answer relevancy
+
+02:53:27
+is failing. That is exactly why this happened. You'll have
+
+02:53:30
+to go back and see what you can tune here
+
+02:53:32
+and there to make it better.
+
+02:53:35
+Clear, everybody, so
+
+02:53:37
+far?
+
+02:53:42
+It is see,
+
+02:53:43
+you are thinking in terms of 1 question. I am
+
+02:53:46
+talking in terms of multiple questions over here. Please understand
+
+02:53:50
+that. So you you can say why would anyone want
+
+02:53:53
+higher faithfulness? But thing is, it is about
+
+02:53:56
+those
+
+02:53:58
+few questions where you are failing,
+
+02:54:00
+and then you'll have to go back and evaluate. It
+
+02:54:02
+is like how why your test cases failed.
+
+02:54:05
+Right? Exactly like it. Some questions have failed. So you'll
+
+02:54:09
+have to go back and check on how you can
+
+02:54:11
+improve on top of that.
+
+02:54:13
+Clear this part?
+
+02:54:19
+See,
+
+02:54:20
+answer relevant should always be higher. Exactly.
+
+02:54:22
+But sometimes when I'm optimizing for faithfulness, they could kind
+
+02:54:27
+of lose it. Okay? And that is how we should
+
+02:54:30
+be able to work with that.
+
+02:54:34
+Right? It's an experimentation process. You have to keep this,
+
+02:54:39
+overall.
+
+02:54:41
+Alright?
+
+02:54:42
+Now we will go to the final section,
+
+02:54:47
+which is agentic crack.
+
+02:54:51
+Alright. We'll go into the agentic crack system.
+
+02:54:54
+Everybody ready for the agentic part? This 1, I will
+
+02:54:57
+not go too much into detail
+
+02:54:59
+because there is a line graph present. I'll give you
+
+02:55:02
+the intuitive understanding. I will run the code and show
+
+02:55:05
+you what is working, etcetera,
+
+02:55:07
+and just show you what it is happening over there.
+
+02:55:11
+You will get more context on agentic rag when you
+
+02:55:14
+learn into agents
+
+02:55:16
+and especially when you learn line graph.
+
+02:55:20
+Okay?
+
+02:55:24
+So let me go to the whiteboard.
+
+02:55:29
+And,
+
+02:55:33
+so what agentic rack does is very simple.
+
+02:55:37
+So I want to, you know, I have,
+
+02:55:41
+you know,
+
+02:55:47
+say,
+
+02:55:48
+I want a intelligent drag system,
+
+02:55:55
+which can go through all the steps.
+
+02:55:58
+It will, say,
+
+02:56:00
+you know
+
+02:56:01
+how do I put
+
+02:56:09
+it? I got a answer.
+
+02:56:13
+Okay. Let us assume
+
+02:56:15
+that I asked my LLM to check my answer.
+
+02:56:19
+If satisfied,
+
+02:56:24
+move ahead.
+
+02:56:28
+If not satisfied,
+
+02:56:32
+I will
+
+02:56:33
+try to do more retrieval
+
+02:56:37
+and
+
+02:56:39
+improve the answer.
+
+02:56:46
+Okay? So think of it like a intel intelligent system.
+
+02:56:50
+I will do 1 level of retrieval.
+
+02:56:52
+Okay? I got the answer. If I'm not satisfied, I
+
+02:56:56
+will do another level of retrieval
+
+02:56:58
+and then,
+
+02:56:59
+try to find the answer. So I'm trying to set
+
+02:57:02
+up a loop of feedback and improve it.
+
+02:57:05
+Right? Some something like that. Something like that, but not
+
+02:57:08
+exactly that.
+
+02:57:10
+Okay? So for example,
+
+02:57:13
+let us say you are asking a junior researcher,
+
+02:57:16
+something like find out how to keep our, Kubernetes cluster
+
+02:57:21
+stable
+
+02:57:21
+during node failures. Okay? I'm asking this question. How do
+
+02:57:24
+I keep the Kubernetes cluster stable
+
+02:57:28
+during the node failures?
+
+02:57:30
+Okay. A non agentic system will do 1 search,
+
+02:57:33
+reads the top results and answers,
+
+02:57:36
+whereas an agentic rack system will think like a thoughtful
+
+02:57:40
+researcher
+
+02:57:41
+and ask,
+
+02:57:42
+do I have enough information?
+
+02:57:45
+If not,
+
+02:57:46
+maybe,
+
+02:57:47
+you know, search it with a better query.
+
+02:57:50
+So I have a user question
+
+02:57:53
+where I try to retrieve. I will judge whether it
+
+02:57:55
+is enough. If yes, answer.
+
+02:57:58
+If
+
+02:57:59
+no, reformulate the query, retrieve again, and keep doing multiple
+
+02:58:03
+iterations
+
+02:58:04
+until you are satisfied.
+
+02:58:06
+And this multiple iterations of going this way so this
+
+02:58:11
+part is agentic in nature.
+
+02:58:13
+Okay? This part of looking at the answer, understanding,
+
+02:58:17
+and the rat with a feedback loop is agentic in
+
+02:58:20
+nature, and we use LangGraph as my agentic harness
+
+02:58:25
+to go through this agentic nature
+
+02:58:28
+overall.
+
+02:58:32
+Now here, this is a tricky part where I can
+
+02:58:35
+give multiple iterations. I can say 200 iterations.
+
+02:58:38
+200 times until unless you're satisfied with the answer.
+
+02:58:42
+Can you tell me what is the drawback of this?
+
+02:58:45
+If I say hundred times keep verifying whether the answer
+
+02:58:48
+is good or wrong.
+
+02:58:52
+Speed, compute, performance, slowness, there is going to be a
+
+02:58:56
+lot of problems.
+
+02:58:58
+So, therefore, in this particular example, I used only 3.
+
+02:59:03
+Okay? But the actual number will be based on experimentation.
+
+02:59:06
+You'll have to experiment
+
+02:59:08
+multiple times and check on how many times you should
+
+02:59:11
+be able to do.
+
+02:59:14
+Right?
+
+02:59:15
+So
+
+02:59:16
+let us see this,
+
+02:59:18
+and then I will give
+
+02:59:20
+a kind of overall statement on which type of SRAG
+
+02:59:23
+system
+
+02:59:24
+you will use for which kind of scenarios.
+
+02:59:27
+Okay? With that, we will close.
+
+02:59:30
+Okay? So I am going to do an agentic rack
+
+02:59:33
+system
+
+02:59:34
+where it is going to look at the answer and
+
+02:59:37
+decide if the answer is good or not. I'm going
+
+02:59:40
+to,
+
+02:59:41
+keep the cap of checks at only 3 because if
+
+02:59:44
+I give hundred times to check the answer,
+
+02:59:47
+it will use up my tokens heavily.
+
+02:59:50
+So that is exactly what I want to do. So
+
+02:59:52
+I'll say check it only 3 times. And this agentic
+
+02:59:55
+harness system
+
+02:59:57
+is about I am establishing it via Landgraaff.
+
+03:00:01
+Okay? So let us now check on this as to
+
+03:00:04
+how the system works.
+
+03:00:07
+Again, this is built on top of m 4 itself.
+
+03:00:18
+Okay?
+
+03:00:19
+So what I'm going to do here is
+
+03:00:31
+I will run agentic dot p y.
+
+03:00:34
+Okay. Let it run.
+
+03:00:35
+I'll go to agentic.
+
+03:00:37
+So what I'm doing is
+
+03:00:40
+for genuinely ambiguous
+
+03:00:42
+queries completely,
+
+03:00:43
+even the previous process will not be enough. The agent
+
+03:00:47
+has to judge whether what it retrieved is sufficient
+
+03:00:50
+and try again if not. So, basically, the way you'll
+
+03:00:53
+work is, you retrieve,
+
+03:00:55
+you judge if it is sufficient
+
+03:00:57
+or not.
+
+03:00:58
+Answer, yes.
+
+03:00:59
+Okay? And you reformulate it, if your answer is less.
+
+03:01:04
+If the answer is no, then you do the retrieval
+
+03:01:07
+again and try to get better answer, and you try
+
+03:01:10
+to do 3 iterations at the maximum.
+
+03:01:13
+If you do more than 3 iterations, there is more
+
+03:01:15
+compute. Right now, I'm saying 3, but for your use
+
+03:01:18
+case, it could be very, very different overall.
+
+03:01:22
+Okay? So what I'm doing right now is I am
+
+03:01:25
+setting up an agent over here. Again, this part you
+
+03:01:28
+will not understand. Just keep it part for now. When
+
+03:01:32
+you learn Landgraaff in future, you will understand exactly what
+
+03:01:36
+I have done in terms of the code part here.
+
+03:01:39
+So when I I will give you the agentic code
+
+03:01:40
+also, but my request is practice till m 4 decomposition
+
+03:01:45
+because till then you should be able to understand.
+
+03:01:47
+M 5 agentic, you will learn You will understand only
+
+03:01:51
+if you go through Landgraf session in detail.
+
+03:01:54
+Okay? But I'm still explaining this properly
+
+03:01:57
+so that you can understand the extent to how you
+
+03:02:00
+can design very good rack systems.
+
+03:02:05
+Okay?
+
+03:02:09
+Right. So here, I am building the agent. I'm using
+
+03:02:12
+Landgraaff
+
+03:02:13
+to build my agent. So that is the agent building
+
+03:02:16
+part I am doing over
+
+03:02:18
+here.
+
+03:02:19
+Okay? And, then, I am setting up the agent and
+
+03:02:23
+I'm setting up the graph. Over here again, you'll learn
+
+03:02:25
+this in future. Don't worry about it. After that, it
+
+03:02:29
+is all same. Okay? Everything else, the retrieval process, everything
+
+03:02:33
+is exactly the same. It is just about adding an
+
+03:02:37
+agentic layer on top of that.
+
+03:02:46
+Okay? So let us see how on agentic layer what
+
+03:02:49
+is happening.
+
+03:02:51
+So here, agent has compiled where I am saying that
+
+03:02:54
+use 3 iterations
+
+03:02:56
+overall. So this agent will check our rack systems output.
+
+03:03:00
+If it is good, it will tell the answer right
+
+03:03:01
+away. If it feels it is not good, it will
+
+03:03:04
+again retrieve and try to go
+
+03:03:07
+forward overall.
+
+03:03:08
+For example,
+
+03:03:09
+how do I make sure my cluster keeps running smoothly
+
+03:03:12
+when nodes fail? So it retrieved 1 set of 5
+
+03:03:15
+chunks. The judge maintained not sufficient,
+
+03:03:19
+then reformulate
+
+03:03:20
+how to handle node failures and ensure high availability in
+
+03:03:24
+Kubernetes clusters.
+
+03:03:26
+So there is a reformulation
+
+03:03:28
+which has happened.
+
+03:03:29
+Then in retrieve how to handle node failures and check
+
+03:03:32
+high availability in, The 5 chunks have come. The judge
+
+03:03:36
+has delivered us. It is sufficient. So in 2 iterations,
+
+03:03:39
+my agentic rack could work.
+
+03:03:43
+Okay? So the final answer, it has said this to
+
+03:03:46
+keep your con cluster running smoothly.
+
+03:03:49
+It has given a much richer answer, which is much
+
+03:03:52
+better than the previous answers overall.
+
+03:03:55
+Okay? So now I am running it on different queries
+
+03:03:59
+on 1 out of 10.
+
+03:04:01
+Right, it has gotten everything.
+
+03:04:03
+Right, but still,
+
+03:04:05
+the judge felt not sufficient and kept running.
+
+03:04:09
+Right? So at every answer
+
+03:04:11
+okay. Over here, the judge felt the answer was sufficient
+
+03:04:14
+and the answer was provided. So So if you see
+
+03:04:17
+for every query, it is running the retrieval agentic rag
+
+03:04:22
+and deciding whether the answer is sufficient, provide the answer.
+
+03:04:26
+If not sufficient,
+
+03:04:27
+it is rerunning the retrieval and trying to get.
+
+03:04:31
+Did you understand this part clearly?
+
+03:04:33
+Right? How agentic rag is very different from the previous
+
+03:04:37
+rag systems overall?
+
+03:04:39
+Because I am doing a judge
+
+03:04:43
+overall. See, even if judge verdict is sufficient, my answer,
+
+03:04:46
+AR, could still be 0.
+
+03:04:49
+It could still be problematic
+
+03:04:51
+overall.
+
+03:04:56
+Right?
+
+03:04:58
+So what I'm doing is for every question,
+
+03:05:00
+I am saying, okay. Is the answer sufficient?
+
+03:05:04
+If not, my agent is rerunning the retrieval to get
+
+03:05:07
+a better answer, and I'm keeping a cap of 3
+
+03:05:10
+so that after 3 retrieval,
+
+03:05:12
+it will say it is done completely.
+
+03:05:15
+Okay? So this is what it has done.
+
+03:05:17
+My answer faithfulness
+
+03:05:19
+has improved to 0.77788.
+
+03:05:23
+My answer relevancy has improved,
+
+03:05:26
+but little bit, it has, failed on 0.95.
+
+03:05:31
+Alright. Overall, but compared to decomposition, I slightly failed over
+
+03:05:36
+here, but still, it is a good enough answer, etcetera.
+
+03:05:42
+The LLM is the judge. So everywhere, I am using
+
+03:05:46
+LLM as the judge all through.
+
+03:05:49
+See, now what checks the judge if does not get
+
+03:05:51
+corrupted? You.
+
+03:05:53
+Okay? You will go back, check your evaluation logs, check
+
+03:05:56
+your,
+
+03:05:58
+scores, check the answers.
+
+03:06:00
+You will do that needful.
+
+03:06:05
+Okay?
+
+03:06:09
+See,
+
+03:06:10
+people who are still not getting this, you will have
+
+03:06:13
+to experiment and figure it out because
+
+03:06:16
+faithfulness is high. Right? You will have to run it
+
+03:06:19
+on your documents, and then you will understand.
+
+03:06:22
+Okay? So you'll have to run it on your documentation
+
+03:06:25
+completely. That is 1. And second thing is even though
+
+03:06:28
+the faithfulness
+
+03:06:30
+is high, the LLM is able to do this.
+
+03:06:34
+Think about that the I don't have sufficient context to
+
+03:06:38
+understand. Maybe my documentation
+
+03:06:40
+is not sufficient to understand the question. It could be
+
+03:06:43
+that also. Therefore, while the faithfulness is high, my LLM
+
+03:06:47
+is able to answer very clearly. There could be problems
+
+03:06:50
+across due to which my AR is not doing so
+
+03:06:53
+good. Again,
+
+03:06:55
+you know, what you have and what you have to
+
+03:06:57
+understand over here is this.
+
+03:06:59
+I am trying to do the best thing possible directionally
+
+03:07:03
+what is working for this particular use case.
+
+03:07:06
+If my use case changes,
+
+03:07:08
+I will have to rerun this process and do my
+
+03:07:11
+experimentation.
+
+03:07:12
+You have all the tools. I said you have the
+
+03:07:14
+nail, you have the hammers. You have to choose the
+
+03:07:17
+right thing.
+
+03:07:20
+Alright? So as a closing note, if I have to
+
+03:07:23
+kind of mention,
+
+03:07:25
+everything.
+
+03:07:26
+Right? It's not 1 formula for all cases. But
+
+03:07:30
+if I were to give you some kind of a
+
+03:07:33
+cheat sheet, okay, some kind of a cheat sheet overall,
+
+03:07:37
+I would say this.
+
+03:07:43
+Okay?
+
+03:07:44
+If it is a
+
+03:07:46
+simple
+
+03:07:48
+factual
+
+03:07:50
+query
+
+03:07:51
+if it is a simple factual query, I will use
+
+03:07:54
+hybrid
+
+03:07:56
+that is m 2 with re rank.
+
+03:08:01
+Okay? Then, if it is something like a,
+
+03:08:05
+exact
+
+03:08:06
+flag,
+
+03:08:08
+like, I want to get API
+
+03:08:11
+exact documentation,
+
+03:08:13
+exact thing, then I will require b m 25.
+
+03:08:18
+That is what I require. If I have a multi
+
+03:08:21
+hop query,
+
+03:08:27
+Then I will use m 4,
+
+03:08:30
+which is hide because,
+
+03:08:34
+it will break it into multiple questions. I will get
+
+03:08:36
+multiple chunks.
+
+03:08:38
+It will help me overall.
+
+03:08:42
+Then, if I have ambiguous
+
+03:08:48
+query if the query is highly ambiguous,
+
+03:08:51
+then agentic
+
+03:08:54
+rag would work.
+
+03:08:56
+If I have
+
+03:08:58
+a single long
+
+03:09:01
+document,
+
+03:09:03
+then,
+
+03:09:04
+I could work with, something called page index. I have
+
+03:09:08
+not covered it, but if you are interested, you can
+
+03:09:10
+check it up. If you have very long document like
+
+03:09:13
+contracts,
+
+03:09:14
+which are very long thousand page contracts
+
+03:09:16
+or, you know, IPO filing documents, etcetera,
+
+03:09:20
+their page index, which is a vectorless rag, they are
+
+03:09:24
+calling it a new concept. I have not covered vectorless
+
+03:09:27
+rack today because,
+
+03:09:29
+it is,
+
+03:09:30
+still in research phase. People
+
+03:09:33
+are hyping about it, but I have not seen proper
+
+03:09:36
+use cases yet. But in my understanding, if I have
+
+03:09:39
+got a single long contract, I could use page index
+
+03:09:43
+over here.
+
+03:09:48
+Okay? So,
+
+03:09:50
+these are the different things. I have the simple factual
+
+03:09:54
+query. I will use this for exact flag like API
+
+03:09:57
+documentation that I want. I will use a direct b
+
+03:09:59
+m 25. For multi hop query, I would use,
+
+03:10:03
+what do you call hide. For ambiguous query, I will
+
+03:10:06
+use agentic rank. For a single long documents, I will
+
+03:10:09
+use page index.
+
+03:10:11
+Okay? On a concluding note, what I would like to
+
+03:10:14
+say is,
+
+03:10:16
+you know,
+
+03:10:18
+don't try to use a single rack structure for everything.
+
+03:10:23
+Look at your use case, experiment with these different harnesses
+
+03:10:27
+and structures,
+
+03:10:28
+and then decide which 1 to go with. Always have
+
+03:10:32
+a human look like. Evals are giving, of course. Right?
+
+03:10:36
+Once the Evals are giving,
+
+03:10:39
+you take the answers given by your evaluation,
+
+03:10:42
+and then you finally decide what is it that you
+
+03:10:45
+want to go for.
+
+03:10:47
+Whether,
+
+03:10:48
+you know, Evas is giving you the direction, but as
+
+03:10:51
+a human, you need to again revise the answers and
+
+03:10:53
+get it humanly,
+
+03:10:55
+rectified also whether the answers are good or bad. So
+
+03:10:59
+that you will also check with the system,
+
+03:11:02
+how you are going ahead.
+
+03:11:05
+Right? And,
+
+03:11:07
+other thing that I want to kind of, help you,
+
+03:11:10
+understand is this,
+
+03:11:12
+which is when you are, trying to build the systems,
+
+03:11:16
+when you are trying to do it in production,
+
+03:11:18
+you should keep looking at your production logs on what
+
+03:11:21
+are the queries that the users are asking the most.
+
+03:11:24
+And you should take your most asked queries back into
+
+03:11:27
+your gold standard, which you're using for EVAPs.
+
+03:11:31
+Okay? So that way, you can keep improving your rack
+
+03:11:34
+system. See, it is see,
+
+03:11:37
+even production systems. Right? You do a lot of improvement
+
+03:11:40
+and you kind of revise your test cases,
+
+03:11:43
+on the fly. Similarly, you have to revise it also
+
+03:11:47
+on the
+
+03:11:48
+fly.
+
+03:11:50
+Okay?
+
+03:11:51
+So as I said, you can use the human set
+
+03:11:52
+device. That's what exactly I have said around 5 minutes
+
+03:11:55
+back.
+
+03:11:56
+And that brings us to the close of today's session.
+
+03:12:01
+Alright? I know it has been a little complex, a
+
+03:12:03
+little tense, so to speak,
+
+03:12:06
+but I hope this was useful for you to give
+
+03:12:08
+a broad overview across. As I said, I will share
+
+03:12:12
+my whiteboard.
+
+03:12:13
+I will also share the code. I get it documented
+
+03:12:15
+properly, and I'll put it on GitHub. Give me, like,
+
+03:12:18
+a day's time to set this up a little bit.
+
+03:12:21
+From there on, you can fork it and use it
+
+03:12:23
+in your system. So
+
+03:12:26
+Yes. K.
+
+03:12:28
+I'll take a quick,
+
+03:12:29
+2 to the minute back, overall. And, in the meanwhile,
+
+03:12:32
+you can put in your questions in the slide. Yeah.
+
+03:12:35
+Folks,
+
+03:12:36
+till then,
+
+03:12:37
+you know the drill. I'll just launch the CSAT poll.
+
+03:12:40
+Right?
+
+03:12:41
+So make sure you rate it,
+
+03:12:43
+and let us know how was the session overall.
+
+03:12:49
+Delete for, q and a, we'll do the slide on
+
+03:12:51
+the right? Yeah. Let's do slide on. Oh.
+
+03:12:58
+You can alter the flow as per your need, by
+
+03:13:00
+the way. It doesn't have to do that. A lot
+
+03:13:02
+of questions, I think, I answered on the flight, but,
+
+03:13:04
+anyways,
+
+03:13:05
+you can, share the slide also so that if I
+
+03:13:08
+can additional questions, I can take those in the next
+
+03:13:10
+few minutes.
+
+03:13:13
+Sure. Folks, I'll be,
+
+03:13:15
+stopping the chat for a while so that you guys
+
+03:13:17
+can, you know,
+
+03:13:18
+put your questions in the Slido. I'm just sharing the
+
+03:13:20
+link.
+
+03:13:21
+Yeah. So here you go.
+
+03:13:23
+Once there are a couple of questions, I'll just start
+
+03:13:25
+sharing my screen as well. Right?
+
+03:13:28
+Okay. So 1 more thing is some questions I'll park.
+
+03:13:31
+You should ask Ishan or other mentors those questions. As
+
+03:13:34
+I said, I'm a non engineer trying to do justice
+
+03:13:37
+to this topic.
+
+03:13:39
+This has come from a research perspective. Right? So as
+
+03:13:41
+a researcher
+
+03:13:43
+or as a tinkerer and builder of things, that's how
+
+03:13:46
+I have approached this session. So if I feel a
+
+03:13:49
+question is kind of,
+
+03:13:52
+you know, not,
+
+03:13:53
+I if I feel I am not the right person
+
+03:13:56
+to answer that question, I will pass on the question.
+
+03:13:58
+You can keep it aside and maybe ask it in
+
+03:14:01
+this, you know,
+
+03:14:03
+in the community,
+
+03:14:04
+or you can ask it to other mentors later on
+
+03:14:07
+when you come to agentic especially. I know you'll have
+
+03:14:09
+a lot of questions on Land Graph and agentic reg,
+
+03:14:12
+etcetera. That is where a lot of questions will come.
+
+03:14:14
+You can park those questions for them. But overall, this
+
+03:14:18
+is this helps you very,
+
+03:14:20
+neatly
+
+03:14:21
+in terms of for you to understand how,
+
+03:14:25
+you know, you are able to at least get an
+
+03:14:28
+aspect of where to start, how to build a system,
+
+03:14:30
+how to measure the system is working or not, and
+
+03:14:33
+what are the different improvements you can make to your
+
+03:14:35
+rack system overall.
+
+03:14:37
+Okay? So,
+
+03:14:39
+3 minutes, you can start putting your questions. I'll take
+
+03:14:42
+a 3 minute, 4 minute break. Overall, as soon as
+
+03:14:45
+the questions start coming, share your Slido, then I'll unmute,
+
+03:14:48
+and we can, you know, get started. So until then,
+
+03:14:51
+I'll just turn off my cam and take a look.
+
+03:14:55
+Sure. You can take a breather
+
+03:14:56
+for for a while. Till then, folks, you guys can
+
+03:14:59
+start putting in your questions. Right?
+
+03:15:10
+Okay.
+
+03:15:11
+Yep. So I'll just keep the chat open as of
+
+03:15:13
+now.
+
+03:15:25
+Folks,
+
+03:15:27
+regarding the next session,
+
+03:15:30
+so if we,
+
+03:15:32
+wrap it up, all the q and a by 1
+
+03:15:35
+1 45
+
+03:15:36
+1 31 35 or so, we'll start in an hour.
+
+03:15:39
+That will be around 2 30 or 2 45. Right?
+
+03:15:42
+So
+
+03:15:48
+okay.
+
+03:16:43
+Next
+
+03:16:44
+session will be on building Atlas. Atlas is a is
+
+03:16:48
+a basically a second brain. Right? So it's a complete
+
+03:16:51
+rack system.
+
+03:16:52
+So we'll be focusing on that.
+
+03:16:59
+Okay. I guess we are good to go.
+
+03:17:09
+Yeah. Mentor mentor would be,
+
+03:17:13
+her name is Antarika.
+
+03:17:15
+Right? So she'll be taking the building at last session.
+
+03:17:22
+Folks, regarding next session, we'll discuss everything in the next
+
+03:17:25
+session itself. Right? So what are the text tag? What
+
+03:17:27
+will be you know, what everything. So, basically,
+
+03:17:31
+this is the whole agenda for that session.
+
+03:17:36
+Same.
+
+03:17:39
+Same. It will be on the same meeting link, so
+
+03:17:41
+you don't have to, you know,
+
+03:17:44
+ask for that. So it's the same meeting link.
+
+03:17:57
+Okay.
+
+03:18:14
+The duration would be, like, an hour, right, for your
+
+03:18:17
+lunch break? Yeah.
+
+03:18:19
+They can we start? Yeah. You can start. You can
+
+03:18:21
+just share the screen. Yeah. Just a minute.
+
+03:18:25
+Okay.
+
+03:18:29
+You can present this thing so that it'll be easy
+
+03:18:31
+for me to see. Yeah.
+
+03:18:41
+Okay. Can you elaborate on testing and fixing the right?
+
+03:18:44
+Please explain different testing and fixing practices.
+
+03:18:47
+So the fixing practices on drag. Right? So that the
+
+03:18:50
+way you'll have to look at it is same like
+
+03:18:52
+testing. You look at your evals.
+
+03:18:56
+You
+
+03:18:57
+have to look at the evals,
+
+03:18:59
+and then, you know, you try to look at,
+
+03:19:02
+you know, the different testing and,
+
+03:19:05
+you have to look at the like, for example, in
+
+03:19:07
+test cases, in your testing, you look at the test
+
+03:19:09
+cases and you look at why what is the root
+
+03:19:12
+cause analysis of why your test case failed.
+
+03:19:14
+So you need to fix the rag in terms of,
+
+03:19:17
+okay, this question, my answer was not given. First, on
+
+03:19:21
+a human level, was the answer correct or incorrect? You'll
+
+03:19:24
+need to check that. After that, you need to figure
+
+03:19:26
+out, okay, this answer is
+
+03:19:29
+incorrect. Is it because I have insufficient documentation
+
+03:19:33
+about that answer, or is it because the right chunks
+
+03:19:36
+were not retrieved, etcetera. So you'll have to troubleshoot it
+
+03:19:40
+and fix it overall.
+
+03:19:42
+So,
+
+03:19:43
+that is the only way. It's a iterative process of
+
+03:19:46
+doing it. As I said, you try to in improve
+
+03:19:48
+contextual
+
+03:19:49
+chunks. You try to change the prompt of how you
+
+03:19:52
+write your contextual chunk, all that. So every place you
+
+03:19:55
+try to make micro improvements so that you can improve
+
+03:19:58
+exactly like code. In your code, you make the improvement
+
+03:20:01
+so that your test cases pass. Similarly, here in your
+
+03:20:04
+prompts, in your approach, etcetera, you will try to do
+
+03:20:08
+so that your, things should pass. K?
+
+03:20:11
+Yeah. Could you share some documents or further study material
+
+03:20:14
+for rack? I will add a separate resource section so
+
+03:20:17
+that you can
+
+03:20:19
+check that, thing overall with respect to rack overall.
+
+03:20:23
+Can you provide more resources on drag efficiency optimizing it
+
+03:20:26
+further even? How can we read and understand evolves? I
+
+03:20:29
+will add additional documentation.
+
+03:20:31
+Sham, when is Sid's session on evolves?
+
+03:20:35
+On the costing. Yep. Costing and Evas, it's on Thursday,
+
+03:20:38
+I guess. Like, the next the coming Thursday.
+
+03:20:41
+Correct. So for those of you who are asking this
+
+03:20:43
+question on reading and understanding Evas, we have a deep
+
+03:20:45
+dive by Sid,
+
+03:20:47
+my colleague, who is going to go deeper into Evas,
+
+03:20:49
+so you will get this answer there.
+
+03:20:53
+Which ID you're using now? I'm using cursor, actually. So
+
+03:20:56
+I use cursor.
+
+03:20:57
+So, in fact, the way I work with my system
+
+03:21:00
+is I use cursor along with cloud code. So, I
+
+03:21:04
+give cloud code,
+
+03:21:05
+you
+
+03:21:06
+know, kind of,
+
+03:21:09
+to, you know, try
+
+03:21:12
+to set up the coding part as Claude code. Then
+
+03:21:15
+some kind of
+
+03:21:16
+evaluation part, I use cursor to do that.
+
+03:21:19
+Okay? So that's how I use cursor
+
+03:21:22
+plus cloud code.
+
+03:21:23
+With RAG, are we providing more accurate or closer context
+
+03:21:27
+to the LLMs used? Does this differentiate RAG from simpler
+
+03:21:30
+LMs? Exactly. So you are providing more grounding of knowledge.
+
+03:21:33
+So the amount of hallucination that could happen is getting
+
+03:21:36
+reduced. So that is what we are trying to do.
+
+03:21:40
+Can you comment on fine tuning versus rag implementation?
+
+03:21:44
+So
+
+03:21:45
+you will do fine tuning,
+
+03:21:48
+especially when you know the exact use case for which
+
+03:21:51
+you are building.
+
+03:21:53
+In fact, right now, as far as my understanding is,
+
+03:21:57
+not many people are going towards a lot of fine
+
+03:21:59
+tuning because it is super costly. You can get the
+
+03:22:03
+same benefits of fine tuning with rag itself, and agentic
+
+03:22:06
+rag could get there. Cost effectiveness, I think,
+
+03:22:10
+agentic rag is hundred times cheaper than fine tuning. Fine
+
+03:22:13
+tuning is extremely costly.
+
+03:22:16
+Okay? So that's why,
+
+03:22:17
+I feel fine tuning makes sense more for image models,
+
+03:22:21
+not for text models, overall. Image models will require a
+
+03:22:25
+lot of fine tuning, especially for control. And that's why
+
+03:22:28
+the latest image model by OpenAI has become very good
+
+03:22:31
+because of the control.
+
+03:22:35
+Can I pass on my office conference to rack? Will
+
+03:22:37
+it lead to data breach? Could be. So that's why
+
+03:22:40
+what you should do is the LLM that you are
+
+03:22:42
+using, ensure that it is the same LLM API that
+
+03:22:46
+your office is on subscription on. So then because it
+
+03:22:49
+is,
+
+03:22:50
+the same LLM you're interfacing, there will not be any
+
+03:22:53
+breach. It is not your personal,
+
+03:22:55
+LLM that you're using.
+
+03:22:57
+In case you wanna do this, you can use Ollama
+
+03:23:00
+with, the,
+
+03:23:02
+local model. You can set it up on a server
+
+03:23:04
+or on AWS, and you can use that directly. Then
+
+03:23:07
+there is no data bridge because it is within the
+
+03:23:10
+same tenant.
+
+03:23:14
+How can we,
+
+03:23:16
+you know, get in touch on everything? So I'll share
+
+03:23:18
+my LinkedIn. You can keep dropping me your notes.
+
+03:23:21
+Please don't expect me to, you know, come on to
+
+03:23:24
+a meeting, etcetera.
+
+03:23:26
+But when you have a query, I will try to
+
+03:23:28
+help you as much as I can.
+
+03:23:30
+For any query, I would expect what have you done,
+
+03:23:34
+where are you stuck at, what is the directional inputs
+
+03:23:36
+that you require from me. If I can help, I
+
+03:23:39
+will give you the resource that can help you. That
+
+03:23:41
+level of help, I'm always providing.
+
+03:23:43
+Can you give an example of a multi hop query?
+
+03:23:45
+See, multi hop query means that the answer is present
+
+03:23:50
+across multiple documents.
+
+03:23:52
+Okay? The answer is present across multiple documents, and that
+
+03:23:56
+is what multi hop query is.
+
+03:23:59
+Okay. Can you provide a broader perspective on applying this
+
+03:24:03
+learning to, okay,
+
+03:24:05
+on, you know,
+
+03:24:07
+a broader perspective on applying this learning to any SaaS
+
+03:24:10
+product implementation specifically
+
+03:24:13
+in compliance based systems.
+
+03:24:17
+You can see. Rag, I can do it in production.
+
+03:24:19
+Right? With the local LLM, with all those APIs, you
+
+03:24:22
+can do it in production. I think what I have
+
+03:24:24
+done is exactly what I mentioned. I think for SaaS,
+
+03:24:27
+it doesn't change mainly.
+
+03:24:29
+So mainly for SaaS, your documentation
+
+03:24:31
+will be high, your context will be high. So the
+
+03:24:33
+contextual rack would work better in SaaS mode.
+
+03:24:37
+Okay? A short flowchart on how today code m 0
+
+03:24:41
+to m 5 is used.
+
+03:24:42
+I will share that. Don't worry.
+
+03:24:45
+Can you, flowchart? I will, do that. Don't worry about
+
+03:24:48
+that.
+
+03:24:50
+So the more loops we run, the better the rack.
+
+03:24:53
+If you leave the model looping overnight, will it make
+
+03:24:55
+the matter rack better or worse? See, if my documentation
+
+03:24:59
+is bad, how many of our times you loop, you
+
+03:25:02
+cannot go ahead with that. Right? So that is something,
+
+03:25:06
+that you should understand.
+
+03:25:09
+Can you please,
+
+03:25:10
+update,
+
+03:25:11
+our, flowchart with what has to be done at what
+
+03:25:14
+stage, like, hybrid is done within kachunking, embedding state, etcetera?
+
+03:25:18
+Folks, what you can do is this.
+
+03:25:22
+Sham, please ensure that this transcript is given. I will
+
+03:25:25
+try to give the flowchart, but, see, this kind of
+
+03:25:27
+things, you can use the transcript with Claude or any
+
+03:25:31
+LLM Copilot and ask it these questions, it will tell
+
+03:25:34
+you exactly what it is. Because I have mentioned this
+
+03:25:36
+already
+
+03:25:38
+in the pro in my this thing. So it will,
+
+03:25:41
+come out in Copilot or Cloud or anything like that.
+
+03:25:44
+Okay. How do you write in an ID? Is it
+
+03:25:47
+by using a prompt or do you create extra? So
+
+03:25:50
+how I work with, I will talk about it in
+
+03:25:52
+a different session because I use a lot of,
+
+03:25:56
+you know, harness things at all. So I will use
+
+03:25:59
+it. I will talk to you in a separate session
+
+03:26:01
+also.
+
+03:26:03
+Recording will be available. I think by now you should
+
+03:26:05
+be very clear that recordings are going to available. Don't
+
+03:26:07
+worry about it. Thanks for the feedback.
+
+03:26:11
+My LinkedIn,
+
+03:26:13
+let me share with all of you.
+
+03:26:27
+Yeah. So this is my LinkedIn.
+
+03:26:29
+What are the alternatives or ragas that can be used
+
+03:26:31
+for evals, etcetera?
+
+03:26:33
+Eval system, full fledged session on eval and costing, Sergei
+
+03:26:36
+is going to cover. So he will talk more about
+
+03:26:39
+that. I'll tell him I'll also have a discussion with
+
+03:26:41
+him regarding that because it'll be like I'll tell item
+
+03:26:44
+1, item 2, item 3, which will not really help.
+
+03:26:46
+I want you to have a good understanding.
+
+03:26:49
+Do we need to have a set of q and
+
+03:26:51
+a to train for LMM as a judge as questions
+
+03:26:53
+will be generic?
+
+03:26:54
+Gemini or OpenAI won't have a complete context. Interesting. Yes.
+
+03:26:59
+You can, actually give a set of questions and answers
+
+03:27:02
+saying that this is the ground truth. And then you
+
+03:27:05
+can say Gemini or OpenAI,
+
+03:27:07
+you can give it guidance that this is what I
+
+03:27:09
+want. And, once you have done a basic eval, the
+
+03:27:14
+outputs that are come, you can say to the LLM
+
+03:27:17
+back saying that, hey. I have seen the outputs. You
+
+03:27:19
+have given the scores, this this, but my scores are
+
+03:27:21
+this and this. Can you recalibrate
+
+03:27:24
+based on the scores I have given? And by pure
+
+03:27:27
+talking to the LLM and,
+
+03:27:30
+etcetera, you can do the recalibration directly.
+
+03:27:33
+You don't require you don't even write how to write
+
+03:27:35
+the code for this. Because,
+
+03:27:37
+what you are doing is you are trying to check
+
+03:27:39
+the eval
+
+03:27:40
+criterion, and it is just you are tuning the eval
+
+03:27:43
+criterion a bit overall. That's all.
+
+03:27:49
+As a non engineer, you'll be well placed to suggest
+
+03:27:51
+some go to cheap places for AI and everything.
+
+03:27:54
+Cheap,
+
+03:27:55
+cheap places for AI and agentic terms and context is
+
+03:27:58
+a wrong way to learn
+
+03:28:00
+even as a non engineer. You want to learn these
+
+03:28:03
+terms? The best way is first to build.
+
+03:28:06
+Try to run code yourself, see the output,
+
+03:28:08
+then whatever terms you're not understanding, go to perplexity, go
+
+03:28:12
+deeper, and that is how exactly it is.
+
+03:28:16
+What is fine tuning? Is it the same as retrieval
+
+03:28:18
+and improvement? Fine tuning is very different. It is see,
+
+03:28:22
+a rag is you telling, okay, here is the Wikipedia
+
+03:28:26
+page. Use the Wikipedia page to answer.
+
+03:28:29
+That is what rag does. Fine tuning is I am
+
+03:28:32
+changing the weights of my model itself so that it
+
+03:28:36
+arrives at the model right away.
+
+03:28:38
+Okay? Rag means I'm giving the documentation. From the documentation,
+
+03:28:42
+it is sharing the information.
+
+03:28:45
+Then other thing is,
+
+03:28:47
+you know,
+
+03:28:48
+the other parts overall.
+
+03:28:51
+Okay? So people asking links, relevant things, etcetera. I will
+
+03:28:55
+try to provide
+
+03:28:57
+as much as I can.
+
+03:28:59
+Further, it is up to your exploration.
+
+03:29:02
+Cost m 0 to m agent ticket is increasing cost
+
+03:29:06
+levels.
+
+03:29:07
+Okay? It is directly increasing cost level
+
+03:29:10
+as you go from m 0 to, m 4.
+
+03:29:14
+In agent drag, the feedback
+
+03:29:16
+loop also consume tokens. It is going to drink tokens
+
+03:29:19
+like anything.
+
+03:29:21
+Okay? It is going to drink your tokens like anything.
+
+03:29:25
+How
+
+03:29:26
+finalize rag according to use case? Which rag should I
+
+03:29:29
+use? I think I covered entirely
+
+03:29:31
+overall. I think I have already covered this. Right? So
+
+03:29:34
+please work with that. In multi hop breaking questions into
+
+03:29:38
+multiple question, will that it be consistent or vary? How
+
+03:29:41
+do we measure those questions?
+
+03:29:42
+So you'll have to, you know,
+
+03:29:45
+look at some queries and ask it to run those
+
+03:29:48
+queries for you. You give it feedback, and you say
+
+03:29:51
+to, you know, based on my feedback, modify the code
+
+03:29:54
+and the parameters to kind of work with the sale.
+
+03:30:00
+Okay.
+
+03:30:02
+Okay?
+
+03:30:03
+Alright.
+
+03:30:05
+And it is. Thank you, folks.
+
+03:30:07
+Thanks a lot, for this and, everything.
+
+03:30:11
+Cost, events and cost, it is going to take.
+
+03:30:14
+Yes.
+
+03:30:15
+So it will be taking the costing session. So, guys,
+
+03:30:17
+that is something we have kept at the end so
+
+03:30:20
+that once you understand the whole architecture, then you'll be
+
+03:30:22
+able to understand how the costing works. Right?
+
+03:30:25
+And yeah. So
+
+03:30:27
+thank you so much, Devesh. Right? And, folks, can we
+
+03:30:31
+quickly have a thank you, thank you, Dilip, in the
+
+03:30:33
+chat?
+
+03:30:36
+See, don't worry. I will ask it to cover a
+
+03:30:38
+bit of events also because he's the 1 who plays
+
+03:30:40
+with events day in and day out. Evals and costing,
+
+03:30:43
+both we will try to cover in the same session.
+
+03:30:47
+Yes. So please, Derek, you have a word with said.
+
+03:30:50
+Right? So you'll be able to make it.
+
+03:30:54
+Okay. Great.
+
+03:30:56
+Thanks. Thanks, folks, and have a great 1.
+
+03:30:59
+Yes.
+
+03:31:00
+Thank you, Derek.
+
+03:31:01
+We'll see you in the MCB session, I guess. Yeah.
+
+03:31:03
+Okay.
+
+03:31:14
+Yeah. So
+
+03:31:17
+regarding the next session. Right?
+
+03:31:20
+So we'll be starting. So right now, it's 1 31
+
+03:31:23
+32, specifically, ISD.
+
+03:31:26
+So what we'll do is we'll start at
+
+03:31:29
+2 45.
+
+03:31:31
+Right? So you can have a 1 hour 15 minute
+
+03:31:34
+lunch break, a bit of rest.
+
+03:31:36
+Right? So we'll be back at 2 45. And, Anupam,
+
+03:31:40
+regarding any tools issues, please book an onboarding or a
+
+03:31:44
+troubleshooting call. The dedicated team will be able to help
+
+03:31:47
+you out. Right?
+
+03:31:50
+Okay. So
+
+03:31:52
+okay, folks. So I'll see you exactly at 2 45.
+
+03:31:56
+Right?
+
+03:32:01
+No. No. No, Nishant. There is nothing to set up
+
+03:32:04
+or anything. And, yeah, it will be on the same
+
+03:32:06
+meeting. You can be on the same call. Just be
+
+03:32:09
+on the same call. Right? And, yeah. So 2 45
+
+03:32:12
+to it, it may go up till, like, again, so,
+
+03:32:15
+like, 3, 3 and a half hour. That is up
+
+03:32:16
+to 6 30, probably. So
+
+03:32:19
+right?
+
+03:32:22
+It's on right now.
+
+03:32:23
+Okay. Thanks. Thanks so much, Sidat, for the report. I
+
+03:32:26
+guess that would help me a
+
+03:32:27
+lot. Right?
+
+03:32:29
+Okay.
+
+03:32:30
+Yeah. I know.
+
+03:32:32
+But
+
+03:32:33
+that is the spirit. Right? So today
+
+03:32:36
+today might be the only day only day that will
+
+03:32:38
+be awake till, you know, 9 30 AM.
+
+03:32:41
+Right?
+
+03:32:45
+Yes.
+
+03:32:46
+So for next, we'll be having Antel Kasaha.
+
+03:32:49
+Right?
+
+03:32:50
+So she's,
+
+03:32:51
+1 of our mentor who's been teaching from the past
+
+03:32:54
+3 3 cohorts.
+
+03:32:55
+Right?
+
+03:32:57
+No. No. And I'm not playing any songs. Right?
+
+03:33:02
+Anupam, like, I told you whatever the slot is available,
+
+03:33:05
+that has to be booked because there are people who
+
+03:33:07
+had previously booked the slot. Right?
+
+03:33:09
+So that's why we can't reschedule any slot also. So
+
+03:33:13
+whatever slot is available, please try to book either on
+
+03:33:15
+onboarding call or on the troubleshooting.
+
+03:33:18
+Whichever is earliest, we can book that.
+
+03:33:22
+Okay. No. Don't worry, folks. I'm not playing any songs.
+
+03:33:26
+Right? So I'm just putting the timer. That's it.
+
+03:33:29
+So I'll just put the timer for
+
+03:33:32
+okay.
+
+03:33:33
+You know, 10 minutes.
+
+03:33:35
+Just give me a minute.
+
+03:33:58
+Okay.
+
+03:33:59
+Great.
+
+03:34:00
+See you then. Right? Exactly at 2 45.
+
+03:34:05
+Till then, have a good lunch,
+
+03:34:07
+dinner, breakfast, whatever it is. You know, come back in
+
+03:34:10
+a dirty.
+
+03:34:11
+Right, folks?
+
+03:34:14
+Okay.
+
+03:34:16
+Yeah. We'll go.
+
+03:34:24
+Exactly. Thank you so much, Geerti. You have AI companion.
+
+03:34:29
+Okay, folks. See you in an hour and 10 minutes.

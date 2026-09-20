@@ -1,0 +1,6620 @@
+05:17
+Hello? Yes. Yes. I am here. Oh, yeah. So, folks,
+
+05:20
+today's agenda will be that,
+
+05:23
+we'll be covering,
+
+05:25
+Gradio.
+
+05:26
+Right? And after that,
+
+05:28
+Srishti will be taking you through the assignment notebook once
+
+05:32
+on what to do. Right? And after that, we'll be
+
+05:35
+diving into breakout rooms.
+
+05:38
+Is it clear?
+
+05:43
+Oops. Can I get a
+
+05:46
+yes
+
+05:48
+in
+
+05:50
+chat?
+
+05:52
+Okay. So, basically, we'll go through radio, and after that,
+
+05:55
+the assignment notebooks, and then we'll dive into the breakout
+
+05:57
+rooms.
+
+05:59
+Right? Clear?
+
+06:02
+Yes.
+
+06:03
+Srishti, I guess we are good to go. Right?
+
+06:07
+Yes. We are good to go. Hello, everybody.
+
+06:10
+Very sorry about yesterday, but let's cover up for that
+
+06:13
+today.
+
+06:14
+I
+
+06:15
+am gonna talk about
+
+06:17
+Gradio. I am also gonna start sharing my screen once
+
+06:20
+again.
+
+06:22
+So Gradio is something that
+
+06:26
+we went through yesterday,
+
+06:29
+but today, we're gonna have a closer look at it.
+
+06:34
+Before we do that, let us also
+
+06:37
+take a step back and remind ourselves
+
+06:40
+why Gradio is important.
+
+06:42
+So this is a little story. I am
+
+06:45
+not entirely sure if this was shared yesterday or not,
+
+06:49
+but the story is that
+
+06:50
+Abu Bakr Abid, a Stanford PhD student,
+
+06:54
+during his
+
+06:56
+PhD days felt that
+
+06:58
+it is very difficult for machine learning engineers to
+
+07:05
+share what they build.
+
+07:06
+Now what do I mean by that? Share what they
+
+07:08
+build. The thing is that
+
+07:10
+I am a machine learning engineer
+
+07:13
+or a machine learning research engineer
+
+07:15
+or a researcher, research scientist, research engineer, whatever the rule
+
+07:19
+is.
+
+07:21
+And today, I decide to
+
+07:23
+incorporate
+
+07:25
+a new technique for model training
+
+07:28
+using whatever, reinforcement learning or whatever, that I think is
+
+07:31
+gonna
+
+07:33
+produce the best,
+
+07:36
+let's
+
+07:37
+say, 20000000000
+
+07:38
+parameter model out there of all the language models that
+
+07:42
+exist in the 20000000000
+
+07:44
+category. This is what I decide to do.
+
+07:47
+And then I run my experiments,
+
+07:49
+and then I succeed at it. I actually build a
+
+07:52
+machine like, a large language model
+
+07:55
+consisting of 20000000000 parameters
+
+07:57
+that aces
+
+07:58
+all of the benchmarks
+
+08:02
+when compared to other 20000000000 parameter
+
+08:05
+language models out there.
+
+08:07
+Now this is great. This is a
+
+08:10
+great breakthrough,
+
+08:11
+a dream for me, a dream for many.
+
+08:14
+The thing over here is that while I built this
+
+08:17
+model
+
+08:18
+and let's say I did it as part of some
+
+08:21
+research lab,
+
+08:22
+and now I wrote a paper on it. I published
+
+08:26
+the paper well and good, and I'm claiming that, you
+
+08:28
+know what, my model is the best
+
+08:31
+among all the 20000000000
+
+08:33
+language models available out there. That is what I am
+
+08:35
+claiming.
+
+08:37
+The the thing now is that
+
+08:40
+while I claim that,
+
+08:42
+while, let's say, I also show that my model is
+
+08:45
+getting all the good benchmark numbers, you know, evaluation benchmark
+
+08:49
+numbers, all of that is good,
+
+08:51
+The real test of any model is
+
+08:53
+when the users actually try it out in the wild
+
+08:57
+on real world tasks, real world data where there is
+
+09:00
+a lot of nuance
+
+09:02
+that standard evaluation benchmarks are not able to capture properly.
+
+09:06
+So long story short is that I built a model.
+
+09:10
+I claim it's the best. I also show it via
+
+09:12
+some
+
+09:14
+dataset numbers.
+
+09:15
+The real test happens when my users test it, and
+
+09:19
+now I need a way to just quickly give that
+
+09:21
+model to my users
+
+09:23
+in a nice UI.
+
+09:26
+That is what I wanna do, but the problem is
+
+09:29
+that I am not a front end engineer. I do
+
+09:31
+not know front end, and I'm not even a good
+
+09:33
+back end engineer, I would say.
+
+09:35
+I know a bit of a back end, but not
+
+09:38
+enough to build,
+
+09:40
+like, you know,
+
+09:43
+a very scalable, robust, like, model serving or inference endpoint,
+
+09:47
+whatever.
+
+09:49
+Let's focus on the front end part. The thing is
+
+09:51
+that while I want to serve my model
+
+09:54
+to my users in a nice UI,
+
+09:57
+I am not a front end engineer. I can't go
+
+10:00
+out there, learn HTML, CSS, and React, you know, JS,
+
+10:03
+and all of these frameworks. I can't do that. I
+
+10:05
+don't have the bandwidth because I wanna focus on machine
+
+10:07
+learning.
+
+10:09
+And
+
+10:10
+now I'm faced with the problem. What do I do?
+
+10:12
+What do I do?
+
+10:14
+That is the problem that Abu Bakr Abid, the Stanford
+
+10:18
+PhD student that I'm talking about,
+
+10:20
+felt as far as machine learning
+
+10:23
+demos
+
+10:24
+are concerned.
+
+10:26
+And
+
+10:27
+because of this gap, what he created was Gradio.
+
+10:31
+Gradio was
+
+10:33
+his project
+
+10:34
+that was later on acquired by Hugging Face, and that
+
+10:37
+is why we teach Gradio as part of this
+
+10:40
+Hugging Face lesson.
+
+10:42
+Alright?
+
+10:43
+So if we now go to
+
+10:46
+now if I Google something like Gradio
+
+10:49
+and then Hugging Face,
+
+10:51
+Gradio's documentation
+
+10:52
+is under Hugging Face. Why? Because Hugging Face acquired
+
+10:56
+Gradio.
+
+10:57
+But the reason why Gradio was started
+
+11:00
+must now be clear.
+
+11:02
+The motivation why we wanna
+
+11:04
+go out there, learn Gradio, use it in our projects,
+
+11:07
+so on and so forth, should now be clear. Right?
+
+11:10
+So that was a short background story about Gradio, why
+
+11:14
+Gradio
+
+11:16
+was built and
+
+11:17
+whatever. Alright? So that is what we have.
+
+11:20
+Yesterday,
+
+11:22
+some parts of Gradio were covered. Today, we're gonna look
+
+11:26
+at more examples.
+
+11:28
+And,
+
+11:30
+also,
+
+11:31
+I'm gonna differentiate between 2 major ways to build UIs
+
+11:36
+using Gradio.
+
+11:37
+What are the 2 major ways? 1 is known as
+
+11:40
+gradio dot interface,
+
+11:41
+the 1 that we see over here. The second 1
+
+11:44
+is known as gradio
+
+11:46
+dot blocks. Right? So let me try to write something
+
+11:49
+over here. There are
+
+11:51
+2 major ways.
+
+11:53
+The first 1 is g r
+
+11:56
+1 second.
+
+11:58
+The first 1 is
+
+12:00
+g r dot interface,
+
+12:04
+and the second 1 is g r
+
+12:08
+dot blocks.
+
+12:09
+People would keep entering, and I would keep losing my
+
+12:12
+keyboard. No worries.
+
+12:14
+Yeah. The second 1 is g r dot blocks. The
+
+12:17
+thing is that g r dot interface is
+
+12:21
+more abstract. It hides away,
+
+12:24
+like, a couple of details,
+
+12:26
+and then we have
+
+12:28
+less control with
+
+12:30
+g r dot
+
+12:31
+interface. That is the thing with interface.
+
+12:34
+When we want more control and when we want more
+
+12:37
+complex UIs,
+
+12:39
+when we want more control for more complex UIs, we
+
+12:43
+have
+
+12:46
+g r dot blocks.
+
+12:50
+Alright. So these are the 2 ways via which we
+
+12:53
+can build Gradio UIs.
+
+12:54
+This is very much like we had, you know, pipeline
+
+12:57
+and auto classes. Pipeline was more abstract and a logos
+
+13:01
+to Gradio dot interface,
+
+13:03
+and auto classes was less abstract and logos to gradio
+
+13:06
+dot blocks, but there is no relation between them. Like,
+
+13:08
+they are separate things. I'm just kind of trying to
+
+13:11
+connect things so that it flows easily. But, yeah, the
+
+13:14
+story over here is that
+
+13:16
+to be able to build UIs with Gradio, there are
+
+13:18
+2 ways. There are 2 classes offered by Gradio. 1
+
+13:21
+is called interface. 1 is called blocks. Let us start
+
+13:25
+by looking at the simpler 1 first, which is interface.
+
+13:29
+Right? So what happens with interface? I actually, I'm also
+
+13:32
+gonna live run the code today
+
+13:34
+so we can actually see what's happening, and we can
+
+13:36
+actually
+
+13:37
+also see the differences in the UIs that are
+
+13:41
+produced. Alright?
+
+13:43
+Okay.
+
+13:48
+These collab notebooks, I've already shared in the meeting chat,
+
+13:52
+so feel free to refer to them as I run
+
+13:56
+them.
+
+13:56
+So, feel free to run them along with me. Alright?
+
+14:00
+So the first cell where we're just installing Gradio, it's
+
+14:03
+running right now. It's just gonna install Gradio.
+
+14:06
+Let us look at this 1. What are we doing?
+
+14:08
+We are creating
+
+14:10
+a very simple UI
+
+14:12
+where the input is some name and the output is
+
+14:15
+hello and then that name.
+
+14:18
+This is a very simple thing that we wanna do,
+
+14:20
+and interface is perfectly fine for this. So what do
+
+14:22
+I do over here? I say that
+
+14:26
+we are gonna come back to this function later on.
+
+14:27
+First of all, let's look at interface. I say g
+
+14:30
+r dot interface.
+
+14:31
+What is the function that we wanna use to calculate
+
+14:34
+the output using the input?
+
+14:37
+Greet. Greet function is what we wanna use. And then
+
+14:40
+we have
+
+14:41
+inputs. It's gonna be a textual input input. That is
+
+14:44
+why I've written text over here. And the output is
+
+14:46
+also gonna be textual. That is why I've written text
+
+14:49
+for the outputs parameter as well. As simple as that.
+
+14:53
+This is just a radio demo. Then I say demo
+
+14:55
+dot launch, and then I will get my demo. Now
+
+14:58
+what is this? Let me remove these comments. What is
+
+15:01
+this function doing? This function is simply taking an input
+
+15:04
+name, which is an input.
+
+15:06
+It's it's a string input. Right? You can can also
+
+15:08
+write it like this. It's a string input. And this
+
+15:11
+is returning what? A string again, which is the output
+
+15:14
+returned by this function. So what am I saying over
+
+15:16
+here? I am telling to Gradio,
+
+15:19
+let's build an interface
+
+15:20
+where our input is textual. Our output is also textual.
+
+15:25
+And how do we get the output using the input?
+
+15:27
+Using the function greet.
+
+15:29
+Using the function greet. That is how I get my
+
+15:32
+output. Right?
+
+15:34
+I launch the demo. I have the demo right in
+
+15:36
+front of me. So if I enter any name over
+
+15:38
+here, like, if I say,
+
+15:41
+Outscale and I just submit, I'm gonna get the output,
+
+15:44
+which would be hello, Outscale.
+
+15:47
+Right? If I want to get a different output, like,
+
+15:50
+maybe
+
+15:51
+more exclamation marks, I'm just gonna change the function that
+
+15:54
+is processing my input to give me the output, and
+
+15:57
+and I run it again, and then my output would
+
+15:59
+be different.
+
+16:01
+Feel free to test it later on. It is going
+
+16:03
+to be different. That is guaranteed. Alright? Let's go on
+
+16:06
+to our
+
+16:08
+next demo.
+
+16:10
+This is
+
+16:11
+exactly what we saw above. The difference over here is
+
+16:14
+that here we have 2 inputs.
+
+16:17
+Right? Here we have 2 inputs.
+
+16:19
+1 is the textual input, 1 is numerical,
+
+16:22
+and then the output is again textual. Again, a function
+
+16:26
+that is used to produce the output using the inputs,
+
+16:29
+this function over here, that takes in
+
+16:32
+2 parameters.
+
+16:33
+The first 1 is what? It's a string. The second
+
+16:36
+1
+
+16:38
+is an integer, let's say.
+
+16:40
+And then the output is string again.
+
+16:44
+Alright? So if I run this,
+
+16:47
+I'm again gonna get the same thing over here. Now
+
+16:49
+we wanna notice 1 thing over here. That is the
+
+16:52
+reason I included this example. Let this run. So name
+
+16:55
+again could be outscale.
+
+16:57
+It could be 5 years, and then I submit,
+
+17:00
+and then I'm gonna get the output. Hello, Outscale. You
+
+17:02
+are 5 years old. I'm not sure how old Outscale
+
+17:05
+is,
+
+17:06
+but, yeah, just an input. Now the thing that we
+
+17:09
+wanna notice over here is that
+
+17:13
+there is an alignment.
+
+17:15
+Here, I'm specifying inputs as
+
+17:17
+text
+
+17:18
+and number.
+
+17:21
+And here,
+
+17:23
+it's the same order that I'm following.
+
+17:26
+It's the exact same order that I'm following.
+
+17:29
+Name is the textual 1. Text is the first thing
+
+17:32
+over here. Age is numerical, and that is the second
+
+17:35
+thing over here.
+
+17:38
+Let's try to do something different. Let's try to flip
+
+17:41
+it and see what happens. I flip it. Number is
+
+17:44
+now first, and
+
+17:46
+then we have text. I'm gonna run this again, and
+
+17:49
+now let's see what happens.
+
+17:56
+What happened?
+
+17:58
+In place of name, the default value is now what?
+
+18:00
+0. Because name is no more
+
+18:04
+a textual input anymore.
+
+18:07
+What is it? It's a numerical input. So here, if
+
+18:09
+I try to do something like outscale,
+
+18:12
+it's not working. Like, I am typing, it's not working.
+
+18:15
+Why? Because name
+
+18:17
+maps to a numerical input, and that is why this
+
+18:20
+order is important. It has to map with what we
+
+18:22
+have over here. Right? It's giving me this kind of
+
+18:25
+increment, decrement
+
+18:27
+buttons. Why? Because this is numerical input
+
+18:30
+like this. And the age now would be a string.
+
+18:35
+In place of age, I can obviously specify some numerical
+
+18:37
+input because it's gonna be converted into string. But for
+
+18:40
+name,
+
+18:41
+because I flipped the order over here, this is basically,
+
+18:44
+like, the wrong logic, and that's why it's important to
+
+18:46
+take care of this alignment. It's a very simple thing,
+
+18:49
+but, yeah, good to know. Alright?
+
+18:51
+Now we're gonna look at,
+
+18:54
+another example
+
+18:55
+where
+
+18:57
+now we have 1 input but multiple outputs. The input
+
+19:01
+is again textual, and we have 2 outputs. Both are
+
+19:03
+textual again.
+
+19:06
+Alright? So I'm gonna give some text like outscale again,
+
+19:10
+and then I submit it. Output 1 is what? Word
+
+19:14
+count, and then I get the character count. This is
+
+19:15
+as simple as that. This function is returning this output,
+
+19:18
+and that is why we're getting it over here. If
+
+19:20
+we notice,
+
+19:21
+this function is returning 2 outputs. This is the first
+
+19:24
+1. This is the second 1.
+
+19:28
+1 exercise for the learners is
+
+19:32
+I'm gonna put it as a comment over here. This
+
+19:34
+is an exercise.
+
+19:36
+Try to return
+
+19:39
+3 and 1 output.
+
+19:43
+Outputs
+
+19:45
+out of this function
+
+19:47
+analyzed
+
+19:49
+x.
+
+19:51
+This is an exercise.
+
+19:52
+Please try to do this and see what happens. Alright?
+
+19:56
+Now
+
+19:57
+1 thing that I wanna mention over here is that
+
+19:59
+we've seen enough interface examples. It's very simple. It's not
+
+20:02
+something that
+
+20:03
+we need to memorize because the documentation is already available.
+
+20:07
+What I wanna say over here is that
+
+20:10
+if we notice,
+
+20:12
+this is not a good UI at the moment. Why?
+
+20:15
+Because it says output 0,
+
+20:17
+and it says output 1. Doesn't really, like, make a
+
+20:20
+lot of sense. Right? To the
+
+20:23
+viewer or to the user, this is not entirely clear
+
+20:26
+what output 0 is, what output 1 is. I'd rather
+
+20:29
+have
+
+20:30
+word count as the heading over here in place of
+
+20:32
+output 0. And here, I'd rather have character count.
+
+20:36
+These kind of customizations
+
+20:38
+are possible via Gradio blocks.
+
+20:40
+Up until now, we've been doing interface.
+
+20:43
+These kind of customizations are possible via what? Gradio blocks.
+
+20:46
+And maybe via interface. I I don't think via interface,
+
+20:50
+but, yeah, we'll see about that. But the reason why
+
+20:52
+Gradio blocks is also
+
+20:55
+sometimes desirable is to be able to customize our UI
+
+20:58
+and make it more nice looking for a better user
+
+21:01
+experience.
+
+21:01
+Alright?
+
+21:02
+Let's move forward.
+
+21:04
+Okay.
+
+21:05
+Now this was good.
+
+21:07
+Now we're gonna learn about
+
+21:10
+components of Gradio.
+
+21:12
+So Gradio offers to us some ready made components, like
+
+21:16
+a text box,
+
+21:18
+a label.
+
+21:20
+Label what is a label? You know, for displaying something
+
+21:23
+like a classification label or a confidence code, something like
+
+21:26
+that. Then we have
+
+21:28
+a slider component,
+
+21:30
+a slider like thing. Right? We'll see what a slider
+
+21:32
+looks like, but it's like a huge
+
+21:35
+like, a horizontal bar wherein we have a toggle that
+
+21:37
+we can move along that bar. That kind of a
+
+21:40
+slider is a ready made component that's offered by Gradio.
+
+21:43
+So what's actually happening over here? Let's think about it.
+
+21:45
+These examples are easy.
+
+21:47
+Let's think about it.
+
+21:48
+To be able to build a slider component in a
+
+21:51
+front end framework like React JS or there are other
+
+21:54
+frameworks, I'm not sure,
+
+21:57
+it's
+
+21:59
+some work.
+
+22:00
+I'm not sure if it's a lot of work or
+
+22:02
+it's
+
+22:03
+not
+
+22:04
+that much of work. I'm not sure because I'm not
+
+22:06
+a front end engineer, but it's some work. We have
+
+22:08
+to go out there,
+
+22:09
+you know,
+
+22:10
+exactly define what the slider is gonna look like, so
+
+22:13
+on and so forth. With Gradio,
+
+22:15
+we have those components
+
+22:17
+ready made.
+
+22:18
+What other components do we have? We have media handling
+
+22:22
+components that can handle image,
+
+22:24
+audio,
+
+22:25
+video.
+
+22:26
+We have
+
+22:27
+components for different kind of data structures like a data
+
+22:30
+frame or JSON.
+
+22:32
+And we have other interesting components as well like a
+
+22:34
+drop down menu, a checkbox, radio buttons.
+
+22:38
+For file uploads, we have a file component as well.
+
+22:41
+Now I've just, like, described various components
+
+22:45
+over here. What I'm gonna do next is I'm gonna
+
+22:47
+go through some of them so we can we can
+
+22:50
+actually see together how we use components
+
+22:53
+and how they look like as far as the user
+
+22:55
+experience is concerned. So let's go about it.
+
+22:58
+What are we doing over here? This is, again, a
+
+23:00
+very simple example,
+
+23:02
+again, built using g r dot interface,
+
+23:04
+where this is a function that's gonna be invoked to
+
+23:07
+get the output from the input. And, basically, what we
+
+23:10
+are doing in this function is very simple. We just
+
+23:12
+get some input, and we return the exact same thing
+
+23:15
+as the output. So not much interesting
+
+23:17
+stuff happening inside of this function. But what we're gonna
+
+23:20
+demonstrate via this example is the text box component.
+
+23:24
+The text box component. Right?
+
+23:27
+So what do we do? The input is gonna be
+
+23:29
+a text. Right? So what do I do? I specify
+
+23:33
+that it's gonna be a text box component, and the
+
+23:36
+label should be enter some text. So earlier, I was
+
+23:39
+saying that here, I would rather have word count in
+
+23:41
+place of output 0.
+
+23:43
+That kind of a thing we can do via the
+
+23:45
+text box component. And, yes, it's possible via interface. I
+
+23:49
+was saying that maybe or maybe not it's possible via
+
+23:52
+interface. It is actually possible via interface as we can
+
+23:55
+see over here. Via interface,
+
+23:58
+rather than writing something like
+
+24:01
+x over here, the thing that we've been doing so
+
+24:05
+far, I specify an actual text box component
+
+24:08
+where I can actually specify the label of that text
+
+24:11
+box. Same thing for the output.
+
+24:13
+Right? And then we are also giving a title
+
+24:16
+to our UI that we are building. And then I
+
+24:19
+just launch my demo.
+
+24:20
+Let's see what it looks like. This title
+
+24:24
+appears over here
+
+24:26
+sort of like a page title. You know? The thing
+
+24:30
+that appears at the very
+
+24:32
+center and at the very top of the page, sort
+
+24:34
+of like a page title. And then I have 2
+
+24:36
+text box components. 1 is the input component like out
+
+24:40
+skill, and then I submit it. I'm gonna get the
+
+24:42
+output. 1 is the output component. What changed?
+
+24:45
+I could have done something as simple as text and
+
+24:47
+here also
+
+24:49
+text. But what changed is that?
+
+24:52
+I made my UI look a little bit nicer via
+
+24:55
+using the text box component because with this component, I
+
+24:58
+can specify what exact text appears over here.
+
+25:02
+That is what I did. As simple as that. Alright?
+
+25:05
+Let's move on to exploring some different kind of components.
+
+25:08
+Now this is, again,
+
+25:10
+exactly the same as above.
+
+25:12
+It's just that rather than a text box component, we
+
+25:15
+are using a
+
+25:17
+number component over here. And same as above, we are
+
+25:20
+able to specify a label with this kind of
+
+25:24
+numerical input component, g r dot number as well. So
+
+25:27
+if we see what this looks like,
+
+25:29
+this text over here is controlled by what we specify
+
+25:32
+in the label over here. Right? This just returns, I
+
+25:36
+think,
+
+25:38
+twice of that. So if I write 6,
+
+25:42
+I'm gonna get 12.
+
+25:44
+This is, like I think this is very simple. Doesn't
+
+25:46
+need a lot of explanation.
+
+25:48
+Let's look at
+
+25:49
+some more components. We looked at text box. We looked
+
+25:52
+at number. Let us look at what a slider looks
+
+25:55
+like. So what happens with a slider? Maybe
+
+25:58
+do I wanna open a scallidraw or, actually, not a
+
+26:01
+slider. It's a very simple thing. Everybody has seen what
+
+26:03
+a slider looks like. It's a horizontal bar
+
+26:06
+where we can, you know, increase the
+
+26:11
+value somehow, like, by dragging this kind of a thing.
+
+26:14
+This is what a slider looks like. So here, I'm
+
+26:18
+drawing
+
+26:19
+a slider component
+
+26:20
+in place of my input. So my input is gonna
+
+26:23
+be determined by a slider component where the minimum value
+
+26:26
+is 0, like this 0. The maximum value is hundred,
+
+26:29
+and I'm also giving a label to this slider
+
+26:33
+component that's appearing. Select the value.
+
+26:36
+So I select some value.
+
+26:38
+I submit it, and I'm gonna get the output that
+
+26:41
+is processed by this function, which is 10 added to
+
+26:44
+the value that I selected. 50 over here because I
+
+26:47
+selected 40.
+
+26:48
+And the slider
+
+26:50
+example
+
+26:51
+is specified by this
+
+26:53
+title over here.
+
+26:55
+For an exercise,
+
+26:56
+let me remove this.
+
+26:58
+And now we have a UI over here
+
+27:01
+and some
+
+27:02
+code, but something is missing. Please try to fill it.
+
+27:06
+Fill it.
+
+27:08
+So this is like an exercise.
+
+27:10
+If
+
+27:12
+learners wanna do some provision,
+
+27:14
+not
+
+27:15
+compulsory because we have the assignment already. Alright.
+
+27:19
+So number was good. Text box was good. Slider was
+
+27:22
+good. Let us look at 1 more component, which is
+
+27:25
+a checkbox.
+
+27:26
+Again, I'm not gonna explain because it's the same code,
+
+27:28
+literally the same code. It's just that in place of
+
+27:31
+the input, I have
+
+27:32
+a checkbox component.
+
+27:34
+I check it, and then I submit it. I get
+
+27:36
+some output checkboxes checked based on what the value of
+
+27:39
+this input is. What is the value of this input?
+
+27:41
+Whether the box is checked or not. Here it's checked.
+
+27:44
+So this is the input. If I uncheck it,
+
+27:47
+I'm gonna get this output.
+
+27:50
+Alright?
+
+27:51
+So this is, like,
+
+27:52
+super simple, just using a different component.
+
+27:56
+Okay. And then again,
+
+27:58
+this example shows the drop down component.
+
+28:01
+Input here is now determined by a drop down component.
+
+28:04
+We'll we will have 3 options in that drop down
+
+28:06
+menu. 1 is option a, option b, option c. Based
+
+28:10
+on that, we are gonna get some output out of
+
+28:12
+this function that we specify over here. Right? So this
+
+28:16
+is a drop down. I select option c, and then
+
+28:18
+my choice is gonna be displayed over here.
+
+28:21
+Very simple.
+
+28:22
+Cool.
+
+28:24
+Enough working with text, numbers,
+
+28:26
+drop downs, and all of that. Let's try to work
+
+28:30
+with images like some other type of media now.
+
+28:33
+So very simply, Gradio offers us a as an image
+
+28:37
+component that we can work with to be able to
+
+28:39
+work with images.
+
+28:40
+So what if I have a use case where my
+
+28:43
+input is gonna be an image and my output is
+
+28:46
+also gonna be an image, like image to image kind
+
+28:48
+of a pipeline
+
+28:50
+where an image comes in, my model processes that image
+
+28:54
+and
+
+28:55
+does something to that image and gives, again, an image
+
+28:58
+to me as the output.
+
+28:59
+That kind of a UI can be built using this
+
+29:02
+kind of a code where the input component is also
+
+29:05
+image, the output component is also image. And so what
+
+29:09
+do we do over here? I'm gonna
+
+29:11
+upload some image. Do I have some image?
+
+29:14
+This 1. We can work with this 1.
+
+29:17
+And then I'm just gonna click submit.
+
+29:21
+And the output again is gonna be the exact same
+
+29:23
+image because this function is doing just that, getting an
+
+29:26
+image, returning it. But this is just
+
+29:29
+a demo. This is just a Gradio example. In a
+
+29:31
+real world Gradio demo, we would do some machine learning
+
+29:34
+processing
+
+29:35
+or maybe some resizing, reshaping, recoloring of this image before
+
+29:39
+returning the output.
+
+29:41
+Right? So just to demonstrate that image components or working
+
+29:45
+with images is also possible via Gradio.
+
+29:49
+Cool.
+
+29:51
+Now,
+
+29:52
+just 1 more example where
+
+29:55
+let's actually go back to some previous demo.
+
+29:58
+Maybe
+
+30:00
+some text box demo like
+
+30:03
+like this 1. If I remove our skill from here,
+
+30:08
+this box where the cursor is blinking, this is empty.
+
+30:12
+There is no placeholder text over here.
+
+30:15
+If I want, I can have something like that as
+
+30:17
+well. So here, the label says enter some text.
+
+30:20
+Maybe I wanna supply some more information about this box,
+
+30:23
+but I don't want that to be my title because
+
+30:26
+it's a bit clumsy.
+
+30:27
+Doesn't look really good. Like, it's a bit clunky. So
+
+30:31
+maybe I can have some placeholder text over here that
+
+30:33
+says something like,
+
+30:35
+enter some text. Whatever text you enter, we're gonna echo
+
+30:39
+it. We're gonna display the word count, character count of
+
+30:42
+that text, so on and so forth, like a placeholder
+
+30:46
+that I want to be displayed in this box when
+
+30:49
+there is no input in this box. How can we
+
+30:51
+do that? That kind of a thing is also possible,
+
+30:54
+again, via a text box component.
+
+30:57
+So if I go back, yeah, again, via the text
+
+30:59
+box component,
+
+31:00
+this is the label, label that displays on displayed on
+
+31:03
+top of that box. And then we have some
+
+31:06
+placeholder
+
+31:07
+text over here. So if I just run it, let's
+
+31:10
+see what we get.
+
+31:12
+This was not launched. My bad.
+
+31:22
+Yeah. So this type here, this placeholder text is now
+
+31:26
+displayed over here. Type here. If I want, I can
+
+31:29
+change it and
+
+31:31
+anything, like, in note
+
+31:34
+1 second. Like, type here for some greeting or whatever,
+
+31:38
+I can change it, and the text over there is
+
+31:40
+obviously also gonna change. Right? So another simple example.
+
+31:45
+Now
+
+31:46
+just 1 more thing.
+
+31:49
+Whenever we build any
+
+31:52
+Gradio UIs,
+
+31:57
+because the motivation
+
+31:58
+behind using Gradio is to be able to share our
+
+32:01
+machine learning demo or project,
+
+32:04
+so on and so forth.
+
+32:06
+We also want a public link,
+
+32:08
+not some local host link. We also want some publicly
+
+32:12
+shareable link that we can share with our peers, our
+
+32:15
+friends, our advisers, whatever,
+
+32:17
+so that they can also go to that link and
+
+32:19
+view what our app actually looks like. We want the
+
+32:23
+we want to be able to do that.
+
+32:25
+How do we do that?
+
+32:27
+Just a simple parameter. When we are doing demo dot
+
+32:29
+launch, just pass share is equal to true.
+
+32:33
+It's gonna give some public URL like this 1. Let
+
+32:36
+me actually try it live right now.
+
+32:39
+I tried it.
+
+32:40
+Gives me some URL. I am gonna copy this URL,
+
+32:44
+and now I wish to share my demo with everyone
+
+32:49
+in the meeting. So I'm gonna share it in the
+
+32:51
+chat.
+
+32:53
+Please try to open it and
+
+32:57
+see if, it's accessible or not. There is 1 question
+
+33:01
+that I see from Nishith, which say is in.
+
+33:04
+What is the machine learning that a Gradio is doing?
+
+33:07
+I don't understand that part. This is a very good
+
+33:09
+question. The thing is that Gradio is not doing any
+
+33:12
+machine learning.
+
+33:13
+Gradio is not doing any machine learning. The only purpose
+
+33:17
+of using Gradio
+
+33:19
+is to build,
+
+33:22
+like, demos for our machine learning
+
+33:25
+workflows.
+
+33:26
+That's just it.
+
+33:28
+Just to build UIs.
+
+33:29
+That is the only purpose of Gradio.
+
+33:32
+Machine learning is something that we will,
+
+33:35
+you know, incorporate
+
+33:37
+in, let's say, this function, greet over here. I am
+
+33:40
+gonna, like, do some
+
+33:44
+do some ML over here and return output.
+
+33:48
+Because if we think about it,
+
+33:50
+what is the purpose of machine learning models? Give some
+
+33:54
+input, get some output. Right? So that processing, that model
+
+33:58
+incorporation, I cannot certainly do over here. And, actually, I
+
+34:01
+think it's a very good question, and I would encourage
+
+34:05
+all the learners to try this kind of an exercise.
+
+34:07
+Maybe I'm gonna write it in a code cell, Odi,
+
+34:09
+not a text box.
+
+34:11
+In a code cell, I'm writing
+
+34:13
+exercise.
+
+34:16
+In this code, greet
+
+34:19
+I mean, in the code above,
+
+34:23
+modify
+
+34:24
+function
+
+34:25
+greet
+
+34:27
+to return
+
+34:30
+the output
+
+34:33
+from g p t 2.
+
+34:36
+G p t 2. This is not a mandatory
+
+34:38
+assignment.
+
+34:39
+This is just something that came in my mind right
+
+34:42
+now, and that's why I'm writing it over here. So
+
+34:44
+this is totally optional.
+
+34:46
+Don't worry about necessarily doing it. This is totally optional,
+
+34:49
+but a very good exercise in my opinion. Let's think
+
+34:52
+about it a little bit more. Yesterday, we covered
+
+34:55
+pipeline.
+
+34:56
+We covered pipeline.
+
+35:00
+Today,
+
+35:01
+we use
+
+35:03
+the pipeline
+
+35:05
+function
+
+35:06
+in greet. So what will we be doing? Our output
+
+35:09
+is now gonna be a result of a machine learning
+
+35:12
+model rather than being,
+
+35:15
+you know, some string appended
+
+35:18
+to that output. It's gonna be a result of some
+
+35:20
+machine learning model. Very simple to do that. Just
+
+35:23
+use pipeline in this function and just get the output
+
+35:26
+and return that output as part of this function. So
+
+35:28
+this is like an exercise,
+
+35:30
+Not mandatory. I'm also gonna write
+
+35:34
+it. Not mandatory.
+
+35:36
+And we are done with a lot of interface examples,
+
+35:39
+lot of components that we looked at. Let's move on
+
+35:42
+to
+
+35:44
+leave it. Yeah. Let's move on to radio blocks.
+
+35:47
+Right? So these are, again, some interface examples. We don't
+
+35:50
+need to go over them again. Interface again. I'm not
+
+35:52
+gonna go over this.
+
+35:54
+Blocks.
+
+35:56
+Let's actually run
+
+35:57
+this 1 example
+
+35:59
+this 1 example where, again, input is a number, output
+
+36:03
+is a number.
+
+36:05
+The
+
+36:06
+output is returned via this function, the square function. I
+
+36:10
+run this. I'm obviously gonna get some UI that is
+
+36:13
+built using g r dot interface. I'm gonna get some
+
+36:16
+UI. Let's wait for it.
+
+36:22
+I hope it runs fast. Maybe I can check some
+
+36:25
+questions meanwhile.
+
+36:27
+What language Gradio use?
+
+36:29
+Is it have
+
+36:31
+okay. Gradio is a Python library. The way we use
+
+36:33
+Gradio is via Python, and I am not sure. I
+
+36:36
+don't remember. Is it also written in Python? Maybe it's
+
+36:39
+written in some other language. I'll have to check.
+
+36:44
+Okay. I think we got the UI. There are some
+
+36:47
+questions around
+
+36:49
+resources and where the workloads are gonna go. Those are
+
+36:52
+good questions. I'm gonna address them later on. Just let
+
+36:55
+me
+
+36:56
+run these examples.
+
+36:57
+Mhmm.
+
+36:59
+Okay. This is a different 1. Sorry about that. Yeah.
+
+37:01
+This example,
+
+37:03
+like, this UI is here. What happened is that we
+
+37:05
+have an input box and an output box. They are
+
+37:08
+in a single
+
+37:11
+line next to 1 another.
+
+37:14
+Right?
+
+37:15
+This is, I think, horizontal stacking,
+
+37:18
+if I may call it that. This is horizontal stacking
+
+37:21
+that I got as a result of interface.
+
+37:24
+I never specified that I want,
+
+37:27
+you know, this kind of horizontal stacking or vertical stacking
+
+37:30
+or something like, you know, the input here, output here
+
+37:33
+in a diagonal fashion. I never specified that.
+
+37:36
+But I still got this horizontal stacking because that's the
+
+37:39
+default that's produced by interface.
+
+37:44
+What if
+
+37:47
+I want to
+
+37:48
+build this UI in a way,
+
+37:52
+something like this, actually.
+
+37:54
+Something like this,
+
+37:56
+where the input
+
+37:58
+is the first
+
+38:00
+row
+
+38:01
+and the output is the second row rather than both
+
+38:04
+of them being in 1 row.
+
+38:07
+What if I want something like that? Now this is
+
+38:09
+customization.
+
+38:11
+This is something we can't do with Gradio interface alone.
+
+38:15
+We will have to use what? Gradio blocks.
+
+38:18
+You will have to use Gradio blocks for that. Now
+
+38:20
+let's see how Gradio blocks
+
+38:22
+works.
+
+38:24
+Cool.
+
+38:25
+What happens is that when I'm trying to use Gradio
+
+38:28
+blocks, I'm just gonna have
+
+38:31
+a, like, a width construct, the way we open files
+
+38:34
+in Python, a width construct. So I'm gonna say with
+
+38:37
+gr dot blocks as demo. So the way this syntax
+
+38:40
+is written is a bit different from the interface 1.
+
+38:43
+Because here, what's happening is that I'm saying that I'm
+
+38:45
+now trying to build my I'm now starting to build
+
+38:48
+my Gradio demo using Gradio blocks.
+
+38:51
+Whatever appears indented
+
+38:53
+as part of this with block is a part of
+
+38:55
+my Gradio
+
+38:57
+demo.
+
+38:59
+Alright? It's a part of my Gradio demo. Now there
+
+39:02
+are a couple of things over here.
+
+39:04
+First 1 is obviously a number component. Label is input.
+
+39:07
+Very simple.
+
+39:08
+Output component, number component. Label is square output. Very simple.
+
+39:12
+Then we have a button component. So the way we
+
+39:15
+had slider drop down checkbox,
+
+39:18
+we also have something known as a button component. So
+
+39:21
+this is a button component. This is I'm just calling
+
+39:23
+it button. This is neither the input nor the output.
+
+39:26
+It's just a button, an additional button that's gonna be
+
+39:29
+displayed. Because here, what happened was I never had to
+
+39:32
+specify a submit button with interface. Why? Because it's abstract.
+
+39:36
+It's hiding away that button detail from us,
+
+39:39
+but it's also stealing away the ability to customize
+
+39:43
+from us. I hope that was clear. With Gradio interface,
+
+39:47
+I did not have to specify the submit button component.
+
+39:50
+It's hiding away that detail from me,
+
+39:53
+but it is also stealing away my liberty in that
+
+39:56
+I cannot do vertical stacking with interface.
+
+39:59
+If If I have to do that, I move on
+
+40:00
+to Gradio blocks. But now because I'm in Gradio blocks,
+
+40:03
+I'll have to specify each and everything.
+
+40:06
+Less obstruction. I will have to specify my button as
+
+40:09
+well, and this is what I'm doing over here.
+
+40:12
+And then what I say is that
+
+40:14
+button dot click, whenever the button is clicked, what happens?
+
+40:17
+Just take the input. This is a lambda function, very
+
+40:20
+common thing in Python. Just take the input and give
+
+40:22
+it square.
+
+40:25
+Right? And the inputs are gonna appear in the input
+
+40:28
+numb
+
+40:28
+number box. The outputs are gonna appear in the output
+
+40:31
+numb number box. And that's it. Demo dot launch. A
+
+40:35
+shareable URL is generated. I get this.
+
+40:39
+So if we now see the button is called compute.
+
+40:42
+I controlled that it's gonna be called compute. Earlier, it
+
+40:45
+was submit. I did not control that. Here, I have
+
+40:48
+the ability to control
+
+40:50
+that as well.
+
+40:51
+And that is how Gradio Blocks
+
+40:53
+gives us the ability to
+
+40:56
+customize.
+
+40:57
+Now 1 question is that
+
+41:00
+this is fine. We built this with Gradio Blocks. The
+
+41:02
+first thing was
+
+41:04
+the
+
+41:05
+number
+
+41:07
+box. The second thing was the output box, and that's
+
+41:09
+why they appeared, like, vertically stacked. This is fine. But
+
+41:12
+is it possible? The question here is,
+
+41:16
+is it
+
+41:17
+possible
+
+41:19
+to
+
+41:20
+get horizontal
+
+41:22
+stacking
+
+41:23
+via blocks? Because someone might say, you know what?
+
+41:28
+I think
+
+41:29
+interfaces default behavior is horizontal stacking and blocks default behavior
+
+41:33
+is vertical stacking because that is what it it looks
+
+41:36
+like as of now. But that is not the case.
+
+41:38
+The answer to this question is yes.
+
+41:41
+Totally possible.
+
+41:42
+With gradient blocks, we can do whatever we want to
+
+41:45
+do. Horizontal stacking, vertical,
+
+41:47
+5 to you know, 5 rows, and then
+
+41:50
+each row has, like, 6 columns. Anything is possible. We
+
+41:53
+can do that. We will look at how we do
+
+41:55
+that next.
+
+41:57
+Okay?
+
+41:58
+This is, again, some
+
+42:01
+multimedia examples. So I'm gonna skip this 1 because we've
+
+42:04
+already covered text box image. We've covered audio is, again,
+
+42:07
+simple. Upload an audio file and get that as out
+
+42:09
+as output. I'm gonna skip this 1.
+
+42:12
+Data frame 1, I'm gonna cover later. I'm just willing
+
+42:15
+to go to some blocks example. I think it's down
+
+42:18
+in the notebook. Yeah.
+
+42:20
+Here.
+
+42:21
+Let me run this 1.
+
+42:23
+Another blocks example.
+
+42:25
+Let's see what this produces.
+
+42:31
+With this blocks example,
+
+42:32
+I am getting 2 boxes, name and age, in a
+
+42:36
+horizontal stack manner as part of 1 row.
+
+42:40
+And then I am getting a greet button, and then
+
+42:42
+I'm getting a big text box.
+
+42:45
+So what happened here? We've already seen the UI. Let's
+
+42:48
+now walk backwards and see what code produced this kind
+
+42:52
+of UI. Let's see the code. The code says again,
+
+42:54
+we're building a Gradio demo.
+
+42:56
+Inside this with construct, whatever is there is part of
+
+43:00
+that demo,
+
+43:01
+including the button
+
+43:03
+including the button. Right? So what do I do? My
+
+43:06
+first wish is to get these 2 boxes in 1
+
+43:09
+single row.
+
+43:10
+So I write with g r dot row. As simple
+
+43:13
+as that. With g r dot row,
+
+43:15
+inside that row, I want 2 boxes. 1 is a
+
+43:18
+text box. 1 is a number. Very simple. I specify
+
+43:20
+them both.
+
+43:22
+Now we are gonna come out of that row. We're
+
+43:24
+not a part of this row anymore. We move on
+
+43:27
+to the second row. In the second row, I just
+
+43:29
+want a grid button. I created that. In the third
+
+43:32
+row, I just want a text box. I created that.
+
+43:36
+And then again, the same Lambda function, click the button,
+
+43:39
+get the output, and then demo dot launch.
+
+43:42
+Now 1 might question, this is good.
+
+43:45
+Why not something like this? If it's the second row,
+
+43:48
+why are we not specifying row again?
+
+43:51
+Like this. And then if it's the third row, we
+
+43:54
+should do something like this again. We should write and
+
+43:57
+then, of course, indent it as well like this.
+
+44:02
+Let's see what this produces.
+
+44:08
+I would think it should be the exact same thing,
+
+44:10
+exact same exact same as earlier. So the reason why
+
+44:13
+this row is not needed is because it's just 1
+
+44:16
+thing in that row. It's not, like,
+
+44:18
+more than 1 thing in that row. Right? So if
+
+44:20
+there is just 1 thing, it's optional to specify this.
+
+44:24
+But if if you want 2 things as part of
+
+44:26
+that 1 single row, we will need to specify that
+
+44:29
+over here. Here, it's totally optional. We can do that,
+
+44:32
+and we cannot do that as well. Okay. So I
+
+44:34
+hope this was
+
+44:36
+clear. Now let's go back to the cells that we
+
+44:38
+skipped. And after that, I'll just come back to the
+
+44:41
+assignments. Yeah.
+
+44:42
+I skipped this 1.
+
+44:44
+So I was telling that
+
+44:47
+with Gradio,
+
+44:48
+it is also possible to return complex data structures as
+
+44:51
+output like a data frame like a data frame. So
+
+44:54
+what am I doing? Again, interface.
+
+44:57
+The function that's gonna be used to process inputs to
+
+45:00
+generate the outputs is this function, Specify that.
+
+45:03
+No input. I'm not specifying any input over here. If
+
+45:05
+I want, I can totally do that. For the sake
+
+45:08
+of simplicity, I'm not doing that over here. Outputs.
+
+45:12
+What output am I gonna get? I'm gonna get 2
+
+45:15
+different types of outputs. It's not number or text anymore.
+
+45:18
+It's a little bit complex as compared to that.
+
+45:21
+The first output is of type data frame, again, as
+
+45:25
+a class defined inside gradu, g r dot data frame.
+
+45:28
+The second input is gonna be some, sorry, the second
+
+45:31
+output is gonna be some markdown text, and that is
+
+45:33
+what I specify over here. Let's run this and see
+
+45:36
+what we get. And let's also see what are we
+
+45:38
+returning out of this function. In this function, we create
+
+45:41
+a data frame like this, and then we have some
+
+45:43
+markdown text like this. First thing is I return a
+
+45:46
+data frame. Second thing is I I return the markdown
+
+45:48
+text.
+
+45:49
+Maybe
+
+45:51
+an exercise is to flip the return order.
+
+45:55
+What do I mean by flipping the return order? Something
+
+45:57
+like
+
+45:59
+take
+
+46:00
+this
+
+46:01
+and then, you know,
+
+46:04
+like this.
+
+46:05
+Please try to run this and see what happens. But
+
+46:07
+here, it's, like, pretty straightforward.
+
+46:13
+Yeah. Is this a b or let me see. Let
+
+46:15
+me click the generating. Yeah. So this is the 4
+
+46:18
+this is the output 0,
+
+46:20
+the data frame, and then this is bold text example,
+
+46:22
+the text that I'm returning
+
+46:24
+here, the markdown text.
+
+46:26
+So complex outputs
+
+46:28
+are also possible to
+
+46:31
+return via grid view.
+
+46:33
+Okay?
+
+46:35
+Let's move on to the next thing. The next thing
+
+46:37
+is that
+
+46:39
+we saw an example of a complex output where we
+
+46:41
+have a data frame and some markdown text as the
+
+46:44
+output. You can also have
+
+46:47
+graphs as output.
+
+46:49
+And for that, the component is plot, g r dot
+
+46:52
+plot.
+
+46:53
+So, again, very simple.
+
+46:57
+We have the input component,
+
+46:59
+a numerical button,
+
+47:01
+and 1 output is, again, a numerical button, and then
+
+47:04
+there is a graph output as well. That is the
+
+47:06
+plot component.
+
+47:08
+Both all 3 of them have their own labels. Then
+
+47:10
+we have a button. And then whenever we click the
+
+47:12
+button, what happens is that this compute and plot button
+
+47:15
+is called.
+
+47:16
+That takes in a number, takes in what? This input
+
+47:19
+number,
+
+47:21
+calculates its square, return
+
+47:23
+that, and calculates
+
+47:25
+some figure
+
+47:26
+using, again, that number, using some matplotlib code, and returns
+
+47:30
+that. So what do we have? We have 2 outputs.
+
+47:33
+2 outputs. 1 is the numerical output, output num specified
+
+47:36
+by
+
+47:37
+this line, the second line over here.
+
+47:39
+The second output
+
+47:41
+is the plot graphical output that's specified by this plot
+
+47:45
+output, g r dot plot component over here. I run
+
+47:48
+it.
+
+47:50
+I'm gonna get the plot. So very simply, I'm going
+
+47:53
+very fast over these examples. The reason is that we
+
+47:56
+know interface, we know blocks, we know different components.
+
+48:00
+I'm just specifying
+
+48:01
+that we can have different different types of outputs as
+
+48:04
+well. It's not like number, text, image, audio only. We
+
+48:07
+can have graphs as well.
+
+48:09
+We can have data frames as well. We can have
+
+48:11
+markdown text as well. Different types of components are also
+
+48:14
+possible via gradient.
+
+48:16
+Okay? Let's try to see what happens if I say
+
+48:18
+4 maybe.
+
+48:21
+I think some some caching is happening, and I click
+
+48:24
+on compute,
+
+48:26
+squared output, and then I get some plot. This is
+
+48:28
+again an output.
+
+48:30
+Cool.
+
+48:32
+Let's move forward.
+
+48:33
+So
+
+48:35
+then there is just 1 1 more thing that I
+
+48:37
+wanna cover, which is, I think, a little bit more
+
+48:40
+advanced, might not even be needed,
+
+48:43
+but let's still see what we are
+
+48:46
+looking at over here.
+
+48:50
+Sometimes,
+
+48:51
+our UIs require
+
+48:53
+a lot of
+
+48:55
+interactability,
+
+48:56
+like, click a button and this happens,
+
+48:59
+change some field and this happens, like that. That is
+
+49:02
+also possible via Gradio.
+
+49:05
+We can define events. So let's see what we're doing
+
+49:07
+over here. First, let me run this and see what
+
+49:10
+we get.
+
+49:15
+So we run this. I'm gonna enter my name
+
+49:19
+or some name, outscale.
+
+49:23
+As and when I
+
+49:25
+keep entering things over here, maybe my name, this change
+
+49:29
+output
+
+49:30
+automatically
+
+49:31
+keeps on
+
+49:33
+generating something. So this is like an event.
+
+49:37
+When
+
+49:38
+an event like
+
+49:40
+change to this enter your name box occurs, maybe some
+
+49:44
+other name like, growth school.
+
+49:47
+Whenever this event happens,
+
+49:49
+this output gets changed. This is the event. And then
+
+49:52
+there is 1 more event, which is that whenever we
+
+49:54
+click this button this is again an event. Whenever we
+
+49:56
+click this button, we get some output
+
+49:59
+over here.
+
+50:02
+So how can we have
+
+50:04
+this sort of a thing built in radio? I think
+
+50:07
+the click thing we already know because greet button, we
+
+50:09
+have this button
+
+50:10
+dot click, and it's just gonna give the output upon
+
+50:13
+clicking. That is okay. We just have to look at
+
+50:15
+this change component. So what are we doing?
+
+50:18
+With these blocks, again, I am defining my demo.
+
+50:22
+First is I'm gonna display some markdown text, then I
+
+50:24
+have some textual
+
+50:26
+input,
+
+50:27
+then I have some
+
+50:29
+output box, which is the click output. The second box
+
+50:31
+over here, again, textual.
+
+50:34
+Then I have a third box, which is the
+
+50:38
+like, the second output over here. Again, a textual output.
+
+50:41
+So this is very simply. We're just defining the 3
+
+50:44
+boxes.
+
+50:45
+This is important.
+
+50:46
+I think this greet button dot click thing is already
+
+50:48
+clear. We've covered it.
+
+50:50
+The second line says that
+
+50:55
+whenever
+
+50:56
+this name input box, that is the input box, whenever
+
+51:00
+this changes, whenever the value present inside this changes, like,
+
+51:03
+if I write changes over here, the value changes, this
+
+51:06
+is gonna change. So what are we saying? Whenever this
+
+51:09
+changes, so whenever whenever this change event happens,
+
+51:13
+call this
+
+51:14
+function, get the input, display the output. That's it.
+
+51:18
+Exactly just how this click thing functions.
+
+51:21
+The click thing says that whenever this greet button is
+
+51:24
+clicked,
+
+51:25
+take the input, call this function, generate the output, and
+
+51:29
+display in this button.
+
+51:30
+Exact same thing over here.
+
+51:33
+Whenever
+
+51:35
+the input inside this box changes upon changing dot change,
+
+51:39
+take the input,
+
+51:41
+call this function, generate the output. What is this on
+
+51:44
+change function doing? Just taking the input and then
+
+51:48
+giving back a string output.
+
+51:51
+That is it.
+
+51:52
+That's for radio. We've covered a couple of things, blocks,
+
+51:55
+interface, different kind of buttons, drop down,
+
+51:59
+radio,
+
+52:00
+slider. Radio button is also 1 thing. Feel free to
+
+52:02
+explore that. We've covered events handling,
+
+52:05
+and I think we also understood how to share radio
+
+52:08
+demos.
+
+52:09
+Different types of multimedia inputs and outputs, image audio, that
+
+52:13
+is also possible, data frames,
+
+52:15
+and,
+
+52:16
+yeah, graphical outputs are also possible. We've covered all of
+
+52:20
+that. So I think with the radio part of the
+
+52:22
+session, I am done. Let's go through the
+
+52:27
+assignments.
+
+52:28
+K?
+
+52:30
+Yeah. Let's go through the assignments.
+
+52:35
+Okay. So the way the assignment
+
+52:39
+for today is structured
+
+52:42
+is that
+
+52:43
+we have
+
+52:45
+4
+
+52:46
+steps
+
+52:48
+to completing this assignment.
+
+52:51
+4 steps in the sense, we are gonna have 4
+
+52:55
+notebooks.
+
+52:56
+Each notebooks requires us each notebook
+
+53:01
+requires us to fill
+
+53:05
+some
+
+53:06
+missing part of the code
+
+53:10
+for the full notebook to work end to end.
+
+53:13
+And when we keep on going to the
+
+53:17
+notebooks after the notebook that we're currently at, like, 2
+
+53:20
+note assignment 2,
+
+53:21
+assignment 3 a, and 3 b,
+
+53:24
+we are adding
+
+53:26
+some more components, some more complexities,
+
+53:28
+some things are being used from the previous notebooks, so
+
+53:31
+on and so forth.
+
+53:34
+Yeah. Okay.
+
+53:36
+And 1 thing to note is that
+
+53:38
+these assignments
+
+53:40
+are hundred percent based on what we covered yesterday
+
+53:44
+as well as today as part of the Gradio session.
+
+53:46
+For Gradio,
+
+53:49
+blocks is not even needed for the assignment as far
+
+53:51
+as I remember.
+
+53:54
+It's not needed. Yeah.
+
+53:57
+For Gradio, blocks is not even needed. So with the
+
+53:59
+interface part of things, whatever was covered yesterday
+
+54:03
+for Gradio,
+
+54:04
+these assignments can
+
+54:06
+be completed.
+
+54:08
+Let me also
+
+54:10
+specify the problem statement. What we are doing is we
+
+54:13
+are just, again, building a very simple chat application using
+
+54:16
+open router.
+
+54:17
+Everyone must have their own OpenRouter API keys.
+
+54:20
+So, make sure to set that environment variable correctly.
+
+54:24
+We're building a very simple chat application
+
+54:27
+that calls OpenRouter,
+
+54:30
+gets some model response from there,
+
+54:33
+displays the output,
+
+54:35
+and then we're building a Gradio UI for that.
+
+54:38
+Alright? And this is a multimodal example in that images
+
+54:42
+can also be handled
+
+54:44
+via
+
+54:45
+this code.
+
+54:46
+We handled images yesterday.
+
+54:48
+Today, again, we're gonna handle images.
+
+54:51
+So
+
+54:52
+from my
+
+54:55
+point of view
+
+54:56
+or let's say, in my opinion, the assignment is very
+
+54:59
+simple.
+
+55:00
+It's just that we need to remember what we covered
+
+55:03
+yesterday,
+
+55:04
+not even today, just what we covered yesterday, and this
+
+55:06
+assignment would be very easy to do.
+
+55:09
+I think we are good to go in breakout rooms
+
+55:11
+now.
+
+55:14
+And,
+
+55:15
+yeah, I can get started with the assignment.
+
+55:20
+Folks,
+
+55:22
+did
+
+55:23
+everybody understand?
+
+55:28
+Just mean everybody has received the open upgrade API key.
+
+55:32
+Right? So you can check it in your promotions folder.
+
+55:35
+You'll be able to find it there.
+
+55:39
+Yep.
+
+55:39
+So, folks,
+
+55:41
+are we good with radio part? Everybody understood?
+
+55:50
+Oops. Can I get a PKS in the chat?
+
+55:54
+Or else, like, whether you have understood, not understood.
+
+55:58
+Yes.
+
+56:11
+K.
+
+56:13
+So any assignment is under day 5.
+
+56:16
+And then get a good save.
+
+56:24
+Yes.
+
+56:25
+Okay.
+
+56:30
+Srishti,
+
+56:31
+are we good to go in the breakout rooms?
+
+56:34
+Yeah. I think, yes, we're good to go.
+
+56:37
+In the chat, I saw some query that says we
+
+56:40
+haven't got an assignment in c 6 repo.
+
+56:43
+So I'm not sure. I might do an across check
+
+56:45
+there.
+
+56:46
+It is under this the file itself.
+
+56:49
+So Okay.
+
+56:51
+We can just
+
+56:54
+I'm just sharing the data link once again.
+
+56:56
+Right?
+
+57:02
+So this is the GitHub link.
+
+57:04
+You can check for day 5. Right?
+
+57:08
+So we'll be able to find all the 4 assignments
+
+57:10
+there.
+
+57:12
+So, Shri,
+
+57:13
+is this where they have to basically download their dot
+
+57:16
+p y file and store it in their,
+
+57:18
+drive and then mount it to the collab notebook and
+
+57:21
+then do it?
+
+57:23
+It's like
+
+57:24
+just clone the repo,
+
+57:27
+start a virtual environment,
+
+57:29
+and then do it over there.
+
+57:31
+Okay. That's the easiest and the simplest way. Collab notebook
+
+57:35
+we can do it over there, but I think
+
+57:37
+let's get in the habit of creating a virtual environment
+
+57:40
+and then running scripts.
+
+57:42
+Oops. Is it clear on how to how to run
+
+57:45
+the files?
+
+57:53
+Why so many notes?
+
+57:58
+Folks, you are able to see the
+
+58:05
+Okay. I think there is confusion on how Python scripts
+
+58:08
+are actually
+
+58:10
+Yeah. Run.
+
+58:12
+Okay.
+
+58:12
+So okay.
+
+58:15
+Yeah. I think
+
+58:16
+let's go in the breakout rooms,
+
+58:18
+and then
+
+58:20
+that is actually so okay. Let me do this. No
+
+58:23
+worries. I'm gonna share my screen.
+
+58:25
+Yep. This You want me to share the GitHub, like,
+
+58:28
+repo
+
+58:29
+link? We'll have it.
+
+58:31
+No. No. I can show it over here itself. Yeah.
+
+58:34
+So what am I doing?
+
+58:35
+Forget that this is c 5,
+
+58:38
+c 5. I've,
+
+58:39
+kept the assignment
+
+58:41
+in c 5 on purpose, so don't worry about this.
+
+58:44
+The only thing that we wanna look at is
+
+58:47
+day 3, this day 3, not the upper day 3.
+
+58:50
+Look at this day 3.
+
+58:52
+What is inside this? There is an assignment folder, and
+
+58:55
+there are some other files. We don't need to worry
+
+58:57
+about the other files. We only have the we only
+
+58:59
+have to look at this assignment folder. In this assignment
+
+59:02
+folder, there is a solutions folder that I'm not gonna
+
+59:05
+show today,
+
+59:06
+and then there are 4 assignments.
+
+59:08
+Okay? We need to run these we need to, first
+
+59:11
+of all, complete these 4 assignments and run each file
+
+59:14
+1 by 1. Now how do I do that? The
+
+59:16
+first thing is to activate the virtual environment.
+
+59:18
+If
+
+59:20
+we don't know what a virtual environment is, I think
+
+59:23
+I cannot cover that right now. It's like a basic
+
+59:26
+Python thing. But yeah. It's a virtual environment that we
+
+59:29
+have to activate. How do we do that? Source dot
+
+59:31
+v m v. Very simple thing. We can Google this.
+
+59:36
+And then bin
+
+59:38
+activate. My virtual environment is activated.
+
+59:42
+Okay. I'm inside the wrong repo.
+
+59:44
+1 second.
+
+59:45
+Now it's CD. I'm gonna do
+
+59:48
+source
+
+59:50
+air bin activate.
+
+59:52
+Yeah. Copy the part.
+
+59:54
+Okay. The virtual environment is activated.
+
+59:56
+Now I'm just gonna do Python.
+
+59:59
+And then what?
+
+01:00:01
+This is the file that everyone will be completing,
+
+01:00:04
+this file, assignment 1. But on my end, the solution
+
+01:00:08
+file is completed, so I'm gonna try to run that.
+
+01:00:11
+I say Python,
+
+01:00:12
+name of that file,
+
+01:00:14
+and okay. I don't have the open router key set,
+
+01:00:16
+but this file ran. This is how we run Python
+
+01:00:19
+scripts. I think this should be enough for
+
+01:00:21
+us to understand how to go about it. Okay? So
+
+01:00:24
+let's create the breakout rooms now so that we have
+
+01:00:27
+enough time to finish the assignment as well.
+
+01:00:31
+Yep.
+
+01:00:34
+I guess we are moved to good.
+
+01:00:37
+I'll folks, I'll be creating the breakout rooms. So, again,
+
+01:00:40
+you'll receive the same pop up. Right?
+
+01:00:50
+Yeah. Just clone the GitHub repo and start working with
+
+01:00:53
+it. Folk clone, whatever.
+
+01:00:57
+Via collab, it's possible, but right now, we have to
+
+01:01:00
+do it via scripts. So later, we can do it
+
+01:01:02
+via collab as well.
+
+01:01:04
+Okay. Let's,
+
+01:01:05
+create breakout rooms, Sam, I think.
+
+01:01:08
+Yep. Yep. Folks have opened the breakout rooms.
+
+01:01:12
+So yeah.
+
+01:01:14
+We will start joining them.
+
+01:14:13
+Open router key should be in the email.
+
+01:14:17
+Like, you can get it from there.
+
+01:14:19
+Hi, Sudeshan.
+
+02:56:40
+Somebody here?
+
+02:56:47
+Everyone is in there.
+
+02:57:42
+Hi, Nathan.
+
+02:57:55
+Hello?
+
+02:58:01
+I'm sorry. I was speaking on mute. Can you hear
+
+02:58:04
+me now? Yeah. Yeah. I'm able to hear you. What
+
+02:58:06
+is
+
+02:58:08
+myself, Nagraj.
+
+02:58:10
+Hi, Nagraj.
+
+02:58:12
+Yeah. Have you completed your assignment, and are you free
+
+02:58:16
+for 5 minutes to explain me what is to be
+
+02:58:18
+done? I'm not able to get head rotate.
+
+02:58:21
+I went to my
+
+02:58:23
+break room, but, some people are No. Even
+
+02:58:26
+Even my break room also,
+
+02:58:28
+I,
+
+02:58:29
+dropped out
+
+02:58:31
+from that break room,
+
+02:58:33
+because of due to net then I tried to connect
+
+02:58:36
+it, but it came to common area.
+
+02:58:39
+So what I did, I I have executed it is
+
+02:58:42
+working as well, but I'm
+
+02:58:44
+just executed somehow.
+
+02:58:47
+But I'm not sure. But I will share your screen.
+
+02:58:50
+Basic.
+
+02:58:52
+Can you hear me for 10 minutes? Yeah. Yeah. If
+
+02:58:54
+you share your screen.
+
+02:58:57
+Why not? Why? Yeah. Yeah. 1 second.
+
+02:59:00
+So you are using which machine? Windows machine or,
+
+02:59:04
+Windows. Windows machine. Right? Okay. What?
+
+02:59:08
+You share your screen.
+
+02:59:10
+Okay.
+
+02:59:11
+I have installed
+
+02:59:13
+that
+
+02:59:15
+too. We should Your your your visual's audio code you
+
+02:59:17
+have installed. Right? Now,
+
+02:59:19
+you Yes. Code I have installed. To the terminal.
+
+02:59:23
+Oh. To check whether control
+
+02:59:25
+and, below escape button, there is
+
+02:59:29
+a Tilde.
+
+02:59:30
+Tilde symbol tilde symbol. Plus control plus tilde. You press
+
+02:59:35
+you will get a terminal. Yeah. Now you type Python.
+
+02:59:41
+Okay. Okay.
+
+02:59:43
+Python version is already installed here.
+
+02:59:46
+Everything is installed. I don't know how to use it.
+
+02:59:49
+I have been a data science guy.
+
+02:59:52
+I think we we and we environment also installed, I
+
+02:59:55
+believe.
+
+02:59:56
+You type I have installed environment, but I don't know
+
+02:59:59
+how I came here.
+
+03:00:02
+Oh,
+
+03:00:03
+we and we installed.
+
+03:00:05
+What I did is there is a chart
+
+03:00:08
+right
+
+03:00:09
+here, right side.
+
+03:00:12
+There is a chart button. Yeah. Try,
+
+03:00:15
+I you type. Whether it will respond or not, we'll
+
+03:00:17
+see.
+
+03:00:19
+Where is chat? Yeah. Chat chat. Yeah. Yeah. Right side.
+
+03:00:21
+Yeah.
+
+03:00:23
+This is a kind of, agentic. Yeah. You need to
+
+03:00:27
+log in with the continue with
+
+03:00:29
+the Google or
+
+03:00:31
+anything is fine. Just, continue. Give the access. What it
+
+03:00:36
+it will help you to understand the whole project.
+
+03:00:39
+It is kind of assistance.
+
+03:00:42
+Okay.
+
+03:00:46
+1 sec. Yeah. Yeah. You log in.
+
+03:00:51
+I've been writing in here, and they'll just see if
+
+03:00:53
+I can get something. Yeah. Yeah.
+
+03:00:58
+Hello?
+
+03:01:01
+Hello?
+
+03:01:02
+I'm still here. My wife's good. Okay. Okay. No problem.
+
+03:01:09
+Yeah. Now
+
+03:01:10
+you open
+
+03:01:11
+click on the open Visual Studio. That means it is
+
+03:01:14
+getting connected to your,
+
+03:01:17
+Visual Studio. So you will be able to do a
+
+03:01:19
+chart now. See, right side, you're able to see. Right?
+
+03:01:23
+Correct. Yeah. Now you give,
+
+03:01:27
+the command
+
+03:01:28
+in chart planning,
+
+03:01:30
+execute assignment 1.
+
+03:01:34
+Execute assignment
+
+03:01:36
+underscore 1. Just you mentioned assignment underscore 1. So it
+
+03:01:40
+will give you some step. I think you need to
+
+03:01:43
+install
+
+03:01:45
+PVP or something. I mean,
+
+03:01:47
+v environment.
+
+03:01:49
+PIP, I think. If it is not installed, it will
+
+03:01:52
+tell you to install.
+
+03:01:55
+I did the same thing
+
+03:01:57
+because I was Yeah. Speak
+
+03:01:59
+install.
+
+03:02:00
+No. Don't don't do anything. Don't don't don't do don't
+
+03:02:02
+do anything.
+
+03:02:04
+You allow this session.
+
+03:02:06
+Click on the no. No. Don't do. Above, there is
+
+03:02:09
+a button, right, in the chart
+
+03:02:11
+in the chart.
+
+03:02:13
+1 second. Let me just drag this thing. Basic your
+
+03:02:17
+assignment of 1 router basic dot p y file doesn't
+
+03:02:21
+contain anything or empty file?
+
+03:02:26
+Is it? No. No. It's available. Okay. It's it's available.
+
+03:02:28
+Yeah. Right side in the chart, now you type right,
+
+03:02:31
+below, there is allow this session is there. You click
+
+03:02:34
+on the allow session.
+
+03:02:35
+Yeah.
+
+03:02:38
+Select that requirement for day 4
+
+03:02:42
+below. Above Where? There is a a cursor when right?
+
+03:02:45
+You select that day 4.
+
+03:02:48
+No. No. Select Day 4 or day 5? Select select
+
+03:02:50
+this.
+
+03:02:52
+You need to install some of the things. You click
+
+03:02:54
+on this.
+
+03:02:56
+Okay. Okay. And say okay? Yeah. Yeah. Okay.
+
+03:03:00
+Yeah. Now k. You
+
+03:03:03
+creating a virtual enrollment. Reviewing,
+
+03:03:05
+it is running. Now you type execute.
+
+03:03:10
+I did execute.
+
+03:03:11
+Same. Same. You type here right side chart.
+
+03:03:19
+Execute assignment 1.
+
+03:03:23
+But, actually, we should not do in this way. But,
+
+03:03:26
+anyways, I want to just run and see
+
+03:03:28
+how it works.
+
+03:03:43
+Something
+
+03:03:44
+is happening. I can't see anything.
+
+03:03:47
+It is not running.
+
+03:03:50
+Reviewed assignment on con
+
+03:03:53
+and configured environment, creating a virtual enrollment,
+
+03:03:57
+steering.
+
+03:03:59
+Still, it is running and not showing anything.
+
+03:04:07
+Execute 1.
+
+03:04:09
+Okay. Default 1. There should be some technical support here
+
+03:04:12
+for the at least the tools part. Yeah. Again again,
+
+03:04:15
+you try,
+
+03:04:18
+select
+
+03:04:20
+select the day pi
+
+03:04:23
+from that
+
+03:04:26
+from that, you
+
+03:04:27
+execute assignment 1 you mentioned.
+
+03:04:31
+No. It is not working, anything. It's not responding only
+
+03:04:36
+for you.
+
+03:04:37
+Internet is there. Right? I mean, it is there. You
+
+03:04:40
+close the chart. Click on the general
+
+03:04:42
+greeting inquiries. There it is. Click back.
+
+03:04:49
+Click on the new chat plus button after the chat.
+
+03:04:54
+Yeah. Click on this.
+
+03:04:57
+Creating a virtual
+
+03:04:59
+environment. Wait. I think, there is something is happening in
+
+03:05:02
+behind the scene.
+
+03:05:06
+Clicked. Right?
+
+03:05:09
+I have to click on plus, sir? Click. Click. Yeah.
+
+03:05:11
+Plus click click on the plus
+
+03:05:14
+icon. I have done. Yeah. You have done. Right? Now
+
+03:05:16
+you type hi while it responds.
+
+03:05:21
+Yeah. It's working. Right? Something is coming.
+
+03:05:25
+Yes. Yeah. Now you tell to execute the assignment 1.
+
+03:05:33
+You copy the file name
+
+03:05:39
+there and paste.
+
+03:05:42
+Otherwise, the context might not get
+
+03:05:51
+Yeah. Now something is
+
+03:05:53
+telling. Yeah. Now it will give you the steps
+
+03:05:58
+1 by 1. Yeah. Hello. You try Palo. Hello. Hello
+
+03:06:01
+button.
+
+03:06:04
+Yeah.
+
+03:06:20
+Somebody said you have to create this file and put
+
+03:06:23
+your open router key here. Yeah. Yeah. That I will
+
+03:06:25
+tell you. Wait. It will,
+
+03:06:27
+ask you to do it.
+
+03:06:30
+Informed about incomplete.
+
+03:06:32
+The file has incomplete with yeah. Please,
+
+03:06:37
+mention,
+
+03:06:38
+complete the implementation based on the to do.
+
+03:06:43
+Complete the some error came while creating a virtual environment.
+
+03:06:47
+Complete.
+
+03:06:51
+Complete the implementation,
+
+03:06:55
+or you would just type 1 also. It will take
+
+03:06:57
+automatically.
+
+03:07:00
+Just 1? Yeah. Yeah. Enter.
+
+03:07:03
+Here, the this is a chart, basically. It's a kind
+
+03:07:06
+of a help helping,
+
+03:07:08
+help bot. Okay? Where assistance
+
+03:07:10
+for,
+
+03:07:12
+your any anything which will which is getting connected with
+
+03:07:15
+the Internet, and it will apply. Now in your file,
+
+03:07:18
+earlier, we have some to dos in the file. Hello?
+
+03:07:21
+Click on the hello.
+
+03:07:22
+Click on the hello.
+
+03:07:25
+Yeah. To do was there. Right? To do is the
+
+03:07:29
+requirement which we need to implement as per the assignment.
+
+03:07:33
+So it will execute. It will go and say, no.
+
+03:07:36
+There is a API key.
+
+03:07:37
+E n v open router is there. Right?
+
+03:07:40
+There is Correct. Click on this,
+
+03:07:44
+mouse over on this. Yeah. Execute.
+
+03:07:46
+Copy this into
+
+03:07:48
+your,
+
+03:07:49
+there is
+
+03:07:51
+a notepad or somewhere.
+
+03:07:55
+Copy this.
+
+03:07:57
+Or it will copy. You just, click on the copy.
+
+03:07:59
+I mean, there is a 3 icons are there. Right?
+
+03:08:02
+Rest last 1. Yeah. Copy. Click go to notepad or
+
+03:08:05
+somewhere.
+
+03:08:12
+Yeah. Just paste here. And now go to your email
+
+03:08:14
+and see the API router key.
+
+03:08:21
+Mail which they sent.
+
+03:08:23
+Directly going there. Only button. Yeah. Yeah. Open key router.
+
+03:08:27
+Yeah. Just copy this
+
+03:08:31
+and paste into
+
+03:08:34
+It should be within quotes?
+
+03:08:37
+Yeah. It within quotes.
+
+03:08:39
+You are assigning that key. You copy this whole
+
+03:08:42
+I should delete this c n v? No. No. No.
+
+03:08:45
+Don't delete anything. Copy this whole.
+
+03:08:51
+Copy it? Copy it and go to that chart.
+
+03:08:56
+Visual Studio.
+
+03:08:58
+Put it in the chart.
+
+03:09:01
+K. Yeah.
+
+03:09:04
+Arun,
+
+03:09:05
+mention enter.
+
+03:09:07
+Yeah.
+
+03:09:10
+Now it is setting your environment variable with the creep.
+
+03:09:13
+Hello. You click on the low.
+
+03:09:17
+Yeah. Now what happened? The environment variable has been set
+
+03:09:21
+now
+
+03:09:22
+to execute your, command. Again, allow. Click on the yellow.
+
+03:09:28
+What is the system? We're not doing anything? Everything is
+
+03:09:30
+done with the system?
+
+03:09:32
+Yeah. Everything we do is achieved. The control, which is
+
+03:09:35
+reading this file, whatever they have written,
+
+03:09:38
+which will be reading, and it's see, the output, it's
+
+03:09:41
+shown. Right?
+
+03:09:42
+Exec the done the script executed successfully here. The output
+
+03:09:46
+is Gradio is a open source
+
+03:09:49
+Python library allowed to
+
+03:09:54
+allow the developer was to create user friendly by the
+
+03:09:57
+database, so he'll not kind of,
+
+03:10:00
+it's all chart basis based on English in from to
+
+03:10:04
+whatever you are going to give, it will run. Now
+
+03:10:07
+what you do is now again you enter.
+
+03:10:10
+Now again you tell,
+
+03:10:12
+execute the assignment 1 file.
+
+03:10:15
+Because now you are set up the key.
+
+03:10:18
+Copy the same file name.
+
+03:10:26
+Yeah.
+
+03:10:28
+What earlier they have explained is in the to do
+
+03:10:31
+section,
+
+03:10:32
+if this this is the example for, I think, just
+
+03:10:36
+a
+
+03:10:38
+okay. Allow. Okay. First 1 is only it will give
+
+03:10:40
+you the
+
+03:10:42
+command.
+
+03:10:43
+First assignment is the output is only the text message,
+
+03:10:46
+what I believe, which is shown.
+
+03:10:48
+Second assignment will run it next.
+
+03:10:51
+It's just a message.
+
+03:10:52
+Yeah. This is the output for first assignment.
+
+03:10:56
+Vudo is an open source.
+
+03:10:59
+This is the 1.
+
+03:11:01
+Now,
+
+03:11:02
+type execute assignment 2.
+
+03:11:07
+So in the assignment 1 and assignment 2, they have
+
+03:11:10
+implemented a couple of to do sections.
+
+03:11:13
+The to do section has been done by automatically
+
+03:11:15
+by AI itself
+
+03:11:17
+with assistance, what we did. And, normally, we need to
+
+03:11:20
+do it manually,
+
+03:11:21
+like understanding the code, and we need to write it,
+
+03:11:24
+this to do code. But what we did here is
+
+03:11:27
+we have taken the assistance from AI, and we try
+
+03:11:30
+to
+
+03:11:32
+ask
+
+03:11:33
+assistant to implement it. So if you see that, green
+
+03:11:36
+color, right, in the basic dot p y.
+
+03:11:40
+Hello. Yeah. Hello.
+
+03:11:43
+Green color 1 is the right response equal to client
+
+03:11:45
+dot chart dot completion create,
+
+03:11:48
+something like that.
+
+03:11:50
+Mhmm. So use the model ready to respond.
+
+03:11:54
+Done. This is also done successfully, this module with the
+
+03:11:56
+file function.
+
+03:11:58
+The module
+
+03:12:00
+implemented see, this to instead of to do, you are
+
+03:12:03
+able to see some modification. Right?
+
+03:12:06
+Correct. Correct. Image bytes equal
+
+03:12:09
+to pipe path dot read dot bytes. Read dot bytes
+
+03:12:12
+is kind of a method which is taken from either
+
+03:12:16
+OpenAI or some other,
+
+03:12:19
+sorry, path from path, we have taken this to compile
+
+03:12:23
+the image, all function. Definition is a function, complete definition.
+
+03:12:28
+So that 1, it was done. Now you try execute
+
+03:12:31
+3.
+
+03:12:33
+Execute the assignment 3.
+
+03:12:35
+Post 2 assignment is just
+
+03:12:38
+a text output.
+
+03:12:39
+It will re,
+
+03:12:41
+respond with the text output.
+
+03:12:43
+Now execute,
+
+03:12:45
+3
+
+03:12:47
+is. What it will do, it will give a visual
+
+03:12:50
+chart window.
+
+03:12:51
+What they created yesterday, if you have joined.
+
+03:12:55
+Yesterday,
+
+03:12:56
+we did,
+
+03:12:57
+Sean. Right? Not with it,
+
+03:13:00
+other guy. Shown the Correct. The chart window, right, where
+
+03:13:04
+he can upload image and get the information.
+
+03:13:08
+So that is the 1 which will show for third
+
+03:13:11
+and fourth, basic and advanced.
+
+03:13:13
+Basic is it will create 1 kind of a chart
+
+03:13:15
+window,
+
+03:13:17
+then it will allow us to
+
+03:13:19
+enter the image and, modify the things, whichever required.
+
+03:13:24
+So that is what they created for us.
+
+03:13:27
+So same thing, we need to do. Here, if you
+
+03:13:30
+click on 3 a basic,
+
+03:13:33
+file, click on the file. Yeah. Now to do it
+
+03:13:36
+It's already done. Yeah. It is updated. Follow the session.
+
+03:13:39
+Allow this session.
+
+03:13:41
+So it is,
+
+03:13:43
+3.4
+
+03:13:45
+select that 3.4 Python
+
+03:13:49
+globally. I do it now. Question question
+
+03:13:52
+is very simple. How do I set an environment
+
+03:13:55
+create an environment file? Do you know that? Yeah. You
+
+03:13:58
+have to it is a kind of environment creation. It's
+
+03:14:02
+v n v environment. Again, the same command I tried
+
+03:14:06
+with the command only here only.
+
+03:14:11
+V n v. You how to set up v n
+
+03:14:13
+v, you just mentioned. It will tell you.
+
+03:14:17
+Oh,
+
+03:14:18
+okay. How to set up v n v. It will
+
+03:14:22
+give 3 commands.
+
+03:14:25
+It is a Python. See, by, either the environment will
+
+03:14:29
+be created so that in that environment, we are executing
+
+03:14:31
+the our project.
+
+03:14:33
+Otherwise,
+
+03:14:34
+normally, if you install a Python, it will become a
+
+03:14:37
+global.
+
+03:14:38
+Normal Python is a global.
+
+03:14:41
+We and we is virtual environment will be created
+
+03:14:45
+to execute our,
+
+03:14:47
+projects inside that virtual environments. The virtual environments have couple
+
+03:14:52
+of files. If you go to AI accelerator c 6,
+
+03:14:56
+first to drop down. Where
+
+03:14:58
+where is the there? Yeah. If you left side left
+
+03:15:01
+side.
+
+03:15:02
+Left? What? Yeah. Left side. Accelerator
+
+03:15:05
+c 5 is there. Right?
+
+03:15:08
+Left side. Left, where files are there? Files? Files.
+
+03:15:14
+Evo. Evo. Evo. Dot v
+
+03:15:17
+e n v is there. Ebo. No. Not that 1.
+
+03:15:20
+Ebo.
+
+03:15:21
+Ebo. Day before day 2. Before day 2. 0, this.
+
+03:15:24
+Not that 1.
+
+03:15:27
+Then? Accelerator AI accelerator c 5. There is a
+
+03:15:31
+name. Below that, there is a v n v e
+
+03:15:34
+n v is there.
+
+03:15:36
+Yeah. Click on this. Yeah.
+
+03:15:39
+Here, it these are the files which is having. The
+
+03:15:42
+library include script,
+
+03:15:44
+all these files.
+
+03:15:45
+Once you we E and V created, you need to
+
+03:15:48
+activate it. If you click on the script
+
+03:15:52
+script. Script. Yeah. Here, there is a active. Right? Active
+
+03:15:55
+SH.
+
+03:15:56
+Activate PS 1.
+
+03:15:58
+So once we created the virtual enrollment, we need to
+
+03:16:02
+activate
+
+03:16:03
+it. Activate it. Activate,
+
+03:16:05
+virtual enrollment you type.
+
+03:16:07
+It will give in the chart.
+
+03:16:10
+Activate virtual enrollment
+
+03:16:16
+In terminal. You mentioned in terminal.
+
+03:16:22
+Click on the plus icon in the terminal. No. No.
+
+03:16:24
+Don't don't don't do don't go to
+
+03:16:28
+terminal. Click on the plus icon. Click on plus.
+
+03:16:31
+The PowerShell came right here. If you see, v n
+
+03:16:34
+v is already activated.
+
+03:16:35
+You're able to see. Right?
+
+03:16:38
+Mhmm. Dot
+
+03:16:39
+v e n v.
+
+03:16:44
+Green color is that in the terminal.
+
+03:16:47
+Because it is I executed I didn't create everything. I
+
+03:16:51
+created the file just.
+
+03:16:53
+Yeah. You created a file. We have created a chart,
+
+03:16:56
+right,
+
+03:16:57
+where it is available.
+
+03:16:59
+So that is done in background. Now we need to
+
+03:17:02
+if you don't want to do that 1, click on
+
+03:17:06
+batch file is also available. Deactivate dot batch.
+
+03:17:09
+If you deactivate
+
+03:17:10
+dot batch, if you type
+
+03:17:12
+I mean,
+
+03:17:14
+deactivate dot batch. Yeah. Click on that.
+
+03:17:18
+Yeah. Execute deactivate batch, you can type in the chart.
+
+03:17:23
+Now it will remove the virtual enrollment.
+
+03:17:40
+Oh, this terminal, it is not working properly.
+
+03:17:44
+There is not not responding.
+
+03:17:45
+Some better ID than this? No. This ID is better
+
+03:17:49
+only. Not a problem. You click there is 1 problem.
+
+03:17:51
+Wait. There is a 1 pop up cam, right, in
+
+03:17:54
+the ID.
+
+03:17:56
+Where was that? Here in the pile above whatever. Yeah.
+
+03:18:00
+You select 3.1 0.4.
+
+03:18:02
+I mean, 3 dot 1 dot 4.
+
+03:18:05
+Here. Here. If you
+
+03:18:09
+I'm The right, left, north, south. No. Not in the
+
+03:18:12
+file where you have opened the file. Right? In the
+
+03:18:15
+main window,
+
+03:18:16
+there is a pop up opened.
+
+03:18:19
+Right side. Right side. Little bit. Right?
+
+03:18:22
+You You're able to see Python. Python 3 dot 1
+
+03:18:25
+4 dot 4.
+
+03:18:27
+In the center of the screen, your center of the
+
+03:18:30
+screen.
+
+03:18:31
+Bow.
+
+03:18:32
+Yeah. This 1. You click on 3. Yes. Yes. Yeah.
+
+03:18:34
+Yeah. You come down. Wait. Wait. Come down.
+
+03:18:37
+Recommended is there. Right?
+
+03:18:39
+V and v. Click on 3.1
+
+03:18:42
+dot first 1.
+
+03:18:44
+Yeah. First 1. Click on this. Now it will allow.
+
+03:18:48
+K. Now, it will run execute.
+
+03:18:51
+Which enrollment you have selected. Right? Now click on allow.
+
+03:18:57
+Allow.
+
+03:18:59
+Allow.
+
+03:19:01
+Now it is getting deactivated.
+
+03:19:04
+Now if you open 1 plus 1 more terminal
+
+03:19:09
+Oh. Click on the plus terminal.
+
+03:19:11
+PowerShell. PowerShell here.
+
+03:19:13
+Yeah.
+
+03:19:17
+Now if you see okay. It is not yet deactivated.
+
+03:19:19
+Go a little bit up right side.
+
+03:19:23
+Right side. Chart.
+
+03:19:25
+Scroll down. Yeah. You write to deactivate here. C 6
+
+03:19:29
+is the right in terminal.
+
+03:19:31
+Terminal. Terminal. Not in the chat. Terminal. Deactivate.
+
+03:19:37
+Now you are e n v gone.
+
+03:19:40
+Correct.
+
+03:19:41
+Okay. Now you want to activate again.
+
+03:19:45
+You there is a command which is mentioned here.
+
+03:19:50
+Where? The right side in the chart.
+
+03:19:53
+A little bit scroll up. P s activate 1 is
+
+03:19:55
+there. Right? Click on the,
+
+03:19:57
+p s activate.
+
+03:19:59
+No. Not that 1. Wait. Second second point number 2.
+
+03:20:04
+Copy this. This 1? Yeah. Copy this
+
+03:20:07
+and execute in the terminal.
+
+03:20:13
+Yeah. Now enter. Now virtual environment created.
+
+03:20:16
+Now you type the point number 4.
+
+03:20:19
+Install packages.
+
+03:20:24
+Copy this.
+
+03:20:26
+First icon, if you click it, it will automatically come
+
+03:20:29
+to your, this 1, terminal.
+
+03:20:36
+Enter. Yeah. Now some error you got it because this
+
+03:20:39
+requirement
+
+03:20:40
+is not coming from that
+
+03:20:43
+okay. Your screen got disconnected.
+
+03:20:46
+But I'm still here? No. No. Screen 1 second. Let
+
+03:20:49
+me. Screen share
+
+03:20:51
+disconnected.
+
+03:20:53
+Share.
+
+03:20:54
+Sorry.
+
+03:21:31
+Okay.
+
+03:21:33
+So
+
+03:21:34
+is everybody back?
+
+03:21:38
+Yeah,
+
+03:21:39
+folks. Everybody's back?
+
+03:21:47
+Okay. Great.
+
+03:21:49
+So how was it? How How was today's breakout room,
+
+03:21:52
+folks?
+
+03:21:56
+All good. All good.
+
+03:21:58
+Great. Are you able to get the output?
+
+03:22:12
+Okay. I see. That's great. Like, I think yeah. I
+
+03:22:14
+mean,
+
+03:22:15
+we did saw, like, 2 or 3 notes. That's why
+
+03:22:17
+we're looking at all the 4 assignments.
+
+03:22:19
+Yes.
+
+03:22:20
+I guess most of them are facing the issue in
+
+03:22:22
+the first assignment. Then once that got resolved, everybody picked
+
+03:22:25
+it up. Right?
+
+03:22:27
+Yeah. Okay. I'm happy to add it. The text to
+
+03:22:29
+audio feature as well. Great.
+
+03:22:32
+Nice.
+
+03:22:34
+Okay. People are getting creative.
+
+03:22:36
+Great. That's great. That's great. No problem. You don't have
+
+03:22:40
+to push the assignments.
+
+03:22:42
+I'll I'll come to that, like, where to submit and
+
+03:22:44
+how to submit. Right? Okay. Folks, I'll just quickly launch
+
+03:22:48
+the CSAT code. Right? So you guys know that it'll
+
+03:22:52
+what to do.
+
+03:22:54
+Once it is done, we'll just,
+
+03:22:56
+you know, take a quick,
+
+03:22:58
+q and a.
+
+03:23:09
+Yeah. See that. You can just, drop me a text,
+
+03:23:12
+like, on an email. So I'll just make sure I'll
+
+03:23:14
+just check it back.
+
+03:23:21
+Okay.
+
+03:23:23
+Great. So
+
+03:23:25
+what I'll do is
+
+03:23:27
+I'll just share the slider link.
+
+03:23:34
+Yep. Folks, I'm just,
+
+03:23:39
+keeping the chat off for a minute so that you
+
+03:23:41
+guys can put your questions in.
+
+03:23:44
+So
+
+03:23:45
+yeah.
+
+03:23:47
+You guys can start putting your questions.
+
+03:24:04
+Folks, how many of you were able to complete all
+
+03:24:07
+the 4 assignments?
+
+03:24:08
+How many of you?
+
+03:24:09
+Can I get a quick yes in the chat?
+
+03:24:12
+All 4. All 4.
+
+03:24:19
+No
+
+03:24:22
+1. This
+
+03:24:24
+is not the case.
+
+03:24:26
+I saw, like, I saw around
+
+03:24:28
+2 to 4 up to oh, okay. Oh, my bad.
+
+03:24:32
+Yeah. Yeah. I'll move on the chat. Yeah.
+
+03:24:36
+My bad, folks.
+
+03:24:38
+Okay. Yes. Yes. Yes. Yes. Okay. I guess I guess
+
+03:24:41
+many of you
+
+03:24:43
+did complete also.
+
+03:24:45
+Okay.
+
+03:24:47
+That is great.
+
+03:24:53
+No. 3, 2, no. That is that
+
+03:24:57
+is fine. That is fine. We are here to learn.
+
+03:24:59
+Right? So we might get stuck in few places, and
+
+03:25:01
+we might debug very quickly.
+
+03:25:04
+So some things might get a bit, you know, late,
+
+03:25:07
+and it may take a bit of time, but that
+
+03:25:09
+is fine.
+
+03:25:10
+The major thing is we are here to learn. Right?
+
+03:25:13
+So
+
+03:25:14
+let's focus on that.
+
+03:25:16
+So we've completed, but it's nice.
+
+03:25:26
+Okay.
+
+03:25:27
+With it, I guess I'll just start sharing my screen.
+
+03:25:31
+Right? Yeah. Sure. We already have a couple of them.
+
+03:25:34
+Can you share some examples on how to use Gradio
+
+03:25:37
+machine learning?
+
+03:25:41
+Okay. So Gradio is more like a UI. Okay? Machine
+
+03:25:44
+learning is the packet.
+
+03:25:46
+What I can do is I can share the Gradio
+
+03:25:48
+documentation.
+
+03:25:50
+Okay.
+
+03:26:01
+View the chart.
+
+03:26:12
+Yeah. So yeah. So Gradio and machine learning is a
+
+03:26:15
+2 diff 2 way different stuff. Gradio is a UI.
+
+03:26:18
+Machine learning is the market.
+
+03:26:20
+There's absolutely no link between both of them.
+
+03:26:24
+Yes. And I know how to Why
+
+03:26:27
+why learn how to write Python code when we have
+
+03:26:30
+not code and codex to do the coding for us?
+
+03:26:35
+Kind of, yes.
+
+03:26:36
+It's not like,
+
+03:26:37
+I won't I won't deny that. But as you scale
+
+03:26:40
+the system and as you, like, build very long, like,
+
+03:26:44
+large systems,
+
+03:26:46
+there's a point you need to learn and know about
+
+03:26:49
+what exactly is happening at a particular
+
+03:26:51
+underscore. So, yes, I mean, you need to learn about
+
+03:26:55
+how to go.
+
+03:26:58
+Can we please show us the output of all the
+
+03:27:00
+assignments so we can see if we were correct? I
+
+03:27:02
+think, Sham, we will be putting the solutions in a
+
+03:27:06
+different folder. Right? Yes. So you will you guys will
+
+03:27:08
+get the solutions in a different,
+
+03:27:10
+folder in the GitHub itself.
+
+03:27:16
+Can you please give more machine learning examples for us
+
+03:27:19
+to understand how they are coded for in Python?
+
+03:27:23
+Okay.
+
+03:27:28
+There's a particular library called SQL.
+
+03:27:31
+What I can do is I can share that with
+
+03:27:34
+you.
+
+03:27:44
+Still done. So I think this is, like, 1 of
+
+03:27:46
+its very, starting
+
+03:27:48
+Python library every machine learning engineer starts with. Okay. So
+
+03:27:52
+I think you can, try to play around with some
+
+03:27:54
+cool business
+
+03:27:56
+here. What is the difference between 3 d and 3
+
+03:27:59
+d? Both called build
+
+03:28:00
+multi model with this function and acted and worked the
+
+03:28:03
+same. Wasn't the idea to show basic
+
+03:28:06
+and not and,
+
+03:28:08
+okay. So the main difference was the video application.
+
+03:28:12
+In the 3 b application, we had more controls on
+
+03:28:16
+the temperature on the top k, on the open outer
+
+03:28:19
+API key. We had more,
+
+03:28:21
+you know, personalization
+
+03:28:23
+on more features in that 3 b. That's the only
+
+03:28:25
+difference. It was very similar to each other.
+
+03:28:29
+Can we have all training parties in the group so
+
+03:28:31
+that we can post our questions and get answers from
+
+03:28:34
+anyone in the group? So that's that's the yeah. Yeah.
+
+03:28:37
+Sure. We can take this. So, basically, at the moment,
+
+03:28:40
+we have kept it to only the administers because,
+
+03:28:43
+right now, we are sharing all the communications to the
+
+03:28:45
+same community for now. So once your whole accelerator is
+
+03:28:48
+done, right, so we'll be opening the community so that
+
+03:28:50
+you guys can have a, you know, chitchat on what
+
+03:28:53
+all you can do and so forth. So at the
+
+03:28:56
+moment, we have just kept it to that.
+
+03:28:58
+So yeah. Apart from that, anyways, you have circle where
+
+03:29:01
+you can, you know, ask questions and your peers can
+
+03:29:03
+also answer them. So
+
+03:29:05
+yep.
+
+03:29:06
+Then there's 1 more point I think I I realized
+
+03:29:08
+while I was in the breakout rooms. Whenever you have
+
+03:29:10
+breakout room, the best way to collaborate is 1 person
+
+03:29:13
+is sharing a task, and everyone is helping around it.
+
+03:29:16
+And everyone is going moving forward from there. I think
+
+03:29:19
+that's what I see in the room,
+
+03:29:21
+fourth or second,
+
+03:29:23
+where 1 person was sharing the entire screen, and they
+
+03:29:26
+were all of them are collaborating there. So that's the
+
+03:29:28
+best way to collaborate.
+
+03:29:31
+How much Python will involve in future future sessions as
+
+03:29:34
+I find it challenging?
+
+03:29:36
+Same like in this case. We have we will have
+
+03:29:38
+the to dos in between the functions. You can always
+
+03:29:41
+copy the entire function, paste it back to ChargeGPD, and
+
+03:29:44
+get an answer from that. Usually, I think 90 to
+
+03:29:47
+95 percent of the times, that should work.
+
+03:29:51
+Sorry. Out of the context questions, if you
+
+03:29:56
+if I want
+
+03:29:57
+to have React as my UI and Python as a
+
+03:30:00
+back end, can we see this which framework I can
+
+03:30:02
+check it out? I think your question answers the your
+
+03:30:05
+question has the answer itself.
+
+03:30:06
+So I think
+
+03:30:08
+if you have chosen React as a UI and Python
+
+03:30:10
+as a back, that's the only answer. There's no question
+
+03:30:13
+in here, I think. My
+
+03:30:16
+day 3 was disaster disaster, unlike today.
+
+03:30:20
+Will can I get help for Google AI Studio joining?
+
+03:30:24
+Agenda. What we'll do is we have also,
+
+03:30:29
+like, basically, we have the JSON file. Right?
+
+03:30:32
+For that thing. So what you can do is, like,
+
+03:30:35
+either ask Claude to give you a step by step
+
+03:30:37
+guide or else we'll create a Loom video and just
+
+03:30:41
+upload it on the LMS so that who is facing
+
+03:30:44
+issues can just go through that recording and,
+
+03:30:47
+solve it. Right?
+
+03:30:55
+Provide
+
+03:30:56
+a
+
+03:30:57
+broader
+
+03:31:00
+perspective
+
+03:31:01
+on what
+
+03:31:03
+we have learned today and suggest any additional scenarios or
+
+03:31:06
+elements to have a hands on?
+
+03:31:09
+Am I audible to you guys? Sean? You are audible,
+
+03:31:12
+but your voice was breaking. Now now I guess it's
+
+03:31:14
+fine.
+
+03:31:15
+Okay. So, as I already like, we wanted to give
+
+03:31:18
+you some hands on, like, how to
+
+03:31:20
+work with Hugging Face, how to work with the
+
+03:31:23
+OpenAI client API, how to work with the Gradio. That's
+
+03:31:27
+the major thing. The best part would be at the
+
+03:31:29
+very end, we have a assignment as well with the
+
+03:31:31
+rag and all of that. There, this entire, no, X-ray
+
+03:31:35
+will help us.
+
+03:31:37
+I think, Shyam,
+
+03:31:39
+okay. Great.
+
+03:31:40
+Is greedy when having face knowledge mandatory for future sessions?
+
+03:31:44
+I am little behind on this.
+
+03:31:46
+Again, I think, if you can
+
+03:31:49
+if you you should use Charge API along with it.
+
+03:31:51
+Okay? Don't try to, you know, go ahead and try
+
+03:31:53
+to solve the entire thing by yourself. Always use strategy
+
+03:31:55
+when you try to answer ask a lot of questions
+
+03:31:57
+there.
+
+03:32:00
+Sean, would you like to take this from? I'll yeah.
+
+03:32:02
+That is fine. Anyways, like
+
+03:32:05
+so after that because I guess it was not a
+
+03:32:07
+problem because, we didn't see
+
+03:32:09
+any any joining issues there from
+
+03:32:12
+your end. So yeah. Anyways, just just go through the
+
+03:32:15
+recordings if you are unable to pick it up. Right?
+
+03:32:21
+In what real world scenarios is the video utilized, and
+
+03:32:24
+is it widely adopted? It is widely adopted.
+
+03:32:28
+It is used by majority of the data science and
+
+03:32:30
+machine learning people who,
+
+03:32:32
+like,
+
+03:32:32
+hate making a UI for themselves, and they can just
+
+03:32:35
+use Python to make a UI. So it's very widely
+
+03:32:37
+adopted. Even I have, like, few application of myself, which
+
+03:32:40
+are on video.
+
+03:32:43
+Today, we try to execute the Python programs, but what
+
+03:32:46
+was the value learning takeaway from it?
+
+03:32:49
+The best product
+
+03:32:51
+best part was you guys were able to make your
+
+03:32:53
+own UI. That's the best part. And
+
+03:32:55
+the hands on experience, I think, is quite different. You
+
+03:32:58
+can learn a lot of things in the theory part,
+
+03:33:00
+but unless unless and until you try to do it
+
+03:33:03
+yourself,
+
+03:33:03
+I think there is always a gap. So, obviously, I
+
+03:33:06
+do have some answer.
+
+03:33:11
+I'm not able to map the learning of the tool
+
+03:33:14
+to use case. That is whether these would ever use
+
+03:33:17
+need to use video ourselves.
+
+03:33:19
+So let's say tomorrow you make your own machine and
+
+03:33:22
+model. You you you you make your own,
+
+03:33:25
+paint version of a new model.
+
+03:33:28
+You can use the greater tool for you can use
+
+03:33:31
+greater to make your own UI and then share share
+
+03:33:34
+it with everyone.
+
+03:33:40
+Why video? When you call an l m model API
+
+03:33:44
+with another front end model,
+
+03:33:46
+why was radio specifically
+
+03:33:48
+introduced?
+
+03:33:50
+So, again, I think answered yesterday as well. Right?
+
+03:33:53
+Because radio provides a lot of, like, you can
+
+03:33:56
+shareable link. Right? It
+
+03:33:59
+it won't go on your host on your local host
+
+03:34:01
+as well. And apart from that, I guess it is
+
+03:34:03
+very,
+
+03:34:05
+like, what do you say? You can,
+
+03:34:08
+build for your demos. Right? And your internal tools, especially.
+
+03:34:12
+So I guess that is why Gradu is much more
+
+03:34:15
+usable and feasible than the other,
+
+03:34:19
+front end device is what I feel.
+
+03:34:21
+So 1 more thing is it's written complete in Python.
+
+03:34:24
+Other functions you have to, you have React, JavaScript, and
+
+03:34:28
+all that. But if you know Python, you can make
+
+03:34:30
+a UI for yourself. That's the best part.
+
+03:34:34
+Oh, yes.
+
+03:34:35
+As a software engineer, do we really have the requirement
+
+03:34:38
+to use hugging phase if we don't have any requirement
+
+03:34:41
+of fine tuning of models?
+
+03:34:43
+I think this course requires you need to
+
+03:34:47
+the need to learn about hugging phase, the gradient, and
+
+03:34:49
+all that.
+
+03:34:50
+If you don't, have any kind of work on the
+
+03:34:52
+software engineering side, machine learning side, even a basic understanding
+
+03:34:56
+what Huddl phase does, it's a very good
+
+03:35:00
+Okay.
+
+03:35:04
+Is it necessary for us to become proficient with syntax
+
+03:35:06
+and code function structure, give the given the issue was
+
+03:35:09
+faced during the first assignment?
+
+03:35:11
+I think,
+
+03:35:13
+you don't need to be very much proficient. You just
+
+03:35:15
+need to know what exactly is happening there. Otherwise, the,
+
+03:35:19
+the way these assignments should be done was, you know,
+
+03:35:22
+you should use Chargebee along with it. So Chargebee should
+
+03:35:25
+take care of all the syntax, the code functions, etcetera,
+
+03:35:28
+and all that.
+
+03:35:31
+How these 4 files, connecting internally presex screen? So the
+
+03:35:35
+first file was very basic. There, your input will be
+
+03:35:38
+a text, and you are able to get a response,
+
+03:35:40
+in a text. The second file was like a input
+
+03:35:44
+the input was an image, and you were getting something
+
+03:35:46
+out of in the text. The second file was getting
+
+03:35:49
+connected with the third and the third, 3 and a
+
+03:35:50
+3 b file.
+
+03:35:52
+How can we implement today's learning
+
+03:35:55
+into our SaaS product?
+
+03:35:57
+If you make your SaaS product and you want to
+
+03:36:00
+host it a word, you know, you want to make
+
+03:36:02
+your own UI and you you only know about Python,
+
+03:36:05
+then, of course, you can use Gradio to do that.
+
+03:36:09
+I have not gotten the time to join each session
+
+03:36:11
+on time. I'm lagging behind. I do not did not
+
+03:36:14
+get everything done yesterday. In today's session, how will I
+
+03:36:17
+finish,
+
+03:36:18
+Shah?
+
+03:36:19
+No issues. So just try to attend the rest of
+
+03:36:21
+the sessions line. Right? So you'll be able to catch
+
+03:36:23
+it up once, you know, once the hackathon or once
+
+03:36:26
+we are,
+
+03:36:27
+coming towards the end. Right? So you'll be able to
+
+03:36:30
+catch up. But the only thing is you have to
+
+03:36:32
+go through the recordings again.
+
+03:36:34
+So that is the only case there. Apart from that,
+
+03:36:37
+yeah, you're good.
+
+03:36:40
+Yes.
+
+03:36:44
+Yeah. So folks coming to
+
+03:36:47
+sorry.
+
+03:36:50
+So coming to tomorrow's,
+
+03:36:51
+timing side, so it will be 10 AM IST.
+
+03:36:54
+Right? So that is, like,
+
+03:36:57
+less than 12 hours.
+
+03:36:58
+So we'll be starting early tomorrow. And for EST folks,
+
+03:37:02
+I guess, the timings has, I guess, Dago's are shared
+
+03:37:05
+in the chat. Right? So that is,
+
+03:37:11
+no, that was I guess, there's an updated
+
+03:37:13
+schedule shared on LMS. So you can check it from
+
+03:37:16
+there.
+
+03:37:17
+Right?
+
+03:37:19
+Yeah. 10 AM IST. So the agenda for tomorrow would
+
+03:37:23
+be rags.
+
+03:37:24
+So yeah. Rags, Lance, Lama,
+
+03:37:27
+sorry, Lance, d v, Lama index. Right? So these are
+
+03:37:30
+the topics that we'll be going into. So tomorrow in
+
+03:37:33
+the morning, we'll start from a very lighter session that
+
+03:37:35
+is we'll go from the basics of racks and everything.
+
+03:37:38
+And in the second half, we'll jump a bit into,
+
+03:37:42
+depth. Right?
+
+03:37:43
+Lang chain, lang graph will come after,
+
+03:37:46
+all that. After the
+
+03:37:48
+your MCBs MCBs is done after everything. Suppose that we'll
+
+03:37:52
+be covering LAN chain. Any coding for tomorrow? Yes. We'll
+
+03:37:54
+be having coding for tomorrow, but that most probably, we'll
+
+03:37:57
+be having it in the second half. Right?
+
+03:38:00
+Yes. I'm good. It is for the whole day.
+
+03:38:07
+Yep. So
+
+03:38:09
+oops. Are we good are we good for today?
+
+03:38:12
+I'll go there.
+
+03:38:21
+Yeah. So regarding your submission of assignments. Right? So
+
+03:38:25
+right now, you guys are solving and you guys are
+
+03:38:27
+saving your file somewhere. Right? So just save it,
+
+03:38:31
+in,
+
+03:38:32
+on Sunday.
+
+03:38:33
+Right? On Sunday, I'll just share a Google Form link
+
+03:38:36
+where you'll be able to upload your link as well
+
+03:38:38
+as your file. So any of the things that you
+
+03:38:40
+are trying like, you are basically saving in, so you'll
+
+03:38:43
+be able to upload it.
+
+03:38:47
+Yes.
+
+03:38:49
+Tomorrow, there is no periods as we'll be starting from
+
+03:38:51
+basics of racks.
+
+03:38:53
+So,
+
+03:38:54
+you'll be fine.
+
+03:38:55
+Tomorrow, 2 sessions. Yes. 1 is 10 to 2 and
+
+03:38:57
+3 to 7. Yes. You are right.
+
+03:39:01
+Okay, folks. I
+
+03:39:07
+guess, I guess we are on Sure. Yeah. We did.
+
+03:39:10
+1 thing I think, 1 1 of the learners have
+
+03:39:13
+some issue with installing Python.
+
+03:39:15
+I'm not sure who exactly it was, but can we
+
+03:39:18
+share some documentation around that on the other lesson there?
+
+03:39:22
+It is, like, on your Friday session. Right? So, Sidharth
+
+03:39:26
+basically took you to the complete
+
+03:39:28
+Python environment on how to install it and everything. So
+
+03:39:31
+there's a documentation as well on your first day recording,
+
+03:39:35
+under that. So you'll be able
+
+03:39:37
+to go for it. Right?
+
+03:39:39
+Instee other links from LMS.
+
+03:39:43
+Link for a link from. So I'm not able to
+
+03:39:46
+show. What are the timing for the last weekend, May
+
+03:39:48
+ninth and tenth, 10 to 5 on Mondays? So the
+
+03:39:50
+last the hackathon thing is Saturday, you'll be having session
+
+03:39:53
+from 10 AM
+
+03:39:55
+to 2 33 PM. That is as of tomorrow. After
+
+03:39:58
+that,
+
+03:39:59
+you'll, you guys can just carry on and start with
+
+03:40:02
+your hackathon.
+
+03:40:04
+Right? So that's not a constraint, like, fixed timing. But,
+
+03:40:07
+yeah, the submission
+
+03:40:08
+is before Sunday, 6 PM IST. So
+
+03:40:16
+okay. Okay, Rajendra. No. No issues. You can just, put
+
+03:40:19
+it on last doubts. I'll be able to take it
+
+03:40:21
+up from there.
+
+03:40:23
+Yeah.
+
+03:40:27
+Okay.
+
+03:40:28
+Visual Studio code. Which code?
+
+03:40:31
+I guess the 4 assignment code are already on the
+
+03:40:33
+GitHub.
+
+03:40:34
+And
+
+03:40:35
+the rest 2 notebooks that,
+
+03:40:37
+Srishti was showing even that is on LMS,
+
+03:40:41
+as well as it was shared in chat as well.
+
+03:40:43
+Right?
+
+03:40:47
+Yeah. You can access the WhatsApp community via welcome and
+
+03:40:50
+next steps page, like on the space you can see
+
+03:40:52
+on the left. And after that, there you can click
+
+03:40:54
+on see more, then you'll be able to see a
+
+03:40:56
+WhatsApp community there.
+
+03:41:02
+Dragos, the new sheet is already on the LMS. So
+
+03:41:05
+I'll just share it again here just for your convenience.
+
+03:41:10
+Okay.
+
+03:41:11
+Just
+
+03:41:24
+Okay. Okay. Okay, folks. So that's it for today. We
+
+03:41:27
+are wrapping up early today because you'll be again having,
+
+03:41:31
+an early session tomorrow, which is less than 12 hours.
+
+03:41:34
+Right? So before that, quickly, can we have a thank
+
+03:41:37
+you within the chat?
+
+03:41:38
+He was able to help you throughout the breakout rooms,
+
+03:41:41
+yeah, folks. And he's been able he's been helping you
+
+03:41:43
+all on the chats as well.
+
+03:41:45
+Right?
+
+03:41:50
+Yes.
+
+03:41:51
+Can we get thank you with it?
+
+03:41:54
+Yes. Great.
+
+03:41:57
+Great. Great.
+
+03:41:59
+Okay.
+
+03:42:01
+Then yeah, folks.
+
+03:42:03
+So that is it.
+
+03:42:04
+I'll be seeing you guys tomorrow morning,
+
+03:42:07
+10 AM IST. You know?
+
+03:42:10
+Just a reminder again, 10 AM IST.
+
+03:42:13
+Right? So we'll be having
+
+03:42:15
+a great,
+
+03:42:17
+mentor
+
+03:42:18
+with us tomorrow who who is being I guess, being
+
+03:42:20
+a personal guide for me as well since I've joined
+
+03:42:23
+Outskill. So yeah. So we'll be meeting him tomorrow.
+
+03:42:27
+Nishith, that will be a surprise. Right? Tomorrow, you'll be
+
+03:42:29
+able to see him. So yes.
+
+03:42:32
+Okay, folks.
+
+03:42:34
+Have a good weekend, I would say. And, yeah, just
+
+03:42:37
+make sure and keep that in mind that you have
+
+03:42:39
+a session at 10 AM IST tomorrow.
+
+03:42:42
+So I'll see you there.
+
+03:42:45
+Bye bye. Good night.
+
+03:42:47
+Good afternoon. Good evening from wherever you guys are joining
+
+03:42:49
+in. Bye, folks.
+
+03:42:51
+Bye, Vedant.
+
+03:42:53
+Well, thank you, everyone. Thank you, Sean. Bye bye.

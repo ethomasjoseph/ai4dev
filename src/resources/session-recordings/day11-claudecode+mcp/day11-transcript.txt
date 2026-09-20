@@ -1,0 +1,3299 @@
+# CLaude Code + MCP
+
+
+00:05:10.000 --> 00:05:12.000
+Sham Kulkarni: Yes. Hi, folks.
+
+00:05:13.000 --> 00:05:17.000
+Sham Kulkarni: How are we doing today? All good?
+
+00:05:20.000 --> 00:05:23.000
+Sham Kulkarni: Great, great, okay.
+
+00:05:24.000 --> 00:05:39.000
+Sham Kulkarni: Okay, all right, folks. So I guess still people are joining, so let them join, but without wasting any further time, right? So as you all know, today our mentor is Dilip, whom we have already met.
+
+00:05:39.000 --> 00:05:49.000
+Sham Kulkarni: Right? So, without any further ado, uh, Dilip, I guess you can start over, right? So, people are always joining, so they'll join whenever.
+
+00:05:48.000 --> 00:05:53.000
+Dileep Karri: Got it. Uh, thanks. Uh, so I'll get, I'll get started.
+
+00:05:53.000 --> 00:06:01.000
+Dileep Karri: Just a little heads up. Today's session, right? Purposefully keeping it a little tighter, shorter, and lighter.
+
+00:06:01.000 --> 00:06:11.000
+Dileep Karri: Because I know you have had a lot of heavy sessions over the past few days, so compared to the previous RAG session, this will be a little bit lighter.
+
+00:06:11.000 --> 00:06:28.000
+Dileep Karri: but definitely packed with a lot of things. So what I'm going to do is I'm going to talk about skills. Mcp, and I'm not going to talk about all the Mcp servers, all the skills that are available out there. So that is not my.
+
+00:06:28.000 --> 00:06:43.000
+Dileep Karri: intention. So what I'm going to do is I'm going to talk about the few skills that I use the few Mcp servers that I feel should everybody should use, and from there on I would leave it to your investigation, your experimentation.
+
+00:06:43.000 --> 00:06:54.000
+Dileep Karri: to figure out. Okay, this is what I would like to use. These are the things I would like to explore further, and I'll leave you with that. My idea today is to actually.
+
+00:06:54.000 --> 00:07:09.000
+Dileep Karri: Break it. Break the you know what I would call the workflow down of how I typically code again. Disclaimer, not in practicing production level engineer, more a hobbyist tinkerer of things. So.
+
+00:07:10.000 --> 00:07:24.000
+Dileep Karri: But I will try to tell you the latest things, because Tinkler means I try to try things before everybody else tries it. So that is the advantage that you get. So I will show you all of that, and we will try to understand.
+
+00:07:24.000 --> 00:07:41.000
+Dileep Karri: you know how it is. So one thing you should understand is, I'm not going to go and explain. This is cloud code. These are the features. Here is a button. Here is what you should do, etc, and all that. That is not what I will be doing. I will be focusing more on. How can I make it work.
+
+00:07:41.000 --> 00:07:58.000
+Dileep Karri: Well, and how can I take it forward so that it solves my problems? So that is what I'm going to do. And the singular problem I'm going to solve is how can you set up a great orchestration layer in Claude Code so that you can write a decent code and write a good application?
+
+00:07:58.000 --> 00:08:02.000
+Dileep Karri: That is what the focus is. So.
+
+00:08:02.000 --> 00:08:04.000
+Dileep Karri: Let's get to it.
+
+00:08:28.000 --> 00:08:34.000
+Dileep Karri: Alright. So let's get started. So today's session will be about.
+
+00:08:35.000 --> 00:08:37.000
+Dileep Karri: Claude Cord?
+
+00:08:37.000 --> 00:08:39.000
+Dileep Karri: Plus MCP.
+
+00:08:39.000 --> 00:08:41.000
+Dileep Karri: Plus skills.
+
+00:08:42.000 --> 00:08:57.000
+Dileep Karri: Okay? So the way I will set it up is, I will practically hands on. Show you how I would set up Claude code, how I would set up the Mcp. How I would set up the skills, etc, to create an orchestration. So what that means is.
+
+00:08:57.000 --> 00:09:12.000
+Dileep Karri: I am not going to tell you all the skills available in the world, all the MCPs available in the world, et cetera. The only important part is what skill would be important, what MCP server would be important.
+
+00:09:12.000 --> 00:09:19.000
+Dileep Karri: so that I have a very good system where I can write good code. That is my intention of this session.
+
+00:09:19.000 --> 00:09:34.000
+Dileep Karri: So 1st let me break down. What is the process of writing good code? Okay, how? What would be the process of writing good code is what I would mention first.st So, for example, when I am trying to.
+
+00:09:34.000 --> 00:09:53.000
+Dileep Karri: write a code, I would follow a process right? So would love to know on your chat. What is your process? What is typically your process when you think about writing code for something from scratch. Okay, I will also give some commentary on existing code, how you will work, etc. But.
+
+00:09:53.000 --> 00:09:57.000
+Dileep Karri: For now, I want to talk about new projects, how you can write from scratch.
+
+00:09:57.000 --> 00:10:01.000
+Dileep Karri: What would be your process typically?
+
+00:10:06.000 --> 00:10:11.000
+Dileep Karri: Reusability is the outcome. Okay, that is the outcome requirements driven.
+
+00:10:11.000 --> 00:10:16.000
+Dileep Karri: Et cetera. Folks, I know some questions are coming. What will we do? Patience?
+
+00:10:16.000 --> 00:10:19.000
+Dileep Karri: For now, focus on the session.
+
+00:10:20.000 --> 00:10:36.000
+Dileep Karri: Spec design and code, test-driven development, automating the tasks, specs and design, what do you want to achieve, the flow chart, business outcome plan, et cetera, great. These are all the good sets of workflows that are there.
+
+00:10:36.000 --> 00:10:38.000
+Dileep Karri: Right? So.
+
+00:10:38.000 --> 00:10:45.000
+Dileep Karri: If I have to break it first for my level, first is idea. What do I want to build?
+
+00:10:45.000 --> 00:11:00.000
+Dileep Karri: Okay, the idea. So in this session, I'm coming prepared with the idea, but towards the end, I'll also talk about if you don't have a solid idea, how would you pick out a good idea of an app worth building? So I'll talk about that also. So I go from idea.
+
+00:11:00.000 --> 00:11:06.000
+Dileep Karri: From idea, I would try to come to a plan. How would I proceed?
+
+00:11:06.000 --> 00:11:14.000
+Dileep Karri: Okay? And in plan, I would, uh, uh, typically, uh, try to figure out, uh, what is my tech stack.
+
+00:11:16.000 --> 00:11:32.000
+Dileep Karri: Some notes on business logic and scope. What is the business logic and scope that I would be picking it up business logic and scope. Then I would also, you know, try to, you know, go ahead and think about.
+
+00:11:32.000 --> 00:11:34.000
+Dileep Karri: Uh, how…
+
+00:11:34.000 --> 00:11:39.000
+Dileep Karri: What should be the DB schema?
+
+00:11:41.000 --> 00:11:49.000
+Dileep Karri: I would also think about design, what should be my design, okay? Once I have built this plan.
+
+00:11:49.000 --> 00:11:55.000
+Dileep Karri: Okay? And I'm satisfied with this. Then I would, uh, convert it to user stories.
+
+00:12:20.000 --> 00:12:32.000
+Dileep Karri: towards the end as to how you would do this. So, idea, plan, user stories, agents, and after agents, after idea, plan, user stories, and agents, I would also.
+
+00:12:33.000 --> 00:12:36.000
+Dileep Karri: Then I would do the execution.
+
+00:12:38.000 --> 00:12:44.000
+Dileep Karri: that is writing the code, etc. Post-execution, I have to do test cases.
+
+00:12:44.000 --> 00:12:46.000
+Dileep Karri: and review.
+
+00:12:48.000 --> 00:12:50.000
+Dileep Karri: And then I would…
+
+00:12:50.000 --> 00:12:53.000
+Dileep Karri: Say, do it, deploy.
+
+00:12:53.000 --> 00:13:09.000
+Dileep Karri: Deploy also, I will talk to you briefly about it, but quite a bit of it will be out of scope. My main focus will be on the plan until the execution with a little bit of the test case and the…
+
+00:13:09.000 --> 00:13:12.000
+Dileep Karri: Review is where I would focus on.
+
+00:13:12.000 --> 00:13:16.000
+Dileep Karri: All right. And to enable to do this, I need three things.
+
+00:13:17.000 --> 00:13:20.000
+Dileep Karri: First is, of course, Claude Code.
+
+00:13:20.000 --> 00:13:26.000
+Dileep Karri: Okay, which is an agentic platform for coding, as the name says.
+
+00:13:47.000 --> 00:13:53.000
+Dileep Karri: Okay? And I'm going to use Claude Code in its purest form, which is the.
+
+00:13:53.000 --> 00:13:57.000
+Dileep Karri: I would say the command line interface.
+
+00:13:57.000 --> 00:14:12.000
+Dileep Karri: So, I would use Claude Code in the pure command line interface, because that is where it is most powerful, that is where you can actually see its complete power. So, I will focus on the command line of Claude Code, that is the first thing would require.
+
+00:14:12.000 --> 00:14:16.000
+Dileep Karri: Second thing will require is MCP or.
+
+00:14:16.000 --> 00:14:17.000
+Dileep Karri: Characters.
+
+00:14:19.000 --> 00:14:35.000
+Dileep Karri: So I'm going to work on MCPs or connectors. So basically, what are the different things you can connect? What could make it work? What are the things that you would require? So we will talk about MCPs or connectors. I will also touch upon how you can build your own MCP server.
+
+00:15:00.000 --> 00:15:01.000
+Dileep Karri: Something like playbooks.
+
+00:15:02.000 --> 00:15:16.000
+Dileep Karri: We will focus on what skills are, what are the different skills that are available. So we will use the system of Claude Core plus MCP plus skills, all of them together.
+
+00:15:16.000 --> 00:15:26.000
+Dileep Karri: to actually build an orchestrated system where we'll write the code. And I'm going to pick an application which is called Model Council.
+
+00:15:27.000 --> 00:15:32.000
+Dileep Karri: How many of you are aware of Model Council? Anybody aware of Model Council?
+
+00:15:32.000 --> 00:15:37.000
+Dileep Karri: Okay, so model council is a dollar 200.
+
+00:15:37.000 --> 00:15:40.000
+Dileep Karri: feature on Perplexity.
+
+00:15:40.000 --> 00:15:47.000
+Dileep Karri: So you have to pay $200 per month for this feature on Perplexity, which I would…
+
+00:15:47.000 --> 00:15:50.000
+Dileep Karri: I'd like to talk about.
+
+00:15:50.000 --> 00:16:00.000
+Dileep Karri: Okay? So it's a $200 features, uh, on Perplexity, and what Model Council tells you is, on your problem statement.
+
+00:16:03.000 --> 00:16:07.000
+Dileep Karri: There will be multiple LLMs who will debate.
+
+00:16:08.000 --> 00:16:11.000
+Dileep Karri: Multiple LLMs will debate.
+
+00:16:12.000 --> 00:16:14.000
+Dileep Karri: The problem statement.
+
+00:16:20.000 --> 00:16:26.000
+Dileep Karri: Okay, multiple LLMs will debate the problem statement, and then they will critique.
+
+00:16:48.000 --> 00:16:57.000
+Dileep Karri: that I'm thinking of building in this session, and the rest of the orchestration is what I'm going to kind of achieve.
+
+00:16:58.000 --> 00:17:14.000
+Dileep Karri: All right, so now as we go ahead, as I go into the building, there will be some switches between the tools. So as the Claude agent is working on something, I will come back on the whiteboard and I'll explain a few more concepts.
+
+00:17:14.000 --> 00:17:30.000
+Dileep Karri: So consider this session to be a little nonlinear. I'm not going to sit and explain one to one and a half hour theory right now. In between, I will pick up the theory bits and I'll go deeper while the agent keeps building. So that's how I'm going to do this.
+
+00:17:31.000 --> 00:17:33.000
+Dileep Karri: Alright. So.
+
+00:17:34.000 --> 00:17:42.000
+Dileep Karri: First, I will quickly give you a primer on skills and MCP so that you know the basic understanding. The tech part of it, we will…
+
+00:17:42.000 --> 00:17:46.000
+Dileep Karri: go deeper in between. So…
+
+00:17:46.000 --> 00:17:58.000
+Dileep Karri: I have two things. I have got skills, and I got MCP. How many of you have seen connectors or apps on ChatGPT or, uh, or Claude? How many of you have seen that?
+
+00:17:59.000 --> 00:18:10.000
+Dileep Karri: Any kind of connectors, you can connect your Gmail, you can connect your, you know, Google Drive, et cetera. You can see those connectors on Claude or Slack.
+
+00:18:10.000 --> 00:18:19.000
+Dileep Karri: ChatGPT. So those connectors are done via MCP, and there are skills. Let me explain what it is through an analogy.
+
+00:18:19.000 --> 00:18:31.000
+Dileep Karri: Let us assume that there is a carpenter, okay? And the carpenter is building furniture for your house. Let us assume that the carpenter is building furniture for your house.
+
+00:18:31.000 --> 00:18:37.000
+Dileep Karri: When the carpenter is building furniture for your house, this is what the carpenter would do.
+
+00:18:38.000 --> 00:18:42.000
+Dileep Karri: Suppose the carpenter is building a chair.
+
+00:18:42.000 --> 00:18:46.000
+Dileep Karri: Right? There will be a process.
+
+00:18:46.000 --> 00:18:55.000
+Dileep Karri: to build a chair, like the way I cut the wood, the way I assemble the wood, the way I put the cushion, chair will have its process.
+
+00:18:55.000 --> 00:18:58.000
+Dileep Karri: Similarly, if I'm building a table.
+
+00:18:58.000 --> 00:19:02.000
+Dileep Karri: A table will have a different process.
+
+00:19:03.000 --> 00:19:10.000
+Dileep Karri: Okay? Slightly different, but table will also have a different process, which is different from the chair.
+
+00:19:10.000 --> 00:19:18.000
+Dileep Karri: And then I will have a different process for, say, a cupboard. A cupboard will have a different process.
+
+00:19:20.000 --> 00:19:32.000
+Dileep Karri: So I'll have process A for chair, I will have process B for table, I will have process C for cupboard, and the carpenter will also require.
+
+00:19:33.000 --> 00:19:35.000
+Dileep Karri: Equipment.
+
+00:19:56.000 --> 00:20:00.000
+Dileep Karri: Adhesive or resin?
+
+00:20:00.000 --> 00:20:07.000
+Dileep Karri: Okay? So this is the equipment that a carpenter has to kind of build the chair, the table, and the cupboard.
+
+00:20:07.000 --> 00:20:15.000
+Dileep Karri: Alright, so this power saw, the drill, the industrial adhesive, etc, these are nothing but.
+
+00:20:15.000 --> 00:20:25.000
+Dileep Karri: MCPs you can think that the carpenter is having. And this process A, process B, process C, these are skills.
+
+00:20:26.000 --> 00:20:36.000
+Dileep Karri: So the process to build a chair is a skill. The equipment to build the chair is a MCP.
+
+00:20:36.000 --> 00:20:37.000
+Dileep Karri: Excuse me.
+
+00:20:47.000 --> 00:20:49.000
+Dileep Karri: Whatever.
+
+00:20:49.000 --> 00:20:53.000
+Dileep Karri: So the process to build the chair is a skill.
+
+00:20:53.000 --> 00:21:05.000
+Dileep Karri: The equipment to build this chair is the MCP. And you have got the MCPs and the skills coming together with the carpenter. And the carpenter you can think of as the LLM.
+
+00:21:05.000 --> 00:21:16.000
+Dileep Karri: So the LLM or the agent is bringing together both the MCPs and the skills to actually build your furniture in the same manner.
+
+00:21:17.000 --> 00:21:27.000
+Dileep Karri: You have Claude Code, which is your agent or, you know, your LLM is in Claude Code itself. You have MCPs.
+
+00:21:27.000 --> 00:21:37.000
+Dileep Karri: which is the equipment the code can use, and then skills, the playbooks that the platform can use to build.
+
+00:21:38.000 --> 00:21:40.000
+Dileep Karri: your product.
+
+00:21:41.000 --> 00:21:49.000
+Dileep Karri: Okay, let me give you one more analogy to even stick it further. Think of a chef.
+
+00:21:49.000 --> 00:21:53.000
+Dileep Karri: Okay? The chef has recipe.
+
+00:21:53.000 --> 00:21:58.000
+Dileep Karri: Which is equivalent to a skill, and then the equipment, the knives.
+
+00:21:59.000 --> 00:22:00.000
+Dileep Karri: The walk.
+
+00:22:00.000 --> 00:22:14.000
+Dileep Karri: the oven, etc. Those are the MCPs. So I need both the MCP, the equipment, as well as the skills, the recipe, so that I can build a very good product.
+
+00:22:14.000 --> 00:22:17.000
+Dileep Karri: And the chef is, of course, Claude Cole.
+
+00:22:18.000 --> 00:22:34.000
+Dileep Karri: Is a basic broad idea clear what MCP is, what the skills are, and how they come together to build it out? Is the broad idea clear? Because then we are going to go into cloud code and try to.
+
+00:22:57.000 --> 00:22:59.000
+Dileep Karri: So…
+
+00:22:59.000 --> 00:23:07.000
+Dileep Karri: I have created an empty folder, and the only thing that I have kept right now is a .env file.
+
+00:23:10.000 --> 00:23:23.000
+Dileep Karri: Okay, so I have taken an empty folder and a .env file. So, for those of you who don't know.env file is a place where you store your secrets, your API keys, etc.
+
+00:24:06.000 --> 00:24:20.000
+Dileep Karri: them together for the debate. So that is how I will use the model console. So this is the basic setup that I have. Rest of my folder is completely empty. There is absolutely nothing. I'm going to set this up from scratch.
+
+00:24:20.000 --> 00:24:39.000
+Dileep Karri: Okay, so now what I'm going to do is, I will stop sharing my screen, and I'll share my complete desktop itself, so that I can keep switching between the whiteboard as well as the, you know, the interface, so that I can keep showing you as the build is happening.
+
+00:24:40.000 --> 00:24:44.000
+Dileep Karri: Okay, so let me stop sharing and reshare.
+
+00:24:50.000 --> 00:24:56.000
+Dileep Karri: Okay, so this is where the build is happening, and uh…
+
+00:25:04.000 --> 00:25:10.000
+Dileep Karri: This is the fresh command line. I am completely…
+
+00:25:10.000 --> 00:25:29.000
+Dileep Karri: Yeah, I'm just increasing the screen size. Uh, cannot increase more than this, because otherwise it will go off, so I know it's a little difficult, but please bear with it. So, I like to use Claude Code in the purest form in the command line, and the way to install Claude Code is very simple. You go to the website of Claude.
+
+00:25:29.000 --> 00:25:44.000
+Dileep Karri: and you say I want to install Claude Code, it gives you the command for installing it on multiple devices. Okay, I'm not going to explain how to install Claude Code. I think that part you should be able to handle. My focus will be more on how can you use Claude Code really well.
+
+00:25:45.000 --> 00:25:50.000
+Dileep Karri: So then what I'm going to do right now is I'm going to go into…
+
+00:25:50.000 --> 00:25:53.000
+Dileep Karri: Downloads…
+
+00:25:54.000 --> 00:25:55.000
+Dileep Karri: Okay.
+
+00:25:55.000 --> 00:26:06.000
+Dileep Karri: So Engineering Accelerator Model Console is where I am building this complete project. So I will go into that folder.
+
+00:26:06.000 --> 00:26:21.000
+Dileep Karri: Here I will use Claude, okay? So when I call in Claude, I will have the Claude code immediately start in this particular folder only. I don't have to worry about anything else. So I'll use it the same folder.
+
+00:26:22.000 --> 00:26:35.000
+Dileep Karri: There is one command I am attaching. This is something you should not do. I am doing it because I want to save time as I'm doing the session, okay? So this is something called dangerously.
+
+00:26:36.000 --> 00:26:38.000
+Dileep Karri: Skip.
+
+00:26:38.000 --> 00:26:40.000
+Dileep Karri: Permissions.
+
+00:26:40.000 --> 00:26:57.000
+Dileep Karri: So this dangerously skip permissions, what it means is I am asking Claude to execute everything without really checking in with me for every command. So it will go for autonomous execution.
+
+00:26:57.000 --> 00:27:09.000
+Dileep Karri: This is a teaching session, so I'm going to keep it this way. But when you are building and when you are new to building with this, try to avoid this and try to build overall.
+
+00:27:10.000 --> 00:27:16.000
+Dileep Karri: Okay, so dangerously skip permissions is this thing, and I press enter.
+
+00:27:20.000 --> 00:27:26.000
+Dileep Karri: And there you go. Your interface with Claude Code is ready.
+
+00:27:51.000 --> 00:27:56.000
+Dileep Karri: without interruptions, but I'll set up a good amount of guardrails right away.
+
+00:27:56.000 --> 00:28:02.000
+Dileep Karri: So that it can work. And here you can see that, uh, it is giving me…
+
+00:28:24.000 --> 00:28:28.000
+Dileep Karri: I can use some plot code. You can go to Help.
+
+00:28:28.000 --> 00:28:46.000
+Dileep Karri: Okay? And help tells you all the commands which are available. Okay? So, for example, if you go in the side, it will talk about add directory advisor. You know, you can configure the advice tool to consult a stronger model for guidance at key moment during a task.
+
+00:28:46.000 --> 00:29:00.000
+Dileep Karri: manage the agent configuration, right? And you can keep scrolling down, if you can see, you can keep scrolling down on multiple commands which are already present.
+
+00:29:00.000 --> 00:29:08.000
+Dileep Karri: Okay, these are multiple commands which are already present, right? And you can work with this.
+
+00:29:29.000 --> 00:29:33.000
+Dileep Karri: is something called usage.
+
+00:29:54.000 --> 00:30:02.000
+Dileep Karri: towards the end. So current week, all models, 2%. Current week, Sonnet is there. So, you know.
+
+00:30:02.000 --> 00:30:09.000
+Dileep Karri: Absolutely, there is a lot of things that are available. So, you know, I'm…
+
+00:30:31.000 --> 00:30:40.000
+Dileep Karri: longer than an episode of the office. So I've been doing some big building around that time where I was actually, you know.
+
+00:30:40.000 --> 00:30:45.000
+Dileep Karri: I think it was like 26, 27 hours it was building.
+
+00:30:45.000 --> 00:30:54.000
+Dileep Karri: Okay, so usage is a good command. So you have to keep track on what you are doing the usage. So it is important.
+
+00:30:54.000 --> 00:31:04.000
+Dileep Karri: So now I have an empty slate. I have complete empty slate so that I can now start using it. So before I use it.
+
+00:31:04.000 --> 00:31:05.000
+Dileep Karri: Okay, uh…
+
+00:31:05.000 --> 00:31:08.000
+Dileep Karri: What I would do is this.
+
+00:31:09.000 --> 00:31:14.000
+Dileep Karri: I will check on what are the MCP servers which are available.
+
+00:31:14.000 --> 00:31:30.000
+Dileep Karri: Okay, so I have these MCP servers available. For example, I have got the parallel search, and I'll talk about this a little bit soon. Then I have got multiple MCP servers. Again, you don't have to worry about what it is.
+
+00:31:30.000 --> 00:31:46.000
+Dileep Karri: I have got AirOps, Asana, Booking.com, Context7, which is an important MCP server that we are going to use, Excalidraw, Gamma, Gmail, Google Drive, Granola, Kiwi, Linear, Notion, Slack, Spotify.
+
+00:31:46.000 --> 00:32:01.000
+Dileep Karri: TripAdvisor, Uber, Versal, Zoho Books, all of this is connected. I have disconnected computer use because this is the main culprit. Anytime you have a culprit which is killing your tokens or using up your usage.
+
+00:32:01.000 --> 00:32:18.000
+Dileep Karri: that is computer use. So I have disabled computer use right now. And I, if I want to use the computer, either I am synchronously waiting. And you know, I am checking it very closely. So that is exactly what I would do.
+
+00:32:18.000 --> 00:32:33.000
+Dileep Karri: So these are the typical MCPs which I have. So the first MCP I want to talk about, I'll talk about two, three MCP servers, which are there, and the place where you can check for the MCP servers where they are available.
+
+00:32:33.000 --> 00:32:37.000
+Dileep Karri: is a place called mcpmarket.com.
+
+00:32:37.000 --> 00:32:44.000
+Dileep Karri: Okay, so mcpdemarket.com is a place where you can use multiple MCP servers.
+
+00:32:44.000 --> 00:32:50.000
+Dileep Karri: Okay? And these are servers that you'll have to connect. And I'm going to show you how you can connect the server.
+
+00:32:50.000 --> 00:33:06.000
+Dileep Karri: So mcpmarket.com is one place. I discover the MCP servers over here, but the way I install is going to be very different. Okay, let us assume that I want to install this fire crawl.
+
+00:33:06.000 --> 00:33:20.000
+Dileep Karri: So, Firecrawl MCP server is a MCP server that can help me in scraping, uh, the different things. So, if I want to scrape a website, I can use the Firecrawl MCP server for scraping.
+
+00:33:21.000 --> 00:33:29.000
+Dileep Karri: Alright, so for the sake of scraping, I will use the FHIR crawl MCP server. Now, I want to use this MCP server.
+
+00:33:29.000 --> 00:33:36.000
+Dileep Karri: I will not install anything from it right away. I will do a Google search on…
+
+00:33:36.000 --> 00:33:39.000
+Dileep Karri: Fire, crawl, MCB.
+
+00:33:39.000 --> 00:33:41.000
+Dileep Karri: Sorry about that.
+
+00:33:42.000 --> 00:33:54.000
+Dileep Karri: Okay, I search for Firecrawl MCP server, and then it has said that there is a Firecrawl MCP server along with the documentation, which is already available.
+
+00:33:55.000 --> 00:34:00.000
+Dileep Karri: Okay? I have the FHIR crawl MCP server with the documentation available.
+
+00:34:00.000 --> 00:34:05.000
+Dileep Karri: Okay, now this is the cool and fun part, which is a joy.
+
+00:34:05.000 --> 00:34:21.000
+Dileep Karri: Right? In the last one and a half to two months, the agentic capabilities of Claude Code and Codex have increased so much that the effort that you need to do on your end has reduced quite a bit.
+
+00:34:21.000 --> 00:34:36.000
+Dileep Karri: Okay? So, uh, for example, if I want to install, I can, uh, go to this particular place and try to do this installation, etc, but I don't do that, okay? I am not going to bother about that at all.
+
+00:34:36.000 --> 00:34:39.000
+Dileep Karri: What I'm going to do is, I will…
+
+00:34:39.000 --> 00:34:42.000
+Dileep Karri: you know, copy this URL.
+
+00:34:47.000 --> 00:34:50.000
+Dileep Karri: I'm going to copy this URL.
+
+00:34:50.000 --> 00:34:54.000
+Dileep Karri: Okay? And once I copy this URL, I'll go to…
+
+00:35:01.000 --> 00:35:10.000
+Dileep Karri: I copied this URL, so let me go back. And I will paste the URL. And I'll say, install the.
+
+00:35:10.000 --> 00:35:12.000
+Dileep Karri: Fire, crawl…
+
+00:35:12.000 --> 00:35:15.000
+Dileep Karri: MCB. So.
+
+00:35:18.000 --> 00:35:26.000
+Dileep Karri: Okay, so I can do this and it is going to do everything itself.
+
+00:35:26.000 --> 00:35:41.000
+Dileep Karri: It has an internal thing called Update Config, which is a skill that Claude has internally present. So it is going to, you know, fetch the Firecrawl MCP installation docs to get the exact config. It will do the installation of.
+
+00:35:41.000 --> 00:35:44.000
+Dileep Karri: Firecrawl MCP servers for me.
+
+00:35:45.000 --> 00:36:01.000
+Dileep Karri: So Firecrawl offers two methods. One is remote hosted, where it is recommended, so I'll say use that. Scope, I want to use across all the projects, so definitely I will install it across.
+
+00:36:01.000 --> 00:36:18.000
+Dileep Karri: And, you know, I'm ready to submit the answers. So any questions or any doubts it has, it will ask me, I will give the answer, and then it will try to take it. Now, the tricky part is, I'll have to give my FHIR crawl API key.
+
+00:36:19.000 --> 00:36:34.000
+Dileep Karri: Okay, so here I am going to show you how I'll get the key, and I'm going to paste it in the chat. But that is illustrative purpose. Okay, you should not do this. Typically, what you should do is you should have your Api key handy.
+
+00:36:34.000 --> 00:36:41.000
+Dileep Karri: Put it in your .env file, and use the .env file to kind of work with it.
+
+00:36:41.000 --> 00:36:50.000
+Dileep Karri: Okay, so what I'm going to do right now is I'm going to go to the Firecrawl. I will go to firecrawl.dev.
+
+00:36:54.000 --> 00:36:56.000
+Dileep Karri: Okay, I'll go to the dashboard.
+
+00:36:57.000 --> 00:37:02.000
+Dileep Karri: I'll go to the API keys. I have got my API keys.
+
+00:37:03.000 --> 00:37:11.000
+Dileep Karri: Okay? And then, I will create a new API key. I'll create a new API key, and I'll call it…
+
+00:37:12.000 --> 00:37:16.000
+Dileep Karri: hinge, accelerator.
+
+00:37:16.000 --> 00:37:18.000
+Dileep Karri: sessions.
+
+00:37:19.000 --> 00:37:30.000
+Dileep Karri: I'll create the key and I will copy this, you know, the key overall. Then what I'll do is I will go back to my.
+
+00:37:30.000 --> 00:37:32.000
+Dileep Karri: terminal and say.
+
+00:37:33.000 --> 00:37:35.000
+Dileep Karri: Here is the…
+
+00:37:36.000 --> 00:37:53.000
+Dileep Karri: API key and I'll paste it again. Please acknowledge that you understood this. This is just the way I am showing it for the session. But when you do it, always keep a dot env file. Don't copy paste it into the cloud.
+
+00:37:53.000 --> 00:37:55.000
+Dileep Karri: context.
+
+00:37:55.000 --> 00:37:56.000
+Dileep Karri: Okay.
+
+00:37:56.000 --> 00:37:59.000
+Dileep Karri: And I'm giving the API key.
+
+00:38:26.000 --> 00:38:32.000
+Dileep Karri: Okay, so this is how you would install an MCP server.
+
+00:38:32.000 --> 00:38:48.000
+Dileep Karri: Is the steps of how you will, you know, kind of install an MCP server clear? Questions later on. I don't want to deviate right now. I will pick relevant questions as and when they come, but later on I will pick those.
+
+00:38:48.000 --> 00:38:59.000
+Dileep Karri: Okay? But the steps and everything, more or less, should be similar. Okay? You copy the URL, you dump it in Codex and say, install the MCP server, it will figure it out itself.
+
+00:39:00.000 --> 00:39:02.000
+Dileep Karri: Okay? So…
+
+00:39:04.000 --> 00:39:15.000
+Dileep Karri: It is the same process in other exercises.env, you create the API key, you put it there. If you don't know, ask Claude to walk you through the steps, it will tell you how exactly to do that.
+
+00:39:17.000 --> 00:39:22.000
+Dileep Karri: Okay, so now I have set up my MCP server.
+
+00:39:22.000 --> 00:39:34.000
+Dileep Karri: Clear so far is the process of how to install the MCP server clear. Now, anytime you want your own MCP server, you can install it in this particular fashion.
+
+00:39:34.000 --> 00:39:37.000
+Dileep Karri: Clear, everybody, how to install MCP servers?
+
+00:39:37.000 --> 00:39:49.000
+Dileep Karri: Clear? Great. Now let us talk about the next process, which is how to install a skill. So skill is a playbook.
+
+00:39:50.000 --> 00:40:00.000
+Dileep Karri: Okay, so how do you install the skill? We will understand. So, if you want to use Claude Code, you have to be on the paid plan. There is no free plan for Claude Code.
+
+00:40:00.000 --> 00:40:13.000
+Dileep Karri: Okay, so now I will go into installing a skill, and I will show you one of the skills that I like, and then I'll elaborate on different skills that we can use.
+
+00:40:13.000 --> 00:40:19.000
+Dileep Karri: Okay, so one of the skills that I really like is this thing called GSD.
+
+00:40:22.000 --> 00:40:26.000
+Dileep Karri: It is called GSD Build.
+
+00:40:27.000 --> 00:40:29.000
+Dileep Karri: Okay? So…
+
+00:40:29.000 --> 00:40:32.000
+Dileep Karri: What this does is…
+
+00:40:35.000 --> 00:40:37.000
+Dileep Karri: This is a…
+
+00:40:37.000 --> 00:40:50.000
+Dileep Karri: name, you can read out the name, okay, I'll call it GSD build only. This is a GSD, which is a lightweight meta-prompting context engineering and aspect-driven development for cloud code.
+
+00:40:50.000 --> 00:41:01.000
+Dileep Karri: OK, it's a spec-driven development system built for code. And you might have a question, William, how do I decide whether I should install this skill or not?
+
+00:41:01.000 --> 00:41:16.000
+Dileep Karri: Okay? So whenever you are in doubt whether the skill is good, should I install, etc, three things to notice. Look at the number of forks. 5,000 people have forked it. That means 5,000 people are using it, uh…
+
+00:41:16.000 --> 00:41:28.000
+Dileep Karri: you know, trying to make their own versions and building it out. 60,000 people have starred the repository. That means 60,000 unique users like this report. So the people who have used it is going to be even more.
+
+00:41:28.000 --> 00:41:36.000
+Dileep Karri: And when did it release? The next last version was released at 10 hours. That means it is actively maintained.
+
+00:41:36.000 --> 00:41:40.000
+Dileep Karri: Okay? It is something which is actively maintained overall.
+
+00:41:41.000 --> 00:41:51.000
+Dileep Karri: Right? So now that I have this, uh, you know, uh, skill, how to install the skill? Very simple. Copy this GitHub repository.
+
+00:41:52.000 --> 00:41:56.000
+Dileep Karri: Go to your plot code.
+
+00:41:56.000 --> 00:42:00.000
+Dileep Karri: Paste it, and I say, install the…
+
+00:42:00.000 --> 00:42:01.000
+Dileep Karri: skill.
+
+00:42:02.000 --> 00:42:05.000
+Dileep Karri: Catalina 1: That's it. You don't have to do anything else.
+
+00:42:06.000 --> 00:42:22.000
+Dileep Karri: Claude Code will go, Claude Code will figure it out, and Claude Code will install. So you have seen OpenClaw, right? This is very similar to how OpenClaw works. OpenClaw has an agent underneath, which is…
+
+00:42:22.000 --> 00:42:37.000
+Dileep Karri: you know, kind of reading things, etc. So therefore, what you can do in openclaw, you can do this, you can do also in the cloud code app. But I would say you are engineers. I would always request you to use the command line.
+
+00:42:37.000 --> 00:42:42.000
+Dileep Karri: This is exactly how you know it would work.
+
+00:42:45.000 --> 00:42:48.000
+Dileep Karri: Okay, I will run it interactively.
+
+00:42:50.000 --> 00:42:52.000
+Dileep Karri: I don't even know what it means, but it's okay.
+
+00:43:02.000 --> 00:43:05.000
+Dileep Karri: Okay, it's asking me to do it. Can you…
+
+00:43:06.000 --> 00:43:08.000
+Dileep Karri: Do it yourself.
+
+00:43:09.000 --> 00:43:12.000
+Dileep Karri: I'm asking it to do the installation itself.
+
+00:43:33.000 --> 00:43:36.000
+Dileep Karri: plot code. Okay?
+
+00:43:36.000 --> 00:43:44.000
+Dileep Karri: So install scope, I will install global. So I can install this for global.
+
+00:43:46.000 --> 00:43:50.000
+Dileep Karri: So now it is running the commands and installing it itself.
+
+00:43:55.000 --> 00:44:04.000
+Dileep Karri: I'm going to talk about some skills which are useful overall. So I will talk about all of that. So don't worry about it.
+
+00:44:07.000 --> 00:44:12.000
+Dileep Karri: And I will kind of show you how to do that.
+
+00:44:16.000 --> 00:44:28.000
+Dileep Karri: Okay? So, now I have to, uh, restart this Claude session. So what I'll do is, I will exit right now, but I'll resume the session. It will show me the command also. So I'll exit.
+
+00:44:29.000 --> 00:44:33.000
+Dileep Karri: Okay, so this is how I should resume it back.
+
+00:44:33.000 --> 00:44:36.000
+Dileep Karri: So I will resume with this.
+
+00:44:36.000 --> 00:44:38.000
+Dileep Karri: Bless.
+
+00:44:38.000 --> 00:44:41.000
+Dileep Karri: dangerously.
+
+00:44:41.000 --> 00:44:43.000
+Dileep Karri: Skip.
+
+00:44:43.000 --> 00:44:45.000
+Dileep Karri: permissions.
+
+00:44:50.000 --> 00:44:59.000
+Dileep Karri: Okay, so once I restart Claude Code, I have my complete new project that is available.
+
+00:45:21.000 --> 00:45:26.000
+Dileep Karri: skill, which is very, very famous, called the Super Pascal.
+
+00:45:26.000 --> 00:45:41.000
+Dileep Karri: So somebody who has asked this question, how can I decide which skill to install? That is something you'll have to do on your own. You have to find out what are the things that are available that you have to solve, find the necessary skills.
+
+00:45:41.000 --> 00:45:48.000
+Dileep Karri: Okay? And I'll show you a marketplace for skills also in some time. You will use those skills, and you do install them.
+
+00:45:48.000 --> 00:46:02.000
+Dileep Karri: So I will copy this one. And I have already installed this. I use it on a day-to-day level. So to install this skill also, I will just have to kind of, you know, copy this and do that.
+
+00:46:03.000 --> 00:46:11.000
+Dileep Karri: Okay? You can uninstall the MCP server also, you can say, uninstall this MCP server, and how you can make it work.
+
+00:46:11.000 --> 00:46:21.000
+Dileep Karri: All right, so let's get into it. As I said, my intention today is to set up the orchestration system of how things would work.
+
+00:46:21.000 --> 00:46:29.000
+Dileep Karri: Some other things you might have questions will be out of scope, and I'll kind of at least give you a brief when I come to that portion.
+
+00:46:29.000 --> 00:46:40.000
+Dileep Karri: Alright? So, now that I have this complete system, where I have gotten ready, so let us quickly recap what each can do.
+
+00:46:40.000 --> 00:46:42.000
+Dileep Karri: So I can say.
+
+00:46:42.000 --> 00:46:44.000
+Dileep Karri: Uh, can you…
+
+00:46:44.000 --> 00:46:45.000
+Dileep Karri: Give me…
+
+00:46:45.000 --> 00:46:48.000
+Dileep Karri: A quick brief.
+
+00:46:49.000 --> 00:46:54.000
+Dileep Karri: On GSD and super powers.
+
+00:46:54.000 --> 00:46:56.000
+Dileep Karri: Skill.
+
+00:46:57.000 --> 00:47:00.000
+Dileep Karri: And how I should…
+
+00:47:00.000 --> 00:47:02.000
+Dileep Karri: Use it.
+
+00:47:03.000 --> 00:47:16.000
+Dileep Karri: So I'm asking just to give you the, uh… I'm asking what is the skill. So you have installed the skill, but you also need to understand how to use it, etc, and all that, right? So you can install the skill yourself. Folks.
+
+00:47:16.000 --> 00:47:19.000
+Dileep Karri: asking for the link. If you have seen, I have not.
+
+00:47:19.000 --> 00:47:28.000
+Dileep Karri: I haven't gotten the link. I just, you know, I have used it by Googling and I got the link and I'm using it.
+
+00:47:29.000 --> 00:47:32.000
+Dileep Karri: Okay, now this is what I wanted to show you.
+
+00:47:32.000 --> 00:47:48.000
+Dileep Karri: So both are skill systems. They solve overlapping problems differently. What GSD is, it's a spec-driven development system, forces a six-step loop, discuss, plan, execute, verify, ship, and repeat.
+
+00:47:48.000 --> 00:48:03.000
+Dileep Karri: That is the six-step loop. And whatever heavy lifting it has to do, it will run in fresh subagent context. So wherever it is trying to do some research.
+
+00:48:03.000 --> 00:48:13.000
+Dileep Karri: It will pick a new subagent to do the research so that that new subagent will actually do the research with a fresh context window.
+
+00:48:14.000 --> 00:48:29.000
+Dileep Karri: Alright, so when to use? When you are building a new project from scratch, GSD new project. When you are joining an existing codebase, GSD map codebase. When you are doing multi-day, multi-phase work where you would lose context. Otherwise.
+
+00:48:29.000 --> 00:48:42.000
+Dileep Karri: Those are what it is. Superpowers already installed, brainstorming before any creative work, ask what you actually want, writing plans, test-driven development, systematic debugging, and verification before completion.
+
+00:48:42.000 --> 00:48:57.000
+Dileep Karri: So, how they fit together? Build me an app is GSD, fix this bug is superpass, refactor this module is superpass, plan is again GSD, but write a quick script is either overall.
+
+00:48:57.000 --> 00:49:13.000
+Dileep Karri: Okay, now look how I would, you know, orchestrate all of this. Okay, so now I will show you how I will build a new skill on top of GSD and superpowers so that I can show you.
+
+00:49:13.000 --> 00:49:16.000
+Dileep Karri: how I would build my app. Okay?
+
+00:49:18.000 --> 00:49:31.000
+Dileep Karri: I want to build a completely new skill from scratch, which will, you know, call the relevant GSD and the relevant superpowers which I have.
+
+00:49:31.000 --> 00:49:48.000
+Dileep Karri: are present. So typically, what I want to do is I want to do my planning inside superpars, and in the planning itself I want to have a design system. So without taking the design system and without being the design system incorporated into the plan.
+
+00:49:48.000 --> 00:50:05.000
+Dileep Karri: The system should not proceed to build, and the actual building should happen on the plan that has been provided by Superpass. So I want Superpass and GSD to work in tandem to build my application where Superpass does the planning for me.
+
+00:50:05.000 --> 00:50:21.000
+Dileep Karri: And GSD does the building for me. So that is how I want to do it. Once all of it is done, that is how I want to do it. Now, discuss with me on chat how you will build the skill. What are the steps? Take approval for me before you go ahead.
+
+00:50:22.000 --> 00:50:26.000
+Dileep Karri: So I'm explaining the complete process.
+
+00:50:26.000 --> 00:50:27.000
+Dileep Karri: Okay.
+
+00:50:29.000 --> 00:50:31.000
+Dileep Karri: So, that's all.
+
+00:50:32.000 --> 00:50:34.000
+Dileep Karri: Okay.
+
+00:51:35.000 --> 00:51:48.000
+Dileep Karri: for at least one to two hours. I know the material. I will brainstorm with superpowers. It'll give me guidance on, okay, change this, change this, change this. I'll ask it analogies. I will test Phi-6 analogies.
+
+00:51:48.000 --> 00:51:50.000
+Dileep Karri: It can also do that.
+
+00:51:52.000 --> 00:51:57.000
+Dileep Karri: By the way, GStack is also good, but I personally prefer this.
+
+00:51:57.000 --> 00:51:59.000
+Dileep Karri: All right, again, it is each their own.
+
+00:52:00.000 --> 00:52:11.000
+Dileep Karri: So what does your design system mean to you? It is the option A and even B. So I would say both.
+
+00:52:11.000 --> 00:52:12.000
+Dileep Karri: Okay, both.
+
+00:52:13.000 --> 00:52:15.000
+Dileep Karri: A and B.
+
+00:52:15.000 --> 00:52:20.000
+Dileep Karri: So both A and B, the visual design as well as the system design more broadly.
+
+00:52:42.000 --> 00:52:44.000
+Dileep Karri: That is what is important.
+
+00:52:44.000 --> 00:52:46.000
+Dileep Karri: So, um…
+
+00:53:08.000 --> 00:53:16.000
+Dileep Karri: flow from superpars into Gsd, the 2 systems write to different places in different formats. Superpars write specs.
+
+00:53:16.000 --> 00:53:33.000
+Dileep Karri: and plans to superpowers plans and superpower specs. Gsd reads plans in other places. The honest ways to bear, you know, bridge this. So it is saying, superpowers does design produces a rich spec doc, and then we call.
+
+00:53:33.000 --> 00:53:49.000
+Dileep Karri: GSD new product. This is option one. Option two, superpass does design plus planning, GSD only executes. So this is the one. So clean seam, each system uses its native format, no translation logic needed. Then cons requires a translation step.
+
+00:53:49.000 --> 00:53:56.000
+Dileep Karri: overall. Then hybrid brainstorming plus spec only, the spec is dropped into this, etc.
+
+00:53:56.000 --> 00:54:03.000
+Dileep Karri: Okay, so it is leaning into option 3. Okay, so let us go with option 3.
+
+00:54:04.000 --> 00:54:08.000
+Dileep Karri: So I'll say, let us…
+
+00:54:09.000 --> 00:54:11.000
+Dileep Karri: Go with.
+
+00:54:11.000 --> 00:54:13.000
+Dileep Karri: option.
+
+00:54:13.000 --> 00:54:18.000
+Dileep Karri: 3. What is the name of.
+
+00:54:18.000 --> 00:54:21.000
+Dileep Karri: There's no skill.
+
+00:54:43.000 --> 00:54:49.000
+Dileep Karri: So it is saying blueprint is the name of the skill. Let us go with blueprint.
+
+00:54:49.000 --> 00:54:51.000
+Dileep Karri: Blueprint.
+
+00:54:52.000 --> 00:54:55.000
+Dileep Karri: as the skill name.
+
+00:54:57.000 --> 00:55:03.000
+Dileep Karri: OK, so I'm going to go with blueprint as a skill name, and I'm building this entire skill.
+
+00:55:26.000 --> 00:55:44.000
+Dileep Karri: of the context, okay? So we are good. Typically, you should try to always keep the context around 60%. If you go more than 60% in your context, that is where I would say that it is going to go ahead.
+
+00:55:44.000 --> 00:55:56.000
+Dileep Karri: Okay, scope and trigger blueprint runs once at the project start. It does the full thing end to end orchestration. It runs the complete lifecycle, I would say, runs.
+
+00:55:58.000 --> 00:56:00.000
+Dileep Karri: The complete…
+
+00:56:01.000 --> 00:56:03.000
+Dileep Karri: Life cycle.
+
+00:56:05.000 --> 00:56:12.000
+Dileep Karri: Also, one additional step, okay? One additional step I would add. One additional step is…
+
+00:56:12.000 --> 00:56:17.000
+Dileep Karri: research on the idea a bit.
+
+00:56:17.000 --> 00:56:19.000
+Dileep Karri: on…
+
+00:56:20.000 --> 00:56:26.000
+Dileep Karri: Okay, I'll leave it. I'll do it right there. So run the complete life cycle.
+
+00:56:33.000 --> 00:56:39.000
+Dileep Karri: So this is going to be more complex, but this will give an effective application at the end.
+
+00:56:39.000 --> 00:56:44.000
+Dileep Karri: Okay? So this is exactly what it is. You can mix and match current skills.
+
+00:56:44.000 --> 00:56:56.000
+Dileep Karri: And build applications. For those of you who were asking how to build skills, is it clear how the skills are built? I ask build a skill, it will build a skill for me directly.
+
+00:57:03.000 --> 00:57:06.000
+Dileep Karri: I'm in the Claude Max plan, yes.
+
+00:57:06.000 --> 00:57:16.000
+Dileep Karri: So skill body will be deterministic sequence that Claude follows, initiation and pair-place loop, gate logic in the pseudo rules.
+
+00:57:16.000 --> 00:57:19.000
+Dileep Karri: Okay, so it is giving me the complete idea.
+
+00:57:21.000 --> 00:57:31.000
+Dileep Karri: So phase boundary checkpoint, I put a stop or continue prompt after each place verifies phase level.
+
+00:57:31.000 --> 00:57:46.000
+Dileep Karri: depth. So let us check on what it is saying. So here is saying, user invokes it. Invoke this Ui gate check. Brainstorming writes the spec project level design system gate fires hard block overall. One spec passes the gate blueprint calls the new project.
+
+00:57:46.000 --> 00:57:58.000
+Dileep Karri: Then produces roadmap.md with phases. User approves the roadmap. Then for every phase, it will call the different phases and try to build the application for me.
+
+00:57:59.000 --> 00:58:14.000
+Dileep Karri: Okay, then, I would say, 2 things I want to call phase boundary checkpoint where I put a stop or continue prompt after each phase verifies probe catches drift lets you redirect on, not truly hands off.
+
+00:58:14.000 --> 00:58:23.000
+Dileep Karri: Then full Q&A per phase, thorough but slow, a lighter version, a single, any specific decisions for this phase, et cetera.
+
+00:58:23.000 --> 00:58:38.000
+Dileep Karri: Okay, so I will go with phase boundary checkpoint for now. It is truly hands off. Okay, let me go at B only. Let us go the full base for sure. So basically, it is saying that every phase, the brainstorming depth will be very high.
+
+00:58:38.000 --> 00:58:42.000
+Dileep Karri: So we had to come back and do a bit of brainstorming.
+
+00:58:42.000 --> 00:58:45.000
+Dileep Karri: Okay, and…
+
+00:58:45.000 --> 00:58:46.000
+Dileep Karri: I'll say B.
+
+00:59:08.000 --> 00:59:16.000
+Dileep Karri: After each phase, I will go with A2 only. On failures, give it to me. I want it to be hands-off.
+
+00:59:16.000 --> 00:59:26.000
+Dileep Karri: Okay, because I want an agentic build, I want it to be hands-off, but if you have got a critical project, you can say continue or pause so that you can come back and check what is happening.
+
+00:59:32.000 --> 00:59:45.000
+Dileep Karri: Here, I am teaching, so I'm just showing you how I would build this skill. When I do it, I will… I have a similar type of skill already ready. I will invoke it and start building the app. That is how I do this.
+
+00:59:48.000 --> 01:00:02.000
+Dileep Karri: Okay? So the… where the files live, it is giving me, uh, the, uh, different files, etc. So Blueprint is ready, and if you want to check if something is a skill or not, it should have the skill.md.
+
+01:00:02.000 --> 01:00:13.000
+Dileep Karri: Okay, it should have the skill.md and where do the files live? It is in dot cloud slash skills. It is present under dot clouds, cash skills in my laptop.
+
+01:00:13.000 --> 01:00:29.000
+Dileep Karri: Okay, so this is the, you know, kind of the folder structure, how blueprint invokes. This is how it would invoke, right? Project already has planning, edge cases, what the blueprint does not do. V1 approve the design.
+
+01:00:29.000 --> 01:00:34.000
+Dileep Karri: So I will say, let's go for it. I will say.
+
+01:00:42.000 --> 01:00:45.000
+Dileep Karri: Uh, go ahead and build it.
+
+01:00:50.000 --> 01:00:54.000
+Dileep Karri: So, you can go ahead and build the complete spec.
+
+01:01:03.000 --> 01:01:13.000
+Dileep Karri: So because it is using superpowers, again, there are multiple steps. I'm kind of doing this to do that.
+
+01:01:13.000 --> 01:01:22.000
+Dileep Karri: So what I have done so far, just to give a recap, what I have done is I have taken the superpowers skill.
+
+01:01:23.000 --> 01:01:31.000
+Dileep Karri: And I have taken the GSD skill, and what I have done is, I have created a hybrid skill called Blueprint.
+
+01:01:32.000 --> 01:01:36.000
+Dileep Karri: Which can build my app for me.
+
+01:01:36.000 --> 01:01:54.000
+Dileep Karri: So I'm trying to use the blueprint skill to build the app for me. For that, I'm trying to build all of this together. And I have kind of checked at every phase how the skill should be created. Creating a skill is simply kind of going ahead and do that.
+
+01:01:54.000 --> 01:02:09.000
+Dileep Karri: OK, so Blueprint will still refer on Superparse and GSD. So it will try to use the Superparse and GSD, and it will do this. And I'm going to use the Blueprint skill itself to build the application.
+
+01:02:13.000 --> 01:02:20.000
+Dileep Karri: Okay, so it is building it now. And so that it is trying to reference things correctly.
+
+01:02:28.000 --> 01:02:37.000
+Dileep Karri: Alright, so this is how this would work, and the next step would be, I will start building the app, which is Model Council.
+
+01:02:42.000 --> 01:02:46.000
+Dileep Karri: Okay, after this step, we will start building out this model console app.
+
+01:02:52.000 --> 01:02:56.000
+Dileep Karri: Okay, so let's check on where it is.
+
+01:03:00.000 --> 01:03:02.000
+Dileep Karri: Cool. So it's writing a skill right now.
+
+01:03:05.000 --> 01:03:20.000
+Dileep Karri: Okay, so I think MCP I have already mentioned, anytime I'm using the MCP, I drop the link of that MCP, the Firecrawl MCP server link, I drop it into Claude Code, it will try to build it out itself.
+
+01:03:21.000 --> 01:03:22.000
+Dileep Karri: Okay?
+
+01:03:22.000 --> 01:03:36.000
+Dileep Karri: Okay, folks, I see some questions. Can you tell me exactly what is confusing here? Because, pretty straightforward, I drop the link there, I kind of chat with it, and I'm building out the skill.
+
+01:03:59.000 --> 01:04:01.000
+Dileep Karri: Build a skill for building my app.
+
+01:04:26.000 --> 01:04:28.000
+Dileep Karri: Yes? No?
+
+01:04:28.000 --> 01:04:33.000
+Dileep Karri: Folks, you have to open up. If you don't open up, it'll be difficult for me.
+
+01:04:40.000 --> 01:04:49.000
+Dileep Karri: Okay, for those who are asking few things, okay? Yes, you'll have to recap from the recording, okay? Two things.
+
+01:04:49.000 --> 01:04:52.000
+Dileep Karri: Okay. Number thing.
+
+01:04:52.000 --> 01:05:07.000
+Dileep Karri: number one that you have to look at is Firecrawl is something I have installed for an example, okay? That is number one. And I will also use Firecrawl in a way. I'll show you how I would use Firecrawl.
+
+01:05:07.000 --> 01:05:09.000
+Dileep Karri: All right.
+
+01:05:10.000 --> 01:05:20.000
+Dileep Karri: And if you are a little bit confused because you are new to this, maybe check the recording because I see 90% of you are able to follow. So I will move ahead.
+
+01:05:21.000 --> 01:05:25.000
+Dileep Karri: It is a combination of that, exactly. That is the combination.
+
+01:05:26.000 --> 01:05:31.000
+Dileep Karri: Okay? So, this, there it is, there you go. Blueprint is live.
+
+01:05:31.000 --> 01:05:43.000
+Dileep Karri: Okay? The skill listing confirms it is registered and discoverable, and we are going to do this. Okay? So, here are the files written, and this is what it will do.
+
+01:05:43.000 --> 01:05:53.000
+Dileep Karri: Now, I will not use a toy idea. I will actually build a complete idea right now. So I will start with blueprint.
+
+01:05:53.000 --> 01:05:57.000
+Dileep Karri: And I say, I want to build.
+
+01:05:58.000 --> 01:06:01.000
+Dileep Karri: A model council.
+
+01:06:03.000 --> 01:06:04.000
+Dileep Karri: Ah, okay.
+
+01:06:04.000 --> 01:06:06.000
+Dileep Karri: Which is the.
+
+01:06:07.000 --> 01:06:08.000
+Dileep Karri: Featured.
+
+01:06:09.000 --> 01:06:11.000
+Dileep Karri: Perplexity.
+
+01:06:11.000 --> 01:06:13.000
+Dileep Karri: Max.
+
+01:06:13.000 --> 01:06:14.000
+Dileep Karri: cutes.
+
+01:06:15.000 --> 01:06:23.000
+Dileep Karri: Okay, I'm giving a very small statement. I want to build a model console app, which is the feature that Perplexity Max gives.
+
+01:06:24.000 --> 01:06:34.000
+Dileep Karri: So now I'm using the skill to build it out. Currently, I'm building it out locally only. After this, I will also do this later on.
+
+01:06:34.000 --> 01:06:43.000
+Dileep Karri: Yes, a lot of apps will give it. The way I'm doing it is slightly different. So hold on, I'll show you how I would do that.
+
+01:06:44.000 --> 01:06:51.000
+Dileep Karri: Okay, Blueprint requires Git for atomic commits. Go ahead.
+
+01:06:52.000 --> 01:06:54.000
+Dileep Karri: And, uh…
+
+01:06:54.000 --> 01:06:56.000
+Dileep Karri: 2, 8…
+
+01:06:56.000 --> 01:06:58.000
+Dileep Karri: Yourself.
+
+01:06:59.000 --> 01:07:05.000
+Dileep Karri: So let it create the Git also. So I'm also not going to create the Git, it will create the Git itself.
+
+01:07:09.000 --> 01:07:19.000
+Dileep Karri: So it found out my Git already, so I have integrated GitHub already. Integrating GitHub also is straightforward. Uh, it will ask you to log in and pick it up itself.
+
+01:07:20.000 --> 01:07:29.000
+Dileep Karri: Okay? So yes, it has a UI-facing app, so I want it to be having a UI-facing app.
+
+01:07:29.000 --> 01:07:31.000
+Dileep Karri: Definitely.
+
+01:08:12.000 --> 01:08:16.000
+Dileep Karri: Uh, because this will, uh, you know, uh…
+
+01:08:16.000 --> 01:08:18.000
+Dileep Karri: Uh, able to…
+
+01:08:20.000 --> 01:08:25.000
+Dileep Karri: Right? We are trying to take this over and pick this up from here.
+
+01:08:28.000 --> 01:08:36.000
+Dileep Karri: Right? So therefore, what we have is we have the brainstorming skill. And now it is going to.
+
+01:08:36.000 --> 01:08:46.000
+Dileep Karri: work for this, so it is asking. Some of what we are working might be easier to explain if I can, uh, show it to you in a web browser. I can put.
+
+01:08:46.000 --> 01:08:55.000
+Dileep Karri: together mockups, diagrams, comparisons, and other visuals as you go and do this. So it is asking this overall.
+
+01:08:57.000 --> 01:09:00.000
+Dileep Karri: For now, discuss…
+
+01:09:01.000 --> 01:09:03.000
+Dileep Karri: on chat only.
+
+01:09:03.000 --> 01:09:07.000
+Dileep Karri: Okay, let's do it later.
+
+01:09:09.000 --> 01:09:12.000
+Dileep Karri: No need to show on…
+
+01:09:12.000 --> 01:09:14.000
+Dileep Karri: web browser.
+
+01:09:18.000 --> 01:09:26.000
+Dileep Karri: So I'm going to discuss it on chat and everything. These questions, you will understand. We will try to pick it up as we go along.
+
+01:09:48.000 --> 01:09:54.000
+Dileep Karri: If I have to build it for others, I will build it for others, that's what I'll mention. But right now, it is personal tool.
+
+01:10:17.000 --> 01:10:24.000
+Dileep Karri: in parallel responses stream side by side. You read and judge done parallel plus synthesis.
+
+01:10:24.000 --> 01:10:27.000
+Dileep Karri: Overall, parallel plus voting or touching.
+
+01:10:27.000 --> 01:10:29.000
+Dileep Karri: Okay? So…
+
+01:10:29.000 --> 01:10:45.000
+Dileep Karri: Here is how I want the Model Council to actually work on. What the Model Council should do is it has three stages. Stage one, four models of my choice should attack the same problem and work independently.
+
+01:10:45.000 --> 01:10:58.000
+Dileep Karri: Then, model… the second pass, stage two, models must share information amongst each other to kind of understand, okay, how… where do they agree and…
+
+01:10:59.000 --> 01:11:14.000
+Dileep Karri: And third, I have a fifth synthesizer model coming up, which will take everything and produce the neat information in the form of a table, as well as other formats, so that I can actually.
+
+01:11:14.000 --> 01:11:17.000
+Dileep Karri: you know, show all of this information.
+
+01:11:17.000 --> 01:11:21.000
+Dileep Karri: Okay? Ask me clarifying questions if required.
+
+01:11:24.000 --> 01:11:33.000
+Dileep Karri: So this is how I want model console to work. So it's not simple, you know, LLM Marina giving me outputs. I want them to debate with each other.
+
+01:11:37.000 --> 01:11:45.000
+Dileep Karri: So if I want to give an information while it is discussing, so I can say, by the way, I want the…
+
+01:11:47.000 --> 01:11:49.000
+Dileep Karri: Okay, it has already come up.
+
+01:11:49.000 --> 01:11:59.000
+Dileep Karri: So self-revision pass. Stage two, how do the models actually share information?
+
+01:11:59.000 --> 01:12:02.000
+Dileep Karri: You know, if you're the…
+
+01:12:04.000 --> 01:12:06.000
+Dileep Karri: They should debate.
+
+01:12:09.000 --> 01:12:12.000
+Dileep Karri: Okay? Uh, they should debate, and uh…
+
+01:12:12.000 --> 01:12:15.000
+Dileep Karri: Yeah, it should go for a peer critique.
+
+01:12:18.000 --> 01:12:22.000
+Dileep Karri: Okay, they should debate and there should be a peer critique which is happening.
+
+01:12:22.000 --> 01:12:27.000
+Dileep Karri: By the way, till now, I have not written a single line of code. Did you observe this?
+
+01:12:27.000 --> 01:12:31.000
+Dileep Karri: I have not written a single line of code so far.
+
+01:12:31.000 --> 01:12:38.000
+Dileep Karri: All I am doing is I am doing the brainstorming and I am doing all of it together.
+
+01:12:39.000 --> 01:12:44.000
+Dileep Karri: Right? So what kind of app you'll require? I will say A.
+
+01:12:48.000 --> 01:12:51.000
+Dileep Karri: The local, uh, web app?
+
+01:13:02.000 --> 01:13:12.000
+Dileep Karri: Okay, so now the local web app is giving. So I have the synthesizers ask clarifying questions behavior. When does it kick in?
+
+01:13:12.000 --> 01:13:28.000
+Dileep Karri: Okay, so after every synthesis, the synthesizer asks one, two, three clarifying questions before finalizing the table and output, forces refinement on every query. It is slow but thorough, only when uncertain.
+
+01:13:28.000 --> 01:13:35.000
+Dileep Karri: on demand. The synthesizer always produces a best effort output first. You can click refine. So I'll go with C.
+
+01:14:03.000 --> 01:14:11.000
+Dileep Karri: Output formats, it is table plus prose, adaptive, multi-format, output of all.
+
+01:14:11.000 --> 01:14:20.000
+Dileep Karri: Okay, I would say C, multi-format. That means I want it in table bullet points so that I can scan the format easily.
+
+01:14:30.000 --> 01:14:39.000
+Dileep Karri: Okay, so now I would like to go with hard coded defaults. Okay, so here is what I would use.
+
+01:14:39.000 --> 01:14:44.000
+Dileep Karri: Okay, so what I would say is my counsel.
+
+01:14:45.000 --> 01:14:50.000
+Dileep Karri: My console should be Sonnet, Claude Sonnet latest model.
+
+01:14:50.000 --> 01:14:52.000
+Dileep Karri: GPT-5?
+
+01:14:52.000 --> 01:15:01.000
+Dileep Karri: Gemini 3.1 Pro, and Grok 4.2. Synthesizer can be Claude Opus 4.7 itself.
+
+01:15:10.000 --> 01:15:11.000
+Dileep Karri: Okay?
+
+01:15:17.000 --> 01:15:25.000
+Dileep Karri: So I'm giving the complete counsel, which is Sonnet, Claude Sonnet, sorry, it's Claude Sonnet, GPT, this thing. So Claude.
+
+01:15:25.000 --> 01:15:29.000
+Dileep Karri: क्रॉप फोर पॉइंट?
+
+01:15:29.000 --> 01:15:34.000
+Dileep Karri: And then synthesis?
+
+01:15:34.000 --> 01:15:35.000
+Dileep Karri: Okay?
+
+01:15:35.000 --> 01:15:37.000
+Dileep Karri: Go with?
+
+01:15:38.000 --> 01:15:39.000
+Dileep Karri: ओपन, राउटर?
+
+01:15:39.000 --> 01:15:41.000
+Dileep Karri: I have?
+
+01:15:41.000 --> 01:15:42.000
+Dileep Karri: Already?
+
+01:15:43.000 --> 01:15:46.000
+Dileep Karri: Even the api key?
+
+01:15:46.000 --> 01:15:47.000
+Dileep Karri: In?
+
+01:15:47.000 --> 01:15:49.000
+Dileep Karri: Dot, Bm?
+
+01:15:50.000 --> 01:15:54.000
+Dileep Karri: Okay i? Have given. The api Key inp?
+
+01:15:57.000 --> 01:15:58.000
+Dileep Karri: Go away to open.
+
+01:15:58.000 --> 01:16:03.000
+Dileep Karri: router, so I have given the API key in .env itself, so this is the easiest way to do that.
+
+01:16:25.000 --> 01:16:30.000
+Dileep Karri: here. So it is trying to figure out what is the logic of the particular decision.
+
+01:16:33.000 --> 01:16:45.000
+Dileep Karri: Okay, now open router key is already present. Now is the architecture. So now it is going to present the architecture of all of it, this thing.
+
+01:17:07.000 --> 01:17:09.000
+Dileep Karri: any key message.
+
+01:17:10.000 --> 01:17:14.000
+Dileep Karri: Okay, so I will say good to go.
+
+01:17:36.000 --> 01:17:39.000
+Dileep Karri: work overall. So it is picking all of those up.
+
+01:17:42.000 --> 01:17:48.000
+Dileep Karri: See, some part of it, even I don't really understand, but I'm okay with it. I am…
+
+01:17:48.000 --> 01:17:50.000
+Dileep Karri: You know, because.
+
+01:17:50.000 --> 01:17:53.000
+Dileep Karri: I'm kind of okay with it.
+
+01:17:54.000 --> 01:18:02.000
+Dileep Karri: It is good to go. Sometimes, if you want, you can say, change this, and you can present whatever changes you want to make.
+
+01:18:24.000 --> 01:18:39.000
+Dileep Karri: I think section three is also fine. So what I want to do is I want to give it my design preferences, okay? I talked about design. So for design, what I'm going to do is I will go to this place called superdesign.dev.
+
+01:18:39.000 --> 01:18:52.000
+Dileep Karri: Okay? So this is a place where I have got multiple designs. I want to use a minimalist design over here, because it's a model console. I would like a design which is very minimalist in nature.
+
+01:18:52.000 --> 01:18:54.000
+Dileep Karri: Okay.
+
+01:19:16.000 --> 01:19:18.000
+Dileep Karri: you know, the.
+
+01:19:18.000 --> 01:19:26.000
+Dileep Karri: Claude code. Okay, so I will copy the prompt and do this. The site is called super design. Dev. It is completely free of cost.
+
+01:19:28.000 --> 01:19:32.000
+Dileep Karri: Okay? And I will paste the prompt, and I'll say…
+
+01:19:33.000 --> 01:19:37.000
+Dileep Karri: CLAB, This is the CLAB, design.
+
+01:19:37.000 --> 01:19:39.000
+Dileep Karri: System.
+
+01:19:39.000 --> 01:19:41.000
+Dileep Karri: I want you to…
+
+01:19:41.000 --> 01:19:42.000
+Dileep Karri: Yes.
+
+01:19:44.000 --> 01:19:57.000
+Dileep Karri: Okay, so this is like the complete prompt. What is the interface? What are the spec? What is the layout and structure, etc, and all that that is a spec I have given. So it is a clinical white look.
+
+01:19:57.000 --> 01:20:02.000
+Dileep Karri: thing which is a minimalist look I'm looking for here. So it is picked itself.
+
+01:20:05.000 --> 01:20:17.000
+Dileep Karri: So now I have kind of looked at the data model, the complete how the data model is going to be used, as well as the design system.
+
+01:20:40.000 --> 01:20:42.000
+Dileep Karri: Exact same process.
+
+01:21:03.000 --> 01:21:05.000
+Dileep Karri: et cetera, all of that.
+
+01:21:26.000 --> 01:21:28.000
+Dileep Karri: et cetera.
+
+01:21:35.000 --> 01:21:38.000
+Dileep Karri: Okay, so this is my design system.
+
+01:21:38.000 --> 01:21:41.000
+Dileep Karri: This is my component vocabulary.
+
+01:21:41.000 --> 01:21:46.000
+Dileep Karri: Okay? This is the accessibility floor and et cetera.
+
+01:21:46.000 --> 01:22:03.000
+Dileep Karri: Okay, one thing is here tokens are going, it is drinking my tokens. Okay, so there is a kind of trade off. I want good quality output or I want to save up on the tokens. I kind of doing, looking for a good quality.
+
+01:22:03.000 --> 01:22:07.000
+Dileep Karri: process, so I'm okay to guzzle a few tokens here and there.
+
+01:22:07.000 --> 01:22:11.000
+Dileep Karri: All right, so I'll approve.
+
+01:22:12.000 --> 01:22:13.000
+Dileep Karri: And…
+
+01:22:14.000 --> 01:22:16.000
+Dileep Karri: Let's have a look.
+
+01:22:16.000 --> 01:22:18.000
+Dileep Karri: Say approve.
+
+01:22:18.000 --> 01:22:19.000
+Dileep Karri: All right.
+
+01:22:41.000 --> 01:22:48.000
+Dileep Karri: see anthropic cloud models getting better from what they have been in the previous few weeks overall.
+
+01:22:48.000 --> 01:22:54.000
+Dileep Karri: Okay, now phase breakdown. Okay, first is foundation and design system tokens.
+
+01:22:54.000 --> 01:23:00.000
+Dileep Karri: Right? Then stage one, independent attack, where is a parallel fan out.
+
+01:23:00.000 --> 01:23:09.000
+Dileep Karri: Okay, then stage two peer critic, it'll build the peer critic, then it'll build the synthesis with multi-format output.
+
+01:23:09.000 --> 01:23:23.000
+Dileep Karri: Okay? Then the refined flow overall, with respect to the accessibility and the polish, and some of the things are out of scope. For example, persistence is out of scope, mobile responsive layout.
+
+01:23:23.000 --> 01:23:29.000
+Dileep Karri: Out of scope, cost tracking is out of scope, multi-user out of scope, etc.
+
+01:23:31.000 --> 01:23:39.000
+Dileep Karri: Okay, so here is the process. This is how I would do it. I'll say, go ahead.
+
+01:23:40.000 --> 01:23:49.000
+Dileep Karri: So it has taken my build into multiple phases. These multiple phases will be written as the specs for the design.
+
+01:23:50.000 --> 01:24:05.000
+Dileep Karri: Okay, I'll have the specs for the design where it will run this thing and then it will hand it off to GSD. So now we are at the place where the superpowers is going to hand it off to the GSD one.
+
+01:24:51.000 --> 01:24:59.000
+Dileep Karri: It will write. I will stop at the specs level. Then the same folder, I will give it to Codex and say, read the specs, and then start building.
+
+01:25:11.000 --> 01:25:16.000
+Dileep Karri: So, the good part is, it is also looking at the phase dependency.
+
+01:25:20.000 --> 01:25:23.000
+Dileep Karri: And so on and so forth.
+
+01:25:31.000 --> 01:25:39.000
+Dileep Karri: Yes, for Codex, all the files that is writing aspects, I will give it to Codex and say, execute these plans.
+
+01:25:40.000 --> 01:25:52.000
+Dileep Karri: See, if you want a free version to do this, there is a workaround, but don't expect the best possible output. You can go to OpenRouter, okay, for example.
+
+01:25:52.000 --> 01:25:57.000
+Dileep Karri: Let me show you that as the thing is getting written.
+
+01:25:57.000 --> 01:26:01.000
+Dileep Karri: You can go to OpenRouter, the models.
+
+01:26:03.000 --> 01:26:07.000
+Dileep Karri: Okay? There is this new model which has come up called…
+
+01:26:09.000 --> 01:26:11.000
+Dileep Karri: Timmy…
+
+01:26:12.000 --> 01:26:14.000
+Dileep Karri: K2.6.
+
+01:26:35.000 --> 01:26:44.000
+Dileep Karri: K 2.6 instead of, you know, if you're using, say, Opus or other models.
+
+01:26:44.000 --> 01:26:48.000
+Dileep Karri: Right? So, that would be the case.
+
+01:26:50.000 --> 01:26:52.000
+Dileep Karri: Let me come back.
+
+01:27:13.000 --> 01:27:18.000
+Dileep Karri: And that is exactly how we are using.
+
+01:27:39.000 --> 01:27:51.000
+Dileep Karri: orchestrated superpowers and GSD, the self-review is also happening, so that my plans are getting reviewed, and any changes that need to be done are doing overall.
+
+01:27:51.000 --> 01:28:02.000
+Dileep Karri: Okay? Folks, don't worry about if you're not hearing the terms for the very first time. There is a first time for everything. Because someone asked, do you want a lower cost? You can use Kimi K2.6.
+
+01:28:07.000 --> 01:28:20.000
+Dileep Karri: Okay? So far, so good. Now is the time when you have to do a quick review. Okay? So we'll have to review the file. So for that, what I'll do is, I will open.
+
+01:28:20.000 --> 01:28:22.000
+Dileep Karri: cursor.
+
+01:28:22.000 --> 01:28:23.000
+Dileep Karri: Okay?
+
+01:28:24.000 --> 01:28:26.000
+Dileep Karri: And…
+
+01:28:34.000 --> 01:28:38.000
+Dileep Karri: Just one second. There is a problem. Let me fix that.
+
+01:29:02.000 --> 01:29:04.000
+Dileep Karri: Okay, let me…
+
+01:29:05.000 --> 01:29:07.000
+Dileep Karri: See the size.
+
+01:29:07.000 --> 01:29:08.000
+Dileep Karri: later on.
+
+01:29:16.000 --> 01:29:17.000
+Dileep Karri: Yep.
+
+01:29:17.000 --> 01:29:22.000
+Dileep Karri: So you can see here, I have the model console design spec.
+
+01:29:22.000 --> 01:29:27.000
+Dileep Karri: Where it is giving me the vision. What is the independent attack?
+
+01:29:27.000 --> 01:29:42.000
+Dileep Karri: Peer critique, synthesis, this is what the vision of the app is, the goals, the non-goals, the council composition, what are the models that it is going to use? Gemini Pro, XAI, Grok, everything, et cetera.
+
+01:29:42.000 --> 01:29:48.000
+Dileep Karri: Then the system design, this is the way the system is going to be designed. The server components.
+
+01:29:48.000 --> 01:30:03.000
+Dileep Karri: the components of the client, how the data flows per query, the data model completely right? What is the stage? One prompts the different prompts that are used going to be used at different stages, the refined prompts, etc. The design system.
+
+01:30:03.000 --> 01:30:07.000
+Dileep Karri: Then it has given me the layout primitives.
+
+01:30:07.000 --> 01:30:18.000
+Dileep Karri: then accessibility, phase breakdown, so it has built me the complete, uh, you know, kind of stuff. So right now, I only have the specs built so far.
+
+01:30:19.000 --> 01:30:31.000
+Dileep Karri: Okay, so I have used the specs built so far, and let me go into this. So now that the specs are built, I will say proceed.
+
+01:30:32.000 --> 01:30:39.000
+Dileep Karri: So I have approved the plan. If I don't like a part of the plan. I will come back and do this.
+
+01:30:39.000 --> 01:30:42.000
+Dileep Karri: Overall, so let me navigate on.
+
+01:30:43.000 --> 01:30:45.000
+Dileep Karri: Okay, some problem, wait a minute.
+
+01:31:08.000 --> 01:31:10.000
+Dileep Karri: Yeah, there you go.
+
+01:31:10.000 --> 01:31:27.000
+Dileep Karri: So it is now, you know, gate checking the results. What is available? What are architecture is addressed? Data model is addressed. Design system is present. Typography is present. The light and dark tokens are present. Spacing is present. Radius is present.
+
+01:31:27.000 --> 01:31:32.000
+Dileep Karri: There are multiple things which are already present overall.
+
+01:31:34.000 --> 01:31:51.000
+Dileep Karri: Okay, the gate has been passed and then I am going to get it over. See, one thing to understand is my skills and everything is at the global level, but whatever I'm building is in the product project level only. It is everything is in my project itself.
+
+01:31:52.000 --> 01:32:00.000
+Dileep Karri: Okay, so now that, you know, the specs are being, you know, passed on to the project.
+
+01:32:03.000 --> 01:32:18.000
+Dileep Karri: Blueprint skill is being used as plan mode itself. See, don't worry about, I didn't understand the question. Maybe I'll take an elaboration later. But if you are saying that I want skills that have to be used only on this particular project.
+
+01:32:18.000 --> 01:32:32.000
+Dileep Karri: When you're writing the skill, you have to specify that you want to use this project. That is one. Second thing you can say, don't use these skills, don't use these skills. The system will understand and will not invoke the different skills.
+
+01:32:54.000 --> 01:33:06.000
+Dileep Karri: like to use the superpass, because it gives me the clarity of brainstorming, and because I will use it in multiple places overall. So that's why I kind of use only this.
+
+01:33:07.000 --> 01:33:16.000
+Dileep Karri: RAL fluke out of scope, maybe I'll talk about it towards the end, but right now I will not talk about RAL fluke. It is going to be very complex if I talk about that.
+
+01:33:18.000 --> 01:33:28.000
+Dileep Karri: Again, what I'm trying to tell you is this is my process. I'm not saying this is the perfect process. This is my process, which I know has yielded me results.
+
+01:33:28.000 --> 01:33:32.000
+Dileep Karri: And therefore, practically, I'm trying to show you how this process would work.
+
+01:33:57.000 --> 01:34:00.000
+Dileep Karri: Okay So. We Will do this?
+
+01:34:01.000 --> 01:34:01.000
+Dileep Karri: So?
+
+01:34:01.000 --> 01:34:07.000
+Dileep Karri: That is advantage. Your system is getting built in. The meanwhile we'll Discuss on?
+
+01:34:07.000 --> 01:34:08.000
+Dileep Karri: The other. Items?
+
+01:34:09.000 --> 01:34:11.000
+Dileep Karri: Okay, So?
+
+01:34:12.000 --> 01:34:14.000
+Dileep Karri: इन एमसीपी?
+
+01:34:14.000 --> 01:34:17.000
+Dileep Karri: राइट देर टू एलिमेंट्स?
+
+01:34:17.000 --> 01:34:19.000
+Dileep Karri: वन, एमसीपी?
+
+01:34:19.000 --> 01:34:20.000
+Dileep Karri: क्लाइंट?
+
+01:34:21.000 --> 01:34:24.000
+Dileep Karri: And the other Is, the mcp server?
+
+01:34:25.000 --> 01:34:30.000
+Dileep Karri: Okay, So it's, a Client server Architecture any other client server, architecture. That Comes to your mind?
+
+01:34:30.000 --> 01:34:36.000
+Dileep Karri: अगर एमसीपी मॉडल कांटेक्ट प्रोटोकॉल, एनीथिंग, माइंड?
+
+01:34:36.000 --> 01:34:38.000
+Dileep Karri: Protocol with the client server architecture.
+
+01:34:39.000 --> 01:34:44.000
+Dileep Karri: Duncan O'Http, exactly. Http is also a client server architecture.
+
+01:34:44.000 --> 01:34:49.000
+Dileep Karri: So I have the MCP client, which is talking to my MCP server.
+
+01:34:49.000 --> 01:34:54.000
+Dileep Karri: Usually, LLM, my model, is always the MCP client.
+
+01:34:55.000 --> 01:34:59.000
+Dileep Karri: and Mcp. Server are the rest of applications.
+
+01:35:02.000 --> 01:35:07.000
+Dileep Karri: So, any application you want to connect to, you want to connect to Gmail.
+
+01:35:07.000 --> 01:35:12.000
+Dileep Karri: You want to connect to notion. You want to connect to Google drive.
+
+01:35:12.000 --> 01:35:26.000
+Dileep Karri: any application that you connect to, each of them would have an MCP server, so the connection is happening via the MCP server. The Gmail, the Notion, the Google Drive, all are MCP servers.
+
+01:35:26.000 --> 01:35:29.000
+Dileep Karri: and Mcp. Client is the.
+
+01:35:29.000 --> 01:35:34.000
+Dileep Karri: large language model, which is your MCP client, what it does is.
+
+01:35:34.000 --> 01:35:35.000
+Dileep Karri: This will.
+
+01:35:35.000 --> 01:35:38.000
+Dileep Karri: send the request, and this will send the information.
+
+01:35:38.000 --> 01:35:41.000
+Dileep Karri: So it's a client-server architecture.
+
+01:35:41.000 --> 01:35:43.000
+Dileep Karri: So the way it works is.
+
+01:35:43.000 --> 01:35:44.000
+Dileep Karri: This is the protocol.
+
+01:35:44.000 --> 01:35:46.000
+Dileep Karri: or the set of rules.
+
+01:35:49.000 --> 01:35:50.000
+Dileep Karri: so that.
+
+01:35:50.000 --> 01:35:51.000
+Dileep Karri: your LLM.
+
+01:35:51.000 --> 01:35:55.000
+Dileep Karri: can talk to your external application.
+
+01:35:56.000 --> 01:35:59.000
+Dileep Karri: Say your cloud code.
+
+01:36:00.000 --> 01:36:02.000
+Dileep Karri: Wants to talk to.
+
+01:36:02.000 --> 01:36:03.000
+Dileep Karri: Fire crawl.
+
+01:36:06.000 --> 01:36:08.000
+Dileep Karri: I can use this.
+
+01:36:08.000 --> 01:36:11.000
+Dileep Karri: Say, your plot code wants to talk to Gmail.
+
+01:36:11.000 --> 01:36:18.000
+Dileep Karri: I will use MCP server. Say your cloud code wants to talk to any other application out there.
+
+01:36:18.000 --> 01:36:23.000
+Dileep Karri: Right? I will require an MCP server for that application.
+
+01:36:23.000 --> 01:36:27.000
+Dileep Karri: Okay, now, let us think about what if.
+
+01:36:27.000 --> 01:36:29.000
+Dileep Karri: MCP?
+
+01:36:29.000 --> 01:36:30.000
+Dileep Karri: server.
+
+01:36:34.000 --> 01:36:36.000
+Dileep Karri: is not available.
+
+01:36:39.000 --> 01:36:44.000
+Dileep Karri: Okay? So what you will do is, you can build your own MCP server.
+
+01:36:52.000 --> 01:36:57.000
+Dileep Karri: And how do you build your own MCP server? We will use what is called the.
+
+01:36:58.000 --> 01:36:59.000
+Dileep Karri: Fast.
+
+01:36:59.000 --> 01:37:01.000
+Dileep Karri: MCP.
+
+01:37:01.000 --> 01:37:05.000
+Dileep Karri: library. So we will use the fast MCP library.
+
+01:37:05.000 --> 01:37:07.000
+Dileep Karri: to build your own MCP server.
+
+01:37:07.000 --> 01:37:10.000
+Dileep Karri: The prerequisite for doing this.
+
+01:37:10.000 --> 01:37:12.000
+Dileep Karri: is you will require ABIs.
+
+01:37:13.000 --> 01:37:18.000
+Dileep Karri: Okay, MCP server is a layer. It is a wrapper around APIs.
+
+01:37:19.000 --> 01:37:24.000
+Dileep Karri: as long as you have got Apis, you can use the fast Mcp server.
+
+01:37:25.000 --> 01:37:29.000
+Dileep Karri: to use the API to build your own MCP server.
+
+01:37:30.000 --> 01:37:31.000
+Dileep Karri: Okay?
+
+01:37:31.000 --> 01:37:36.000
+Dileep Karri: I will shortly show you the code for how the MCP server would look like.
+
+01:37:36.000 --> 01:37:40.000
+Dileep Karri: But the process of building this MCP server, let me tell you.
+
+01:37:40.000 --> 01:37:44.000
+Dileep Karri: how I build this MCP server. Okay, that's MCP server I'm going to show.
+
+01:37:45.000 --> 01:37:50.000
+Dileep Karri: Okay, so it is just. Yes, it's a wrapper on top of rest. Apis itself.
+
+01:37:50.000 --> 01:37:51.000
+Dileep Karri: I took.
+
+01:37:51.000 --> 01:37:53.000
+Dileep Karri: some Apis which are available.
+
+01:37:53.000 --> 01:37:55.000
+Dileep Karri: I got those Apis.
+
+01:37:56.000 --> 01:37:57.000
+Dileep Karri: And then, I.
+
+01:37:57.000 --> 01:38:03.000
+Dileep Karri: I got the API documentation URLs. I got the fast MCP documentation URL.
+
+01:38:03.000 --> 01:38:12.000
+Dileep Karri: dump everything into cloud code. Okay, all the documentation Urls, the library, URL, as well as.
+
+01:38:12.000 --> 01:38:24.000
+Dileep Karri: the what I want it to do. I dumped everything into cloud code. Cloud code read the documentation. Cloud code read the Apis. Cloud code read the.
+
+01:38:24.000 --> 01:38:33.000
+Dileep Karri: documentation and everything. It asked me clarifying questions on what I want to build. Based on that, it suggested a few things, and it built the MCP server itself.
+
+01:38:33.000 --> 01:38:42.000
+Dileep Karri: Okay? So that is the process of anything. Your Claude code has become so agentic enough, or Codex has become agentic enough.
+
+01:38:42.000 --> 01:38:49.000
+Dileep Karri: So that you just dump context, it will connect the dots and build whatever you want.
+
+01:38:49.000 --> 01:38:55.000
+Dileep Karri: Two things are required from you. One is you need judgment, other is you require taste.
+
+01:38:55.000 --> 01:39:02.000
+Dileep Karri: Okay? So you require both of these, and I'll talk more about it a little later in terms of this.
+
+01:39:24.000 --> 01:39:29.000
+Dileep Karri: However, the reason it was built. Was so that. Llms.
+
+01:39:29.000 --> 01:39:32.000
+Dileep Karri: To connect to applications.
+
+01:39:32.000 --> 01:39:44.000
+Dileep Karri: They wanted a universal interface like USB-C, and that is why they built out this MCP protocol so that LLMs can talk to your applications freely.
+
+01:39:46.000 --> 01:39:50.000
+Dileep Karri: Okay, so let's check on our thing, what is happening.
+
+01:39:50.000 --> 01:39:55.000
+Dileep Karri: So, it has asked the question. So, stage 1 build has been done.
+
+01:39:55.000 --> 01:40:10.000
+Dileep Karri: Okay, the requirements have been mapped. So how do you want to proceed into Stage 2, which is built? Uh, where change straight through all the five phases, one phase at a time, pause now, or go ahead. So I will say…
+
+01:40:10.000 --> 01:40:14.000
+Dileep Karri: chain through all the five phases.
+
+01:40:35.000 --> 01:40:38.000
+Dileep Karri: interface so that they can use it via LLM.
+
+01:40:39.000 --> 01:40:51.000
+Dileep Karri: Yes, so if I have the non-technical folks who are doing this via the LLM, you will need to build those MCP servers. That is the reason why it is built.
+
+01:41:13.000 --> 01:41:27.000
+Dileep Karri: So now it is writing context for phase one. It is a design system bootstrap process. So the gate requires a spec reference. So now it is creating a folder for the phases and phase by phase.
+
+01:41:27.000 --> 01:41:30.000
+Dileep Karri: the app is going to get built.
+
+01:41:30.000 --> 01:41:33.000
+Dileep Karri: Okay, so it has built the context.
+
+01:41:33.000 --> 01:41:41.000
+Dileep Karri: It is going to build this, and then GSD will start taking this and start building this up. So that is the complete process.
+
+01:41:41.000 --> 01:41:47.000
+Dileep Karri: So GSD's plan phase is being invoked to kind of look at this.
+
+01:41:48.000 --> 01:42:00.000
+Dileep Karri: Alright? Everybody clear so far what is happening? I'll take 5 minutes for mid-session questions. Any questions that you have, I will take right now, as it is building, and then we'll go for a 5-minute break.
+
+01:42:04.000 --> 01:42:11.000
+Dileep Karri: I'll do the recap. Okay, it'll be exhaustive. We have done quite a bit of things right? But.
+
+01:42:11.000 --> 01:42:21.000
+Dileep Karri: this thing. You don't really require to buy a max plan, but right now, with the pro plan, end-to-end build has become almost impossible.
+
+01:42:21.000 --> 01:42:36.000
+Dileep Karri: Because you're going to hit the session limits very soon. So for any proper building work to be done, I always found that the $100 max plan was required to get there. That has been the issue, right?
+
+01:42:36.000 --> 01:42:39.000
+Dileep Karri: That is how we could use.
+
+01:42:41.000 --> 01:42:53.000
+Dileep Karri: Yes, I installed the, uh, this thing, and uh, uh, yeah. So I installed the GSD and SuperPOS, and uh, I left them globally installed. So I did a global install right now.
+
+01:42:53.000 --> 01:42:56.000
+Dileep Karri: So one thing is this.
+
+01:42:56.000 --> 01:43:11.000
+Dileep Karri: Folks who are saying, well, it is bouncing, again, go back to the recording, there is no rocket science here, I was just following a process and asking LLM itself to do it, okay? So, see the recording, you should be able to get it up.
+
+01:43:11.000 --> 01:43:24.000
+Dileep Karri: Then when you can do MCP creation, when you can MCP creation, when you can't find one you need. Yeah, so you can create your MCPs when you can't find the one you need.
+
+01:43:24.000 --> 01:43:40.000
+Dileep Karri: If you need to break the few tasks today and continue tomorrow, should we continue on the same session or new sessions can be used? So before you break a session, ensure that you are mentioning that you are going to stop the session now.
+
+01:43:40.000 --> 01:43:55.000
+Dileep Karri: So create a file wherein you have a log of what has been done and where it has to become, something like a handoff file. So ask the Claude Code to write a handoff file before you stop the session for the day, so that then when you start the session the next time.
+
+01:43:55.000 --> 01:44:09.000
+Dileep Karri: it can see the handoff file and then get started. But typically, my suggestion is, uh, either use the handoff file, and there are some more things I'll talk to you post-break, which can help you in reducing the context.
+
+01:44:09.000 --> 01:44:24.000
+Dileep Karri: If I have a good system that can run the local LLM, would it be better to use Qwen 3.6 coder instead of Claude Code? You will have to use, I think you will need to use a little more higher parameter model.
+
+01:44:24.000 --> 01:44:41.000
+Dileep Karri: or a distilled code model. So you can check up what distilled code models mean, so that local system, if you have, you can use it. But don't expect this level of quality, because it has a lot of parameters trained on a lot of information, and therefore it will not be having this level of quality.
+
+01:44:41.000 --> 01:44:42.000
+Dileep Karri: Quantity.
+
+01:44:42.000 --> 01:44:59.000
+Dileep Karri: What is the bottleneck you faced with Claude Code so far? First bottleneck, context, usage limits reached. I tried some experiment, suddenly usage limit reached, I will have to wait till the end. That is when I started to, you know, build this planning process so that even if it is in between.
+
+01:44:59.000 --> 01:45:03.000
+Dileep Karri: I can ask Codex, check what has been done, and resume from there.
+
+01:45:03.000 --> 01:45:13.000
+Dileep Karri: How does Claude decide on the libraries that will be used? I think it is simply just thinking based on what it knows. It is based on training, et cetera.
+
+01:45:13.000 --> 01:45:19.000
+Dileep Karri: Okay, but if you want a particular tech stack, you can mention that I want to use this particular tech stack.
+
+01:45:19.000 --> 01:45:29.000
+Dileep Karri: Does conferring local LLM will have enough tokens? Yeah, it should work, but it'll not be as good as what these are. You should have the tempered expectations.
+
+01:45:30.000 --> 01:45:45.000
+Dileep Karri: So yes, I'm using Git because GSD uses Git to kind of keep pushing information and overall. Does creating skills save our tokens or just output quality?
+
+01:45:45.000 --> 01:45:51.000
+Dileep Karri: There is a skill which can save on tokens. I will talk about it when we come back.
+
+01:45:51.000 --> 01:46:03.000
+Dileep Karri: If you are building an app and the context tokens are finished in between, what we can do, as I mentioned, if your context is finished, pick it up from another, uh, this thing, you can use Codex to continue from there.
+
+01:46:04.000 --> 01:46:09.000
+Dileep Karri: Can installing the proper skills bring a local LLM model on par? No.
+
+01:46:09.000 --> 01:46:20.000
+Dileep Karri: even if you install the proper skills, right? There is a lot of institutional knowledge on coding which is missed out, and it will not be at par with this.
+
+01:46:20.000 --> 01:46:37.000
+Dileep Karri: Is there a concept like local MCP server and remote MCP server? Very simple. Local MCP server means the MCP server is running on your local system, right? And remote MCP server means it is running outside. Same like local web application versus remote.
+
+01:46:37.000 --> 01:46:38.000
+Dileep Karri: web application.
+
+01:46:39.000 --> 01:46:44.000
+Dileep Karri: Gamma 4, a good model, it is decent, but Gamma 4…
+
+01:46:44.000 --> 01:46:50.000
+Dileep Karri: is meant for, uh, you know, running things on mobile. So it is a very low-weight…
+
+01:46:50.000 --> 01:46:57.000
+Dileep Karri: So it is meant for running things overall on mobile. That is where it is very good overall.
+
+01:46:58.000 --> 01:47:09.000
+Dileep Karri: When we try to use Claude Code CLI with other LLMs, so many system prompts me to work with Claude models and throws off other LLMs. How can we make it work? Okay, Claude Code CLI.
+
+01:47:09.000 --> 01:47:26.000
+Dileep Karri: A little complex, but the way to make it work is when you are creating the system prompts, you have to mention explicitly that don't just create for yourself. It should be working across all models decently. Try to add that guardrail.
+
+01:47:26.000 --> 01:47:33.000
+Dileep Karri: And you'll have to maybe do a testing of the same prompt in different models also and do that refinements before you do anything else.
+
+01:47:37.000 --> 01:47:50.000
+Dileep Karri: Okay? See, how do we know it is for this or anything? You have to read the documentation. For every skill, there is a documentation. You have to go through the documentation to understand what those skills can clearly do.
+
+01:47:51.000 --> 01:47:53.000
+Dileep Karri: Hooks.
+
+01:47:53.000 --> 01:47:59.000
+Dileep Karri: A guide on how to create your MCP server, I think I just mentioned. I will show all of that.
+
+01:48:01.000 --> 01:48:04.000
+Dileep Karri: I have used the Claude Code CLI currently.
+
+01:48:04.000 --> 01:48:09.000
+Dileep Karri: Hooks are used, uh, okay, hooks I'm not teaching, because…
+
+01:48:09.000 --> 01:48:26.000
+Dileep Karri: little advanced, and I don't really see the point of hooks not really required, so I'm kind of keeping hooks out of scope. When we come back, we will check on how much work this has done. I'll keep the screen on, so that anybody who wants to see can keep seeing.
+
+01:48:26.000 --> 01:48:41.000
+Dileep Karri: what is getting built on the screen all through, and you can see what is happening. And then I'll come back and I'll talk about how you can build your own MCP server, and what are the things to take care of when you build your own MCP server.
+
+01:48:41.000 --> 01:48:44.000
+Dileep Karri: Okay, we will take a quick five minute break.
+
+01:48:49.000 --> 01:48:51.000
+Sham Kulkarni: Okay…
+
+01:48:51.000 --> 01:48:53.000
+Sham Kulkarni: Folks, all good so far?
+
+01:48:53.000 --> 01:48:55.000
+Sham Kulkarni: Everybody is able to understand?
+
+01:48:55.000 --> 01:48:57.000
+Sham Kulkarni: Just a quick check.
+
+01:48:59.000 --> 01:49:00.000
+Sham Kulkarni: Yes?
+
+01:49:01.000 --> 01:49:03.000
+Sham Kulkarni: Alright.
+
+01:49:06.000 --> 01:49:07.000
+Sham Kulkarni: Okay.
+
+01:49:07.000 --> 01:49:16.000
+Sham Kulkarni: So, we'll just take a 5 minutes break, right? So, delete screen will be on, right? So, we'll be back at 8.53, right?
+
+01:49:16.000 --> 01:49:18.000
+Sham Kulkarni: Okay.
+
+01:55:46.000 --> 01:55:53.000
+Sham Kulkarni: Folks, are we back? Are we back from the break?
+
+01:55:54.000 --> 01:55:56.000
+Sham Kulkarni: Everybody's back?
+
+01:55:58.000 --> 01:56:00.000
+Sham Kulkarni: Yes, yes.
+
+01:56:00.000 --> 01:56:03.000
+Sham Kulkarni: Click back in the chat, folks.
+
+01:56:04.000 --> 01:56:05.000
+Sham Kulkarni: Yes.
+
+01:56:07.000 --> 01:56:08.000
+Sham Kulkarni: Okay.
+
+01:56:09.000 --> 01:56:13.000
+Dileep Karri: Okay, as we took the break, this is what has happened.
+
+01:56:13.000 --> 01:56:30.000
+Dileep Karri: So we spent a good 20 to 25 min to write the plans. So it has written the plans. And now it is checking all of the plans over here, and it will start executing the plan. So it is 25 min down right? So it has.
+
+01:56:30.000 --> 01:56:38.000
+Dileep Karri: return the plans, it is now running the plan checker. Once the plan checker is done, it will start executing it.
+
+01:57:00.000 --> 01:57:09.000
+Dileep Karri: Okay, first, I will do the whiteboard and explain what are the things you'll require to build your own MCP server. So the first thing you'll require…
+
+01:57:09.000 --> 01:57:13.000
+Dileep Karri: Is you want to first figure out.
+
+01:57:13.000 --> 01:57:15.000
+Dileep Karri: What do you want?
+
+01:57:17.000 --> 01:57:21.000
+Dileep Karri: your MCP server to do.
+
+01:57:23.000 --> 01:57:37.000
+Dileep Karri: That means, what is the problem you would like the MCP server to solve? That is the first thing that you need to understand. What will you want your — how will you want — what is the problem you want your MCP server to solve?
+
+01:57:37.000 --> 01:57:44.000
+Dileep Karri: And the typical problem your MCP server you can take is, for example, I want a job search.
+
+01:57:45.000 --> 01:57:53.000
+Dileep Karri: MCP server, let us example. Okay, some job search already exist. I'm just saying that hypothetically, if you want to create this.
+
+01:57:53.000 --> 01:57:57.000
+Dileep Karri: Then I will need some job search APIs.
+
+01:58:19.000 --> 01:58:29.000
+Dileep Karri: Okay? And I have an empty folder where, in the .env file, I will put the API key of Adzuna, as well as, uh…
+
+01:58:29.000 --> 01:58:35.000
+Dileep Karri: Uh, anything else that I require. So whatever API keys are required, I will put it up in Adzuna.
+
+01:58:35.000 --> 01:58:46.000
+Dileep Karri: So, if you are trying to create your own APIs, for those, you can create the API keys, but if you're using external APIs, you can… you'll have to create, uh…
+
+01:58:46.000 --> 01:59:01.000
+Dileep Karri: something else, right? So, if you want… if you say you want to get your MCP server, you might have to add authentication to your MCP server, so you'll have to add an OAuth. So, one thing I learned about OAuth is you can use Clerk.
+
+01:59:01.000 --> 01:59:13.000
+Dileep Karri: to kind of build an authentication over your MCP server. By the way, I have found that Clerk has become very popular in terms of auth, so anybody want to build auth systems, I think you can even consider Clerk for the same.
+
+01:59:15.000 --> 01:59:23.000
+Dileep Karri: Okay, so now that I do this, I will need to use something called FastMCP. FastMCP is a Python library.
+
+01:59:24.000 --> 01:59:30.000
+Dileep Karri: And this fast MCP Python library will help you, uh, you know, kind of create the…
+
+01:59:30.000 --> 01:59:36.000
+Dileep Karri: Uh, entire stuff. So the way I do it is, I will search for Adzuna.
+
+01:59:36.000 --> 01:59:44.000
+Dileep Karri: API documentation, search for it. I'll get the documentation, so I'll pick it up.
+
+01:59:46.000 --> 01:59:55.000
+Dileep Karri: Okay, this is the API documentation already available, so I will use this link. Then I will go to FastMCP.
+
+01:59:55.000 --> 02:00:06.000
+Dileep Karri: So FastMCP is available. So this is FastMCP, which can help you, the standard framework for creating any kind of MCP applications.
+
+02:00:06.000 --> 02:00:22.000
+Dileep Karri: Okay, so the way fast MCP works is this, right? If you want to create an MCP server, you say MCP equal to fast MCP of something. So the name of the MCP server is called demo. That is the name of the MCP server.
+
+02:00:22.000 --> 02:00:32.000
+Dileep Karri: And then when you call mcp.tool, that is the tool that you are defining, and that is what is invoked or exposed to the LLM.
+
+02:00:32.000 --> 02:00:47.000
+Dileep Karri: So if you don't say MCP.tool, you are not able to expose that capability to the LLM. For example, I want to search for a job. You need to create that MCP.tool definition job for to expose that to the.
+
+02:00:47.000 --> 02:01:00.000
+Dileep Karri: LLM. Okay? So, just give me a second, I will show you the actual code, and I will share the repository of this code also, so that you can check it out later and see how it is written completely.
+
+02:01:00.000 --> 02:01:16.000
+Dileep Karri: So because I'm not showing and building that code from scratch, because I told you, I built it using Claude code only. There is no rocket science over here. I took the documentation. I took the fast MCP documentation. I said I want to build a job search MCP server.
+
+02:01:16.000 --> 02:01:20.000
+Dileep Karri: And I asked you to figure it out. It built it out completely for me.
+
+02:01:21.000 --> 02:01:23.000
+Dileep Karri: So…
+
+02:01:24.000 --> 02:01:27.000
+Dileep Karri: Uh, just let me open the folder.
+
+02:01:30.000 --> 02:01:32.000
+Dileep Karri: I think there's yeah.
+
+02:01:34.000 --> 02:01:36.000
+Dileep Karri: There you go.
+
+02:01:56.000 --> 02:02:11.000
+Dileep Karri: The main file is the main.py. And I have also written a good complex readme.md, which tells exactly what this MCP server does. How do you install? How do you use it?
+
+02:02:11.000 --> 02:02:13.000
+Dileep Karri: And, uh, all of the.
+
+02:02:13.000 --> 02:02:21.000
+Dileep Karri: process. So I have given a complete file structure, everything. Again, I did not write it. Everything was written by Claude Code.
+
+02:02:21.000 --> 02:02:38.000
+Dileep Karri: So the way it works is in main.py, these are the libraries that you would require, which is the library of load.env, which is to load the environment variables. SQLite, which is my database, which I'll use for ingesting the jobs.
+
+02:02:38.000 --> 02:02:54.000
+Dileep Karri: And then MCP server, where I'm using FastMCP as the class. So the name of my MCP server is a job search MCP server, and it does three things. Search jobs, which is mcp.tool, so it does search jobs.
+
+02:02:55.000 --> 02:02:58.000
+Dileep Karri: then it does get job by ID.
+
+02:02:58.000 --> 02:03:08.000
+Dileep Karri: And it does get job statistics. So for a job, it gets the statistics, it gets the job by ID, and it searches for the jobs.
+
+02:03:30.000 --> 02:03:36.000
+Dileep Karri: So that even if net is not working or something happens, it is able to do that.
+
+02:03:38.000 --> 02:03:40.000
+Dileep Karri: Okay, so.
+
+02:03:40.000 --> 02:03:53.000
+Dileep Karri: The thing you need to remember when you are building this is this documentation is very, very crucial. Are you seeing this documentation under search jobs where I'm seeing search for software engineer jobs based on keywords?
+
+02:03:53.000 --> 02:03:56.000
+Dileep Karri: Are you guys seeing this? Very important part.
+
+02:03:56.000 --> 02:04:03.000
+Dileep Karri: This information that you see, this is what gets loaded as context into the LLM.
+
+02:04:03.000 --> 02:04:05.000
+Dileep Karri: So when a Llm.
+
+02:04:05.000 --> 02:04:20.000
+Dileep Karri: is looking at a server, you know, run by fast MCP. And currently, when I run this, it is run on my local system. So this server runs on my local system, so it will only work when my laptop is running.
+
+02:04:20.000 --> 02:04:27.000
+Dileep Karri: So if you want to deploy it remotely, you can deploy it remotely in Netlify, Versal, or anywhere you want.
+
+02:04:27.000 --> 02:04:31.000
+Dileep Karri: So once you have this MCP server working.
+
+02:04:31.000 --> 02:04:40.000
+Dileep Karri: And you say that this is the MCP server, so when you run… when you kind of run this Python code, right, when you say mcp.run.
+
+02:04:40.000 --> 02:04:57.000
+Dileep Karri: Okay? It will run the server automatically, and automatically, Claude will know that there is a local MCP server running. You don't have to do anything. This will take… this code will take care of that. Or rather, your fast MCP library will ensure that whatever MCP server you're running.
+
+02:04:57.000 --> 02:05:09.000
+Dileep Karri: It is written onto Claude config file. There is a special config file for Claude onto which it is written that this MCP server is running. So I'll show you that config file also.
+
+02:05:09.000 --> 02:05:11.000
+Dileep Karri: So, you can go to…
+
+02:05:12.000 --> 02:05:13.000
+Dileep Karri: Settings.
+
+02:05:14.000 --> 02:05:20.000
+Dileep Karri: So inside Settings, you go to Developer. In Developer, you go to Edit Config.
+
+02:05:21.000 --> 02:05:28.000
+Dileep Karri: And here you can open any of the config file. So when you open the config file.
+
+02:05:29.000 --> 02:05:40.000
+Dileep Karri: All the MCP servers which are running are shown, and when you run the MCP.run, the job server MCP is also shown.
+
+02:05:41.000 --> 02:05:45.000
+Dileep Karri: Once again, I'll show you the main config file itself.
+
+02:05:46.000 --> 02:05:52.000
+Dileep Karri: Okay? So look at this job search server, where the command is, it is running on…
+
+02:05:52.000 --> 02:05:59.000
+Dileep Karri: my local bin, and it runs with MCP, and it is running this main.py.
+
+02:05:59.000 --> 02:06:05.000
+Dileep Karri: When I kind of run this, you look at the MCP server, I'll go back to the chat.
+
+02:06:05.000 --> 02:06:07.000
+Dileep Karri: I'll create a new chat.
+
+02:06:08.000 --> 02:06:10.000
+Dileep Karri: If you look at the connectors.
+
+02:06:10.000 --> 02:06:11.000
+Dileep Karri: And, uh…
+
+02:06:11.000 --> 02:06:14.000
+Dileep Karri: I will say manage connectors.
+
+02:06:14.000 --> 02:06:29.000
+Dileep Karri: In the connectors, you will see the job search server is running, okay? It is already running. It has got search jobs, get job by ID, and get job statistics, which is the exact same thing as your code.
+
+02:06:29.000 --> 02:06:36.000
+Dileep Karri: which is search jobs, then get job by ID, and get job statistics.
+
+02:06:36.000 --> 02:06:42.000
+Dileep Karri: And the documentation is important, because this is what gets loaded into Claude.
+
+02:06:42.000 --> 02:06:57.000
+Dileep Karri: Claude desktop sees this. So when you say I want to search for the particular job, it will look at all the tools of all the MCP servers present, and it'll go through all the documentation. And this documentation is present in the context.
+
+02:06:57.000 --> 02:07:01.000
+Dileep Karri: Based on this, it will tell, okay, whether I can use this or not.
+
+02:07:02.000 --> 02:07:11.000
+Dileep Karri: Okay? To some extent, did you understand what is happening? I have written the Python code with Claude code using the FastMCP.
+
+02:07:14.000 --> 02:07:24.000
+Dileep Karri: Something existed means I used Adzuna API. It is something which was already existing. Those APIs, I dumped everything and created the code.
+
+02:07:27.000 --> 02:07:29.000
+Dileep Karri: Okay, clear everybody?
+
+02:07:50.000 --> 02:07:52.000
+Dileep Karri: that can work with it.
+
+02:07:52.000 --> 02:08:04.000
+Dileep Karri: Okay, and where I'm using the API documentation, I'm using it over here, where I am downloading the jobs from Adzuna, and then I am ingesting those jobs back from Adzuna.
+
+02:08:04.000 --> 02:08:10.000
+Dileep Karri: Okay? Clear so far, everybody? I'm seeing only Firefly's messages, I'm not seeing your messages.
+
+02:08:11.000 --> 02:08:12.000
+Dileep Karri: Books?
+
+02:08:13.000 --> 02:08:25.000
+Dileep Karri: So, I am you… okay, the question, uh, why I'm using the Adzuna API is because I wanted reliability, uh, because Adzuna API was sometimes failing a bit.
+
+02:08:25.000 --> 02:08:32.000
+Dileep Karri: So therefore, for reliability's sake, what I did was I downloaded it locally, and from local, I'm picking up. It is pure reliability call.
+
+02:08:34.000 --> 02:08:39.000
+Dileep Karri: All right, now let us check on what is happening over here.
+
+02:08:40.000 --> 02:08:44.000
+Dileep Karri: Okay, so now look at this.
+
+02:08:46.000 --> 02:08:58.000
+Dileep Karri: Right? You have the plans revised and committed. Okay, you have successfully loaded the skill. And now here it is saying three plans.
+
+02:08:58.000 --> 02:09:12.000
+Dileep Karri: Uh, 3 sequential, uh, waves, all incomplete, spawning wave 1, project scaffolding plus token system, etc. So, it is doing some installations. But anyways, what I'll do is, I will check…
+
+02:09:12.000 --> 02:09:14.000
+Dileep Karri: I'll say, by the way.
+
+02:09:14.000 --> 02:09:16.000
+Dileep Karri: What is the status?
+
+02:09:17.000 --> 02:09:19.000
+Dileep Karri: So far.
+
+02:09:21.000 --> 02:09:24.000
+Dileep Karri: What is the status so far?
+
+02:09:24.000 --> 02:09:38.000
+Dileep Karri: Can you tell me? So, right now, my code is executing still, so I'm not really sure what is happening underneath. So, I can use the bytheway command slash btw to kind of help me with this.
+
+02:09:39.000 --> 02:09:50.000
+Dileep Karri: So I'll say, by the way, what is the status so far? Can you tell me? So it is going to answer based on the status of what it has seen is happening over here.
+
+02:10:33.000 --> 02:10:49.000
+Dileep Karri: or handling that error right now. Okay, phase 2 to 5 not started. So they will run sequentially after phase, one verifies, then cost or time. So far, roughly, 30 to 45 min of wall time on phase, one planning plus revisions has happened.
+
+02:10:49.000 --> 02:11:05.000
+Dileep Karri: The heavy execution work hasn't begun yet. You are at the natural moment where real code is about to start being rewritten. So when you are doing this and you kind of find that it is not being able to write so far, don't worry.
+
+02:11:05.000 --> 02:11:09.000
+Dileep Karri: You can use the by the way thing so that you can understand what is happening.
+
+02:11:09.000 --> 02:11:21.000
+Dileep Karri: So now you can dismiss, so that you can come back to the main chat. So now you are in the main chat. By the way, means it is saying that the main thing is running, and it is telling exactly what is happening.
+
+02:11:22.000 --> 02:11:35.000
+Dileep Karri: Any good resource? Help of Claude is a good resource, or Twitter. From Twitter, I look at tutorials. Go to Claude Code documentation, dump it, and say, are there any new commands which have come?
+
+02:11:35.000 --> 02:11:40.000
+Dileep Karri: So then that only will tell you these are the new commands which have come and you can learn based on that.
+
+02:11:44.000 --> 02:11:50.000
+Dileep Karri: All right, so now that you see all of this that you see, is it game of waiting?
+
+02:11:50.000 --> 02:12:05.000
+Dileep Karri: Okay, now is a game of waiting where your thing is going to keep executing, and you have to keep watching what is happening. So the planner has done, the executor has started, so it has started to.
+
+02:12:05.000 --> 02:12:18.000
+Dileep Karri: write different code all through. So what we'll do is I will again open cursor to check on what has been written so far. So let me open that folder.
+
+02:12:22.000 --> 02:12:24.000
+Dileep Karri: And, uh, I will…
+
+02:12:24.000 --> 02:12:27.000
+Dileep Karri: Who's this? I might have pulled that one.
+
+02:12:29.000 --> 02:12:42.000
+Dileep Karri: So, how to add the remote MCP server? Uh, that is straightforward, you just have to go to the MCP server documentation, everyone will have it, just dump it in Claude code, it will do the needful. I think I showed it in the beginning.
+
+02:13:06.000 --> 02:13:21.000
+Dileep Karri: Stage two, after stage one completes, each model receives the other answers and streams a peer critique. Stage three, synthesizer produces a structured output with table, prose, bullets, and a disagreement map.
+
+02:14:04.000 --> 02:14:18.000
+Dileep Karri: Outcome, evolution, et cetera. Then what are the requirements? All of the requirements, all the user stories written even further detail. So for every big user story, I have written smaller user stories.
+
+02:14:18.000 --> 02:14:35.000
+Dileep Karri: which I have written overall. Then roadmap. What is the complete roadmap? Currently it is Mvp. And it is giving the phases. Phase, one is foundation and design system stage, one independent attack. It will be built. Then the peer critique will be built. Then the synthesis will be built.
+
+02:14:35.000 --> 02:14:43.000
+Dileep Karri: And then flow plus accessibility and the polish will be done. So this is exactly how it has been built so far.
+
+02:15:25.000 --> 02:15:27.000
+Dileep Karri: What's the plan?
+
+02:15:27.000 --> 02:15:30.000
+Dileep Karri: Which is done. Then there is a context.
+
+02:15:30.000 --> 02:15:36.000
+Dileep Karri: which is the file layout, et cetera, and all of that, and then the skeleton.
+
+02:15:36.000 --> 02:15:44.000
+Dileep Karri: The complete skeleton of the architectural decisions, what is it, what are the end-state demos, etc.
+
+02:15:44.000 --> 02:15:56.000
+Dileep Karri: Right? So this is all that has been written in your planning, and you can see now, code is getting written across the board. Okay? So your code is getting written as and when you keep going ahead.
+
+02:15:56.000 --> 02:16:11.000
+Dileep Karri: Did you understand the orchestration we have done, and now how each element… we started with a completely empty folder, and we are starting to add each of those elements, all of this. Okay, so this is a process.
+
+02:16:11.000 --> 02:16:28.000
+Dileep Karri: There was one question which I saw. Can we auto switch model based on the prompt or subagent? So if you are installing the GSD skill, it already has the subagent which model it should use. But you can go through it and ask it.
+
+02:16:28.000 --> 02:16:35.000
+Dileep Karri: like, you know, ask it like which agent subagents you're using, and you can ask it to switch the models.
+
+02:16:35.000 --> 02:16:42.000
+Dileep Karri: Okay, so you can change anything. Everything is in your control. You can change whatever you typically want.
+
+02:16:43.000 --> 02:16:45.000
+Dileep Karri: Let's check what's happening.
+
+02:16:54.000 --> 02:17:02.000
+Dileep Karri: Okay, so it is reading the stuff. It has already written the layout and everything. So it is going to pick this up.
+
+02:17:03.000 --> 02:17:18.000
+Dileep Karri: Alright, so as this is, uh, doing, uh, okay, as this kind of, uh, is, uh, running and, uh, building, uh, stuff overall, uh, right, uh, what I will also do is, as this is building, I will show you.
+
+02:17:18.000 --> 02:17:29.000
+Dileep Karri: another model console that I have built before, okay? It is similar in work. Because this is building, I want to show you the already working model console that I have built.
+
+02:17:31.000 --> 02:17:38.000
+Dileep Karri: So I'm going to go with a new tab. So while one cloud is running, I can run another cloud very easily.
+
+02:17:38.000 --> 02:17:41.000
+Dileep Karri: So I'll go to cd dot dot.
+
+02:17:44.000 --> 02:17:45.000
+Dileep Karri: Good morning.
+
+02:17:45.000 --> 02:17:47.000
+Dileep Karri: Council.
+
+02:17:47.000 --> 02:17:52.000
+Dileep Karri: And secular, dangerous.
+
+02:17:52.000 --> 02:17:53.000
+Dileep Karri: Skip.
+
+02:17:54.000 --> 02:17:56.000
+Dileep Karri: permissions.
+
+02:18:01.000 --> 02:18:07.000
+Dileep Karri: Okay? You see this entire context you're seeing, right? A lot of information you are seeing.
+
+02:18:07.000 --> 02:18:20.000
+Dileep Karri: So this is a new skill that I had installed. Right. I will, you know, kind of talk about it once I show you the model console line. I'll talk about the skill as our code is getting rewritten.
+
+02:18:21.000 --> 02:18:23.000
+Dileep Karri: So I will say.
+
+02:18:24.000 --> 02:18:27.000
+Dileep Karri: Start model.
+
+02:18:27.000 --> 02:18:28.000
+Dileep Karri: On Zoom.
+
+02:18:29.000 --> 02:18:30.000
+Dileep Karri: on.
+
+02:18:30.000 --> 02:18:32.000
+Dileep Karri: port…
+
+02:18:57.000 --> 02:18:59.000
+Dileep Karri: Okay.
+
+02:18:59.000 --> 02:19:01.000
+Dileep Karri: I'll copy this.
+
+02:19:01.000 --> 02:19:02.000
+Dileep Karri: And then…
+
+02:19:05.000 --> 02:19:08.000
+Dileep Karri: I'll open the server.
+
+02:19:11.000 --> 02:19:15.000
+Dileep Karri: There you go, this is my model console. This was a different prompt, uh…
+
+02:19:15.000 --> 02:19:30.000
+Dileep Karri: than what I have, you know, kind of used earlier. Okay, so can you give me a prompt, something debatable, like a startup idea or something like that, so that I can put that prompt and ask my model council its opinions.
+
+02:19:31.000 --> 02:19:36.000
+Dileep Karri: Anybody on the chat? What can I query this model console?
+
+02:19:42.000 --> 02:19:44.000
+Dileep Karri: Ideas? Come on, folks.
+
+02:19:46.000 --> 02:19:52.000
+Dileep Karri: Create an AI powered business. This thing using Evs for global warming.
+
+02:19:52.000 --> 02:19:57.000
+Dileep Karri: Uh, et cetera, and all that. I will stay out of politics, okay?
+
+02:19:57.000 --> 02:19:59.000
+Dileep Karri: But I will say this.
+
+02:20:00.000 --> 02:20:03.000
+Dileep Karri: So what I'll put is this information.
+
+02:20:03.000 --> 02:20:11.000
+Dileep Karri: Let me put the thing, AI and the future of work, okay? There is a lot of talks, I think. I think that is the one that people have asked.
+
+02:20:11.000 --> 02:20:23.000
+Dileep Karri: I want you to consider about AI and the future of jobs. Can you look at this and convene the council on this point of.
+
+02:20:23.000 --> 02:20:28.000
+Dileep Karri: whether AI is really taking away jobs, creating new jobs. What is the truth?
+
+02:20:32.000 --> 02:20:42.000
+Dileep Karri: Okay, now I have set it up. I will also force round three so that it can go through additional level. And I will say convene council.
+
+02:20:43.000 --> 02:20:50.000
+Dileep Karri: Okay, so once I convene the council, this is what is going to happen. You can see it as it is going to run.
+
+02:21:02.000 --> 02:21:06.000
+Dileep Karri: I will address your question, Kamal. Just hold on.
+
+02:21:07.000 --> 02:21:10.000
+Dileep Karri: Something was happening.
+
+02:21:12.000 --> 02:21:21.000
+Dileep Karri: Okay, I'll come back to the screen. In the meanwhile, you see this button, right? It means it is asking for my input, so I have to jump in over here.
+
+02:21:21.000 --> 02:21:24.000
+Dileep Karri: So I'll have to check.
+
+02:21:25.000 --> 02:21:31.000
+Dileep Karri: Okay, no, this was the one which asked me. It is still running. Okay, nothing to worry so far.
+
+02:21:36.000 --> 02:21:42.000
+Dileep Karri: All right, I think I ran this, something happened with the model console, some error.
+
+02:21:42.000 --> 02:21:46.000
+Dileep Karri: There is an issue mentioned here, but last time also it came.
+
+02:21:46.000 --> 02:21:53.000
+Dileep Karri: But that it ran before also. So I'm not worried about this. Give it some time. Okay? And.
+
+02:21:53.000 --> 02:21:56.000
+Dileep Karri: Let us see what happens.
+
+02:21:56.000 --> 02:22:00.000
+Dileep Karri: Yes, I will commit this and I'll share the project also with you.
+
+02:22:22.000 --> 02:22:26.000
+Dileep Karri: What this does is it will help you to save up on the context.
+
+02:22:26.000 --> 02:22:30.000
+Dileep Karri: Okay, so what it does is, it is like an observer.
+
+02:22:30.000 --> 02:22:36.000
+Dileep Karri: Okay, it is like a observer which looks at your entire context.
+
+02:22:36.000 --> 02:22:43.000
+Dileep Karri: whatever work you are doing, and it will log the complete actions that you are taking on its server.
+
+02:22:43.000 --> 02:22:49.000
+Dileep Karri: So it is going to log the different actions. And so when you restart the session.
+
+02:22:49.000 --> 02:22:56.000
+Dileep Karri: Based on the project you are doing, it will kind of store, you know.
+
+02:22:56.000 --> 02:23:06.000
+Dileep Karri: Load the previous session directly. That was what has happened over here, as you could see, in the model console right here, what I was running.
+
+02:23:06.000 --> 02:23:22.000
+Dileep Karri: Okay, it loaded the previous context. So I started this on April 13.th What are the key actions that I have done? It has logged it already. So with this, what happens is, if you ask a question first, it will be checked against this context. So the.
+
+02:23:22.000 --> 02:23:26.000
+Dileep Karri: Amount of tokens will be reduced. Okay, the tokens will be reduced.
+
+02:23:26.000 --> 02:23:29.000
+Dileep Karri: You know, without this overall.
+
+02:23:29.000 --> 02:23:38.000
+Dileep Karri: So Claude Mem is a great skill. The memory data is stored locally. This is all stored in your local system on SQLite. That is how they store the data.
+
+02:23:43.000 --> 02:23:45.000
+Dileep Karri: Okay.
+
+02:23:46.000 --> 02:23:50.000
+Dileep Karri: All right. So now there's an error. I will show you how to debug this also.
+
+02:23:51.000 --> 02:23:53.000
+Dileep Karri: I'll say it.
+
+02:24:01.000 --> 02:24:06.000
+Dileep Karri: Okay, it is saying error itself. Let us see if it is Okay, restarting a server.
+
+02:24:28.000 --> 02:24:29.000
+Dileep Karri: and savings.
+
+02:24:30.000 --> 02:24:32.000
+Dileep Karri: Turning on this.
+
+02:24:33.000 --> 02:24:35.000
+Dileep Karri: Okay.
+
+02:24:36.000 --> 02:24:38.000
+Dileep Karri: There was an error.
+
+02:24:38.000 --> 02:24:40.000
+Dileep Karri: Okay?
+
+02:24:40.000 --> 02:24:43.000
+Dileep Karri: AI and the future.
+
+02:24:44.000 --> 02:24:46.000
+Dileep Karri: Jobs?
+
+02:24:46.000 --> 02:24:50.000
+Dileep Karri: Will jobs go away?
+
+02:24:51.000 --> 02:24:53.000
+Dileep Karri: Stay.
+
+02:24:53.000 --> 02:24:55.000
+Dileep Karri: or increase.
+
+02:24:58.000 --> 02:25:00.000
+Dileep Karri: I'm in the console.
+
+02:25:24.000 --> 02:25:29.000
+Dileep Karri: If the credits are not there, it could become a problem. Let me check that.
+
+02:25:32.000 --> 02:25:35.000
+Dileep Karri: Yeah, credits are there, nothing to worry.
+
+02:25:35.000 --> 02:25:38.000
+Dileep Karri: So there should be some other problem.
+
+02:25:59.000 --> 02:26:12.000
+Dileep Karri: subagent which is running behind it. Okay, so wave one has been done so far. So you can see the wave one has been done, and it is now doing this etc.
+
+02:26:13.000 --> 02:26:15.000
+Dileep Karri: So, what I'll do is…
+
+02:26:15.000 --> 02:26:18.000
+Dileep Karri: to check on what is happening.
+
+02:26:18.000 --> 02:26:20.000
+Dileep Karri: I'll inspect.
+
+02:26:45.000 --> 02:26:47.000
+Dileep Karri: Okay.
+
+02:26:49.000 --> 02:26:53.000
+Dileep Karri: So what I'll do is I will take a screenshot of this.
+
+02:26:58.000 --> 02:27:00.000
+Dileep Karri: Alright, I'll…
+
+02:27:06.000 --> 02:27:08.000
+Dileep Karri: Save to clipboard.
+
+02:27:08.000 --> 02:27:10.000
+Dileep Karri: And then…
+
+02:27:12.000 --> 02:27:14.000
+Dileep Karri: I'll stop here.
+
+02:27:15.000 --> 02:27:17.000
+Dileep Karri: Okay.
+
+02:27:18.000 --> 02:27:22.000
+Dileep Karri: It's not working, so what I'll do is I'll just go to the folder directly.
+
+02:27:23.000 --> 02:27:25.000
+Dileep Karri: Or the desktop.
+
+02:27:29.000 --> 02:27:31.000
+Dileep Karri: Robbie?
+
+02:27:31.000 --> 02:27:35.000
+Dileep Karri: And I will drop the screenshot over here.
+
+02:27:41.000 --> 02:27:43.000
+Dileep Karri: I am getting…
+
+02:27:45.000 --> 02:27:47.000
+Dileep Karri: this add up.
+
+02:27:48.000 --> 02:27:54.000
+Dileep Karri: Okay, some cache issues there, exactly. So let us see how it will debug this overall.
+
+02:28:01.000 --> 02:28:13.000
+Dileep Karri: Managed agents are a little separate. That is more like… it is like n8n automations, but it is the Claude's competitor to n8n operations, etc.
+
+02:28:14.000 --> 02:28:15.000
+Dileep Karri: Okay?
+
+02:28:27.000 --> 02:28:30.000
+Dileep Karri: Ah, there you go, it is running now.
+
+02:28:30.000 --> 02:28:44.000
+Dileep Karri: Okay, you can see here, Claude Sonnet 4.6 has given AI and the future of jobs a comprehensive analysis. GPT-5 is giving the analysis. So this is all independent trends, okay?
+
+02:28:44.000 --> 02:28:49.000
+Dileep Karri: This is all independent runs which are happening. All of them. You know.
+
+02:28:49.000 --> 02:28:52.000
+Dileep Karri: Uh, have the independent runs all through.
+
+02:28:53.000 --> 02:29:06.000
+Dileep Karri: Okay, then critique and update. So round two, critique and update where it is saying where I agree with the other models and where I disagree, where I agree with the others, where I disagree, right?
+
+02:29:06.000 --> 02:29:12.000
+Dileep Karri: Gemini 3.1, where I agree with the others, where I disagree. So the critique has happened.
+
+02:29:14.000 --> 02:29:21.000
+Dileep Karri: Okay? The synthesizer has finally failed because the synthesizer parse has failed, but…
+
+02:29:21.000 --> 02:29:25.000
+Dileep Karri: You know, overall, this is how your model console would work.
+
+02:29:26.000 --> 02:29:39.000
+Dileep Karri: Okay, I can debug this and I can fix it, but this is exactly how your model council works, where different models come, they debate, and they tell me what is the overall information all through.
+
+02:29:40.000 --> 02:29:55.000
+Dileep Karri: Okay, there is something called Jevons paradox. What are the jobs which are at risk? What are the jobs which are being boosted? All of that information is the thing, and the only thing I paid for is the open router key. Exactly the open router key.
+
+02:29:55.000 --> 02:30:01.000
+Dileep Karri: And of course, Claude Code. But Claude Code is distributed cost. I build a lot of applications.
+
+02:30:13.000 --> 02:30:15.000
+Dileep Karri: Okay, let us check on…
+
+02:30:16.000 --> 02:30:17.000
+Dileep Karri: Here.
+
+02:30:24.000 --> 02:30:27.000
+Dileep Karri: Right? I'll say, by the way.
+
+02:30:28.000 --> 02:30:31.000
+Dileep Karri: What is the status?
+
+02:30:33.000 --> 02:30:40.000
+Dileep Karri: There you go. You see here, right? It is already saying that I'm going to reach my session limit very soon.
+
+02:30:40.000 --> 02:30:46.000
+Dileep Karri: Right? I'm going to reach my session limit very soon, where it will stop it. Let us…
+
+02:30:46.000 --> 02:30:53.000
+Dileep Karri: I think I'll have to continue from there. Okay. Status stage one is done. Stage two, phase one in progress.
+
+02:30:53.000 --> 02:31:00.000
+Dileep Karri: Then, uh, Plan 01 is run successfully. Uh, Wave 2 executor also ran successfully.
+
+02:31:00.000 --> 02:31:06.000
+Dileep Karri: Okay, then wave 3 executor is doing phase 2 to 5 has not yet started.
+
+02:31:08.000 --> 02:31:11.000
+Dileep Karri: Alright, so let me check on usage.
+
+02:31:33.000 --> 02:31:41.000
+Dileep Karri: There you go, 96% of your session limit. It will reset at 10:20 PM. So good.
+
+02:31:42.000 --> 02:31:48.000
+Dileep Karri: Good, because I can show you how I will take it across in Codex.
+
+02:31:48.000 --> 02:31:53.000
+Dileep Karri: Okay? So I can show you exactly how it would work in Codex also.
+
+02:31:54.000 --> 02:32:10.000
+Dileep Karri: Can I take through public hosting or local bit tested app, et cetera? So see, again, I will not be able to go through much, et cetera. Public hosting, if you have your Versal MCP, you can publicly host that app.
+
+02:32:10.000 --> 02:32:19.000
+Dileep Karri: et cetera. And if you have got code, right, there is a command over here. Let me talk to you about that command. It is called review.
+
+02:32:19.000 --> 02:32:35.000
+Dileep Karri: Okay, so when I say review, it can actually review the code and, you know, kind of tell you how the entire code is written, not written, etc. So when you say review, it will kind of review that code also.
+
+02:32:35.000 --> 02:32:37.000
+Dileep Karri: do this, plus.
+
+02:32:37.000 --> 02:32:47.000
+Dileep Karri: as part of GSD only, there is a test-driven development which is happening overall. So there is a test-driven development that is happening as the app continues to build.
+
+02:32:52.000 --> 02:32:57.000
+Dileep Karri: Okay, anytime the session would kind of stop.
+
+02:32:57.000 --> 02:33:10.000
+Dileep Karri: at any point in time, then I'll have to do this. So that is a problem with cloud code. When I'm doing very extensive process of building something, it will just say there are session limits and stop me right there.
+
+02:33:10.000 --> 02:33:14.000
+Dileep Karri: That is the point that it really, really irritates me a lot.
+
+02:33:15.000 --> 02:33:19.000
+Dileep Karri: Okay, so then what I'll do is, this is the process.
+
+02:33:19.000 --> 02:33:22.000
+Dileep Karri: I have Codex as my savior.
+
+02:33:23.000 --> 02:33:26.000
+Dileep Karri: So I'll open Codex.
+
+02:33:27.000 --> 02:33:35.000
+Dileep Karri: I have my projects over here. So I will say, add new project. I will say, use an existing folder.
+
+02:33:37.000 --> 02:33:40.000
+Dileep Karri: And here, I will choose the…
+
+02:33:40.000 --> 02:33:44.000
+Dileep Karri: Jaehyun "Jae" Engineering Accelerator Model Coun.
+
+02:33:44.000 --> 02:33:49.000
+Dileep Karri: Okay, I have the model console here, and then I will say…
+
+02:34:11.000 --> 02:34:23.000
+Dileep Karri: what you can build without breaking what Claude Code has already done. If you think there is something that you have to rewrite again, you can tell me, we can discuss on chat, and we can take it forward from there.
+
+02:34:24.000 --> 02:34:34.000
+Dileep Karri: So this is typically the process I would use, because I don't want to kind of, you know, step on the toes of.
+
+02:34:34.000 --> 02:34:36.000
+Dileep Karri: Uh, say…
+
+02:34:36.000 --> 02:34:43.000
+Dileep Karri: You know, on Claude code and write code which does not work. So I wanted to really look at this.
+
+02:34:45.000 --> 02:34:58.000
+Dileep Karri: So, I, uh, the only reason I did not do it this time was I thought, uh, Claude code session limits have improved, so I thought I could do a job continuously. I was wrong. That is the reason why I did not do it this time.
+
+02:35:21.000 --> 02:35:23.000
+Dileep Karri: It is…
+
+02:35:23.000 --> 02:35:27.000
+Dileep Karri: you know, kind of something that they would do overall.
+
+02:35:27.000 --> 02:35:30.000
+Dileep Karri: My limit would reset at 10:30 PM today.
+
+02:35:31.000 --> 02:35:33.000
+Dileep Karri: Okay?
+
+02:35:34.000 --> 02:35:47.000
+Dileep Karri: How would I point Codex? Very simple. This is Codex, actually. I opened Codex web. How would I point? I just opened the folder in which I've been building the project. That's all. Nothing else.
+
+02:35:47.000 --> 02:35:52.000
+Dileep Karri: Yes, I breached the daily limit, but the multi-plan is still left, as are the max plan.
+
+02:35:53.000 --> 02:35:59.000
+Dileep Karri: Yes, the same plans I have on Claude Code, I have on Codex also.
+
+02:36:21.000 --> 02:36:28.000
+Dileep Karri: way that you will be able to use tokens anywhere else. You will have to kind of use it in other things also.
+
+02:36:32.000 --> 02:36:44.000
+Dileep Karri: Okay, so I think of currently what is happening is a multi-agent build wherein I have Claude code running till some extent. I think sometime it is going to stop.
+
+02:36:44.000 --> 02:36:46.000
+Dileep Karri: Uh, I think yes.
+
+02:36:46.000 --> 02:36:54.000
+Dileep Karri: It has stopped. You see, I have hit the limit. It resets at 1020. So it has stopped it currently.
+
+02:36:54.000 --> 02:37:02.000
+Dileep Karri: right? So I have a lot of other thing overall. Right? I have done this, and most of it.
+
+02:37:02.000 --> 02:37:18.000
+Dileep Karri: Right? 65% came from sub-agent heavy sessions, 32% was at greater than 150k context, 19% was while 4+ sessions ran in parallel, etc, etc. Okay? So these are the skills and plugins which has been.
+
+02:37:18.000 --> 02:37:21.000
+Dileep Karri: So GSD kind of used a lot more.
+
+02:37:21.000 --> 02:37:31.000
+Dileep Karri: Yes, so it can stop, it can continue from where it stopped right now. At 10:20 PM, it will start right away.
+
+02:37:31.000 --> 02:37:33.000
+Dileep Karri: So, what I can do is…
+
+02:37:34.000 --> 02:37:36.000
+Dileep Karri: I will go this.
+
+02:37:36.000 --> 02:37:40.000
+Dileep Karri: I will say stop and wait for my remit to reset.
+
+02:37:40.000 --> 02:37:45.000
+Dileep Karri: Okay, so I will reset my limit, and I'll continue from there on.
+
+02:37:46.000 --> 02:37:55.000
+Dileep Karri: Okay, so Codex is building right now. So it is saying that there is, I picked up the handoff short version.
+
+02:37:55.000 --> 02:38:00.000
+Dileep Karri: Claude got the phase one foundation built cleanly.
+
+02:38:00.000 --> 02:38:07.000
+Dileep Karri: Okay? The actual Council product is not built yet. Already built, these are built.
+
+02:38:07.000 --> 02:38:14.000
+Dileep Karri: These are verified, still needs to be built. What I would not rewrite, no rewrite is required for the foundation.
+
+02:38:14.000 --> 02:38:24.000
+Dileep Karri: Uh, the existing shell tokens, open router wrapper, model config, and smoke root are good building blocks. I would build Phase 2 additively on top of this.
+
+02:38:25.000 --> 02:38:28.000
+Dileep Karri: Things to discuss, the four council models are still…
+
+02:38:28.000 --> 02:38:37.000
+Dileep Karri: Illustrative and unverified, okay? The phase two should test the others early and swap IDs if open router rejects them.
+
+02:38:37.000 --> 02:38:53.000
+Dileep Karri: Planning docs are stale. It says phase one is two-thirds done, even though the code and Git commit show that one, two, three are implemented. There is one existing dirty change overall. I left it untouched. My recommendation next step is phase two only.
+
+02:38:53.000 --> 02:39:01.000
+Dileep Karri: Build the stage one vertical slice first, keep the current foundation, and avoid touching the synthesis or refine overall.
+
+02:39:01.000 --> 02:39:10.000
+Dileep Karri: Codex also has system limits of system session limit, but it is not as low as cloud code. So I can.
+
+02:39:10.000 --> 02:39:16.000
+Dileep Karri: kind of make it work. So what I can say is, are you sure?
+
+02:39:16.000 --> 02:39:18.000
+Dileep Karri: You can build.
+
+02:39:19.000 --> 02:39:20.000
+Dileep Karri: without…
+
+02:39:20.000 --> 02:39:22.000
+Dileep Karri: breaking…
+
+02:39:22.000 --> 02:39:23.000
+Dileep Karri: the app.
+
+02:39:25.000 --> 02:39:31.000
+Dileep Karri: Yes, skills and agents work very similar. The orchestration might be different, but…
+
+02:39:31.000 --> 02:39:33.000
+Dileep Karri: with everything.
+
+02:39:35.000 --> 02:39:51.000
+Dileep Karri: See, very intelligent. Yes, with one important caveat. I won't promise nothing can ever break, but I can build it in a way that keeps breakage very contained and visible immediately. The current app is small and healthy.
+
+02:40:14.000 --> 02:40:30.000
+Dileep Karri: IDs being invalid or unavailable. So check it out overall. So it is saying, I'm confident I can continue this without trampling what Claude built. I would go carefully, additively, and verify after each slice.
+
+02:40:31.000 --> 02:40:36.000
+Dileep Karri: Okay? So now I can ask it to continue the build overhaul.
+
+02:40:36.000 --> 02:40:39.000
+Dileep Karri: Okay? So…
+
+02:40:39.000 --> 02:40:41.000
+Dileep Karri: I will do this. I'll say.
+
+02:40:41.000 --> 02:40:43.000
+Dileep Karri: Okay.
+
+02:40:43.000 --> 02:40:45.000
+Dileep Karri: First.
+
+02:40:45.000 --> 02:40:47.000
+Dileep Karri: Verify…
+
+02:40:48.000 --> 02:40:50.000
+Dileep Karri: Open router.
+
+02:40:50.000 --> 02:41:00.000
+Dileep Karri: models, because that is the thing that it is there. How do they share the API key? Same thing. It is in the same environment variable, right? So, it is in the same folder, it can do this.
+
+02:41:22.000 --> 02:41:32.000
+Dileep Karri: So let it start writing. In the meanwhile, I thought I will share a few things with you, if you don't mind. I'll take some five, six minutes to share.
+
+02:41:32.000 --> 02:41:48.000
+Dileep Karri: Exactly what I think, Thomas, I answered this question. Codex can use the same skills and agents. The orchestration is different, but overall, it cannot be continued on another tab of Claude Code because it's a session limit. It is not a tab limit. So I will not be able to do that.
+
+02:41:48.000 --> 02:41:53.000
+Dileep Karri: The only way is I will have to log out and log into another cloud code.
+
+02:41:54.000 --> 02:42:06.000
+Dileep Karri: Yes, they are good at modifying that, but what I would suggest is, before you touch any kind of modification, run like a complete pass on the code.
+
+02:42:07.000 --> 02:42:23.000
+Dileep Karri: Why is CLI recommended? CLI is recommended because it's lightweight, and I can spawn multiple CLIs and run in parallel. That is why CLI is recommended. It is very lightweight. If I want to do this WebView, I cannot run different versions of WebView overall.
+
+02:42:23.000 --> 02:42:26.000
+Dileep Karri: So that is why I use it in CMI.
+
+02:42:27.000 --> 02:42:30.000
+Dileep Karri: Okay? Clear?
+
+02:42:30.000 --> 02:42:32.000
+Dileep Karri: All good so far?
+
+02:42:34.000 --> 02:42:40.000
+Dileep Karri: Right? So let me take 5 minutes right now, and I'm going to talk to you about, uh.
+
+02:42:40.000 --> 02:42:49.000
+Dileep Karri: You know the state of AI adoption in engineering organizations. Okay, I want to share some points which I've been reading very recently.
+
+02:42:49.000 --> 02:42:57.000
+Dileep Karri: Right? So let me just share my screen. I'm just checking what has opened.
+
+02:42:58.000 --> 02:42:59.000
+Dileep Karri: Okay.
+
+02:43:08.000 --> 02:43:14.000
+Dileep Karri: All right. So the way I keep up to, you know, in, you know.
+
+02:43:14.000 --> 02:43:29.000
+Dileep Karri: The way I keep up with this information is via Twitter. So I am a Twitter guzzler. I keep reading a lot of stuff, right? So I have seen some very interesting points. I want to talk to you about those points. So Aaron Levy.
+
+02:43:52.000 --> 02:43:56.000
+Dileep Karri: Is it really true or debating in your mind whether it is true, not true, et cetera.
+
+02:43:59.000 --> 02:44:01.000
+Dileep Karri: Right?
+
+02:44:22.000 --> 02:44:26.000
+Dileep Karri: You know, add-on Levy kind of mentioned.
+
+02:44:27.000 --> 02:44:41.000
+Dileep Karri: What happens is this, okay? See, again, debates are not true entirely, but this is my perspective, which I believe. Again, you might not agree, you might agree, et cetera, but I would again ask you if you agree with my POV. My POV is this.
+
+02:44:41.000 --> 02:44:57.000
+Dileep Karri: How are engineers actually hired? I want to go by first principles. Engineers are hired based on, OK, I want to solve these problems at scale. And for that, this is the scope of the app I want to build. For that, this is the budget.
+
+02:44:57.000 --> 02:45:00.000
+Dileep Karri: And for that, I will hire this team.
+
+02:45:00.000 --> 02:45:15.000
+Dileep Karri: Nobody hires an infinite engineer team. They reduce the scope of the problem and try to hire the engineering team based on that. Do you agree on that? That engineering team is hired based on the scope of work, how many minimum number of engineers are required.
+
+02:45:15.000 --> 02:45:19.000
+Dileep Karri: And then you scale based on how the revenues are scaling.
+
+02:45:40.000 --> 02:45:51.000
+Dileep Karri: limited ambition, I don't require 10 engineers, five engineers are enough. I will 2x, 5x my ambition and use those 10 engineers for my larger ambition.
+
+02:45:52.000 --> 02:46:10.000
+Dileep Karri: Okay, so what I believe is when AI adoption truly happens, it is the ambition scope that is going to increase, rather than, you know, saying that, you know, I'm going to cut down on the stuff. That is the right way to think about it. If you extrapolate to every bank, every manufacturer, every company.
+
+02:46:10.000 --> 02:46:12.000
+Dileep Karri: that uses tech.
+
+02:46:12.000 --> 02:46:15.000
+Dileep Karri: Right? It is going to.
+
+02:46:15.000 --> 02:46:28.000
+Dileep Karri: You know, if your employees are working harder, producing better output than possible, you will chase more ambitious problems. You will not think that, okay, my ambition is only this much, and therefore now I will lay off my team.
+
+02:46:28.000 --> 02:46:33.000
+Dileep Karri: So now the question comes, why are the teams getting laid off?
+
+02:46:54.000 --> 02:47:01.000
+Dileep Karri: Brian Armstrong, who is saying that you know I am kind of.
+
+02:47:01.000 --> 02:47:17.000
+Dileep Karri: doing this, and he has mentioned about his layoffs also. So he has talked about layoffs where he's saying AI is changing how we work, and the pace of what is possible with a small focus team has increased dramatically.
+
+02:47:17.000 --> 02:47:23.000
+Dileep Karri: Okay, so corporate depends on producer saying, make more with less. Okay?
+
+02:47:23.000 --> 02:47:25.000
+Dileep Karri: Again.
+
+02:47:25.000 --> 02:47:33.000
+Dileep Karri: Why are teams getting laid off? That is the point I want to address. And there I saw a great article on the scene.
+
+02:47:36.000 --> 02:47:44.000
+Dileep Karri: There is this person. Yeah. So this person has written one excellent article. So I wanted to show you that.
+
+02:47:49.000 --> 02:47:56.000
+Dileep Karri: Okay? The layoffs will continue if till we learn to use AI. Okay? That is the thing.
+
+02:47:57.000 --> 02:48:01.000
+Dileep Karri: Okay, and what he's saying is, so this person is working in Meta.
+
+02:48:01.000 --> 02:48:04.000
+Dileep Karri: And on 20th May.
+
+02:48:04.000 --> 02:48:07.000
+Dileep Karri: Meta is going to lay off 8,000 people.
+
+02:48:07.000 --> 02:48:19.000
+Dileep Karri: Okay, on 20th May, Meta is going to lay off 8,000 people. So this person was sitting in his cabin and introspecting, there is a 10% chance that I'm going to be on a layoff sheet.
+
+02:48:19.000 --> 02:48:30.000
+Dileep Karri: Okay, he saw AI layoffs announcement by Coinbase. Jack Dorsey also has said with respect to this thing, et cetera, all that, right?
+
+02:48:30.000 --> 02:48:45.000
+Dileep Karri: the idea behind all of what he is trying to say, okay? The thing is, as somebody mentioned, code is an input, features are an output, users spending money on your product is an outcome.
+
+02:48:45.000 --> 02:48:50.000
+Dileep Karri: Right? As long as you are producing outcomes with AI.
+
+02:48:50.000 --> 02:48:53.000
+Dileep Karri: You are able to do much better.
+
+02:48:55.000 --> 02:49:08.000
+Dileep Karri: Okay, so that is exactly how it is. So I feel we are in an age where people are thinking I can get more done in less, etc. That is one.
+
+02:49:08.000 --> 02:49:23.000
+Dileep Karri: But the underlying fact that I believe, the underlying thing that I kind of always, you know, kind of tell you overall is that end of the day, you have to learn how to work with AI.
+
+02:49:23.000 --> 02:49:40.000
+Dileep Karri: Okay, it is un-ignorable right now. Somebody, so there are some organizations that I know, I have spoken to those organizations where they are restricting and they're not even giving AI tools to their engineers, saying that you have to write code by hand only. We don't want you to use AI. We don't understand AI.
+
+02:49:40.000 --> 02:49:53.000
+Dileep Karri: And I have recently come across this article by Jaya Gupta, who is a VC overall, where she has written an excellent article on Twitter.
+
+02:49:53.000 --> 02:49:55.000
+Dileep Karri: Okay, uh, where, uh…
+
+02:49:58.000 --> 02:50:02.000
+Dileep Karri: You know, wait, is this, I saw that act.
+
+02:50:04.000 --> 02:50:09.000
+Dileep Karri: This one. Experience is now a tax.
+
+02:50:09.000 --> 02:50:20.000
+Dileep Karri: So it is talking about the fact that you have experience, and if your experience is not matching with your upskilling, that experience becomes a tax.
+
+02:50:20.000 --> 02:50:33.000
+Dileep Karri: But on the same point of view, your experience can become a profit making machine. I don't have the right word to use. Okay, the experience that you have can also become.
+
+02:50:33.000 --> 02:50:35.000
+Dileep Karri: Right?
+
+02:50:35.000 --> 02:50:40.000
+Dileep Karri: The experience can also become a great judgment, everything, et cetera.
+
+02:50:40.000 --> 02:50:50.000
+Dileep Karri: So there is this example I keep giving folks, okay? So I have some friends across, and I keep having this debate. So I'm just presenting a summary of the debate I have with my friends.
+
+02:50:50.000 --> 02:50:59.000
+Dileep Karri: And they say, you know, my organization doesn't give me these tools, my organization doesn't allow this, my organization doesn't do that. Therefore, I will learn when my org allows it.
+
+02:50:59.000 --> 02:51:05.000
+Dileep Karri: So then my question to them is, is your life controlled by your org or by yourself?
+
+02:51:05.000 --> 02:51:08.000
+Dileep Karri: Why can't you take the effort to learn it yourself?
+
+02:51:08.000 --> 02:51:14.000
+Dileep Karri: That is the thing I keep saying to them. And this is an analogy that I came across before. I want to share it with you.
+
+02:51:15.000 --> 02:51:20.000
+Dileep Karri: There are two kinds of people. There is one kind of people who are at the shore.
+
+02:51:20.000 --> 02:51:24.000
+Dileep Karri: And they are waiting for the wave to touch their feet.
+
+02:51:24.000 --> 02:51:32.000
+Dileep Karri: Then there are people who go into the wide open sea and ride the wave. They are the surface.
+
+02:51:32.000 --> 02:51:43.000
+Dileep Karri: Okay? So the surfers ride the wave, and when that surfer rides the wave, they are on top. The selected few are on top, whereas the others…
+
+02:51:44.000 --> 02:51:45.000
+Dileep Karri: Below.
+
+02:51:45.000 --> 02:52:03.000
+Dileep Karri: I would say right now, AI is the ocean where everybody is still figuring out. We have a great arbitrage opportunity for engineers, non-engineers, et cetera, to do some really extremely good stuff. And there is a great disruption opportunity that can come through.
+
+02:52:04.000 --> 02:52:15.000
+Dileep Karri: Okay, so with that disruption opportunity that can come through, I would say I would, you know, kind of strongly recommend that.
+
+02:52:15.000 --> 02:52:20.000
+Dileep Karri: I want all of you to be as a surfers going ahead.
+
+02:52:20.000 --> 02:52:35.000
+Dileep Karri: You are part of the accelerator community. I want all of you to be the surface. I want all of you to be the leaders, your champions, who are helping in the adoption of AI. Yes, ISO certification, they don't allow the use of AI straight away.
+
+02:52:35.000 --> 02:52:39.000
+Dileep Karri: But eventually, they are going to allow. It is going to happen.
+
+02:52:39.000 --> 02:52:43.000
+Dileep Karri: Okay, when that happens, right, Copilot can be allowed.
+
+02:52:43.000 --> 02:52:52.000
+Dileep Karri: Right? It is going to happen. It is all about how you are going to be either the top of the wave or bottom.
+
+02:52:52.000 --> 02:53:09.000
+Dileep Karri: All right, so we will talk more on Saturday about what is the roadmap beyond this, what else you need to learn in detail. If you kind of like the experience of the accelerator program and you want to continue with us and you want to know about what other.
+
+02:53:09.000 --> 02:53:17.000
+Dileep Karri: things that could be done beyond this, we will talk about on Saturday, but then maybe you can get a, uh, something like.
+
+02:53:17.000 --> 02:53:27.000
+Dileep Karri: I guess 20,000 INR or $200, $300, or $500. Just keep it aside. We will talk more on Saturday.
+
+02:53:27.000 --> 02:53:36.000
+Dileep Karri: All right. I'll stop right here. You might agree with me. You might not agree with me. That's fine. I just — I felt that I had to share these insights with you.
+
+02:53:36.000 --> 02:53:45.000
+Dileep Karri: Please do talk to your other friends also about this, whether they should or not ignore this wave. That is the worst mistake people can do.
+
+02:53:45.000 --> 02:53:50.000
+Dileep Karri: Right? And now let us get back to the original programming, which is our codex.
+
+02:54:00.000 --> 02:54:01.000
+Dileep Karri: Alright.
+
+02:54:04.000 --> 02:54:13.000
+Dileep Karri: There you go. So it has verified against OpenRouter. Everything is working good. All is sorted.
+
+02:54:13.000 --> 02:54:27.000
+Dileep Karri: Okay, so we have the recommended models mapping, all of it is good. So now, the thing is, I can start continuing from here and build it out, or when the session limit is done, I can start building. I will do it offline.
+
+02:54:50.000 --> 02:54:54.000
+Dileep Karri: code to pick up so I can continuously run the same.
+
+02:54:54.000 --> 02:55:03.000
+Dileep Karri: All right. So just to give a quick summary of what we have done today, we started with MCP servers.
+
+02:55:03.000 --> 02:55:12.000
+Dileep Karri: We looked at some of the MCP servers which are good, right? Some good MCP servers that you need to have are.
+
+02:55:12.000 --> 02:55:25.000
+Dileep Karri: or something, I'll send a list to Sham so that he can put it in the post-read resources. I will send it by tomorrow. But you have the MCP servers, you have the skills. Skills, as I said, three skills, very important. Superpowers.
+
+02:55:25.000 --> 02:55:37.000
+Dileep Karri: Then GSD and Claude Mem, these are very important. Of course, read the documentation yourself and understand if these are skills that you could use, and then you can work forward with that.
+
+02:55:38.000 --> 02:55:39.000
+Dileep Karri: All right.
+
+02:55:39.000 --> 02:55:46.000
+Dileep Karri: So any questions? I know I have answered a lot of the questions. If I can take a few questions, I will take it right away.
+
+02:55:52.000 --> 02:55:54.000
+Sham Kulkarni: Alright.
+
+02:55:54.000 --> 02:56:03.000
+Sham Kulkarni: Uh, so, before we start taking the questions, right? So, I just want to quickly launch the CSAT poll, folks.
+
+02:56:03.000 --> 02:56:11.000
+Sham Kulkarni: You know the drill, right? It will give us more insights on what improvements can be done, what did you like, right?
+
+02:56:11.000 --> 02:56:12.000
+Sham Kulkarni: How was the session?
+
+02:56:12.000 --> 02:56:16.000
+Sham Kulkarni: How was the delivery style and everything? So…
+
+02:56:16.000 --> 02:56:21.000
+Sham Kulkarni: Uh, Dilip, uh, for Q&A, you want to take the questions from the chat itself, or you want to…
+
+02:56:20.000 --> 02:56:26.000
+Dileep Karri: That itself, because I already answered quite a bit of questions, I will take those from the chat itself, more on.
+
+02:56:22.000 --> 02:56:24.000
+Sham Kulkarni: Sure.
+
+02:56:26.000 --> 02:56:28.000
+Sham Kulkarni: Okay.
+
+02:56:27.000 --> 02:56:36.000
+Dileep Karri: So how I linked Codex? Very simple. I just opened the same folder in Codex. I have not done anything.
+
+02:56:36.000 --> 02:56:52.000
+Dileep Karri: I have opened the same folder from Codex. That's all. You can check the recording. You can see exactly what I have done. What is compared to Codex versus Claude Code? We are on CC and hearing good views about Codex. I feel the best way to do it is Claude Code for design.
+
+02:56:52.000 --> 02:57:08.000
+Dileep Karri: codex for implementation. So that is the ideal way I have seen codex. They're giving more limits because they want to capture the cloud code audience. So because cloud code, the performance degradation has happened because of that.
+
+02:57:08.000 --> 02:57:14.000
+Dileep Karri: You know, it has happened overall. So that is exactly what I wanted to mention.
+
+02:57:37.000 --> 02:57:48.000
+Dileep Karri: How do you optimize the changes in memory stats in Claude? Tough question. The best way I can say is use Claude Mem. That is how I would do it.
+
+02:57:48.000 --> 02:58:06.000
+Dileep Karri: How to motivate our designers to use cloud code? Our folks are still the old Figma polishing. Any experience sharing will be good. So for… again, you'll have to have your team actually use it and try to do that. You should try to push your team to use it. You can take the horse to the pond.
+
+02:58:06.000 --> 02:58:21.000
+Dileep Karri: not further, okay? In fact, you can do one thing. You can ask your designers to check out paper design, because it's an agentic version. You can use paper design with Codex or Claude Code, and Claude can create designs directly on Codex itself.
+
+02:58:21.000 --> 02:58:35.000
+Dileep Karri: The cloud prompting covered in your session, or we still need to look into it. Prompting 101, again, we… I think, uh, whatever prompting you have learned in the beginning, right, that is sufficient. There is no special thing you can use overall.
+
+02:58:35.000 --> 02:58:49.000
+Dileep Karri: Should we use local LLM for confidential company code, or we can use Claude? So, if you're using the Claude team plans, etc, they don't use it for any kind of training. If you get the guarantee, you can use it. Otherwise, don't use it.
+
+02:58:50.000 --> 02:58:57.000
+Dileep Karri: What strategies work best which prevent Claude code from making cascading code changes that unintentionally…
+
+02:58:57.000 --> 02:59:00.000
+Dileep Karri: you know, break dependent models.
+
+02:59:00.000 --> 02:59:15.000
+Dileep Karri: So this is something which is difficult. And as your code base scales, this will be a problem. But your models have become pretty good in terms of coding, et cetera, and all that. So it is going to become pretty good all through.
+
+02:59:15.000 --> 02:59:32.000
+Dileep Karri: So, you know, the only best thing is you can, right now maybe yes, but I don't see the day far off, like Mythos has been very good. So I don't see the day far off when your Claude modules can do this also very well.
+
+02:59:32.000 --> 02:59:48.000
+Dileep Karri: Till then, you will have to manually at least sample. So I use statistics in this case. So statistically, if you feel there are no breaking changes, that is fine. Or do it in phases. Don't try to change everything. Try to make little bit of changes and try to pick it up from there.
+
+02:59:51.000 --> 02:59:55.000
+Dileep Karri: Okay, learning path we will talk about on Saturday.
+
+02:59:55.000 --> 03:00:16.000
+Dileep Karri: token usage. We have a complete session on costing and optimization that will be present over that. How will we start if we left in cloud code, and that will not pull all information from scratch when you come next day. I think I've already covered it, Jasmine, as to how we prepare a lot of documentations like status dot Md. Etc. And all that.
+
+03:00:11.000 --> 03:00:13.000
+Sham Kulkarni: What?
+
+03:00:16.000 --> 03:00:21.000
+Dileep Karri: So that would be something that you can make it through.
+
+03:00:23.000 --> 03:00:25.000
+Dileep Karri: Right, and uh…
+
+03:00:25.000 --> 03:00:40.000
+Dileep Karri: So the drawing used at the beginning, right? The problem is there is some glitch. It is not saving the drawing, so I'm not able to share it with you. But even last time, I tried to create an Excalidraw drawing. So similarly, I'll try to create something like that and share it across.
+
+03:00:41.000 --> 03:00:43.000
+Dileep Karri: Okay.
+
+03:00:43.000 --> 03:00:53.000
+Dileep Karri: Apart from software engineering, also do trading, which I would want automatically. That is one of the goals. So you can use Claude Code to kind of work with those easily.
+
+03:00:54.000 --> 03:01:03.000
+Dileep Karri: Coworkers and dispatch, how so? I don't use much of those. So that out of scope, you'll figure it out yourself. I don't use that much of dispatch.
+
+03:01:03.000 --> 03:01:07.000
+Dileep Karri: Can Claude Code build reliable agent workflows?
+
+03:01:07.000 --> 03:01:13.000
+Dileep Karri: You will require LangChain. You will require some kind of orchestration frameworks.
+
+03:01:13.000 --> 03:01:25.000
+Dileep Karri: As a full-stack swimmer, how can I leverage skills to boost my day-to-day work? Yes, you can create your own skill by writing requirements. There are… you can easily boost your overall available skills.
+
+03:01:26.000 --> 03:01:40.000
+Dileep Karri: Can you share a guide with all instructions or commands or GitHub libraries used today? I will share the transcript, okay? I will add that guide, but the transcript, if you kind of put it in NotebookLM, you will be able to get all of that.
+
+03:01:43.000 --> 03:01:44.000
+Dileep Karri: Okay.
+
+03:01:47.000 --> 03:02:02.000
+Dileep Karri: Any additional questions, we will take it up later. I'm sorry I have to bounce. There is a personal emergency that I have been working through, so I have to bounce quickly. But any other questions you can drop to Shyam. Shyam, send it to me. I will send the answers to you so that you can share it with people.
+
+03:02:01.000 --> 03:02:02.000
+Sham Kulkarni: Sure.
+
+03:02:03.000 --> 03:02:08.000
+Sham Kulkarni: Sure. Definitely, Dilip. Yeah. So I guess, Dilip.
+
+03:02:05.000 --> 03:02:07.000
+Dileep Karri: Good.
+
+03:02:08.000 --> 03:02:18.000
+Sham Kulkarni: has done a wonderful session for today, and thank you so much, Dilip. You know, even with all the emergencies, you have been here, right? So thank you so much for that.
+
+03:02:20.000 --> 03:02:27.000
+Dileep Karri: Thank you, folks. Any questions, send it over to me. I will try to answer. Thanks a lot, everyone, for all your support.
